@@ -13,24 +13,24 @@
       :style="star"
     ></div>
     <button v-if="hero.dimDisplayMode === 'map'" class="reset-button" @click="selectDimension(dimensions[0])">
-      🌍 main
+      🌍 主维度
     </button>
     <button v-if="hero.dimDisplayMode === 'map'" class="progression-button" @click="toggleProgressionCircles">
-      Progression
+      进度圈
     </button>
     <button v-if="hero.dimDisplayMode === 'map' && hero.rebirthPts >= 1e7" class="reset-button reset-button-bh" @click="resetView('bh')">
-      🌑 Black Hole
+      🌑 黑洞
     </button>
 
     <div class="atlas-header">
-      <button @click="hero.dimDisplayMode = 'map'">🗺 Map</button>
-      <button @click="hero.dimDisplayMode = 'grid'">🔲 Grid</button>
+      <button @click="hero.dimDisplayMode = 'map'">🗺 地图</button>
+      <button @click="hero.dimDisplayMode = 'grid'">🔲 网格</button>
       <button
         @click="toggleOtherDimensions"
         :disabled="!isEternityUnlocked"
         :class="{ disabled: !isEternityUnlocked }"
       >
-        🌌 Dark Dimensions
+        🌌 黑暗维度
       </button>
 
       <input
@@ -38,14 +38,14 @@
         v-model="searchQuery"
         type="text"
         class="dimension-search small"
-        placeholder="🔍 Search..."
+        placeholder="🔍 搜索..."
       />
 
       <select v-if="hero.dimDisplayMode === 'grid'" v-model="hero.gridFilterStatus" class="dimension-filter small">
-          <option value="all">🌐 All</option>
-          <option value="completed">✅ Completed</option>
-          <option value="inprogress">⚡ In Progress</option>
-          <option value="blocked">⛔ Blocked</option>
+          <option value="all">🌐 全部</option>
+          <option value="completed">✅ 已完成</option>
+          <option value="inprogress">⚡ 进行中</option>
+          <option value="blocked">⛔ 未解锁</option>
       </select>
     </div>
 
@@ -153,7 +153,7 @@
           <div class="dim-description-scroll">
             <p v-html="dimensionD(dimension)"></p>
           </div>
-          <button class="enter-button" @click="selectDimension(dimension)">Enter</button>
+          <button class="enter-button" @click="selectDimension(dimension)">进入</button>
         </div>
       </div>
     </div>
@@ -634,16 +634,16 @@ function dimensionD(hovered) {
   if(d.id == 'main') str += `<span style="color: gold">Infinity [T${hero.value.mainInfTier}]</span><br><br>`
   if(dInfFiltered.includes(d.id)) str += `<span style="color: gold">Infinity [T${d.infTier}]</span><br><br>`
 
-  if(d.id == 'noBuffs') str += `Reward: Buff EXP Boost - <spna>${formatNumber(1.15 ** (d.infTier - 5), true)}</span><br>`
+  if(d.id == 'noBuffs') str += `奖励：增益经验加成 - <spna>${formatNumber(1.15 ** (d.infTier - 5), true)}</span><br>`
   else if(d.id == 'time') str += dTime();
   else if(d.id == 'danger') str += `Max Danger: +${Math.floor(1.45 ** (d.infTier - 10) - 1)}<br>`
   else if(d.id == 'damage') str += `Damage MULT: ${(1.04 ** (d.infTier - 20)).toFixed(2)}<br>`
   else if(d.id == 'survival-2') str += `Max stage: ${hero.value.survivalStage}<br>You will get double stats until Level(not includeing Min Level) ${Math.floor(hero.value.survivalStage ** 1.175)}<br>`
-  else if(d.r != '') str += `Reward: <span>${d.r}</span><br>`;
+  else if(d.r != '') str += `奖励：<span>${d.r}</span><br>`;
 
-  if(d.sp != '') str += `Special Reward: <span>${d.sp}</span><br>`;
-  if(d.id == hero.value.dId) str += `<span style="color: green">[You are here now]</span><br>`
-  if(hero.value.isSingularity) str += `<span style="color: #66ffcc">You are in Singularity right now</span><br>`
+  if(d.sp != '') str += `特殊奖励：<span>${d.sp}</span><br>`;
+  if(d.id == hero.value.dId) str += `<span style="color: green">[你当前在此]</span><br>`
+  if(hero.value.isSingularity) str += `<span style="color: #66ffcc">你当前处于奇点中</span><br>`
 
   if(d.id == 'time') str += `<br>Your best time ${timeFormat(hero.value.dTimeReward)}`
 
@@ -672,23 +672,23 @@ function darkDimensions(d){
   else if(d.id == 'd-danger') str += d_danger_reward_handle(d);
   else if(d.id == 'd-noSpace') str += d_noSpace_reward_handle(d);
   else if(d.id == 'd-damage') str += d_damage_reward_handle(d);
-  else str += `<span style="color: #9cedd2">Reward: ${d.r}</span><br>`;
+  else str += `<span style="color: #9cedd2">奖励：${d.r}</span><br>`;
 
-  if(d.debuff !== '') str += `<span style="color: #e74c61">Dimension Intervention: ${d.debuff}</span><br>`;
+  if(d.debuff !== '') str += `<span style="color: #e74c61">维度干预：${d.debuff}</span><br>`;
 
 
-  if(d.id == hero.value.dId) str += `<span style="color: green">[You are here now]</span><br>`
-  if(hero.value.isSingularity) str += `<span style="color: #66ffcc">You are in Singularity right now</span><br>`
+  if(d.id == hero.value.dId) str += `<span style="color: green">[你当前在此]</span><br>`
+  if(hero.value.isSingularity) str += `<span style="color: #66ffcc">你当前处于奇点中</span><br>`
 
   return str;
 }
 
 function dark_dimensions_handle(){
-  return `Enter the Dark Side of the Dimensions. 
-  The Dark Dimensions have an unlimited Infinity Cap, but you must reach [Total Level] 1400 to unlock the next tier. 
-  Each subsequent Infinity Tier is more challenging than the previous one. 
-  Infinity Penalty Reduction does not apply across these dimensions. 
-  The dimensions are linked: each next dimension inherits a portion of the power from the previous one.<br>`
+  return `进入维度的黑暗面。 
+  黑暗维度的无限上限不封顶，但你必须达到[总等级]1400才能解锁下一阶。 
+  每个后续无限阶级都比前一阶更具挑战。 
+  这些维度中不受无限惩罚减免影响。 
+  这些维度彼此连接：下一个维度会继承前一个维度的部分力量。<br>`
 }
 
 const bhReq = [1, 3, 8, 30, 100, 250, 1000, 100, 100, 100, 100];
@@ -701,9 +701,9 @@ function bhChallenge() {
     hero.value.isBhBoss = true;
 
   if (!hero.value.isBhBoss) {
-    str += `<span style="color: #a3ffe0">Reach transcendence ${bhReq[tier]}, to enter the Black Hole</span><br>`;
+    str += `<span style="color: #a3ffe0">达到超越 ${bhReq[tier]}, to enter the 黑洞</span><br>`;
     if (tier === 0) {
-      str += `<span style="color: yellow">Reach 70,000 True Level in main dimension</span>`;
+      str += `<span style="color: yellow">在主维度达到70,000真实等级</span>`;
     }
     return str;
   }
@@ -711,10 +711,10 @@ function bhChallenge() {
   
 
  
-  str += `<span style="color: cyan; font-weight: bold">Black Hole [T${tier}]</span><br><br>`;
+  str += `<span style="color: cyan; font-weight: bold">黑洞 [T${tier}]</span><br><br>`;
 
   str += `<span style="color: #cccccc">
-      Dive into the darkness of the Black Hole ruled by <span style="color: cyan">[D-Gravity]</span> to face the 
+      Dive into the darkness of the 黑洞 ruled by <span style="color: cyan">[D-Gravity]</span> to face the 
       <span style="color: cyan">Singulars</span>. 
       Each of their attacks is stronger than the previous. 
       When you die, your <span style="color: cyan">transcendence</span> will be destroyed, 
@@ -729,7 +729,7 @@ function bhChallenge() {
 
   const uniqueRewards = {
     0: `<span style="color: red">BUFF: Black Impulse [T1]</span><br>
-        <span style="color: lime">+0.1 Max Level MULT</span> per each <span style="color: cyan">transcendence</span>
+        <span style="color: lime">+0.1 最大等级 MULT</span> per each <span style="color: cyan">transcendence</span>
         <span style="color: gold">You start with 10m stardust</span>`,
     1: `<span style="color: red">BUFF: Black Impulse [T2]</span><br> 
         <span style="color: lime">+1.05</span> <span style="color: red">DMG</span> MULT per each <span style="color: cyan">transcendence</span>
@@ -739,10 +739,10 @@ function bhChallenge() {
         <span style="color: gold">Unlock Space-INF</span>`,
     3: `<span style="color: red">BUFF: Black Impulse [T4]</span><br> 
         <span style="color: lime">+0.005</span> <span style="color: orange">IP MULT</span> per each <span style="color: cyan">transcendence</span><br> 
-        <span style="color: gold">Unlock Timeline</span>`
+        <span style="color: gold">Unlock 时间线</span>`
   };
 
-  str += `<span style="color: #a3ffe0">Rewards:</span><br>`;
+  str += `<span style="color: #a3ffe0">奖励：</span><br>`;
   [...baseRewards, uniqueRewards[tier]].forEach(r => {
     str += `${r}<br>`;
   });
@@ -751,10 +751,10 @@ function bhChallenge() {
 }
 
 function advanceBH() {
-  let text = `<span style="color: gold">Timeline</span><br><br>
-  Journey into the past, to the era of the ancient titans. Master the laws of existence and open new paths to power.<br><br>
+  let text = `<span style="color: gold">时间线</span><br><br>
+  回到过去，前往远古泰坦时代。 Master the laws of existence and open new paths to power.<br><br>
 
-  <span style="color: red">This feature will be unlocked in the update 0.6 [Dimensional Merge]</span>
+  <span style="color: red">该功能将在0.6版本解锁[维度融合]</span>
   `;
 
   return text;
@@ -768,9 +768,9 @@ function dTime(){
     const afkPercent = Math.max(Math.min((15 / Math.log(Math.max(time, 3))) * speedMult, 10), 1);
     const afkDuration = Math.min((7.5 / Math.sqrt(Math.max(time, 3))) * speedMult, 5);
 
-    return `Reward: Each ${Math.round(100 / afkPercent)} killed enemy grants the AFK boost for ${afkDuration.toFixed(1)}s<br>`;
+    return `奖励：每${Math.round(100 / afkPercent)} 次击杀敌人获得AFK加速，持续${afkDuration.toFixed(1)}s<br>`;
   } else {
-    return `Reward: 0% to get AFK boost for 0s<br>`;
+    return `奖励：0%概率获得AFK加速，持续0秒<br>`;
   }
 }
 
@@ -800,12 +800,12 @@ function unlimittedDescription(){
   let unlimitD = `
   <span>
   Exp boost ${expBoost.toFixed(2)} - 
-  Max Level MULT ${(hero.value.unlimitMaxLevel).toFixed(2)} - 
+  最大等级 MULT ${(hero.value.unlimitMaxLevel).toFixed(2)} - 
   MIN Level ${hero.value.unlimitMinLevel}
   </span><br>
-  </span><br><span>Max Level: ${hero.value.unlimitLevel}</span>/<span>[${hero.value.unlimitLevelMax}]</span><br>
+  </span><br><span>最大等级: ${hero.value.unlimitLevel}</span>/<span>[${hero.value.unlimitLevelMax}]</span><br>
   <span>Reach Level ${1500 + 500 * infBonus} to get a Bonus to Infinite EXP in this Dimension by ${formatNumber((infBonus * 5 + 1) ** 1.5)}</span><br>
-  <span>Reach Level 2000 to unlock new Infinity Goal</span><br>
+  <span>达到等级2000以解锁新的无限目标</span><br>
   `
 
   return unlimitD;
@@ -816,15 +816,15 @@ function d_buffs_handle(d) {
   let maxCount = 7;
   let count = Math.min(getBuffIntervalPosition(buffTiers, d.infTier), maxCount);
 
-  const wrap = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+  const wrap = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
 
   switch(count) {
-    case 1: return wrap(`Reach Infinity [T1] to unlock Juggernaut [T4]`);
-    case 2: return wrap(`Reach Infinity [T4] to unlock Berserk [T4]`);
-    case 3: return wrap(`Reach Infinity [T6] to unlock First Strike [T4]`);
-    case 4: return wrap(`Reach Infinity [T8] to unlock Traveller [T4]`);
-    case 5: return wrap(`Reach Infinity [T12] to unlock Flexible [T4]`);
-    case 6: return wrap(`Reach Infinity [T16] to unlock Flash [T4]`);
+    case 1: return wrap(`达到无限[T1]解锁主宰者[T4]`);
+    case 2: return wrap(`达到无限[T4]解锁狂战[T4]`);
+    case 3: return wrap(`达到无限[T6]解锁先发制人[T4]`);
+    case 4: return wrap(`达到无限[T8]解锁旅者[T4]`);
+    case 5: return wrap(`达到无限[T12]解锁灵活[T4]`);
+    case 6: return wrap(`达到无限[T16]解锁闪电[T4]`);
     default: return wrap(`All possible buffs are taken.`);
   }
 }
@@ -876,7 +876,7 @@ function d_unlimitted_handle(d) {
   let expMult = Math.max((Math.E * d.infTier) ** 0.6, 1);
 
   let text = `
-    Reward: Weakens <span style='color: rgb(255, 88, 88)'>[D-Ultimatum]</span> 
+    奖励：弱化 <span style='color: rgb(255, 88, 88)'>[D-Ultimatum]</span> 
     <span style='color: gold'>[T${d.infTier}]</span>
     <span style='color: rgb(204, 102, 255)'>${current}</span> 
     -> <span style='color: gold'>[T${d.infTier + 1}]</span>
@@ -887,7 +887,7 @@ function d_unlimitted_handle(d) {
   `;
 
   if (d.infTier < 10) {
-    text += `Reach <span style="color: gold">Infinity [T10]</span> to unlock new feature`;
+    text += `达到 <span style="color: gold">无限 [T10]</span> 以解锁新功能`;
   } else {
     text += `Min Level in dimension [5] [S5-Ω3t] scales better with Infinity Tier`;
   }
@@ -908,7 +908,7 @@ function d_noSpace_reward_handle(d) {
   const weaker = (1 - 0.01 * d.infTier).toFixed(2);     
   const stardust = Math.max((Math.E * d.infTier) ** 0.45, 1).toFixed(2);  
 
-  let warp = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+  let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
 
   return warp(base
     .replace(/\[\^1\]/, `[^${weaker}]`)
@@ -924,11 +924,11 @@ function dark_energy_reward(d){
       totalInfs = Math.max(totalInfs, 0);
 
   if(d.infTier < 10)
-    text += `Reach <span style="color: gold">Infinity [T10]</span> to unlock new influence of Dark Energy<br>`;
+    text += `达到 <span style="color: gold">无限 [T10]</span> 以解锁暗能量新影响<br>`;
   else text += `Dark Energy is gathering the power of infinities from all dark dimensions and empowers itself with <span style="color: gold">${percent}%</span> of the total 
   <span style="color: gold">infinities [${totalInfs}]</span>. This effect increases with each Infinity Tier<br>`;
 
-  text += `<span style="color: #9cedd2">Reward: Max Level [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
+  text += `<span style="color: #9cedd2">奖励：最大等级 [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
 
   return text;
 }
@@ -943,7 +943,7 @@ function d_damage_reward_handle(d){
   else text = `Reach <span style="color: gold">Infninity [T10]</span> to unlock new feature<br><br>`;
 
 
-  let warp = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+  let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
 
   return text + warp(d.r);
 }

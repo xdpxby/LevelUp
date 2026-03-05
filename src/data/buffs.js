@@ -4,13 +4,13 @@ import { dimensions } from './dimensions';
 const buffs = ref([
     {
       id: 0,
-      name: 'Invisible',
+      name: '隐形',
       description: [
-        "33% chance for your DEF to double when an enemy hits you",
-        "35% chance to reduce an enemy attack to 1 DMG",
-        "Your DEF is immune to penetration",
-        "You are immune to stunning",
-        "Max Tier"
+        "被敌人命中时有33%概率使防御翻倍",
+        "35%概率将敌人一次攻击降为1点伤害",
+        "你的防御免疫穿透",
+        "你免疫眩晕",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -19,17 +19,17 @@ const buffs = ref([
       active: false,
       ptr: 0,
       def: 1,
-      nextTierReq: 'Unlock in TIER-R'
+      nextTierReq: '在TIER-R中解锁'
     },
     {
       id: 1,
-      name: 'First Strike',
+      name: '先发制人',
       description: [
-        "First attack deals double DMG",
-        "First attack is always critical",
-        "First attack will STUN enemy for 1 second",
-        "First attack starts with ApS bar at 25%",
-        "Max Tier"
+        "首次攻击造成双倍伤害",
+        "首次攻击必定暴击",
+        "首次攻击使敌人眩晕1秒",
+        "首次攻击时攻速条初始为25%",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -40,34 +40,34 @@ const buffs = ref([
       usedSkill: false,
       usedAPS: false,
       stun: 0,
-      nextTierReq: 'Dimension 32 [T6]',
+      nextTierReq: '维度32 [T6]',
     },
     {
       id: 2,
-      name: 'Traveller',
+      name: '旅者',
       description: [
-        "[X3] EQUIPMENT DROP CHANCE",
-        "[X3] SOUL APPEARANCE CHANCE",
-        "[X1.5] ASCENSION SHARDS and [X3] EXP",
-        "[X2] STARDUST and MUTAGEN",
-        "Max Tier"
+        "[X3] 装备掉率",
+        "[X3] 灵魂出现概率",
+        "[X1.5] 飞升碎片 与 [X3] 经验",
+        "[X2] 星尘与突变因子",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
       exp: 0,
       maxExp: [12500, 120000, 1e12, 1e15, 1e20],
       active: false,
-      nextTierReq: 'Dimension 32 [T8]'
+      nextTierReq: '维度32 [T8]'
     },
     {
         id: 3,
-        name: 'Combo',
+        name: '连击',
         description: [
-          "+1% DMG per COMBO [MAX- 30]; +1 COMBO per hit; COMBO Resets if you get hit by an enemy",
-          "+1.25% DMG per COMBO [MAX- 40]; +1 COMBO per hit [50% to get additional COMBO]; COMBO Resets 75% if you get hit by an enemy",
-          "+1.5% DMG per COMBO [MAX- 50]; +1.5 COMBO per hit; COMBO Resets 50% if you get hit by an enemy",
-          "+1.75% DMG per COMBO [MAX- 100]; +2 COMBO per hit; COMBO Resets get killed by an enemy; +0.3 Attack per Second when COMBO is MAX",
-          "Max Tier"
+          "每层连击+1%伤害[上限30]；每次命中+1连击；被敌人命中时连击重置",
+          "每层连击+1.25%伤害[上限40]；每次命中+1连击[50%概率额外+1]；被命中时连击保留25%",
+          "每层连击+1.5%伤害[上限50]；每次命中+1.5连击；被命中时连击保留50%",
+          "每层连击+1.75%伤害[上限100]；每次命中+2连击；被敌人击杀时连击重置；连击满层时+0.3攻速",
+          "最大阶"
         ],
         tier: 1,
         maxTier: 3,
@@ -80,13 +80,13 @@ const buffs = ref([
     },
     {
         id: 4,
-        name: 'Blood Art',
+        name: '血技',
         description: [
-          "Heal HP equal to your current Stage each second",
-          "Heal 5% of Max HP when you kill an enemy",
-          "Heal 5% of Max HP each second",
-          "Heal 2% of Max HP + [current Stage] after each attack",
-          "Max Tier"
+          "每秒回复等同当前关卡数值的生命",
+          "击杀敌人时回复5%最大生命",
+          "每秒回复5%最大生命",
+          "每次攻击后回复2%最大生命+[当前关卡]",
+          "最大阶"
         ],
         tier: 1,
         maxTier: 3,
@@ -98,12 +98,12 @@ const buffs = ref([
     },
     {
         id: 5,
-        name: 'Fast Slash',
+        name: '迅斩',
         description: [
-          "Hit an additional time; -0.8 Attack per Second",
-          "25% to hit another extra additional time; -0.7 Attack per Second",
-          "A separate 25% to hit an extra additional time; -0.6 Attack per Second",
-          "Max Tier"
+          "额外攻击1次；-0.8攻速",
+          "25%概率再额外攻击1次；-0.7攻速",
+          "独立25%概率再额外攻击1次；-0.6攻速",
+          "最大阶"
         ],
         tier: 1,
         maxTier: 3,
@@ -115,13 +115,13 @@ const buffs = ref([
     },
     {
         id: 6,
-        name: 'Charges',
+        name: '充能',
         description: [
-          `+1 Max Tier per Singularity Tier;
-          25% (+1% to gain random Charge per Tier) to gain random Charge, when you hit;
-          50% (-2% to lost random Charge per Tier) to lost random Charge when you were hit; 
-          Max Charges: 1 (+1 Max Charges per Tier);
-          Power Charge: +5% DMG, +0.1 APS; Energy Charge: +1 CRIT, +5 CRIT DMG; Life Charge: +5% HP, +5% DEF.`
+          `每层奇点阶级+1最大阶；
+          命中时有25%概率获得随机充能（每阶+1%）；
+          被命中时有50%概率失去随机充能（每阶-2%）；
+          最大充能：1（每阶+1）；
+          力量充能：+5%伤害、+0.1攻速；能量充能：+1暴击、+5暴伤；生命充能：+5%生命、+5%防御。`
         ],
         tier: 1,
         maxTier: 1,
@@ -136,30 +136,30 @@ const buffs = ref([
       },
       {
         id: 7,
-        name: 'Overkill',
+        name: '溢出击杀',
         description: [
-          "+1 Overkill.",
-          "+1 Overkill per each 100 max level",
-          "+1 Overkill per each 50 level",
-          "10% to gain EXP && WEAPON CHANCE for each overkilled Enemy",
-          "Max Tier"
+          "+1 溢出击杀",
+          "每100最大等级 +1 溢出击杀",
+          "每50等级 +1 溢出击杀",
+          "每次溢出击杀有10%概率获得经验与武器掉率加成",
+          "最大阶"
         ],
         tier: 1,
         maxTier: 3,
         exp: 0,
         maxExp: [225000, 1625000, 1e10, 1e12, 1e17],
         active: false,
-        nextTierReq: 'Singularity [T0]'
+        nextTierReq: '奇点[T0]'
       },
       {
       id: 8,
-        name: 'Conquer',
+        name: '征服',
         description: [
-          "+0.1% HP per second [MAX - 500s]",
-          "+0.1% DMG per second [MAX - 750s]",
-          "+0.1 ATTACK SPEED per 250 seconds [MAX - 1000s]",
-          "1% of enemy weakness per 50 seconds [MAX - 1250]; Start with 250 seconds",
-          "Max Tier"
+          "每秒+0.1%生命[上限500秒]",
+          "每秒+0.1%伤害[上限750秒]",
+          "每250秒+0.1攻速[上限1000秒]",
+          "每50秒+1%敌人弱点[上限1250秒]；初始250秒",
+          "最大阶"
         ],
         tier: 1,
         maxTier: 3,
@@ -168,17 +168,17 @@ const buffs = ref([
         active: false,
         time: 0,
         spaceTime: 0,
-        nextTierReq: 'Unlock in TIER-S'
+        nextTierReq: '在TIER-S中解锁'
       },
       {
       id: 9,
-      name: 'Flexible',
+      name: '灵活',
       description: [
-        "10% to avoid enemy HIT",
-        "20% to avoid enemy HIT",
-        "Avoid chance checks twice",
-        "Gain +4% avoid chance each time your avoidance is successful",
-        "Max Tier"
+        "10%概率闪避敌人命中",
+        "20%概率闪避敌人命中",
+        "闪避判定进行两次",
+        "每次成功闪避后+4%闪避率",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -186,16 +186,16 @@ const buffs = ref([
       times: 0,
       maxExp: [800000, 2e7, 1e15, 1e18, 1e22],
       active: false,
-      nextTierReq: 'Dimension 32 [T12]'
+      nextTierReq: '维度32 [T12]'
     },
     {
       id: 10,
-      name: 'Extra life',
+      name: '额外生命',
       description: [
-        `${35}% to RISE UP after death with 50% HP.`,
-        "+50% DMG and 100% DEF after RISING for 8 seconds",
-        "After RISING become immune to any damage for 3 seconds",
-        "Max Tier"
+        `${35}% 概率在死亡后以50%生命复苏`,
+        "复苏后8秒内+50%伤害与100%防御",
+        "复苏后3秒内免疫一切伤害",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -209,13 +209,13 @@ const buffs = ref([
     },
     {
       id: 11,
-      name: 'Sniper',
+      name: '狙击手',
       description: [
-        "+15% CRIT, +75% CRIT DMG",
-        "If your Crit Chance is above 100%, you deal an additional Double DMG",
-        "Crit chance is checked twice",
-        "When your Hit is Critical, you ignore the Enemy's Avoid",
-        "Max Tier"
+        "+15%暴击率，+75%暴击伤害",
+        "若暴击率超过100%，额外造成一次双倍伤害",
+        "暴击率判定进行两次",
+        "当本次命中为暴击时，无视敌人闪避",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -227,13 +227,13 @@ const buffs = ref([
     },
     {
       id: 12,
-      name: 'Berserk',
+      name: '狂战',
       description: [
-        `Low HP, High DMG -> 1 : 2`,
-        "+15% Crit Chance and +75% Crit Damage when HP is low",
-        "If HP drops below 30%, restore 1% HP for every 10% HP missing",
-        "Rage mechanic. Check the Rage icon for more details",
-        "Max Tier"
+        `低生命，高伤害 -> 1:2`,
+        "低生命时+15%暴击率与+75%暴击伤害",
+        "生命低于30%时，每缺失10%生命回复1%生命",
+        "包含狂怒机制，详情见狂怒图标",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -246,34 +246,34 @@ const buffs = ref([
       rage: 0,
       isRage: false,
       rageAttackMult: 0,
-      nextTierReq: "Dimension [32] [T4]",
+      nextTierReq: "维度[32] [T4]",
     },
     {
       id: 13,
-      name: 'Juggernaut',
+      name: '主宰者',
       description: [
-        `x1.5 DEF, x1.5 HP, x0.75 DMG`,
-        "Gain +10% DEF for each 10% of missing HP",
-        "+5% DEF From Max HP",
-        "50% chance to heal 10% HP on full block",
-        "Max Tier"
+        `防御x1.5，生命x1.5，伤害x0.75`,
+        "每缺失10%生命，+10%防御",
+        "基于最大生命额外+5%防御",
+        "完全格挡时有50%概率回复10%生命",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
       exp: 0,
       maxExp: [4e6, 8e7, 1e14, 1e15, 1e18],
       active: false,
-      nextTierReq: 'Dimension [32] [T1]'
+      nextTierReq: '维度[32] [T1]'
     },
     {
       id: 14,
-      name: 'The Flash',
+      name: '闪电',
       description: [
-        `Your base APS cannot be lower than 1`,
-        "+0.1 APS for each Space Boss killed [MAX - 0.5]",
-        "+0.01 APS for each Stage passed [MAX - 1]",
-        "Overcapped APS converts into chance of extra hits",
-        "Max Tier"
+        `你的基础攻速不低于1`,
+        "每击杀1个太空首领+0.1攻速[上限0.5]",
+        "每通过1关+0.01攻速[上限1]",
+        "超出上限的攻速转化为额外打击概率",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 3,
@@ -281,17 +281,17 @@ const buffs = ref([
       maxExp: [1e8, 1e10, 1e16, 1e17, 1e18],
       extraHit: 0,
       active: false,
-      nextTierReq: 'Dimension [32] [T16]'
+      nextTierReq: '维度[32] [T16]'
     },
     {
       id: 15,
-      name: 'Black Impulse',
+      name: '黑色脉冲',
       description: [
-        "Each hit increases the chance by 20% to deal double damage. After 5 hits, the chance resets",
-        "Each attack has a 25% chance to ignore enemy DEF. 1.5× DMG against enemies without Defense.",
-        "Each hit has a 5% chance to create a Divine Shield that makes you vulnerable to attacks for 1 second",
-        "Deals double damage if your DMG (not including CRIT) is 10 times less than the enemy's health",
-        "Max Tier"
+        "每次命中使双倍伤害概率+20%，累计5次后重置",
+        "每次攻击有25%概率无视敌人防御；对无防御敌人造成1.5倍伤害",
+        "每次命中有5%概率生成神圣护盾，使你1秒内易受攻击",
+        "若你的非暴击伤害低于敌人生命值10倍，造成双倍伤害",
+        "最大阶"
       ],
       tier: 1,
       maxTier: 1,
@@ -303,13 +303,13 @@ const buffs = ref([
     },
     {
       id: 16,
-      name: 'Irradiation',
+      name: '辐照',
       description: [
-        "When an enemy appears, it loses 25% of its MAX HP.",
-        "Each time an enemy attacks, it loses 1% of its MAX HP, up to 50%.",
-        "On hit, the enemy gains a stack of Radiation. When stacks are full, the enemy loses 1% of its MAX HP. Max stacks: 10. Stacks are reset when you take DMG.",
-        "When an enemy dies, 50% of its Radiation stacks transfer to the next enemy. 50% of stacks are not lost when you take DMG.",
-        "Max Tier"
+        "敌人出现时损失25%最大生命",
+        "敌人每次攻击都会损失1%最大生命，上限50%",
+        "命中时敌人获得1层辐照。层数满时，敌人损失1%最大生命。最多10层；你受伤时重置。",
+        "敌人死亡时其50%辐照层数转移给下一个敌人；你受伤时有50%层数不会丢失。",
+        "最大阶"
       ],      
       tier: 1,
       maxTier: 4,

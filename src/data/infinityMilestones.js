@@ -2,108 +2,108 @@
 export const infinityMilestones = [
     {
       tier: 0,
-      description: `Unlock Inf-Tree | Force any perk forever | Auto-Tree | Double Points gain | Auto-Stage.`
+      description: `解锁无限天赋树 | 任意天赋永久生效 | 自动天赋 | 点数获取翻倍 | 自动关卡。`
     },
     {
       tier: 1,
-      description: `Unlock Ascend Permission | Gain 5 Infinity Ascension Perks forever | Stage Rush: +25% | Bosses drop Shards | Auto-Ascension.`
+      description: `解锁飞升权限 | 永久获得5个无限飞升天赋 | 冲关速度+25% | 首领掉落碎片 | 自动飞升。`
     },
     {
       tier: 2,
-      description: `Unlock Integration of Rebirth | Rebirth Tier becomes unlimited | Enemy Power = 1 | Auto-Rebirth.`
+      description: `解锁重生整合 | 重生阶级变为无限 | 敌人强度=1 | 自动重生。`
     },
     {
       tier: 3,
-      description: `Unlock Gamma Learning | Gain mutagens as if you have Mutagen [T5] | Increase Max Levels of Radiation Perks | Danger Power scales better and opens Inf-Enemy.`
+      description: `解锁伽马学习 | 获得突变因子效果视为拥有变异[T5] | 提高辐射天赋等级上限 | 危险之力成长更优并开启无限敌人。`
     },
     {
       tier: 4,
-      description: `Unlock Expansion of Space | Unlock Space [T5] | Gain x2 Stardust | Auto-Fight.`
+      description: `解锁太空扩展 | 解锁太空[T5] | 星尘获取x2 | 自动战斗。`
     },
     {
       tier: 5,
-      description: `Unlock Thirst for Souls | D-Soul gives 100% Soul encounter chance, but Souls are more powerful | Each Soul Tier grants +1 Min Level | EXP CAP SOULS +40.`
+      description: `解锁灵魂渴求 | D-Soul提供100%灵魂遭遇率，但灵魂更强 | 每个灵魂阶级+1最低等级 | 灵魂经验上限+40。`
     },
-    { tier: 6, description: `Complete to unlock Singularity [T0].` },
-    { tier: 7, description: `Complete to unlock Singularity [T1].` },
-    { tier: 8, description: `Complete to unlock Singularity [T2].` },
-    { tier: 9, description: `Complete to unlock Singularity [T3].` },
-    { tier: 10, description: `Complete to unlock Singularity [T4].` },
-    { tier: 11, description: `Complete to unlock Singularity [T5].` },
-    { tier: 12, description: `Complete to unlock Singularity [T6].` },
-    { tier: 13, description: `Complete to unlock Singularity [T7].` },
-    { tier: 14, description: `Complete to unlock Singularity [T8].` },
+    { tier: 6, description: `完成后解锁奇点[T0]。` },
+    { tier: 7, description: `完成后解锁奇点[T1]。` },
+    { tier: 8, description: `完成后解锁奇点[T2]。` },
+    { tier: 9, description: `完成后解锁奇点[T3]。` },
+    { tier: 10, description: `完成后解锁奇点[T4]。` },
+    { tier: 11, description: `完成后解锁奇点[T5]。` },
+    { tier: 12, description: `完成后解锁奇点[T6]。` },
+    { tier: 13, description: `完成后解锁奇点[T7]。` },
+    { tier: 14, description: `完成后解锁奇点[T8]。` },
   ];
   
   // Global curses 
   export const globalCurses = [
     {
       tier: 20,
-      description: `[D-Infinity] tears the universe apart, reducing Stardust drops.`
+      description: `[D-Infinity]撕裂宇宙，降低星尘掉落。`
     },
     {
       tier: 25,
-      description: `[D-Infinity] destroys all Celestials, making them insignificant and reducing Mutagen drops.`
+      description: `[D-Infinity]摧毁所有天界敌人，使其变弱并降低突变因子掉落。`
     },
     {
       tier: 30,
-      description: `Dimensions are consumed by the Multiverse. Curses grow stronger.`
+      description: `维度被多元宇宙吞噬，诅咒变得更强。`
     },
     {
       tier: 35,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 40,
-      description: `Unlock new Perdition: Perdition of Decay`
+      description: `解锁新炼狱：衰败炼狱`
     },
     {
       tier: 45,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 50,
-      description: `Unlock new Perdition: Perdition of Fragility`
+      description: `解锁新炼狱：脆弱炼狱`
     },
     {
       tier: 55,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 60,
-      description: `Unlock new Perdition: Perdition of Thorns`
+      description: `解锁新炼狱：荆棘炼狱`
     },
     {
       tier: 65,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 70,
-      description: `Unlock new Perdition: Perdition of Ferocity`
+      description: `解锁新炼狱：凶暴炼狱`
     },
     {
       tier: 75,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 80,
-      description: `Unlock new Perdition: Perdition of Poverty`
+      description: `解锁新炼狱：贫瘠炼狱`
     },
     {
       tier: 85,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 90,
-      description: `Unlock new Perdition: Perdition of Reflexes`
+      description: `解锁新炼狱：反射炼狱`
     },
     {
       tier: 95,
-      description: `+1 Max Curse | +1 Min Curse`
+      description: `+1 最大诅咒 | +1 最低诅咒`
     },
     {
       tier: 100,
-      description: `Unlock new Perdition: Perdition of Resilience`
+      description: `解锁新炼狱：韧性炼狱`
     },
   ];
   
@@ -111,86 +111,86 @@ export const infinityMilestones = [
   export const singularityMilestones = [
     {
       tier: 0,
-      challenge: `Enter the Singularity where gravity devours space, enemies shatter galaxies, and your level is near destruction.`,
-      reward: `0.05 IP MULT | +25 Singularity Levels | Overkill [T4] | +2% Lever Rush & Stage Rush per S-Tier.`
+      challenge: `进入奇点：引力吞噬空间，敌人粉碎星系，你的等级几近崩溃。`,
+      reward: `0.05 IP倍率 | +25奇点等级 | 溢出击杀[T4] | 每个S阶级+2%拉杆冲刺与冲关速度。`
     },
     {
       tier: 1,
-      challenge: `Enter the Singularity where enemies master the essence of curses.`,
-      reward: `Each Curse gains a bonus from the next Tier | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：敌人掌握诅咒本质。`,
+      reward: `每个诅咒获得下一阶加成 | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 2,
-      challenge: `Enter the Singularity where Tree is locked.`,
-      reward: `+1 Tree Tier | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：天赋树被锁定。`,
+      reward: `+1天赋树阶级 | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 3,
-      challenge: `Enter the Singularity where Ascension is locked.`,
-      reward: `Ascension no longer resets during Infinity | Unlock Tier-S perks (1 per S-Tier) | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：飞升被锁定。`,
+      reward: `无限过程中飞升不再重置 | 解锁Tier-S天赋（每个S阶级1个） | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 4,
-      challenge: `Enter the Singularity where Space is locked.`,
-      reward: `+1 Space Tier | Celestials from dimensions notice you | Auto is always active | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：太空被锁定。`,
+      reward: `+1太空阶级 | 维度天界敌人注意到你 | 自动功能常驻 | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 5,
-      challenge: `Enter the Singularity where Buffs are locked.`,
-      reward: `Buffs no longer reset during Infinity | +1 Max Buff | +1 Buff Layout | 0.05 IP MULT | +25 Singularity Levels | `
+      challenge: `进入奇点：增益被锁定。`,
+      reward: `无限过程中增益不再重置 | +1最大增益数 | +1增益布局 | 0.05 IP倍率 | +25奇点等级 | `
     },
     {
       tier: 6,
-      challenge: `Enter the Singularity where Equipment is locked.`,
-      reward: `+1 Enhance Level per S-Tier | Unlock Awakened Equipment | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：装备被锁定。`,
+      reward: `每个S阶级+1强化等级 | 解锁觉醒装备 | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 7,
-      challenge: `Enter the Singularity where Rebirth is locked.`,
-      reward: `Start with 100,000 Rebirth Pts | Unlock Singularity Pts | 0.05 IP MULT | +25 Singularity Levels.`
+      challenge: `进入奇点：重生被锁定。`,
+      reward: `开局获得100,000重生点 | 解锁奇点点数 | 0.05 IP倍率 | +25奇点等级。`
     },
     {
       tier: 8,
-      challenge: `Enter the Singularity, where enemies are under the curse of [D-Gravity] | All enemies have Curse [T5].`,
-      reward: `See the Singularity milestones in the Rebirth section.`
+      challenge: `进入奇点：敌人受[D-Gravity]诅咒 | 所有敌人拥有诅咒[T5]。`,
+      reward: `奇点里程碑请查看重生页。`
     }    
   ];
 
   export const bhMilestones = [
     {
       tier: 0,
-      challenge: `Dive into the darkness of the Black Hole ruled by [D-Gravity] to face the Singulars. 
-      Each of their attacks is stronger than the previous. 
-      When you die, your transcendence will be destroyed, 
-      and you will return to the main dimension.`,
-      reward: `+75 Singularity Levels | +0.05 IP MULT | BUFF: Black Impulse [T1] | Lever Rush & Stage Rush: +5% | +0.1 Max Level MULT per each transcendence | 
-      You start with 10m stardust`
+      challenge: `潜入由[D-Gravity]统治的黑洞深渊，对抗奇点体。 
+      它们的每次攻击都会比上一次更强。 
+      当你死亡时，你的超越将被摧毁， 
+      并返回主维度。`,
+      reward: `+75奇点等级 | +0.05 IP倍率 | BUFF：黑色脉冲[T1] | 拉杆冲刺与冲关速度+5% | 每次超越+0.1最大等级倍率 | 
+      开局获得1000万星尘`
     },
     {
       tier: 1,
-      challenge:`Dive into the darkness of the Black Hole ruled by [D-Gravity] to face the Singulars. 
-      Each of their attacks is stronger than the previous. 
-      When you die, your transcendence will be destroyed, 
-      and you will return to the main dimension.`,
-      reward: `+75 Singularity Levels | +0.05 IP MULT | BUFF: Black Impulse [T2] | Lever Rush & Stage Rush: +5% | +1.05 DMG MULT per each transcendence | 
-      Unlock Auto-Forge`
+      challenge:`潜入由[D-Gravity]统治的黑洞深渊，对抗奇点体。 
+      它们的每次攻击都会比上一次更强。 
+      当你死亡时，你的超越将被摧毁， 
+      并返回主维度。`,
+      reward: `+75奇点等级 | +0.05 IP倍率 | BUFF：黑色脉冲[T2] | 拉杆冲刺与冲关速度+5% | 每次超越+1.05伤害倍率 | 
+      解锁自动锻造`
     },
     {
       tier: 2,
-      challenge: `Dive into the darkness of the Black Hole ruled by [D-Gravity] to face the Singulars. 
-      Each of their attacks is stronger than the previous. 
-      When you die, your transcendence will be destroyed, 
-      and you will return to the main dimension.`,
-      reward: `+75 Singularity Levels | +0.05 IP MULT | BUFF: Black Impulse [T3] | Lever Rush & Stage Rush: +5% | +1 MIN LEVEL per each transcendence |
-      Unlock Space-INF`
+      challenge: `潜入由[D-Gravity]统治的黑洞深渊，对抗奇点体。 
+      它们的每次攻击都会比上一次更强。 
+      当你死亡时，你的超越将被摧毁， 
+      并返回主维度。`,
+      reward: `+75奇点等级 | +0.05 IP倍率 | BUFF：黑色脉冲[T3] | 拉杆冲刺与冲关速度+5% | 每次超越+1最低等级 |
+      解锁太空-INF`
     },
     {
       tier: 3,
-      challenge: `Dive into the darkness of the Black Hole ruled by [D-Gravity] to face the Singulars. 
-      Each of their attacks is stronger than the previous. 
-      When you die, your transcendence will be destroyed, 
-      and you will return to the main dimension.`,
-      reward: `+75 Singularity Levels | +0.05 IP MULT | BUFF: Black Impulse [T4] | Lever Rush & Stage Rush: +5% | 0.005 IP MULT per each transcendence | Unlock Timeline`
+      challenge: `潜入由[D-Gravity]统治的黑洞深渊，对抗奇点体。 
+      它们的每次攻击都会比上一次更强。 
+      当你死亡时，你的超越将被摧毁， 
+      并返回主维度。`,
+      reward: `+75奇点等级 | +0.05 IP倍率 | BUFF：黑色脉冲[T4] | 拉杆冲刺与冲关速度+5% | 每次超越+0.005 IP倍率 | 解锁时间线`
     },
   ];
   

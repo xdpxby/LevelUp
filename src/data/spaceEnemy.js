@@ -1,7 +1,7 @@
 export const spEnemy = [
         {
           id: 1,
-          name: "Lunar Shade",
+          name: "月影幽魂",
           stats: {
             dmg: 600,
             hp: 40000,
@@ -13,7 +13,7 @@ export const spEnemy = [
         },
         {
           id: 2,
-          name: "Asteroid Marauder",
+          name: "陨星掠夺者",
           stats: {
             dmg: 650,
             hp: 55000,
@@ -25,7 +25,7 @@ export const spEnemy = [
         },
         {
           id: 3,
-          name: "Celestial Enforcer",
+          name: "天穹执法者",
           stats: {
             dmg: 700,
             hp: 75000,
@@ -37,7 +37,7 @@ export const spEnemy = [
         },
         {
           id: 4,
-          name: "Nebulon Scavenger",
+          name: "星云拾荒者",
           stats: {
             dmg: 850,
             hp: 80000,
@@ -49,7 +49,7 @@ export const spEnemy = [
         },
         {
           id: 5,
-          name: "Celestial Enforcer",
+          name: "天穹执法者",
           stats: {
             dmg: 1000,
             hp: 95000,
@@ -61,7 +61,7 @@ export const spEnemy = [
         },
         {
           id: 6,
-          name: "Boss - Orion Hunter",
+          name: "首领 - 猎户追猎者",
           stats: {
             dmg: 1300,
             hp: 145000,
@@ -69,13 +69,13 @@ export const spEnemy = [
             AS: 1.5,
             curses: ["⚙️T4", "🌪️T2", "🤺T4", "🩸T4"]
           },
-          reward: "🌟1 STAR | +25 Max Level",
+          reward: "🌟1 星核 | +25 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 7,
-          name: "Voidling",
+          name: "虚空幼体",
           stats: {
             dmg: 1200,
             hp: 92000,
@@ -87,7 +87,7 @@ export const spEnemy = [
         },
         {
           id: 8,
-          name: "Stellar Wraith",
+          name: "星辰怨灵",
           stats: {
             dmg: 1300,
             hp: 117000,
@@ -99,7 +99,7 @@ export const spEnemy = [
         },
         {
           id: 9,
-          name: "Nebula Spawn",
+          name: "星云孽生体",
           stats: {
             dmg: 1350,
             hp: 135000,
@@ -111,7 +111,7 @@ export const spEnemy = [
         },
         {
           id: 10,
-          name: "Cosmic Drone",
+          name: "宇宙无人机",
           stats: {
             dmg: 1400,
             hp: 177000,
@@ -123,7 +123,7 @@ export const spEnemy = [
         },
         {
           id: 11,
-          name: "Solar Fiend",
+          name: "日炎魔",
           stats: {
             dmg: 1500,
             hp: 162000,
@@ -135,7 +135,7 @@ export const spEnemy = [
         },
         {
           id: 12,
-          name: "Boss - Saturn Chronos",
+          name: "首领 - 土星时主",
           stats: {
             dmg: 1900,
             hp: 211000,
@@ -143,13 +143,13 @@ export const spEnemy = [
             AS: 1.9,
             curses: ["💫T4", "🌪️T4", "💢T3", "🔪T2", "💉T2"]
           },
-          reward: "🌟1 STAR | +50 Max Level",
+          reward: "🌟1 星核 | +50 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 13,
-          name: "Plasma Serpent",
+          name: "等离子蛇",
           stats: {
             dmg: 1600,
             hp: 212000,
@@ -161,7 +161,7 @@ export const spEnemy = [
         },
         {
           id: 14,
-          name: "Meteor Imp",
+          name: "流星小鬼",
           stats: {
             dmg: 1700,
             hp: 214000,
@@ -173,7 +173,7 @@ export const spEnemy = [
         },
         {
           id: 15,
-          name: "Comet Stalker",
+          name: "彗星潜猎者",
           stats: {
             dmg: 1800,
             hp: 222000,
@@ -185,7 +185,7 @@ export const spEnemy = [
         },
         {
           id: 16,
-          name: "Astro Leech",
+          name: "星际水蛭",
           stats: {
             dmg: 1900,
             hp: 245000,
@@ -197,7 +197,7 @@ export const spEnemy = [
         },
         {
           id: 17,
-          name: "Orbit Reaper",
+          name: "轨道收割者",
           stats: {
             dmg: 2000,
             hp: 262000,
@@ -209,7 +209,7 @@ export const spEnemy = [
         },
         {
           id: 18,
-          name: "Boss - Solar Titan Helios",
+          name: "首领 - 太阳泰坦赫利俄斯",
           stats: {
             dmg: 2200,
             hp: 332000,
@@ -217,13 +217,13 @@ export const spEnemy = [
             AS: 1.5,
             curses: ["🛡️T4", "⚙️T2", "🤺T4", "🔰T4", "💉T2"]
           },
-          reward: "🌟1 STAR | +75 Max Level",
+          reward: "🌟1 星核 | +75 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 19,
-          name: "Quasar Shade",
+          name: "类星体暗影",
           stats: {
             dmg: 2100,
             hp: 285000,
@@ -235,7 +235,7 @@ export const spEnemy = [
         },
         {
           id: 20,
-          name: "Gravity Phantom",
+          name: "引力幻影",
           stats: {
             dmg: 2300,
             hp: 305000,
@@ -247,7 +247,7 @@ export const spEnemy = [
         },
         {
           id: 21,
-          name: "Lunar Beast",
+          name: "月兽",
           stats: {
             dmg: 2500,
             hp: 335000,
@@ -259,7 +259,7 @@ export const spEnemy = [
         },
         {
           id: 22,
-          name: "Radiant Fragment",
+          name: "辉光碎片",
           stats: {
             dmg: 2700,
             hp: 340000,
@@ -271,7 +271,7 @@ export const spEnemy = [
         },
         {
           id: 23,
-          name: "Dark Matter Slime",
+          name: "暗物质史莱姆",
           stats: {
             dmg: 3000,
             hp: 387000,
@@ -283,7 +283,7 @@ export const spEnemy = [
         },
         {
           id: 24,
-          name: "Boss - Mars Ares",
+          name: "首领 - 火星战神阿瑞斯",
           stats: {
             dmg: 5000,
             hp: 730000,
@@ -291,13 +291,13 @@ export const spEnemy = [
             AS: 1.5,
             curses: ["⚙️T3", "🌪️T3", "🤺T4", "🩸T4", "💫T3", "💢T1", "🔪T2", "💉T3"]
           },
-          reward: "🌟1 STAR | +100 Max Level",
+          reward: "🌟1 星核 | +100 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 25,
-          name: "Singularity Bug",
+          name: "奇点虫",
           stats: {
             dmg: 6200,
             hp: 915000,
@@ -309,7 +309,7 @@ export const spEnemy = [
         },
         {
           id: 26,
-          name: "Ion Ghost",
+          name: "离子幽灵",
           stats: {
             dmg: 7200,
             hp: 1114000,
@@ -321,7 +321,7 @@ export const spEnemy = [
         },
         {
           id: 27,
-          name: "Pulsar Hound",
+          name: "脉冲猎犬",
           stats: {
             dmg: 7700,
             hp: 1350000,
@@ -333,7 +333,7 @@ export const spEnemy = [
         },
         {
           id: 28,
-          name: "Craterling",
+          name: "陨坑幼体",
           stats: {
             dmg: 8100,
             hp: 1525000,
@@ -345,7 +345,7 @@ export const spEnemy = [
         },
         {
           id: 29,
-          name: "Eclipse Spawn",
+          name: "蚀影孽生体",
           stats: {
             dmg: 8800,
             hp: 1875000,
@@ -358,7 +358,7 @@ export const spEnemy = [
         },
         {
           id: 30,
-          name: "Boss - The Black Star – Nyxion",
+          name: "首领 - 黑星·尼克西昂",
           stats: {
             dmg: 15000,
             hp: 4500000,
@@ -366,13 +366,13 @@ export const spEnemy = [
             AS: 1.5,
             curses: ["⚙️T4", "💉T4", "🌪️T4", "🤺T4", "🩸T4", "🛡️T4", "💢T4", "🔪T4", "🔰T4", "🩸T4", "🩹T4"]
           },
-          reward: "🌟1 STAR | +150 Max Level",
+          reward: "🌟1 星核 | +150 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 31,
-          name: "Voidling Scout",
+          name: "虚空斥候",
           stats: {
             dmg: 12100,
             hp: 2285000,
@@ -385,7 +385,7 @@ export const spEnemy = [
         },
         {
           id: 32,
-          name: "Nebula Howler",
+          name: "星云嚎兽",
           stats: {
             dmg: 14300,
             hp: 3105000,
@@ -398,7 +398,7 @@ export const spEnemy = [
         },
         {
           id: 33,
-          name: "Crystar Drone",
+          name: "晶星无人机",
           stats: {
             dmg: 16500,
             hp: 4135000,
@@ -411,7 +411,7 @@ export const spEnemy = [
         },
         {
           id: 34,
-          name: "Gravemind Fragment",
+          name: "引力脑碎片",
           stats: {
             dmg: 18700,
             hp: 5340000,
@@ -424,7 +424,7 @@ export const spEnemy = [
         },
         {
           id: 35,
-          name: "Darkflare Wyrm",
+          name: "暗焰飞龙",
           stats: {
             dmg: 20300,
             hp: 9387000,
@@ -437,7 +437,7 @@ export const spEnemy = [
         },
         {
           id: 36,
-          name: "Boss - Eclipse Sovereign",
+          name: "首领 - 蚀界主宰",
           stats: {
             dmg: 24000,
             hp: 6e7,
@@ -445,13 +445,13 @@ export const spEnemy = [
             AS: 1.6,
             curses: ["⚙️T4", "💉T4", "🌪️T4", "🤺T4", "🩸T4", "🛡️T4", "💢T4", "🔪T4", "🔰T4", "🩸T4", "🩹T4"]
           },
-          reward: "🌟1 STAR | +200 Max Level",
+          reward: "🌟1 星核 | +200 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 37,
-          name: "Voidlurker Zhaar",
+          name: "潜虚者扎尔",
           stats: {
             dmg: 32000,
             hp: 5e7,
@@ -463,7 +463,7 @@ export const spEnemy = [
         },
         {
           id: 38,
-          name: "Chronobeast Vektalor",
+          name: "时序兽维克塔洛",
           stats: {
             dmg: 32000,
             hp: 9e7,
@@ -475,7 +475,7 @@ export const spEnemy = [
         },
         {
           id: 39,
-          name: "Nulldrake Seraphon",
+          name: "虚无龙塞拉冯",
           stats: {
             dmg: 37000,
             hp: 8e7,
@@ -487,7 +487,7 @@ export const spEnemy = [
         },
         {
           id: 40,
-          name: "Xarneth the Shattermind",
+          name: "碎心者萨内斯",
           stats: {
             dmg: 39000,
             hp: 9e7,
@@ -499,7 +499,7 @@ export const spEnemy = [
         },
         {
           id: 41,
-          name: "Umbraworm Kel-Zir",
+          name: "影虫凯尔-兹尔",
           stats: {
             dmg: 42000,
             hp: 9e7,
@@ -511,7 +511,7 @@ export const spEnemy = [
         },
         {
           id: 42,
-          name: "Boss - Celestarch Aurelion Vox",
+          name: "首领 - 天穹君王奥瑞利昂·沃克斯",
           stats: {
             dmg: 32000,
             hp: 9e8,
@@ -519,13 +519,13 @@ export const spEnemy = [
             AS: 1.7,
             curses: ["⚙️T4", "💉T4", "🌪️T4", "🤺T4", "🩸T4", "🛡️T4", "💢T4", "🔪T4", "🔰T4", "🩸T4", "🩹T4"]
           },
-          reward: "🌟1 STAR | +300 Max Level",
+          reward: "🌟1 星核 | +300 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 43,
-          name: "Aetherfang Ylmaris",
+          name: "以太獠牙伊尔玛里斯",
           stats: {
             dmg: 48000,
             hp: 2e9,
@@ -537,7 +537,7 @@ export const spEnemy = [
         },
         {
           id: 44,
-          name: "Threxil of the Fractured Sky ",
+          name: "裂穹者瑟雷克希尔",
           stats: {
             dmg: 51000,
             hp: 5e9,
@@ -549,7 +549,7 @@ export const spEnemy = [
         },
         {
           id: 45,
-          name: "Zyggor the Echo Maw ",
+          name: "回响巨喉兹戈尔",
           stats: {
             dmg: 54000,
             hp: 7e9,
@@ -561,7 +561,7 @@ export const spEnemy = [
         },
         {
           id: 46,
-          name: "Molthera, the Rift Broodmother",
+          name: "裂隙育母莫尔瑟拉",
           stats: {
             dmg: 56000,
             hp: 8e9,
@@ -573,7 +573,7 @@ export const spEnemy = [
         },
         {
           id: 47,
-          name: "Ixquar, Harbinger of Collapse",
+          name: "崩坏先驱伊克夸尔",
           stats: {
             dmg: 61000,
             hp: 8e9,
@@ -585,7 +585,7 @@ export const spEnemy = [
         },
         {
           id: 48,
-          name: "Boss - MyrrKath, Starborn Sovereign",
+          name: "首领 - 星裔君王米尔卡斯",
           stats: {
             dmg: 105000,
             hp: 4e10,
@@ -593,13 +593,13 @@ export const spEnemy = [
             AS: 2,
             curses: ["⚙️T4", "💉T4", "🌪️T4", "🤺T4", "🩸T4", "🛡️T4", "💢T4", "🔪T4", "🔰T4", "🩸T4", "🩹T4"]
           },
-          reward: "🌟1 STAR | +400 Max Level",
+          reward: "🌟1 星核 | +400 最大等级",
           status: false,
           type: "boss"
         },
         {
           id: 49,
-          name: "Omnipotent",
+          name: "全能者",
           stats: {
             dmg: 200000,
             hp: 1e12,

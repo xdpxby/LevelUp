@@ -12,7 +12,7 @@
 import BattleView from './BattleView.vue';
 import ZoneProgress from './ZoneProgress.vue';
 import LogPanel from './LogPanel.vue';
-import DimTimer from './dimTimer.vue';
+import DimTimer from './DimTimer.vue';
 
 
 defineProps({

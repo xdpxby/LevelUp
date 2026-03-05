@@ -187,7 +187,7 @@ const maxUpgrade = (perk) => {
 
 const resetPerks = () => {
   for (const perk of perks.value) {
-    if (perk.name !== "Invisible" && perk.name !== "Traveller") {
+    if (perk.id !== 7 && perk.id !== 10) {
       perk.level = 0;
     }
   }

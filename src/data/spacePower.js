@@ -2,250 +2,250 @@ export const spacePower = [
     {
         id: 1,
         sp: 1,
-        d: "Open the Star Forge. You can enhance the Sword by Stardust "
+        d: "开启星之熔炉。你可以用星尘强化剑"
     },
     {
         id: 2,
         sp: 2,
-        d: "After Stage 40 enemies drop Stardust"
+        d: "40关后敌人掉落星尘"
     },
     {
         id: 3,
         sp: 3,
-        d: "+1 Extra MAX Equipment Tier"
+        d: "+1 额外装备最高阶"
     },
     {
         id: 4,
         sp: 4,
-        d: "Unlock Amulet [T4]"
+        d: "解锁护符[T4]"
     },
     {
         id: 5,
         sp: 5,
-        d: "Open Radiation"
+        d: "开启辐射"
     },
     {
         id: 6,
         st: 1,
-        d: "+1 MIN SWORD TIER per Space Boss killed",
+        d: "每击杀1个太空首领，剑最低阶+1",
         boss: true,
         tier: 0
     },
     {
         id: 7,
         sp: 7,
-        d: "You can enhance the Body"
+        d: "你可以强化护甲"
     },
     {
         id: 8,
         sp: 9,
-        d: "After Stage 39 enemies drop Stardust"
+        d: "39关后敌人掉落星尘"
     },
     {
         id: 9,
         sp: 11,
-        d: "EXP Gain based on SP"
+        d: "经验获取基于SP"
     },
     {
         id: 10,
         sp: 13,
-        d: "+10% Equipment Drop per SP"
+        d: "每1SP +10% 装备掉率"
     },
     {
         id: 11,
         sp: 15,
-        d: "You can enhance the Boots"
+        d: "你可以强化靴子"
     },
     {
         id: 12,
         st: 2,
-        d: "Open Second Ring",
+        d: "开启第二枚戒指",
         boss: true
     },
     {
         id: 13,
         sp: 18,
-        d: "Unlock Amulet: Suffix [T4]"
+        d: "解锁护符：后缀[T4]"
     },
     {
         id: 14,
         sp: 21,
-        d: "After Stage 37 enemies drop Stardust"
+        d: "37关后敌人掉落星尘"
     },
     {
         id: 15,
         sp: 24,
-        d: "Unlock Abyss D"
+        d: "解锁深渊D"
     },
     {
         id: 16,
         sp: 27,
-        d: "Stage requirement scales better"
+        d: "关卡需求成长更缓"
     },
     {
         id: 17,
         sp: 30,
-        d: "Unlock new BUFF: Juggernaut"
+        d: "解锁新BUFF：主宰者"
     },
     {
         id: 18,
         st: 3,
-        d: "The Sword has Suffix and Prefix",
+        d: "剑获得后缀与前缀",
         boss: true
     },
     {
         id: 19,
         sp: 34,
-        d: "Unlock Amulet: Prefix [T4]"
+        d: "解锁护符：前缀[T4]"
     },
     {
         id: 20,
         sp: 38,
-        d: "After Stage 35 enemies drop Stardust"
+        d: "35关后敌人掉落星尘"
     },
     {
         id: 21,
         sp: 42,
-        d: "You can enhance the Ring"
+        d: "你可以强化戒指"
     },
     {
         id: 22,
         sp: 46,
-        d: "CORRUPTION WEAKNESS based on SP"
+        d: "腐化弱点基于SP"
     },
     {
         id: 23,
         sp: 50,
-        d: "+2 Max Level per 1 SP"
+        d: "每1SP +2 最大等级"
     },
     {
         id: 24,
         st: 4,
-        d: "The Sword no longer has Max Tier ",
+        d: "剑不再有最高阶限制",
         boss: true
     },
     {
         id: 25,
         sp: 55,
-        d: "+3 extra Enhances"
+        d: "+3 额外强化次数"
     },
     {
         id: 26,
         sp: 60,
-        d: "+1 extra MAX Equipment Tier"
+        d: "+1 额外装备最高阶"
     },
     {
         id: 27,
         sp: 65,
-        d: "Unlock Blood Art [T4]"
+        d: "解锁血技[T4]"
     },
     {
         id: 28,
         sp: 70,
-        d: "5% to get an extra Enhance per Space Tier"
+        d: "每层太空阶级有5%概率获得额外强化"
     },
     {
         id: 29,
         sp: 75,
-        d: "Unlock new Buff: The Flash"
+        d: "解锁新BUFF：闪电"
     },
     {
         id: 30,
         st: 5,
-        d: "+1 Space Ring Tier per each Star(ST)",
+        d: "每个星核(ST) +1 太空戒指阶级",
         boss: true
     },
     {
         id: 31,
         sp: 81,
-        d: "Unlock Combo [T4]"
+        d: "解锁连击[T4]"
     },
     {
         id: 32,
         sp: 87,
-        d: "After Stage 32 enemies drop Stardust"
+        d: "32关后敌人掉落星尘"
     },
     {
         id: 33,
         sp: 93,
-        d: "+1% Avoid DMG per Space Tier"
+        d: "每层太空阶级 +1% 闪避伤害"
     },
     {
         id: 34,
         sp: 99,
-        d: "Amulet: Prefix has double effect"
+        d: "护符前缀效果翻倍"
     },
     {
         id: 35,
         sp: 105,
-        d: "-1 Equipment Tier required for awakening"
+        d: "觉醒所需装备阶级-1"
     },
     {
         id: 36,
         st: 6,
-        d: "Body has Suffix and Prefix",
+        d: "护甲获得后缀与前缀",
         boss: true
     },
     {
         id: 37,
         sp: 112,
-        d: "The Enhance Cost scales better per each Space Tier"
+        d: "每层太空阶级使强化消耗成长更缓"
     },
     {
         id: 38,
         sp: 119,
-        d: "+1 Danger per 1 SP"
+        d: "每1SP +1 危险度"
     },
     {
         id: 39,
         sp: 126,
-        d: "After Stage 29 enemies drop Stardust"
+        d: "29关后敌人掉落星尘"
     },
     {
         id: 40,
         sp: 133,
-        d: "Buff: Sniper [T4]"
+        d: "BUFF：狙击手[T4]"
     },
     {
         id: 41,
         sp: 140,
-        d: "+MIN Level based on Space Tier"
+        d: "最低等级基于太空阶级提升"
     },
     {
         id: 42,
         st: 7,
-        d: "Boots have suffix and prefix",
+        d: "靴子获得后缀与前缀",
         boss: true
     },
     {
         id: 43,
         sp: 148,
-        d: "+1 Max Buff in Space"
+        d: "太空中最大BUFF数+1"
     },
     {
         id: 44,
         sp: 156,
-        d: "After Stage 25 enemies drop Stardust"
+        d: "25关后敌人掉落星尘"
     },
     {
         id: 45,
         sp: 164,
-        d: "Formantion [T4] allows to double stardust drop"
+        d: "阵型[T4]可使星尘掉落翻倍"
     },
     {
         id: 46,
         sp: 172,
-        d: "-2 Equipment Tier required for awakening"
+        d: "觉醒所需装备阶级-2"
     },
     {
         id: 47,
         sp: 180,
-        d: "+1 MIN Equipment Tier"
+        d: "+1 装备最低阶"
     },
     {
         id: 48,
         st: 8,
-        d: "Ring has suffix and prefix",
+        d: "戒指获得后缀与前缀",
         boss: true
     },
 ]

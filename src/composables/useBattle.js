@@ -4409,7 +4409,7 @@ export function useBattle(hero, enemy, buffs) {
     enemy.value.soulBuff.chance = 0;
   
     for (let perk of perks.value){
-      if(perk.name == "Invisible" || perk.name == "Traveller")
+      if(perk.id === 7 || perk.id === 10)
         perk.level = perk.level;
       else
         perk.level = 0;

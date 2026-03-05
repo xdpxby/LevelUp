@@ -35,7 +35,7 @@
   <div v-if="hero.showAfkPopup" class="afk-popup">
     <div class="afk-content">
       <p style="white-space: pre-line" v-html="hero.afkMessage"></p>
-      <button @click="hero.showAfkPopup = false">Close</button>
+      <button @click="hero.showAfkPopup = false">关闭</button>
     </div>
   </div>
 </template>

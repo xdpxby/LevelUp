@@ -900,7 +900,7 @@ const perform = () => {
   enemy.value.soulBuff.chance = 0;
 
   for (let perk of tperks.value){
-    if(perk.name == "Invisible" || perk.name == "Traveller")
+    if(perk.id === 7 || perk.id === 10)
       perk.level = perk.level;
     else
       perk.level = 0;

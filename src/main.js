@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import Tooltip from './components/Tooltip.vue'
-import SvgIcon from './components/SvgIcon.vue';
+import SvgIcon from './components/svgIcon.vue';
 
 const app = createApp(App)
 

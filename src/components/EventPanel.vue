@@ -5,17 +5,17 @@
           <p @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Level' }"><sup style="font-size: 8px">ℹ️</sup>
             <span class="info-button-lvl"></span> 
 
-            <span style="font-size: 12px" :class="{'singularity-text-lvl': eLevel > 700, 'corruption-text-lvl': eLevel >= 300, 'exp-text': eLevel < 300 }">*Lvl: {{ eLevel }}
+            <span style="font-size: 12px" :class="{'singularity-text-lvl': eLevel > 700, 'corruption-text-lvl': eLevel >= 300, 'exp-text': eLevel < 300 }">*等级: {{ eLevel }}
             <span v-if="hero.minLevel > 0">(+{{hero.minLevel}})</span>/{{ formatNumber(maxLevel, false, true) }}
             <span v-if="hero.trueLevel >= 70000 && hero.dId == 'main'" style="color: cyan">[{{ hero.transcendence >= 10 ? Math.floor(hero.transcendence) : hero.transcendence.toFixed(2) }}]</span>
             <span v-else-if="hero.trueLevel > 300 && hero.dId != 'unlimitted'">[{{formatNumber(hero.trueLevel, false, true)}}]</span>
             </span>
           </p>
           <div class="tooltip-lvl">
-            Every level gives you {{(2 + 0.5 * Math.floor(hero.potential/10)).toFixed(1)}} HP, {{(1 + 0.2 * Math.floor(hero.potential/20)).toFixed(1)}} DMG, 
-            {{(0.5 + 0.1 * Math.floor(hero.potential/30)).toFixed(1)}} DEF<br>
-            <span v-if="hero.eLevel > 700">Getting Double Stats After Level 700</span><br>
-            <span v-if="hero.rebirthPts >= 1e7">Reach 70000 True Level in main dimension to get first <span style='color: cyan'>transcendence</span></span>
+            每级提供 {{(2 + 0.5 * Math.floor(hero.potential/10)).toFixed(1)}} 生命, {{(1 + 0.2 * Math.floor(hero.potential/20)).toFixed(1)}} 伤害, 
+            {{(0.5 + 0.1 * Math.floor(hero.potential/30)).toFixed(1)}} 防御<br>
+            <span v-if="hero.eLevel > 700">700级后属性翻倍</span><br>
+            <span v-if="hero.rebirthPts >= 1e7">在主维度达到 70000 真实等级可获得首次<span style='color: cyan'>超越</span></span>
           </div>
         </div>
       
@@ -26,14 +26,14 @@
           :style="{ width: `${Math.min(100, (exp / nextLevelExp) * 100)}%` }"
         ></div>
       </div>
-      <p @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'EXP' }"><sup style="font-size: 8px">ℹ️</sup><span :class="{ 'singularity-text-lvl': eLevel > 700, 'corruption-text-lvl': eLevel >= 300, 'exp-text': eLevel < 300 }"> {{ formatNumber(exp) }} / {{ formatNumber(nextLevelExp) }} EXP</span></p>
+      <p @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'EXP' }"><sup style="font-size: 8px">ℹ️</sup><span :class="{ 'singularity-text-lvl': eLevel > 700, 'corruption-text-lvl': eLevel >= 300, 'exp-text': eLevel < 300 }"> {{ formatNumber(exp) }} / {{ formatNumber(nextLevelExp) }} 经验</span></p>
     </div>
 
     <p v-if="hero.abyssTier >= 3" style="text-align: center" @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Corrupt.' }"><sup style="font-size: 8px">ℹ️</sup>
-      <span class="corruption-text-lvl">CORRUPTION [{{corruptionShow()}}]</span>
+      <span class="corruption-text-lvl">腐化 [{{corruptionShow()}}]</span>
     </p>
 
-    <h3>📜 Events</h3>
+    <h3>📜 事件</h3>
     <div class="wrapper-events">
       <div
         v-for="event in events"
@@ -48,7 +48,7 @@
           <span v-if="event.name == 'Infinity'" class="icon infinity-glow">{{ icons[event.name] }}</span>
           <span v-else-if="event.name == 'Ascension'" class="icon"><img :src="ascensionIcon" width="18px" height="18px" style="vertical-align: -2px"/></span>
           <span v-else class="icon" v-html="icons[event.name]"></span>
-          {{ event.name }}
+          {{ eventLabel(event.name) }}
         </button>
 
         <div
@@ -103,6 +103,29 @@ const icons = {
   'D-Atlas': '🌐',
   'Settings': '⚙️',
   'Info': '📖'
+}
+
+
+
+const eventNameMap = {
+  Combat: '战斗',
+  Tree: '天赋树',
+  Buff: '增益',
+  Equipment: '装备',
+  Ascension: '飞升',
+  Soul: '灵魂',
+  Amulet: '护符',
+  Rebirth: '重生',
+  Space: '太空',
+  Radiation: '辐射',
+  Infinity: '无限',
+  'D-Atlas': '维度图鉴',
+  Settings: '设置',
+  Info: '信息',
+};
+
+function eventLabel(name){
+  return eventNameMap[name] || name;
 }
 
 const extraIcons = [
@@ -221,42 +244,42 @@ function eventReq (e){
 
 function eventReqD (e){
   if(hero.value.isSingularity){
-    if(hero.value.singularity >= 2 && e == 'Tree') return 'Singularity Conflict';
-    if(hero.value.singularity >= 3 && e == 'Ascension') return 'Singularity Conflict';
-    if(hero.value.singularity >= 4 && e == 'Space') return 'Singularity Conflict';
-    if(hero.value.singularity >= 5 && e == 'Buff') return 'Singularity Conflict';
-    if(hero.value.singularity >= 6 && e == 'Equipment') return 'Singularity Conflict';
-    if(hero.value.singularity == 7 && e == 'Rebirth') return 'Singularity Conflict';
+    if(hero.value.singularity >= 2 && e == 'Tree') return '奇点冲突';
+    if(hero.value.singularity >= 3 && e == 'Ascension') return '奇点冲突';
+    if(hero.value.singularity >= 4 && e == 'Space') return '奇点冲突';
+    if(hero.value.singularity >= 5 && e == 'Buff') return '奇点冲突';
+    if(hero.value.singularity >= 6 && e == 'Equipment') return '奇点冲突';
+    if(hero.value.singularity == 7 && e == 'Rebirth') return '奇点冲突';
   }
   if(hero.value.dId == 'noTree' && e == 'Tree'){
-    return 'The Unknown';
+    return '未知限制';
   }
   if((hero.value.dId == 'ascension' || hero.value.dId == 'ascension-2') && e == 'Ascension'){
-   return 'The Unknown';
+   return '未知限制';
   }
   if(hero.value.dId == 'noEq' && e == 'Equipment'){
-   return 'The Unknown';
+   return '未知限制';
   }
   if(hero.value.dId == 'noBuffs' && e == 'Buff'){
-   return 'The Unknown';
+   return '未知限制';
   }
   if(hero.value.dId == 'noSpace' && e == 'Space'){
-   return 'The Unknown';
+   return '未知限制';
   }
   if(hero.value.dId == 'radiation' && e == 'Radiation'){
-    return `The Unknown`;
+    return `未知限制`; 
   }
 
-  if(e == 'Equipment') return 'Stage 2';
-  if(e == 'Buff') return 'Stage 5';
-  if(e == 'Ascension') return 'Stage 10';
-  if(e == 'Soul') return 'Stage 15';
-  if(e == 'Amulet') return 'Stage 20';
-  if(e == 'Rebirth') return 'Level 100';
-  if(e == 'Space') return '2 Space Fragments';
-  if(e == 'Radiation') return '5 Space Power';
-  if(e == 'Infinity') return 'Total Level 700';
-  if(e == 'D-Atlas') return 'AbyssD Stage 80';
+  if(e == 'Equipment') return '第 2 关';
+  if(e == 'Buff') return '第 5 关';
+  if(e == 'Ascension') return '第 10 关';
+  if(e == 'Soul') return '第 15 关';
+  if(e == 'Amulet') return '第 20 关';
+  if(e == 'Rebirth') return '等级 100';
+  if(e == 'Space') return '2 太空碎片';
+  if(e == 'Radiation') return '5 太空能量';
+  if(e == 'Infinity') return '总等级 700';
+  if(e == 'D-Atlas') return '深渊D 第 80 关';
 }
 
 </script>

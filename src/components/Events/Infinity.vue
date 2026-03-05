@@ -1,7 +1,7 @@
 <template>
   <div class="tab-switcher">
     <button :class="{ active: activeTab === 'infinity' }" @click="activeTab = 'infinity'"><span style="font-size: 1.2em; color: gold;
-      text-shadow: 0 0 4px gold;" class="infinity-icon">&#8734;</span> Infinity
+      text-shadow: 0 0 4px gold;" class="infinity-icon">&#8734;</span> 无限
     </button>
     
     <button
@@ -12,14 +12,14 @@
       <span
         v-html="getSvgIconHTML('quasarCore', '1.3em')"
         style="line-height: 0; vertical-align: middle; display: inline-block;"
-      ></span> Quasar Core
+      ></span> 星核核心
     </button>
 
     <button
       :class="{ active: activeTab === 'milestone' }"
       @click="activeTab = 'milestone'"
     >
-      Milestones
+      里程碑
     </button>
   </div>
 
@@ -28,7 +28,7 @@
     <div class="infinity-panel">
       <div class="infinity-goals">
         <h2>
-        <span @click="hero.eLink = { set: 'Info', info: 'Infinity' }"><sup style="font-size: 12px">ℹ️</sup>Infinity Points(IP):</span> 
+        <span @click="hero.eLink = { set: 'Info', info: 'Infinity' }"><sup style="font-size: 12px">ℹ️</sup>无限点数(IP)：</span> 
         <span @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'IP' }"><sup style="font-size: 12px">ℹ️</sup>{{Math.floor(hero.infPoints)}}</span></h2>
         <div class="goals-grid">
           <div :class="[
@@ -43,14 +43,14 @@
       </div>
 
       <div class="infinity-bonuses">
-        <h2>Infinity Bonuses</h2>
+        <h2>无限加成</h2>
         <div v-for="(bonus, index) in filterBonuses" :key="bonus.id" class="bonus-line">
           <span class="bonus-stat">{{ bonus.stat }}</span>
           <span class="bonus-value">{{ bonus.value }}</span>
         </div>
 
         <div class="bonus-requirement" v-if="filterBonuses.length">
-          Reach Infinity [T{{ getBonusReq(hero.mainInfTier) }}]
+          达到无限 [T{{ getBonusReq(hero.mainInfTier) }}]
         </div>
       </div>
     </div>
@@ -66,13 +66,13 @@
             v-html="getSvgIconHTML('quasarCore', '1.3em')"
             style="line-height: 0; vertical-align: middle; display: inline-block;"
           ></span>
-          <sup style="font-size: 6px">ℹ️</sup>Quasar Core [{{ hero.selectedDivSkills.length }}/{{ maxSelected }}]
+          <sup style="font-size: 6px">ℹ️</sup>星核核心 [{{ hero.selectedDivSkills.length }}/{{ maxSelected }}]
         </h2>
       </Tooltip>
 
      
       <div v-for="tier in sortedTiers" :key="tier" class="tier-section">
-        <h3 class="tier-title">Tier {{ tier }}</h3>
+        <h3 class="tier-title">阶级 {{ tier }}</h3>
         <div class="d-goals-grid">
           <div
             v-for="skill in skillsByTier[tier]"
@@ -127,8 +127,8 @@
       </div>
       <div v-if="activeMilestoneTab === 'Perditions'">
         <p class="milestonePrediction">
-          <span class="highlight">[D-Infinity]</span> spread the perdition. 
-          Next perdition at Infinity [T{{ getCurseTier() }}]
+          <span class="highlight">[D-Infinity]</span> 正在散播炼狱。
+          下一炼狱于无限 [T{{ getCurseTier() }}]
         </p>
       </div>
     </div>
@@ -137,7 +137,7 @@
       <!-- Infinity -->
       <div v-if="activeMilestoneTab === 'Infinity'" class="milestone-grid">
         <div v-for="m in infinityMilestones.filter(i => i.tier <= hero.mainInfTier)" :key="m.tier" class="milestone-card infinity-card">
-          <h3>Infinity [T{{ m.tier }}]</h3>
+          <h3>无限 [T{{ m.tier }}]</h3>
           <p>{{ m.description }}</p>
         </div>
       </div>
@@ -146,16 +146,16 @@
       <div v-if="activeMilestoneTab === 'Singularity'" class="milestone-grid">
         <div v-for="s in singularityMilestones.filter(s => s.tier <= hero.singularity)" :key="s.tier" class="milestone-card singularity-card">
           <h3>Singularity [T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">Challenge:</span> {{ s.challenge }}</p>
-          <p><span style="color:#00ffea">Reward:</span> {{ s.reward }}</p>
+          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
+          <p><span style="color:#00ffea">奖励：</span> {{ s.reward }}</p>
         </div>
       </div>
 
       <div v-if="activeMilestoneTab === 'Black Hole'" class="milestone-grid">
         <div v-for="s in bhMilestones.filter(s => s.tier < hero.bhTier)" :key="s.tier" class="milestone-card singularity-card">
-          <h3>Black Hole [T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">Challenge:</span> {{ s.challenge }}</p>
-          <p><span style="color:#00ffea">Reward:</span> {{ s.reward }}</p>
+          <h3>黑洞 [T{{ s.tier }}]</h3>
+          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
+          <p><span style="color:#00ffea">奖励：</span> {{ s.reward }}</p>
         </div>
       </div>
 
@@ -205,9 +205,9 @@ const isTabUnlocked = (tab) => {
 };
 
 const getUnlockRequirement = (tab) => {
-  if (tab === "Singularity" && hero.value.mainInfTier < 7) return "Unlocks at Infinity [T7]";
-  if (tab === "Perditions" && hero.value.mainInfTier < 20) return "Unlocks at Infinity [T20]";
-  if (tab === "Black Hole" && hero.value.bhTier < 1) return "Beat your first Black Hole";
+  if (tab === "Singularity" && hero.value.mainInfTier < 7) return "无限 [T7] 解锁";
+  if (tab === "Perditions" && hero.value.mainInfTier < 20) return "无限 [T20] 解锁";
+  if (tab === "Black Hole" && hero.value.bhTier < 1) return "击败你的第一个黑洞";
 
   return "";
 };
@@ -256,21 +256,21 @@ function getPredactionTier() {
 }
 
 function singMilestoneHandle() {
-  if (hero.value.singularity >= 8) return "All milestones are unlocked";
+  if (hero.value.singularity >= 8) return "所有里程碑已解锁";
 
-  return `Unlock the next milestone at Singularity [T${hero.value.singularity + 1}]`;
+  return `下一里程碑解锁于奇点 [T${hero.value.singularity + 1}]`;
 }
 
 function bhMilestoneHandle() {
-  if(hero.value.bhTier >= 4) return "All milestones are unlocked";
+  if(hero.value.bhTier >= 4) return "所有里程碑已解锁";
 
-  return `Beat The Black Hole [T${hero.value.bhTier}] to unlock the next milestone`;
+  return `击败黑洞 [T${hero.value.bhTier}] 以解锁下一里程碑`;
 }
 
 function infMilestones() {
-  if (hero.value.mainInfTier >= 14) return "All milestones are unlocked";
+  if (hero.value.mainInfTier >= 14) return "所有里程碑已解锁";
 
-  return `Unlock the next milestone at Infinity [T${hero.value.mainInfTier + 1}]`;
+  return `下一里程碑解锁于无限 [T${hero.value.mainInfTier + 1}]`;
 }
 
 const filterGoals = computed(() => 
@@ -286,7 +286,7 @@ const filterBonuses = computed(() =>
 function infDescription(goal) {
   let str = goal.requirement[goal.tier];
   str += ` [<span>${goal.tier}/${goal.maxTier}</span>]`
-  str += `<br><span style="color: gold">Reward: ${goal.reward} IP</span>`;
+  str += `<br><span style="color: gold">奖励：${goal.reward} IP</span>`;
 
   return str;
 }
@@ -357,42 +357,42 @@ function unlimitBonus(){
 
 
 const bonuses = computed(() => [
-  { id: 1, stat: 'Damage', value: `*${formatNumber(dmgScale(1.055, 1, 2))}`, status: 0 },
-  { id: 2, stat: 'HP', value: `*${formatNumber(scale(1.015))}`, status: 0 },
-  { id: 3, stat: 'Defense', value: `*${formatNumber(scale(1.0125))}`, status: 0 },
-  { id: 4, stat: 'EXP Gain', value: `*${formatNumber(addScale(1.06, log()) * unlimitBonus())}`, status: 0 },
-  { id: 5, stat: 'Equipment Chance', value: `*${formatNumber(scale(1.08))}`, status: 1 },
-  { id: 6, stat: 'Abyss weakness', value: `*${formatNumber(Math.max(inverseScale(1.0225), 0.1))}`, status: 1 },
-  { id: 7, stat: 'Overkill', value: `+${overkill()}`, status: 2 },
-  { id: 8, stat: 'Ascension Shards Gain', value: `*${formatNumber(scale(1.045))}`, status: 3 },
-  { id: 9, stat: 'Rebirth Shards Gain', value: `*${formatNumber(scale(1.025))}`, status: 3 },
-  { id: 10, stat: 'Buff Exp Gain', value: `*${formatNumber(scale(1.035))}`, status: 4 },
-  { id: 11, stat: 'Corruption weakness', value: `+${formatNumber(linearDiff(1.008))}`, status: 5 },
-  { id: 13, stat: 'Souls weakness', value: `*${formatNumber(Math.max(inverseScale(1.025), 0.1))}`, status: 6 },
-  { id: 14, stat: 'Level scales better', value: `*${formatNumber(Math.max(inverseScale(1.03), 0.1))}`, status: 7 },
-  { id: 15, stat: 'Stage scales better', value: `*${formatNumber(Math.max(inverseScale(1.03), 0.01))}`, status: 7 },
-  { id: 16, stat: 'Enemy weakness', value: `*${formatNumber(Math.max(inverseScale(1.02), 0.1))}`, status: 8 },
-  { id: 17, stat: 'Max Level Mult', value: `+${formatNumber(scale(1.07, log()))}`, status: 10 },
-  { id: 18, stat: 'Min Level', value: `+${minLevel()}`, status: 13 },
-  { id: 19, stat: 'New Infinity Buff: Charges', value: ``, status: 15 },
-  { id: 20, stat: 'Max Danger', value: `+${danger()}`, status: 16 },
-  { id: 21, stat: 'Stardust', value: `*${formatNumber(scale(1.0145))}`, status: 18 },
-  { id: 22, stat: 'Potential', value: `+${pot()}`, status: 20 },
-  { id: 23, stat: 'Singularity weakness', value: `*${formatNumber(inverseScale(1.01, log()))}`, status: 22 },
-  { id: 24, stat: 'IP Bonuses scale better', value: ``, status: 25 },
-  { id: 25, stat: '+1 Buff Layout', value: ``, status: 30 },
-  { id: 26, stat: 'You start with 10k mutagens', value: ``, status: 35 },
-  { id: 27, stat: 'Mutagen', value: `*${formatNumber(mutagen())}`, status: 40 },
-  { id: 28, stat: 'Unlock Quasar Core', value: ``, status: 50 },
+  { id: 1, stat: '伤害', value: `*${formatNumber(dmgScale(1.055, 1, 2))}`, status: 0 },
+  { id: 2, stat: '生命', value: `*${formatNumber(scale(1.015))}`, status: 0 },
+  { id: 3, stat: '防御', value: `*${formatNumber(scale(1.0125))}`, status: 0 },
+  { id: 4, stat: '经验获取', value: `*${formatNumber(addScale(1.06, log()) * unlimitBonus())}`, status: 0 },
+  { id: 5, stat: '装备概率', value: `*${formatNumber(scale(1.08))}`, status: 1 },
+  { id: 6, stat: '深渊弱化', value: `*${formatNumber(Math.max(inverseScale(1.0225), 0.1))}`, status: 1 },
+  { id: 7, stat: '溢出击杀', value: `+${overkill()}`, status: 2 },
+  { id: 8, stat: '飞升碎片获取', value: `*${formatNumber(scale(1.045))}`, status: 3 },
+  { id: 9, stat: '重生碎片获取', value: `*${formatNumber(scale(1.025))}`, status: 3 },
+  { id: 10, stat: '增益经验获取', value: `*${formatNumber(scale(1.035))}`, status: 4 },
+  { id: 11, stat: '腐化弱化', value: `+${formatNumber(linearDiff(1.008))}`, status: 5 },
+  { id: 13, stat: '灵魂弱化', value: `*${formatNumber(Math.max(inverseScale(1.025), 0.1))}`, status: 6 },
+  { id: 14, stat: '等级成长更优', value: `*${formatNumber(Math.max(inverseScale(1.03), 0.1))}`, status: 7 },
+  { id: 15, stat: '关卡成长更优', value: `*${formatNumber(Math.max(inverseScale(1.03), 0.01))}`, status: 7 },
+  { id: 16, stat: '敌人弱化', value: `*${formatNumber(Math.max(inverseScale(1.02), 0.1))}`, status: 8 },
+  { id: 17, stat: '最大等级倍率', value: `+${formatNumber(scale(1.07, log()))}`, status: 10 },
+  { id: 18, stat: '最低等级', value: `+${minLevel()}`, status: 13 },
+  { id: 19, stat: '新无限BUFF：充能', value: ``, status: 15 },
+  { id: 20, stat: '最大危险度', value: `+${danger()}`, status: 16 },
+  { id: 21, stat: '星尘', value: `*${formatNumber(scale(1.0145))}`, status: 18 },
+  { id: 22, stat: '潜能', value: `+${pot()}`, status: 20 },
+  { id: 23, stat: '奇点弱化', value: `*${formatNumber(inverseScale(1.01, log()))}`, status: 22 },
+  { id: 24, stat: 'IP加成成长更优', value: ``, status: 25 },
+  { id: 25, stat: '+1 增益布局', value: ``, status: 30 },
+  { id: 26, stat: '开局获得1万突变因子', value: ``, status: 35 },
+  { id: 27, stat: '突变因子', value: `*${formatNumber(mutagen())}`, status: 40 },
+  { id: 28, stat: '解锁星核核心', value: ``, status: 50 },
 ]);
 
 function quasarCoreHandle() {
   let count = Math.max(Math.floor((hero.value.mainInfTier - 45) / 5), 0);
   let next = 50 + 5 * count;
-  return `Absorb the <span style='color: #00ffea'>Quasar Power</span> into yourself. Each <span style='color: gold'>Infinity Tier</span> increases the effects of the <span style='color: #00ffea'>Quasar Power</span>.
-  Gain the next <span style='color: #00ffea'>Quasar Core</span> at <span style='color: gold'>Infinity [T${next}]</span>.
+  return `吸收<span style='color: #00ffea'>星核之力</span>。每个<span style='color: gold'>无限阶级</span>都会增强<span style='color: #00ffea'>星核之力</span>效果。
+  在<span style='color: gold'>无限 [T${next}]</span>获得下一个<span style='color: #00ffea'>星核核心</span>。
 
-  <span style='color: red'>You can change Quasar Core when you are idle in Infinity</span>`;
+  <span style='color: red'>你仅可在无限空闲状态下切换星核核心</span>`;
 }
 
 function quasarCoreItemsHandle(skill) {

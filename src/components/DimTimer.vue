@@ -1,34 +1,34 @@
 <template>
 <div class="top-right-wrapper">
   <div class="afk-stats">
-    <div class="afk-title">Average Loot</div>
+    <div class="afk-title">平均收益</div>
     <div class="afk-row">
-      <span>Exp/min:</span>
+      <span>经验/分钟:</span>
       <span class="purple">{{ formatNumber(avgLootPerMinute.exp) }}</span>
     </div>
     <div class="afk-row" v-if="hero.maxStage >= 20 || hero.mainInfTier >= 1">
-      <span>Buff Exp/min:</span>
+      <span>增益经验/分钟:</span>
       <span class="yellow">{{ formatNumber(avgLootPerMinute.buffexp) }}</span>
     </div>
     <div class="afk-row" v-if="hero.spCount >= 5">
-      <span>Mutagen/min:</span>
+      <span>突变因子/分钟:</span>
       <span class="green">{{ formatNumber(avgLootPerMinute.mutagen) }}</span>
     </div>
     <div class="afk-row" v-if="hero.spCount >= 1 && (hero.stage >= hero.stardustStage)">
-      <span>Stardust/min:</span>
+      <span>星尘/分钟:</span>
       <span class="gold">{{ formatNumber(avgLootPerMinute.stardust) }}</span>
     </div>
   </div>
   <div v-if="hero.abyssDStages >= 80" class="info-box">
-    <div class="info-title">Dimension Info</div>
-    <div class="info-line">🌐 Dimension: <span style="color: #f942f9;">{{ curDimension() }}</span></div>
+    <div class="info-title">维度信息</div>
+    <div class="info-line">🌐 维度: <span style="color: #f942f9;">{{ curDimension() }}</span></div>
     <div class="info-line">
         <span class="label-with-icon">
-            <span class="infinity-glow">∞</span> Tier:
+            <span class="infinity-glow">∞</span> 层级:
         </span>
         <span style="color: gold">{{ curTier() }}</span>
     </div>
-    <div class="info-line">🕐 Time: <span>{{ timeFormat(hero.dTimer) }}</span></div>
+    <div class="info-line">🕐 时间: <span>{{ timeFormat(hero.dTimer) }}</span></div>
   </div>
 </div>
 </template>
@@ -44,7 +44,7 @@ const { enemy } = useEnemy();
 
 function curDimension(){
   let d = dimensions.value.find(d => d.id === hero.value.dId);
-  return d ? `[${d.name}] [${d.idx}]` : '[Unknown]';
+  return d ? `[${d.name}] [${d.idx}]` : '[未知]';
 }
 
 
@@ -70,7 +70,7 @@ function timeFormat(t) {
   const days = Math.floor(t / 86400);
 
   if (days > 0) {
-    return `${days}d ${hr}:${min}:${sec}`;
+    return `${days}天 ${hr}:${min}:${sec}`;
   } else if (hr !== '00') {
     return `${hr}:${min}:${sec}`;
   } else {
