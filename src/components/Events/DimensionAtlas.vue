@@ -630,9 +630,9 @@ function dimensionD(hovered) {
   else str += `<span>${d.d}</span><br><br>`;
 
   if(d_req(d)) str += `<span style="color: red">${d.c}</span><br>`;
-  if(!filtered.includes(d.id)) str += `<span style="color: gold">Infinity [T${d.infTier}]/[T${d.maxInfTier}]</span><br><br>`;
-  if(d.id == 'main') str += `<span style="color: gold">Infinity [T${hero.value.mainInfTier}]</span><br><br>`
-  if(dInfFiltered.includes(d.id)) str += `<span style="color: gold">Infinity [T${d.infTier}]</span><br><br>`
+  if(!filtered.includes(d.id)) str += `<span style="color: gold">无限 [T${d.infTier}]/[T${d.maxInfTier}]</span><br><br>`;
+  if(d.id == 'main') str += `<span style="color: gold">无限 [T${hero.value.mainInfTier}]</span><br><br>`
+  if(dInfFiltered.includes(d.id)) str += `<span style="color: gold">无限 [T${d.infTier}]</span><br><br>`
 
   if(d.id == 'noBuffs') str += `奖励：增益经验加成 - <spna>${formatNumber(1.15 ** (d.infTier - 5), true)}</span><br>`
   else if(d.id == 'time') str += dTime();
@@ -714,32 +714,32 @@ function bhChallenge() {
   str += `<span style="color: cyan; font-weight: bold">黑洞 [T${tier}]</span><br><br>`;
 
   str += `<span style="color: #cccccc">
-      潜入由 <span style="color: cyan">[D-Gravity]</span> 以对抗 
-      <span style="color: cyan">Singulars</span>. 
+      潜入由 <span style="color: cyan">[D-Gravity]</span> 统治的黑洞深渊，对抗 
+      <span style="color: cyan">奇点体</span>。 
       它们每次攻击都比上一次更强。 
-      当你死亡时，你的 <span style="color: cyan">transcendence</span> will be destroyed, 
+      当你死亡时，你的 <span style="color: cyan">超越</span>将被摧毁， 
       并返回主维度。
   </span><br><br>`;
 
   const baseRewards = [
-    `<span style="color: rgb(111, 245, 200)">+75 Singularity Levels</span>`,
-    `<span style="color: gold">+0.05 IP MULT</span>`,
+    `<span style="color: rgb(111, 245, 200)">+75 奇点等级</span>`,
+    `<span style="color: gold">+0.05 IP 倍率</span>`,
     `<span style="color: lightblue">等级冲刺与关卡冲刺：+5%</span>`,
   ];
 
   const uniqueRewards = {
-    0: `<span style="color: red">BUFF: Black Impulse [T1]</span><br>
-        <span style="color: lime">+0.1 最大等级 MULT</span> per each <span style="color: cyan">transcendence</span>
+    0: `<span style="color: red">BUFF：黑色脉冲 [T1]</span><br>
+        <span style="color: lime">每次超越 +0.1 最大等级倍率</span>
         <span style="color: gold">开局获得1000万星尘</span>`,
-    1: `<span style="color: red">BUFF: Black Impulse [T2]</span><br> 
-        <span style="color: lime">+1.05</span> <span style="color: red">DMG</span> MULT per each <span style="color: cyan">transcendence</span>
+    1: `<span style="color: red">BUFF：黑色脉冲 [T2]</span><br> 
+        <span style="color: lime">每次超越 +1.05 伤害倍率</span>
         <span style="color: gold">解锁自动锻造</span>`,
-    2: `<span style="color: red">BUFF: Black Impulse [T3]</span><br> 
-        <span style="color: lightgreen">+1 MIN LEVEL per each <span style="color: cyan">transcendence</span></span>
+    2: `<span style="color: red">BUFF：黑色脉冲 [T3]</span><br> 
+        <span style="color: lightgreen">每次超越 +1 最低等级</span>
         <span style="color: gold">解锁太空-INF</span>`,
-    3: `<span style="color: red">BUFF: Black Impulse [T4]</span><br> 
-        <span style="color: lime">+0.005</span> <span style="color: orange">IP MULT</span> per each <span style="color: cyan">transcendence</span><br> 
-        <span style="color: gold">Unlock 时间线</span>`
+    3: `<span style="color: red">BUFF：黑色脉冲 [T4]</span><br> 
+        <span style="color: lime">每次超越 +0.005 IP 倍率</span><br> 
+        <span style="color: gold">解锁时间线</span>`
   };
 
   str += `<span style="color: #a3ffe0">奖励：</span><br>`;
@@ -768,7 +768,7 @@ function dTime(){
     const afkPercent = Math.max(Math.min((15 / Math.log(Math.max(time, 3))) * speedMult, 10), 1);
     const afkDuration = Math.min((7.5 / Math.sqrt(Math.max(time, 3))) * speedMult, 5);
 
-    return `奖励：每${Math.round(100 / afkPercent)} 次击杀敌人获得AFK加速，持续${afkDuration.toFixed(1)}s<br>`;
+    return `奖励：每${Math.round(100 / afkPercent)}次击杀敌人获得AFK加速，持续${afkDuration.toFixed(1)}秒<br>`;
   } else {
     return `奖励：0%概率获得AFK加速，持续0秒<br>`;
   }
@@ -783,7 +783,7 @@ function timeFormat(t) {
   const days = Math.floor(t / 86400);
 
   if (days > 0) {
-    return `${days}d ${hr}:${min}:${sec}`;
+    return `${days}天 ${hr}:${min}:${sec}`;
   } else if (hr !== '00') {
     return `${hr}:${min}:${sec}`;
   } else {
@@ -799,9 +799,9 @@ function unlimittedDescription(){
 
   let unlimitD = `
   <span>
-  Exp boost ${expBoost.toFixed(2)} - 
-  最大等级 MULT ${(hero.value.unlimitMaxLevel).toFixed(2)} - 
-  MIN Level ${hero.value.unlimitMinLevel}
+  经验加成 ${expBoost.toFixed(2)} - 
+  最大等级倍率 ${(hero.value.unlimitMaxLevel).toFixed(2)} - 
+  最低等级 ${hero.value.unlimitMinLevel}
   </span><br>
   </span><br><span>最大等级: ${hero.value.unlimitLevel}</span>/<span>[${hero.value.unlimitLevelMax}]</span><br>
   <span>达到等级 ${1500 + 500 * infBonus} 可在该维度获得无限经验加成：${formatNumber((infBonus * 5 + 1) ** 1.5)}</span><br>
@@ -825,7 +825,7 @@ function d_buffs_handle(d) {
     case 4: return wrap(`达到无限[T8]解锁旅者[T4]`);
     case 5: return wrap(`达到无限[T12]解锁灵活[T4]`);
     case 6: return wrap(`达到无限[T16]解锁闪电[T4]`);
-    default: return wrap(`All possible buffs are taken.`);
+    default: return wrap(`可解锁的增益已全部获取。`);
   }
 }
 
@@ -848,16 +848,16 @@ function d_danger_des_handle(d) {
   let stage = 100 + 10 * d.infTier;
 
   return `
-    Enter the dimension where <span style='color: orange'>[D-Space]</span> stays its presence within <span style='color: orange'>Dimension Colossuses</span>. 
-    You will encounter this entity in Stage <span style='color: gold'>[${stage}+]</span>, Danger <span style='color: gold'>[${danger}+]</span>. 
+    进入一个维度：<span style='color: orange'>[D-Space]</span> 的力量寄宿在 <span style='color: orange'>维度巨像</span> 中。
+    你将在关卡 <span style='color: gold'>[${stage}+]</span>、危险度 <span style='color: gold'>[${danger}+]</span> 遭遇该实体。
     击败它以解锁下一无限阶级路线，并唤醒新的维度黑暗生物。
     <br><br>
   `
 }
 
 function d_danger_reward_handle(d) {
-  let warp = (text) => `<span style="color:#9cedd2">Dark Creature: <span style="color:red">${text}</span><br> | 
-  Danger Power is weaker by [^${1 - 0.01 *d.infTier}] | Increase The cap of Dark Creatures</span><br>`;
+  let warp = (text) => `<span style="color:#9cedd2">黑暗生物：<span style="color:red">${text}</span><br> | 
+  危险之力弱化为 [^${1 - 0.01 *d.infTier}] | 提高黑暗生物上限</span><br>`;
 
   switch(d.infTier){
     case 0: return warp('Dreadfang');
@@ -866,7 +866,7 @@ function d_danger_reward_handle(d) {
     case 3: return warp('Baselurker');
     case 4: return warp('Infinity Bane');
     case 5: return warp('Crushdepth');
-    default: return warp('All Dark Creatures are found.');
+    default: return warp('所有黑暗生物均已发现。');
   }
 }
 
@@ -882,14 +882,14 @@ function d_unlimitted_handle(d) {
     -> <span style='color: gold'>[T${d.infTier + 1}]</span>
     <span style='color: rgb(204, 102, 255)'>${next}</span><br>
     
-    EXP MULT for dimension [5] [S5-Ω3t]: 
+    维度[5] [S5-Ω3t]经验倍率：
     <span style='color: rgb(204, 102, 255)'>${expMult.toFixed(2)}</span>
   `;
 
   if (d.infTier < 10) {
     text += `达到 <span style="color: gold">无限 [T10]</span> 以解锁新功能`;
   } else {
-    text += `Min Level in dimension [5] [S5-Ω3t] scales better with Infinity Tier`;
+    text += `维度[5] [S5-Ω3t]中的最低等级会随无限阶级成长更优`;
   }
 
   return `<br><span style="color: #9cedd2">${text}</span><br>`;
@@ -900,7 +900,7 @@ function d_noSpace_des_hanlde(d) {
   const base = d.d; 
   const required = 6 + (d.infTier * 6);
 
-  return base.replace(/\d+\s+Celestials?/, `${required} Celestials`) + `<br><br>`;
+  return base.replace(/\d+\s+Celestials?/, `${required} 个天界敌人`) + `<br><br>`;
 }
 
 function d_noSpace_reward_handle(d) {
@@ -926,7 +926,7 @@ function dark_energy_reward(d){
   if(d.infTier < 10)
     text += `达到 <span style="color: gold">无限 [T10]</span> 以解锁暗能量新影响<br>`;
   else text += `暗能量正在汇聚所有黑暗维度的无限之力，并以 <span style="color: gold">${percent}%</span>  的总量进行强化：
-  <span style="color: gold">无限层数 [${totalInfs}]</span>. 该效果会随无限阶级提升<br>`;
+  <span style="color: gold">无限层数 [${totalInfs}]</span>。该效果会随无限阶级提升<br>`;
 
   text += `<span style="color: #9cedd2">奖励：最大等级 [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
 
@@ -936,11 +936,11 @@ function dark_energy_reward(d){
 function d_damage_reward_handle(d){
   let text = ``;
   if(d.infTier >= 20)
-    text = `You have a 50% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br><br>`;
+    text = `你被命中时有50%概率不获得1层<span style="color: red">末日</span>。<br><br>`;
   else if(d.infTier >= 10)
-    text = `You have a 25% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br>
-    Reach <span style="color: gold">Infninity [T20]</span> 以解锁新功能<br><br>`;
-  else text = `Reach <span style="color: gold">Infninity [T10]</span> 以解锁新功能<br><br>`;
+    text = `你被命中时有25%概率不获得1层<span style="color: red">末日</span>。<br>
+    达到 <span style="color: gold">无限 [T20]</span> 以解锁新功能<br><br>`;
+  else text = `达到 <span style="color: gold">无限 [T10]</span> 以解锁新功能<br><br>`;
 
 
   let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
