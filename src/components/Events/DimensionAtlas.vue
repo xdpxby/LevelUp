@@ -27,8 +27,8 @@
       <button @click="hero.dimDisplayMode = 'grid'">🔲 网格</button>
       <button
         @click="toggleOtherDimensions"
-        :disabled="!isEternityUnlocked"
-        :class="{ disabled: !isEternityUnlocked }"
+        :disabled="!isDarkDimUnlocked"
+        :class="{ disabled: !isDarkDimUnlocked }"
       >
         🌌 黑暗维度
       </button>
@@ -196,7 +196,7 @@ const { enemy } = useEnemy();
 
 const searchQuery = ref('');
 
-const isEternityUnlocked = computed(() => {
+const isDarkDimUnlocked = computed(() => {
   const prev1 = d_data.value.find(dim => dim.id === 'corruption');
   const prev2 = d_data.value.find(dim => dim.id === 'hard');
   return hero.value.mainInfTier >= 35 && prev1.infTier >= 35 && prev2.infTier >= 25;
@@ -260,9 +260,9 @@ function getDimension(id) {
 
 const artifacts = [
   
-  { id: 'singularity', x: 300, y: 100, color: '#cc66ff', radius: 12, glow: true, pulse: true, label: 'Singularity' },
-  { id: 'satellite', x: 250, y: 250, orbit: true, label: 'Lost Satellite' },
-  { id: 'void', x: 500, y: 300, color: '#00000088', radius: 20, label: 'Void' },
+  { id: 'singularity', x: 300, y: 100, color: '#cc66ff', radius: 12, glow: true, pulse: true, label: '奇点' },
+  { id: 'satellite', x: 250, y: 250, orbit: true, label: '失落卫星' },
+  { id: 'void', x: 500, y: 300, color: '#00000088', radius: 20, label: '虚空' },
 ]
 
 const dark_d = [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]

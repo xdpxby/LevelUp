@@ -1403,125 +1403,125 @@ const styledSections = [
     title: '护符',
     class: 'amulet-section',
     content: [
-      `Kill an enemy to get [Total Bonus]. [Total Bonus] is equals to sum of all curse bonuses from enemy`,
-      'Bonus [Extra Multiplier] = [Total Bonus]^(1 + 0.05 * total Curses + [0.1 for each Curse [T4]] + [[0.2] for Curse [T5]])',
+      `击杀敌人可获得 [总加成]，[总加成] 等于该敌人所有诅咒加成之和`,
+      '加成[额外倍率] = [总加成]^(1 + 0.05 × 总诅咒数 + [每个诅咒[T4] +0.1] + [诅咒[T5] +0.2])',
       `Bonus [Penalty]: ${(1 / Math.log(Math.max(3, 100 - hero.value.stage))).toFixed(2)}`,
-      'Higher stage = Higher Curse tier chance and less Penalty.',
-      '<strong>You can get EXP Mult and Buff EXP from [Total Bonus].</strong>',
-      'Curse tiers: Green (T1), Yellow (T2), Red (T3), Purple (T4), Divine (T5)'
+      '关卡越高 = 高阶诅咒概率越高，惩罚越低。',
+      '<strong>你可从[总加成]获得经验倍率与增益经验。</strong>',
+      '诅咒阶级：绿色(T1)、黄色(T2)、红色(T3)、紫色(T4)、神圣(T5)'
     ]
   },
   {
     title: '重生',
     class: 'rebirth-section',
     content: [
-      'To get rebirth tier you need to reach the cap. The cap is equal to 100 + 10 * Rebirth Tier',
-      'Total Level = Levels + MIN Levels',
-      'MIN Levels provide stats only',
-      'Rebirth Pts depends on Total Level.',
-      'Potential increases stats per level',
-      'Enemy EVO scales Power(DMG & HP)[until Infinity T3] & loot by Rebirth Tier',
-      '<strong>No EVO Power in Abyss</strong>',
-      'Each 5 Rebirth Tier(10 After Tier 20) discover new possibilities of Rebirth'
+      '想获得重生阶级需达到等级上限。上限 = 100 + 10 × 重生阶级',
+      '总等级 = 当前等级 + 最低等级',
+      '最低等级仅提供属性',
+      '重生点取决于总等级。',
+      '潜能会提高每级属性收益',
+      '敌人进化会随重生阶级提升强度（伤害与生命，至无限T3）及掉落',
+      '<strong>深渊中无进化强度加成</strong>',
+      '每5级重生阶级（20阶后改为每10级）会解锁新的重生可能'
     ]
   },
   {
     title: '深渊',
     class: 'abyss-section',
     content: [
-      hero.value.soulsMax >= 20 && 'Abyss T1 - After complete you will be cursed by 3 new curses. Soul CAP -> 30. x1.3 MULT Rebirth Pts per Abyss Tier. +50% souls appear for each curse',
-      hero.value.soulsMax >= 30 && `Abyss T2 - After complete you will be cursed by 3 new curses. Soul CAP -> 40. There are new enemies after 20 stages that drops Ascension Shards.
-  Ascension Shards now affect to enemies make them weaker.`,
-      hero.value.soulsMax >= 40 && 'Abyss T3 - Break Rebirth Limits. Open Corruption. Unlock the Second Space Fragment',
-      hero.value.spCount >= 25 && `The bonuses from Abyss D will apply only after open Abyss D`, 
-      hero.value.spCount >= 15 && `Abyss D: `,
-      hero.value.abyssDStages >= 20 && `Reach Stage 20: High Tier Curses appear more often`,
-      hero.value.abyssDStages >= 30 && `Reach Stage 30: Level scales based on Max Stage in Abyss `,
-      hero.value.abyssDStages >= 40 && `Reach Stage 40: Corruption weakness is based on Max Stage in Abyss D`,
-      hero.value.abyssDStages >= 50 && `Reach Stage 50: Curse Bonus boost is based on Max Stage in Abyss D`,
-      hero.value.abyssDStages >= 60 && `Reach Stage 60: Stardust drop is better based on Max Stage in Abyss D`,
-      hero.value.abyssDStages >= 70 && `Reach Stage 70: Stage requirement scales better based on Max Stage in Abyss D`,
-      hero.value.abyssDStages >= 80 && `Reach Stage 80: Open D-Atlas`,
-      hero.value.abyssDStages >= 100 && `Reach Stage 100: MULT to convert Curse [T4] to [T5]`,
-      hero.value.abyssDStages >= 120 && `Reach Stage 120: Stage Requirement reduced for Dimension Shards`,
-      hero.value.abyssDStages >= 140 && `Reach Stage 140: The Danger Power is weaker`,
-      hero.value.abyssDStages >= 160 && `Reach Stage 160: Celestials are weaker`,
-      hero.value.abyssDStages >= 180 && `Reach Stage 180: Soul-D is weaker`,
-      hero.value.abyssDStages >= 200 && `Reach Stage 200: Max Level MULT`,
+      hero.value.soulsMax >= 20 && '深渊 T1 - 完成后新增3个诅咒。灵魂上限 -> 30。每个深渊阶级提供 x1.3 重生点倍率。每个诅咒 +50% 灵魂出现率',
+      hero.value.soulsMax >= 30 && `深渊 T2 - 完成后新增3个诅咒。灵魂上限 -> 40。20关后会出现可掉落飞升碎片的新敌人。
+  飞升碎片现在会作用于敌人并使其变弱。`,
+      hero.value.soulsMax >= 40 && '深渊 T3 - 打破重生限制。开启腐化。解锁第二太空碎片',
+      hero.value.spCount >= 25 && `深渊D加成将在开启深渊D后生效`, 
+      hero.value.spCount >= 15 && `深渊 D：`,
+      hero.value.abyssDStages >= 20 && `达到关卡 20：高阶诅咒出现更频繁`,
+      hero.value.abyssDStages >= 30 && `达到关卡 30：等级成长基于深渊最高关卡`,
+      hero.value.abyssDStages >= 40 && `达到关卡 40：腐化削弱基于深渊D最高关卡`,
+      hero.value.abyssDStages >= 50 && `达到关卡 50：诅咒加成增幅基于深渊D最高关卡`,
+      hero.value.abyssDStages >= 60 && `达到关卡 60：星尘掉落基于深渊D最高关卡提升`,
+      hero.value.abyssDStages >= 70 && `达到关卡 70：关卡需求基于深渊D最高关卡优化`,
+      hero.value.abyssDStages >= 80 && `达到关卡 80：开启维度图鉴`,
+      hero.value.abyssDStages >= 100 && `达到关卡 100：将诅咒 [T4] 转为 [T5] 的倍率提升`,
+      hero.value.abyssDStages >= 120 && `达到关卡 120：维度碎片需求关卡降低`,
+      hero.value.abyssDStages >= 140 && `达到关卡 140：危险强度减弱`,
+      hero.value.abyssDStages >= 160 && `达到关卡 160：天界生物变弱`,
+      hero.value.abyssDStages >= 180 && `达到关卡 180：灵魂维度变弱`,
+      hero.value.abyssDStages >= 200 && `达到关卡 200：最高等级倍率提升`,
     ].filter(Boolean)
   },
   {
     title: '太空',
     class: 'space-section',
     content: [
-      'Kill a monster with a certain danger to find the boss',
-      'Auto - Reproduces combat without fighting. Suitable for fighting weak creatures. [Infinity T5]',
-      `At the beginning, only 4 space bosses are available.`,
-      'Comet Ring - Unlimited Enhances.'
+      '击杀达到一定危险度的怪物可引出首领',
+      '自动 - 无需手动战斗即可复现战斗流程，适合刷弱敌。[无限 T5]',
+      `初始仅开放 4 个太空首领。`,
+      '彗星戒指 - 强化上限解除。'
     ]
   },
   {
     title: '辐射',
     class: 'radiation-section',
     content: [
-      'Curse [T3] can be mutated to Curse [T4]',
-      `Mutation [T1] has a chance to mutate Curse [T3] into Curse [T4]. Mutation [T2] mutates only if Mutation [T1] was successful. Mutation [T3] mutates only if Mutation [T2] was successful. Mutation [T4] mutates only if Mutation [T3] was successful. 
-      <strong>General formula: T[x+1] mutagen needs T[x] success.</strong>`,
-      'Total mutagen gain = (Mutation T[x])^2.5 * (other mult).',
+      '诅咒 [T3] 可突变为诅咒 [T4]',
+      `突变 [T1] 有概率将诅咒 [T3] 突变为诅咒 [T4]。突变 [T2] 仅在 [T1] 成功后触发；[T3] 仅在 [T2] 成功后触发；[T4] 仅在 [T3] 成功后触发。
+      <strong>通用公式：T[x+1] 的突变需要 T[x] 成功。</strong>`,
+      '总突变素收益 = (突变 T[x])^2.5 ×（其他倍率）',
       `Mutation [T1]^2.5 = 1`,
       `Mutation [T2]^2.5 = 5.6`,
       `Mutation [T3]^2.5 = 15.6`,
       `Mutation [T4]^2.5 = 32`,
       `Mutation [T5]^2.5 = 56`,
-      `<strong>Mutation</strong> [T1] will be available from <strong>Stage</strong> 30, 
-      <strong>Mutation</strong> [T2] from <strong>Stage</strong> 35, 
-      <strong>Mutation</strong> [T3] from <strong>Stage</strong> 40, 
-      <strong>Mutation</strong> [T4] from <strong>Stage</strong> 45.`,
-      `<strong>Tip: Increase the chance of Curse [T3] and the frequency of enemy spawns</strong>`,
-      `Each  Curse [T4] grants an additional [^0.1] curse bonus. For information on the additional bonus, see the Info -> Amulet Section.`,
-      'Danger ↑ = <strong>special enemy chance</strong> ↑ + power ↑.',
-      '<strong>Danger Power does not work in Abyss and Singularity</strong>',
-      `Hold the button to upgrade quickly`,
+      `<strong>突变</strong> [T1] 在<strong>关卡</strong>30解锁，
+      <strong>突变</strong> [T2] 在<strong>关卡</strong>35解锁，
+      <strong>突变</strong> [T3] 在<strong>关卡</strong>40解锁，
+      <strong>突变</strong> [T4] 在<strong>关卡</strong>45解锁。`,
+      `<strong>提示：提高诅咒 [T3] 概率与敌人刷新频率</strong>`,
+      `每个诅咒 [T4] 额外提供 [^0.1] 诅咒加成。详情见 信息 -> 护符。`,
+      '危险度 ↑ = <strong>特殊敌人概率</strong> ↑ + 强度 ↑',
+      '<strong>危险强度在深渊与奇点中不生效</strong>',
+      `按住按钮可快速升级`,
     ]
   },
   {
     title: '腐化',
     class: 'corruption-section',
     content: [
-      'Appears after Abyss T3.',
-      'Corruption reduces Max Level × 0.1 after 300 Max Level.',
-      'Weaken it to recover power.',
+      '在深渊 T3 后出现。',
+      '腐化会在最高等级超过300后按 ×0.1 削减。',
+      '削弱腐化可恢复实力。',
     ]
   },
   {
   title: '无限',
   class: 'infinity-section',
   content: [
-    'Each Infinity provides a rebuild mechanic, but everything is reset (except Abyss D).',
-    'You can reset the influence of Infinity in the settings if you are not strong enough to overcome this challenge.',
-    'Infinity bonuses depend on IP.',
-    `Inf penalty reduction (IPR): The full power of the IPR only works on the main dimension. After the 20th main dimension, the IPR starts spreading to other dimensions. The greater the Infinity in the main dimension, the stronger the IPR for other dimensions.`
+    '每次无限会带来重构机制，但几乎一切都会被重置（深渊D除外）。',
+    '若强度不足以通过挑战，可在设置中重置无限影响。',
+    '无限加成取决于 IP。',
+    `无限惩罚减免（IPR）：IPR 的完整效果仅在主维度生效。主维度达到第20阶后，IPR 会扩散到其他维度；主维度无限越高，其他维度获得的 IPR 越强。`
   ],
   },
   {
     title: '奇点',
     class: 'singularity-section',
     content: [
-      'Singularity levels increase the threshold after Max Level 700. After Level 700, your stats are doubled.',
-      hero.value.singularity >= 8 && 'Kill an enemy with Curse [T5] to get extra bonus and double EXP, EXP buff, Stardust, and Mutagen. See the chance of Curse [T5] in the Amulet section.'
+      '奇点等级会提高 700 级后的阈值；达到 700 级后属性翻倍。',
+      hero.value.singularity >= 8 && '击杀带有诅咒 [T5] 的敌人可获得额外加成，并使经验、经验增益、星尘与突变素翻倍。诅咒 [T5] 概率见护符页。'
     ]
   },
   {
     title: '维度',
     class: 'dimension-section',
     content: [
-      `In dimensions that are weakly imbued with the D-Rule, the maximum possible stage in the Abyss is 100`,
-      `Each dimension has a reward for each Infinity completed and a special reward for reaching the maximum Infinity in a certain dimension.`,
-      `Once you reach Level 700, you will automatically advance to the next Tier. Your power will make the transition easier. `,
-      `Complete The Dimension [K7-D4n] to get the way to move between Stages. 
-      Ravage the space-time continuum to travel to any possible point in the universe. But everything has its price. 
-      During the journey, enemies will become 4 times stronger, over time their strength will return to normal. 
-      Skipping stages and receiving ascension shards is blocked until the next ascension, rebirth etc.`,
+      `在 D-Rule 影响较弱的维度中，深渊最高可达关卡为 100`,
+      `每个维度在每次完成无限后都会提供奖励，达到该维度无限上限时还会获得特殊奖励。`,
+      `达到 700 级后会自动推进至下一阶级。你的实力越高，过渡越轻松。`,
+      `完成维度 [K7-D4n] 后可解锁关卡迁跃。
+      你将撕裂时空连续体并前往宇宙中的任意可能点，但一切都需付出代价。
+      旅行期间敌人会变强4倍，随后逐渐恢复正常。
+      在下次飞升、重生等重置前，无法通过跳关获取飞升碎片。`,
     ]
   }
 ];
