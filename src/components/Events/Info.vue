@@ -1405,7 +1405,7 @@ const styledSections = [
     content: [
       `击杀敌人可获得 [总加成]，[总加成] 等于该敌人所有诅咒加成之和`,
       '加成[额外倍率] = [总加成]^(1 + 0.05 × 总诅咒数 + [每个诅咒[T4] +0.1] + [诅咒[T5] +0.2])',
-      `Bonus [Penalty]: ${(1 / Math.log(Math.max(3, 100 - hero.value.stage))).toFixed(2)}`,
+      `加成[惩罚]：${(1 / Math.log(Math.max(3, 100 - hero.value.stage))).toFixed(2)}`,
       '关卡越高 = 高阶诅咒概率越高，惩罚越低。',
       '<strong>你可从[总加成]获得经验倍率与增益经验。</strong>',
       '诅咒阶级：绿色(T1)、黄色(T2)、红色(T3)、紫色(T4)、神圣(T5)'
@@ -1468,11 +1468,11 @@ const styledSections = [
       `突变 [T1] 有概率将诅咒 [T3] 突变为诅咒 [T4]。突变 [T2] 仅在 [T1] 成功后触发；[T3] 仅在 [T2] 成功后触发；[T4] 仅在 [T3] 成功后触发。
       <strong>通用公式：T[x+1] 的突变需要 T[x] 成功。</strong>`,
       '总突变素收益 = (突变 T[x])^2.5 ×（其他倍率）',
-      `Mutation [T1]^2.5 = 1`,
-      `Mutation [T2]^2.5 = 5.6`,
-      `Mutation [T3]^2.5 = 15.6`,
-      `Mutation [T4]^2.5 = 32`,
-      `Mutation [T5]^2.5 = 56`,
+      `突变 [T1]^2.5 = 1`,
+      `突变 [T2]^2.5 = 5.6`,
+      `突变 [T3]^2.5 = 15.6`,
+      `突变 [T4]^2.5 = 32`,
+      `突变 [T5]^2.5 = 56`,
       `<strong>突变</strong> [T1] 在<strong>关卡</strong>30解锁，
       <strong>突变</strong> [T2] 在<strong>关卡</strong>35解锁，
       <strong>突变</strong> [T3] 在<strong>关卡</strong>40解锁，
@@ -1559,13 +1559,13 @@ const statSections = [
         req: () => hero.value.minLevel > 0 || ascenPerks[26].level,
       },
       {
-        desc: 'Rebirth Pts',
+        desc: '重生点',
         value: () => ((hero.value.rebirthPts >= 50? 5: 0) + (hero.value.rebirthPts > 3500? 5: 0) + (hero.value.rebirthPts > 30000? 5: 0)),
         color: 'lightgreen',
         req: () => hero.value.minLevel > 0,
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生阶级',
         value: () => (hero.value.infTier >= 3 && hero.value.rebirthTier >= 40? Math.floor(1.05 ** Math.min(hero.value.rebirthTier, 80)): 0),
         color: 'lightgreen',
         req: () => hero.value.minLevel > 0
@@ -1601,7 +1601,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 13,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (hero.value.rebirthPts >= 9e5? hero.value.singularity: 0),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 9e5,
@@ -1655,12 +1655,12 @@ const statSections = [
         req: () => hero.value.bhTier >= 3,
       },
       {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => enemy.value.darkEnemyLoot[3],
         color: 'red',
         req: () => enemy.value.darkEnemyLoot[3] > 0,
       },
-      { desc: 'MIN LEVEL MULT', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevelMult > 1 },
+      { desc: '最低等级倍率', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevelMult > 1 },
       {
         desc: 'Dimension [33]',
         value: () => formatNumber(dimensions.value[33].infTier * 0.005, true),
@@ -1674,22 +1674,22 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 50,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.minLevelMult),
         color: 'gold',
         req: () => hero.value.minLevelMult > 1,
       },
-      { desc: 'TOTAL', value: '', color: 'gold',  uppercase: true, req: () => hero.value.minLevel > 0 },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => hero.value.minLevel > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.minLevel),
         color: 'gold',
         req: () => hero.value.minLevel > 0,
       },
   
-      { desc: 'Max Level', value: '', color: 'lightgreen',  uppercase: true, req: () => true },
+      { desc: '最高等级', value: '', color: 'lightgreen',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 30,
         color: '',
         req: () => true,
@@ -1730,7 +1730,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Equipment [Enhances]',
+        desc: '装备[强化]',
         value: () => Math.floor(hero.value.eqUpsMult['sword'].cap + 
           hero.value.eqUpsMult['armor'].cap + 
           hero.value.eqUpsMult['boots'].cap + 
@@ -1757,7 +1757,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Amulets',
+        desc: '护符',
         value: () => (amulets[0].status? 4: 0) + (amulets[1].status? 8: 0) + (amulets[2].status? 12: 0) + (amulets[3].status? 16: 0),
         color: 'red',
         req: () => true,
@@ -1775,27 +1775,27 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Space [Bosses]',
+        desc: '太空[首领]',
         value: () => ((hero.value.spCount / 6 >= 1? 25: 0) + (hero.value.spCount / 6 >= 2? 50: 0) + (hero.value.spCount / 6 >= 3? 75: 0) + (hero.value.spCount / 6 >= 4? 100: 0) + 
         (hero.value.spCount / 6 >= 5? 150: 0) + (hero.value.spCount / 6 >= 6? 200: 0) + (hero.value.spCount / 6 >= 7? 300: 0) + (hero.value.spCount / 6 >= 8? 400: 0)),
         color: 'orange',
         req: () => true,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => Math.floor(hero.value.maxLevelInfo),
         color: 'gold',
         req: () => true,
       },
-      { desc: 'Max Level MULT', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.maxLevelMult > 1 },
+      { desc: '最高等级倍率', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.maxLevelMult > 1 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1,
         color: '',
         req: () => hero.value.maxLevelMult > 1,
       },
       {
-        desc: 'Amulets [Prefix]',
+        desc: '护符[前缀]',
         value: () => (((amulets[0].prefix.status? 0.02: 0) + (amulets[1].prefix.status? 0.04: 0) + (amulets[2].prefix.status? 0.06: 0) + 
         (amulets[3].prefix.status? 0.08: 0)) * (hero.value.sp >= 99? 2: 1)).toFixed(2),
         color: 'red',
@@ -1814,7 +1814,7 @@ const statSections = [
         req: () => hero.value.singularity > 4 && hero.value.maxLevelMult > 1,
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生阶级',
         value: () => (hero.value.rebirthTier >= 80? 0.02 * (Math.min(hero.value.rebirthTier, 200) - 79): 0).toFixed(2),
         color: 'lightgreen',
         req: () => hero.value.maxLevelMult > 1
@@ -1838,7 +1838,7 @@ const statSections = [
         req: () => hero.value.maxLevelMult > 1 && hero.value.spCount >= 15
       },
       {
-        desc: 'Ring [Prefix]',
+        desc: '戒指[前缀]',
         value: () => formatNumber(hero.value.eqUpsMult['ring'].multLevel, true),
         color: '#66ffcc',
         req: () => hero.value.maxLevelMult > 1,
@@ -1856,7 +1856,7 @@ const statSections = [
         req: () => hero.value.bhTier >= 1,
       },
       {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => formatNumber((0.01 * enemy.value.darkEnemyLoot[2]), true),
         color: 'red',
         req: () => enemy.value.darkEnemyLoot[2] > 0,
@@ -1868,7 +1868,7 @@ const statSections = [
         req: () => hero.value.maxLevelMult > 1,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (1 + hero.value.maxLevelMult).toFixed(2),
         color: 'gold',
         req: () => hero.value.maxLevelMult > 1,
@@ -1889,7 +1889,7 @@ const statSections = [
       },
       { desc: `True Level`, value: '', color: 'lightgreen',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.trueLevel, true),
         color: 'gold',
         req: () => true,
@@ -1920,7 +1920,7 @@ const statSections = [
         req: () => dimensions.value[13].infTier > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => formatNumber(hero.value.rebirthPts >= 2.5e6? Math.sqrt(Math.log(hero.value.rebirthPts)) * 0.01: 0, true),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 2.5e6,
@@ -1932,7 +1932,7 @@ const statSections = [
         req: () => dimensions.value[13].infTier > 0,
       },
       {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => formatNumber((0.0075 * enemy.value.darkEnemyLoot[0]), true),
         color: 'red',
         req: () => dimensions.value[13].infTier > 0,
@@ -1951,7 +1951,7 @@ const statSections = [
       },
       { desc: `Total`, value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPenalty > 0 || hero.value.mainInfTier >= 20 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.infPenalty, true),
         color: 'gold',
         req: () => hero.value.infPenalty > 0 || hero.value.mainInfTier >= 20,
@@ -1964,7 +1964,7 @@ const statSections = [
         req: () => hero.value.singularity > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => formatNumber(Math.floor((hero.value.rebirthPts >= 4.5e5? Math.log(hero.value.rebirthPts + 3) ** 1.906: 0)), true),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 4.5e5
@@ -1977,7 +1977,7 @@ const statSections = [
       },
       { desc: `Total`, value: '', color: 'gold',  uppercase: true, req: () => hero.value.singularityLevels > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => hero.value.singularityLevels,
         color: 'gold',
         req: () => hero.value.singularityLevels > 0,
@@ -1990,13 +1990,13 @@ const statSections = [
     content: [
       { desc: 'IP', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Infinity Challenges',
+        desc: '无限挑战',
         value: () => (hero.value.infPointsGoals),
         color: 'gold',
         req: () => hero.value.infPointsGoals > 0,
       },
       {
-        desc: 'Mirror of the Infinity',
+        desc: '无限之镜',
         value: () => (enemy.value.dangerEnemyLoot[1]),
         color: 'gold',
         req: () => enemy.value.dangerEnemyLoot[1] > 0,
@@ -2008,7 +2008,7 @@ const statSections = [
         req: () => Object.values(hero.value.secrets).some(v => v),
       },
       {
-        desc: 'Discord support',
+        desc: 'Discord 支持',
         value: () => (400),
         color: 'blue',
         req: () => true,
@@ -2019,16 +2019,16 @@ const statSections = [
         color: 'gold',
         req: () => spaceShop.value[10].status,
       },
-      { desc: 'TOTAL IP', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: 'IP总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.infPointsGoals + enemy.value.dangerEnemyLoot[1] + 400 + Object.values(hero.value.secrets).filter(v => v).length * 20 + hero.value.eqUpsMult['spRing'].infPoints),
         color: 'gold',
         req: () => true,
       },
-      { desc: 'IP MULT', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
+      { desc: 'IP倍率', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1,
         color: '',
         req: () => hero.value.infPointsMult > 1,
@@ -2040,7 +2040,7 @@ const statSections = [
         req: () => hero.value.singularity > 0,
       },
        {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => formatNumber(hero.value.rebirthPts >= 5e6? Math.log(hero.value.rebirthPts)*0.015: 0, true),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts > 5e6,
@@ -2087,23 +2087,23 @@ const statSections = [
         color: '#00fdff',
         req: () => hero.value.bhTier >= 4,
       },
-      { desc: 'IP MULT TOTAL', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
+      { desc: 'IP倍率总计', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
        {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.infPointsMult, true),
         color: 'gold',
         req: () => hero.value.infPointsMult > 1,
       },
-      { desc: 'IP Penalty', value: '', color: 'red',  uppercase: true, req: () => hero.value.mainInfTier >= 50 },
+      { desc: 'IP惩罚', value: '', color: 'red',  uppercase: true, req: () => hero.value.mainInfTier >= 50 },
       {
         desc: 'Quasar Core [Event Horizon]',
         value: () => formatNumber((hero.value.selectedDivSkills.includes(2)? divineSkills.value[2].values[1]: 1), true),
         color: 'red',
         req: () => hero.value.mainInfTier >= 50,
       },
-      { desc: 'IP TOTAL', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPoints > 0 },
+      { desc: 'IP总量', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPoints > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.infPoints, true),
         color: 'gold',
         req: () => hero.value.infPoints > 0
@@ -2116,7 +2116,7 @@ const statSections = [
     content: [
       { desc: 'EXP', value: '', color: 'purple',  uppercase: true, req: () => true },
       {
-        desc: 'Stage EXP',
+        desc: '关卡经验',
         value: () => formatNumber(Math.log(hero.value.stage + 5)**4, true),
         color: '',
         req: () => true,
@@ -2134,7 +2134,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Ring [Enhances]',
+        desc: '戒指[强化]',
         value: () => formatNumber(hero.value.eqUpsMult['ring'].bonus, true),
         color: '#66ffcc',
         req: () => true,
@@ -2192,7 +2192,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Boss [Loot]',
+        desc: '首领[掉落]',
         value: () => formatNumber(enemy.value.boss.isBoss? enemy.value.boss.drop: 1, true),
         color: 'red',
         req: () => true,
@@ -2210,13 +2210,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Ascension Soul [Loot]',
+        desc: '飞升灵魂[掉落]',
         value: () => formatNumber((enemy.value.ascensionSoul.active? enemy.value.ascensionSoul.stats: 1), true),
         color: 'lightblue',
         req: () => true,
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生[掉落]',
         value: () => (enemy.value.rebirthEnemy["drop"]),
         color: 'lightgreen',
         req: () => true,
@@ -2298,7 +2298,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 50,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.totalExp),
         color: 'gold',
       },
@@ -2309,7 +2309,7 @@ const statSections = [
         color: 'gold',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.totalExp ** Math.max(Math.min(1 - 0.02 * hero.value.infTier + hero.value.infPenalty, 1), 0)),
         color: 'gold',
       },
@@ -2318,7 +2318,7 @@ const statSections = [
   {
     title: '装备',
     content: [
-      { desc: 'Equipment Drop Chance', value: '', color: 'orange',  uppercase: true, },
+      { desc: '装备掉落概率', value: '', color: 'orange',  uppercase: true, },
       {
         desc: 'BUFF: Traveller [T1]',
         value: () => (hero.value.activeBuffs.includes(2) && buffs.value[2].tier >= 1? 3 : 1),
@@ -2342,7 +2342,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Boss [Loot]',
+        desc: '首领[掉落]',
         value: () => formatNumber(enemy.value.boss.isBoss? enemy.value.boss.drop: 1, true),
         color: 'red',
         req: () => enemy.value.boss.isBoss
@@ -2353,13 +2353,13 @@ const statSections = [
         color: '#ed14ed',
       },
       {
-        desc: 'Ascension Soul [Loot]',
+        desc: '飞升灵魂[掉落]',
         value: () => formatNumber(enemy.value.ascensionSoul.active || enemy.value.rebirthSoul? enemy.value.ascensionSoul.stats: 1, true),
         color: 'lightblue',
         req: () => enemy.value.ascensionSoul.active || enemy.value.rebirthSoul
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生[掉落]',
         value: () => (enemy.value.rebirthEnemy["drop"]),
         color: 'lightgreen',
       },
@@ -2418,13 +2418,13 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 80,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.eqTotalDrop, true),
         color: 'gold',
       },
       { desc: 'Sword', value: '', color: 'orange',  uppercase: true, },
       {
-        desc: 'Base Drop Chance',
+        desc: '基础掉落概率',
         value: () => (20 * ((0.2 + 0.035 * hero.value.awakened['sword']) ** (hero.value.eqDrop['sword'])) * Math.log(hero.value.stage + 1) ** 2).toExponential(2) ,
         color: '',
       },
@@ -2439,7 +2439,7 @@ const statSections = [
         color: '#66ffcc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.equipmentTiers['sword']),
         color: 'gold',
       },
@@ -2455,7 +2455,7 @@ const statSections = [
       },
       { desc: 'Body', value: '', color: 'orange',  uppercase: true, },
       {
-        desc: 'Base Drop Chance',
+        desc: '基础掉落概率',
         value: () => (20 * ((0.185 + 0.02 * hero.value.awakened['armor']) ** (hero.value.eqDrop['armor'])) * Math.log(hero.value.stage + 1) ** 2.1).toExponential(2),
         color: '',
       },
@@ -2470,7 +2470,7 @@ const statSections = [
         color: '#66ffcc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.equipmentTiers['armor']),
         color: 'gold',
       },
@@ -2486,7 +2486,7 @@ const statSections = [
       },
       { desc: 'Boots', value: '', color: 'orange',  uppercase: true, },
       {
-        desc: 'Base Drop Chance',
+        desc: '基础掉落概率',
         value: () => (15 * ((0.17 + 0.02 * hero.value.awakened['boots']) ** (hero.value.eqDrop['boots'])) * Math.log(hero.value.stage + 1) ** 2.3).toExponential(2),
         color: '',
       },
@@ -2501,7 +2501,7 @@ const statSections = [
         color: '#66ffcc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.equipmentTiers['boots']),
         color: 'gold',
       },
@@ -2517,7 +2517,7 @@ const statSections = [
       },
       { desc: 'Ring', value: '', color: 'orange',  uppercase: true, },
       {
-        desc: 'Base Drop Chance',
+        desc: '基础掉落概率',
         value: () => (8 * ((0.15 + 0.02 * hero.value.awakened['ring']) ** (hero.value.eqDrop['ring'])) * Math.log(hero.value.stage + 1) ** 2.5).toExponential(2),
         color: '',
       },
@@ -2532,7 +2532,7 @@ const statSections = [
         color: '#66ffcc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.equipmentTiers['ring']),
         color: 'gold',
       },
@@ -2569,7 +2569,7 @@ const statSections = [
         req: () => enemy.value.soulBuff.active
       },
       {
-        desc: 'Boss [Loot]',
+        desc: '首领[掉落]',
         value: () => formatNumber(enemy.value.boss.isBoss? Math.min(Math.max(enemy.value.boss.drop ** 0.75, 1), 10): 1, true),
         color: 'red',
         req: () => enemy.value.boss.isBoss
@@ -2602,15 +2602,15 @@ const statSections = [
         color: '#66ffcc',
         req: () => hero.value.mainInfTier >= 3,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.shardsMult, true),
         color: 'gold',
       },
       { desc: 'Ascension Shards after Ascension', value: '', color: 'lightblue',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1.5,
         color: '',
       },
@@ -2629,15 +2629,15 @@ const statSections = [
         value: () =>  (hero.value.rebirthPts >= 2500? enemy.value.rebirthEnemy["drop"]: 1),
         color: 'lightgreen',
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.shardsPerformMult, true),
         color: 'gold',
       },
       { desc: 'Ascension Soul', value: '', color: 'lightblue',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => formatNumber(Math.sqrt(Math.log(Math.min(hero.value.stage + 2, 300)) ** (Math.min(hero.value.stage, 300)/7)) * Math.max(1 + hero.value.maxLevel / 100, 7), true),
         color: '',
       },
@@ -2651,9 +2651,9 @@ const statSections = [
         value: () => formatNumber(enemy.value.danger >= 20? enemy.value.dangerEnemyChance[4] ** 0.35: 1, true),
         color: 'lightgreen',
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(Math.sqrt(Math.log(Math.min(hero.value.stage + 2, 300)) ** (Math.min(hero.value.stage, 300)/7)) * Math.max(1 + hero.value.maxLevel / 100, 7) * (hero.value.activeFormation == 3? 2: 1) * (enemy.value.danger >= 20? enemy.value.dangerEnemyChance[4] ** 0.35: 1), true),
         color: 'gold',
       },
@@ -2685,7 +2685,7 @@ const statSections = [
       },
       { desc: 'Rebirth Mult', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生[掉落]',
         value: () => (hero.value.rebirthPts >= 100? enemy.value.rebirthEnemy["drop"]: 1),
         color: 'lightgreen',
       },
@@ -2720,7 +2720,7 @@ const statSections = [
         color: 'gold',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => {
           let t = 1;
           t *= (hero.value.mainInfTier >= 3? ((1.025 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1);
@@ -2736,7 +2736,7 @@ const statSections = [
       },
       { desc: 'Total Pts', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.totalPtsMult, true),
         color: 'gold',
       },
@@ -2768,7 +2768,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生[掉落]',
         value: () => (hero.value.rebirthPts >= 50000? enemy.value.rebirthEnemy["drop"]: 1),
         color: 'lightgreen',
       },
@@ -2813,7 +2813,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 80
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.cursedBonus, true),
         color: 'gold',
       },
@@ -2877,9 +2877,9 @@ const statSections = [
         color: 'red',
         req: () => enemy.value.buffs.includes(3)
       },
-      { desc: 'Total', value: '', color: 'red',  uppercase: true, },
+      { desc: '总计', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.cursedBonusExp, true),
         color: 'gold',
       },
@@ -2896,7 +2896,7 @@ const statSections = [
     content: [
       { desc: 'Stardust', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => formatNumber(Math.max(1.0525 ** (hero.value.stage - hero.value.stardustStage), 0), true),
         color: '',
       },
@@ -2957,7 +2957,7 @@ const statSections = [
         req: () => spaceShop.value[0].status
       },
       {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => formatNumber((1 + 0.05 * enemy.value.darkEnemyLoot[6]), true),
         color: 'red',
         req: () => enemy.value.darkEnemyLoot[6] > 0
@@ -2986,15 +2986,15 @@ const statSections = [
         color: 'red',
         req: () => hero.value.mainInfTier >= 80
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.stardustInfo, true),
         color: 'gold',
       },
       { desc: 'Stardust [Stage]', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => hero.value.stardustStage,
         color: 'gold',
       },
@@ -3006,13 +3006,13 @@ const statSections = [
     content: [
       { desc: 'Mutagen', value: '', color: 'orange',  uppercase: true, req: () => true },
       {
-        desc: 'Amount of Mutations',
+        desc: '突变数量',
         value: () => (hero.value.mutations + (hero.value.infTier >= 4? 1: 0)),
         color: '#66ff66',
         req: () => true
       },
       {
-        desc: 'Mutagen [^2.5]',
+        desc: '突变素[^2.5]',
         value: () => formatNumber((hero.value.mutations + (hero.value.infTier >= 4? 1: 0)) ** 2.5, true),
         color: '#66ff66',
         req: () => true
@@ -3065,9 +3065,9 @@ const statSections = [
         color: 'red',
         req: () => enemy.value.buffs.includes(3),
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.currentMutagen, true),
         color: 'gold',
         req: () => true
@@ -3123,13 +3123,13 @@ const statSections = [
         req: () => dimensions.value[10].infTier > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (hero.value.rebirthPts >= 5e5? 30: 0),
         color: ' #a4ffe1',
         req: () => hero.value.rebirthPts >= 5e5,
       },
       {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => (enemy.value.darkEnemyLoot[4]),
         color: 'red',
         req: () => enemy.value.darkEnemyLoot[4] > 0,
@@ -3141,7 +3141,7 @@ const statSections = [
         req: () => spaceShop.value[11].status,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.potential),
         color: 'gold',
         req: () => true
@@ -3154,7 +3154,7 @@ const statSections = [
     content: [
       { desc: 'MAX Danger', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 100,
         color: '',
         req: () => true
@@ -3178,7 +3178,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 16
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () =>  Math.floor(hero.value.rebirthPts >= 2e6? Math.log(hero.value.rebirthPts) ** 2: 0),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 2e6,
@@ -3207,16 +3207,16 @@ const statSections = [
         color: 'orange',
         req: () => hero.value.mainInfTier >= 50,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true},
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(radPerks[10].max, true),
         color: 'gold',
         req: () => true
       },
       { desc: 'Danger Power', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => hero.value.baseDangerPower.toFixed(3),
         color: '',
       },
@@ -3259,9 +3259,9 @@ const statSections = [
         color: 'gold',
         req: () => spaceShop.value[6].status
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true},
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(enemy.value.enemyPower, true),
         color: 'gold',
         req: () => true
@@ -3274,7 +3274,7 @@ const statSections = [
     content: [
      { desc: 'Damage', value: '', color: 'red',  uppercase: true, },
      {
-        desc: 'Base',
+        desc: '基础',
         value: 10,
         color: '',
       },
@@ -3439,7 +3439,7 @@ const statSections = [
         color: 'red',
       },
        {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => formatNumber((hero.value.isSingularity && hero.value.rebirthPts >= 6e5? 2: 1), true),
         color: 'orange',
         req: () => hero.value.rebirthPts >= 6e5,
@@ -3505,7 +3505,7 @@ const statSections = [
         req: () => hero.value.bhTier >= 2,
       },
        {
-        desc: 'Dark Creature',
+        desc: '黑暗生物',
         value: () => formatNumber((1 + 0.01 * enemy.value.darkEnemyLoot[1]), true),
         color: 'red',
         req: () => enemy.value.darkEnemyLoot[1]
@@ -3553,11 +3553,11 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 50
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.attack, true),
         color: 'gold',
       },
-      { desc: 'Crit Chance', value: '', color: 'red',  uppercase: true, },
+      { desc: '暴击率', value: '', color: 'red',  uppercase: true, },
       {
         desc: '天赋树',
         value: () => formatNumber((perks.value[7].level * perks.value[7].value), true),
@@ -3589,13 +3589,13 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.crit, true),
         color: 'gold',
       },
-      { desc: 'Crit DMG', value: '', color: 'red',  uppercase: true, },
+      { desc: '暴击伤害', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1.5,
         color: '#22cccc',
       },
@@ -3625,7 +3625,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.critAttack * 0.01, true),
         color: 'gold',
       },
@@ -3636,7 +3636,7 @@ const statSections = [
     content: [
       { desc: 'HP', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 100,
         color: '',
       },
@@ -3669,12 +3669,12 @@ const statSections = [
         color: '#22cccc',
       },
       {
-        desc: 'Equipment [Enhances]',
+        desc: '装备[强化]',
         value: () => formatNumber(hero.value.eqUpsMult['armor'].bonus, true),
         color: '#22cccc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(
           (
             (2 + 0.5 * Math.floor(hero.value.potential / 10)) *
@@ -3731,7 +3731,7 @@ const statSections = [
         color: 'orange',
       },
        {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (hero.value.isSingularity && hero.value.rebirthPts >= 6e5? 2: 1),
         color: '#a4ffe1',
         req: () => hero.value.singularityPts >= 6e5
@@ -3766,9 +3766,9 @@ const statSections = [
         color: 'red',
         req: () => hero.value.mainInfTier >= 50
       },
-      { desc: 'Total', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '总计', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.maxHp, true),
         color: 'gold',
       },
@@ -3777,7 +3777,7 @@ const statSections = [
   {
     title: 'DEF',
     content: [
-      { desc: 'Defense', value: '', color: 'yellow',  uppercase: true, },
+      { desc: '防御', value: '', color: 'yellow',  uppercase: true, },
       {
         desc: 'Level',
         value: () => formatNumber(((0.5 + 0.1 * Math.floor(hero.value.potential/30)) * (Math.min(hero.value.maxLevel, hero.value.eLevel-1) + hero.value.minLevel * (dimensions.value[12].infTier == dimensions.value[12].maxInfTier? 2: 1)) + 
@@ -3790,12 +3790,12 @@ const statSections = [
         color: '#22cccc',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(((0.5 + 0.1 * Math.floor(hero.value.potential/30)) * (Math.min(hero.value.maxLevel, hero.value.eLevel-1) + hero.value.minLevel) + 
         hero.value.eqUpsMult['armor'].def + (hero.value.eLevel > 700 && hero.value.maxLevel > 700? Math.min(hero.value.eLevel, hero.value.maxLevel) - 700: 0)), true),
         color: 'gold',
       },
-      { desc: 'Defense Mult', value: '', color: 'yellow',  uppercase: true, },
+      { desc: '防御倍率', value: '', color: 'yellow',  uppercase: true, },
       {
         desc: 'BUFF: Charge',
         value: () => formatNumber((1 + 0.05 * buffs.value[6].charges.life) , true),
@@ -3850,7 +3850,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (hero.value.isSingularity && hero.value.rebirthPts >= 6e5? 2: 1),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 6e5,
@@ -3885,15 +3885,15 @@ const statSections = [
         color: 'red',
         req: () => hero.value.mainInfTier >= 50
       },
-      { desc: 'Extra DEF', value: '', color: 'yellow',  uppercase: true, },
+      { desc: '额外防御', value: '', color: 'yellow',  uppercase: true, },
       {
         desc: 'BUFF: Jaggernaut [T3]',
         value: () => formatNumber(hero.value.activeBuffs.includes(13) && buffs.value[13].tier >= 1? (hero.value.maxHp * 0.05): 0, true),
         color: 'orange',
       },
-      { desc: 'Total DEF', value: '', color: 'yellow',  uppercase: true, },
+      { desc: '总防御', value: '', color: 'yellow',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.def, true),
         color: 'gold',
       },
@@ -3904,7 +3904,7 @@ const statSections = [
     content: [
       { desc: 'ApS', value: '', color: 'orange',  uppercase: true, req: () => true},
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => formatNumber(0.5 + (hero.value.activeBuffs.includes(14) && buffs.value[14].tier >= 1? 0.5: 0), true),
         color: '',
         req: () => true
@@ -3988,19 +3988,19 @@ const statSections = [
         req: () => hero.value.dId == 'bh'
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.totalAPS, true),
         color: 'orange',
         req: () => true
       },
       {
-        desc: 'Current',
+        desc: '当前',
         value: () => formatNumber(hero.value.attacksPerSecond, true),
         color: 'orange',
         req: () => true
       },
       {
-        desc: 'MAX APS',
+        desc: '最大攻速',
         value: () => hero.value.maxAPS,
         color: 'red',
         req: () => true
@@ -4011,8 +4011,8 @@ const statSections = [
     title: 'Rush',
     id: 'rush',
     content: [
-      { desc: 'Stage Rush', value: '', color: 'blue',  uppercase: true, },
-      { desc: 'Stage Rush - Increases your stage while your stage is below x% of max Stage ', value: '', color: 'blue',  uppercase: false, },
+      { desc: '关卡冲刺', value: '', color: 'blue',  uppercase: true, },
+      { desc: '关卡冲刺 - 当当前关卡低于最大关卡的 x% 时提高关卡', value: '', color: 'blue',  uppercase: false, },
       { desc: '[Max: 75%]', value: '', color: 'blue',  uppercase: false, },
       {
         desc: 'Infinity [T2]',
@@ -4038,18 +4038,18 @@ const statSections = [
         color: 'rayn',
         req: () => hero.value.bhTier > 0,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.lacrimose * 100, true),
         color: 'gold',
         req: () => true
       },
-      { desc: 'Level Rush', value: '', color: 'blue',  uppercase: true, },
-      { desc: 'Level Rush - Increases your level while your level is below x% of max level', value: '', color: 'blue',  uppercase: false, },
+      { desc: '等级冲刺', value: '', color: 'blue',  uppercase: true, },
+      { desc: '等级冲刺 - 当当前等级低于最大等级的 x% 时提高等级', value: '', color: 'blue',  uppercase: false, },
       { desc: '[Max: 75%]', value: '', color: 'blue',  uppercase: false, },
       {
-        desc: 'Radiation Tree Perk',
+        desc: '辐射天赋',
         value: () => formatNumber((perks.value[3].status? 0.1 + 0.01 * (dimensions.value[40].infTier - 40): 0), true),
         color: 'green',
         req: () => true
@@ -4078,9 +4078,9 @@ const statSections = [
         color: 'rayn',
         req: () => hero.value.bhTier > 0
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.levelRush * 100, true),
         color: 'gold',
         req: () => true
@@ -4093,7 +4093,7 @@ const statSections = [
     content: [
       { desc: '腐化', value: '', color: 'purple',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 0.1,
         color: '',
         req: () => true
@@ -4123,7 +4123,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生阶级',
         value: () => formatNumber((hero.value.rebirthTier >= 70? (1.02 ** Math.sqrt(hero.value.rebirthTier) - 1): 0), true),
         color: 'lightgreen',
         req: () => true
@@ -4140,9 +4140,9 @@ const statSections = [
         color: 'purple',
         req: () => dimensions.value[26].infTier > 0
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.overcorruption, true),
         color: 'gold',
         req: () => true
@@ -4153,9 +4153,9 @@ const statSections = [
     title: 'Stage Req.',
     id: 'stage',
     content: [
-      { desc: 'Stage requirement', value: '', color: 'yellow',  uppercase: true, req: () => true },
+      { desc: '关卡需求', value: '', color: 'yellow',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => formatNumber((hero.value.stage > 9? 1.34: 1.15 + 0.02 * hero.value.stage), true),
         color: '',
         req: () => true
@@ -4220,21 +4220,21 @@ const statSections = [
         color: 'red',
         req: () => dimensions.value[3].infTier > 0 || hero.value.dId == 'overkill',
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => formatNumber(hero.value.stageReq, true),
         color: 'gold',
         req: () => true,
       },
-      { desc: 'Hardcap', value: '', color: 'red',  uppercase: true,req: () => true },
+      { desc: '硬上限', value: '', color: 'red',  uppercase: true,req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: 1.05,
         color: 'gold',
         req: () => true,
       },
-      { desc: 'Additional scaling [MULT]', value: '', color: 'gold',  uppercase: true, req: () => hero.value.mainInfTier >= 7 },
+      { desc: '额外成长[倍率]', value: '', color: 'gold',  uppercase: true, req: () => hero.value.mainInfTier >= 7 },
       {
         desc: 'Infinity [T7]',
         value: () => formatNumber(
