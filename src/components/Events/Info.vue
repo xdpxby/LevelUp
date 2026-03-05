@@ -147,9 +147,16 @@ const { enemy } = useEnemy();
 
 
 const selectedTab = ref('Level');
+const statAliasMap = {
+  Mutagen: '突变素',
+  Rebirth: '重生',
+};
 const activeTab = computed(() => {
   if(hero.value.eLink.stat == 'IP') hero.value.secrets.link = true;
-  return hero.value.eLink.stat !== '' ? hero.value.eLink.stat : selectedTab.value
+  if (hero.value.eLink.stat !== '') {
+    return statAliasMap[hero.value.eLink.stat] || hero.value.eLink.stat;
+  }
+  return selectedTab.value
 });
 
 const selectedEvent = ref('Lore'); 
