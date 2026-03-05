@@ -11,13 +11,13 @@
           @click="selectTier(tier)"
           :disabled="tier > maxTier"
         >
-          TIER {{ tier }}
+          阶级 {{ tier }}
         </button>
         <span
           v-if="tier > maxTier"
           class="tooltip"
         >
-          Reach {{ tierUnlockStage(tier) }} stage
+          达到 {{ tierUnlockStage(tier) }} 关
         </span>
         <button style="margin-left: 10px" v-if="radPerks[8].level == 1 && tier >= 3"
           class="active-r"
@@ -46,16 +46,16 @@
       </div>
     </div>
 
-    <p @click="hero.eLink = { set: 'Info', info: 'Ascension' }"><sup style="font-size: 12px">ℹ️</sup>Shards: <img :src="ascensionIcon" width="16px" height="16px" style="vertical-align: -2px;"/> <strong>{{ formatNumber(hero.ascensionShards) }}</strong> 
+    <p @click="hero.eLink = { set: 'Info', info: 'Ascension' }"><sup style="font-size: 12px">ℹ️</sup>碎片： <img :src="ascensionIcon" width="16px" height="16px" style="vertical-align: -2px;"/> <strong>{{ formatNumber(hero.ascensionShards) }}</strong> 
     <span v-if="dimensions[1].infTier == dimensions[1].maxInfTier"> (+{{formatNumber(hero.totalAscensionShards * 0.1)}})</span>
     </p>
     <div class="ds-container" v-if="currentTier == 8">
       <span v-if="dimensions[9].infTier === dimensions[9].maxInfTier">
-        Dimension Shards(DS):
+        维度碎片(DS)：
         <img :src="ascensionDIcon" width="16" height="16" style="vertical-align: -2px;" />
         <strong class="ds-text">{{ hero.dsTotal }}</strong>
       </span>
-      <button :title="'Get your DS back'" class="ds-button" @click="dsHandle" v-if="hero.infProgress && hero.dId == 'main'">Annihilation</button>
+      <button :title="'取回你的DS'" class="ds-button" @click="dsHandle" v-if="hero.infProgress && hero.dId == 'main'">湮灭</button>
     </div>
     <div class="perk-container">
       <div class="perk" v-for="perk in filteredPerks" :key="perk.id">

@@ -5,7 +5,7 @@
       <h3>🎯 Target</h3>
       
       <p>[{{hero.souls}}<span v-if="radPerks[9].level == 0">/{{hero.soulsCap}}</span>] {{ soulNames[hero.souls%50] }}
-      <Tooltip :text="'Soul appearance chance'"> 
+      <Tooltip :text="'灵魂出现概率'"> 
         <span><sup style="font-size: 6px">ℹ️</sup>[{{chanceFormat(enemy.soulBuff.chance)}}%]</span>
       </Tooltip>
       </p>
@@ -31,13 +31,13 @@
           <Tooltip :text="'Improves drops from regular mobs'">
             <span class="s-stats-name">*Mutagen</span>
           </Tooltip>
-          <span class="s-stats-value">{{(hero.souls <= 40? 'Beat 40 souls': format(enemy.soulBuff.mutagen))}}</span>
+          <span class="s-stats-value">{{(hero.souls <= 40? '击败40个灵魂': format(enemy.soulBuff.mutagen))}}</span>
         </div>
         <div class="s-stats-wrapper" :class="{'s-stats-blocked': enemy.soulBuff.stardust == 1}">
           <Tooltip :text="'Improves drops from regular mobs'">
             <span class="s-stats-name">*Stardust</span>
           </Tooltip>
-          <span class="s-stats-value">{{(hero.souls <= 40? 'Beat 40 souls': format(enemy.soulBuff.stardust))}}</span>
+          <span class="s-stats-value">{{(hero.souls <= 40? '击败40个灵魂': format(enemy.soulBuff.stardust))}}</span>
         </div>
       </div>
     </div>
@@ -94,13 +94,13 @@ const { hero } = useHero();
 const { enemy } = useEnemy();
 
 const perkTooltips = {
-  "Level Rush": "Increases your level while your level is below x% of max level",
-  "Stage Rush": "Increases stage gain while your stage is below x% of max"
+  "等级冲刺": "Increases your level while your level is below x% of max level",
+  "关卡冲刺": "当关卡低于最大值x%时提升关卡推进"
 };
 
 function getPerkTooltip(rewardText) {
-  if(rewardText.includes('Level Rush'))
-    return perkTooltips['Level Rush']
+  if(rewardText.includes('等级冲刺'))
+    return perkTooltips['等级冲刺']
 
   return 'No description available';
 }

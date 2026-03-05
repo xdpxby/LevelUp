@@ -2,22 +2,22 @@
  
   <div class="equipment-wrapper">
     <div class="equipment-panel">
-       <h2 @click="hero.eLink = { set: 'Info', info: 'Equipment' }"><sup style="font-size: 12px">ℹ️</sup>EQUIPMENT
+       <h2 @click="hero.eLink = { set: 'Info', info: 'Equipment' }"><sup style="font-size: 12px">ℹ️</sup>装备
         <span class="tooltip-container">ℹ️
           <span class="tooltip-text" v-if="heroComputed">
-              Chance to drop the equipment:<br>
+              装备掉落概率：<br>
               <span>Sword[T{{heroComputed.equipmentTiers['sword'] + 1}}]: {{ heroComputed.dropChance['sword'].toFixed(2) }}% <span v-if="hero.spCount/6 < 4"> | [MAX: {{heroComputed.eqTierReq['sword']}}]</span></span><br>
               <span>Body[T{{heroComputed.equipmentTiers['armor'] + 1}}]: {{ heroComputed.dropChance['armor'].toFixed(2) }}% | [MAX: {{heroComputed.eqTierReq['armor']}}]</span><br>
               <span>Boots[T{{heroComputed.equipmentTiers['boots'] + 1}}]: {{ heroComputed.dropChance['boots'].toFixed(2) }}% | [MAX: {{heroComputed.eqTierReq['boots']}}]</span><br>
               <span v-if="heroComputed.eqTierReq['ring'] > 0">Ring[T{{heroComputed.equipmentTiers['ring'] + 1}}]: 
               {{ heroComputed.dropChance['ring'].toFixed(2) }}% | [MAX: {{heroComputed.eqTierReq['ring']}}]</span><br>
-              <span>Collect the set to get a bonus: </span><br>
-              <span v-if="hero.rebirthPts < 25">Reach 25 Rebirth Pts<br></span>
-              <span v-else>(T3, T3, T3): +3 Min Level, +3 Max Level<br></span>
-              <span v-if="hero.rebirthPts < 200">Reach 200 Rebirth Pts<br></span>
-              <span v-else>(T4, T4, T4, T4): +4 Min Level, +4 Max Level<br></span>
-              <span v-if="hero.rebirthPts < 4000">Reach 4000 Rebirth Pts<br></span>
-              <span v-else>(T5, T5, T5, T5): +5 Min Level, +5 Max Level<br></span>
+              <span>收集套装可获得加成：</span><br>
+              <span v-if="hero.rebirthPts < 25">达到 25 重生点<br></span>
+              <span v-else>(T3, T3, T3): +3 最低等级, +3 最大等级<br></span>
+              <span v-if="hero.rebirthPts < 200">达到 200 重生点<br></span>
+              <span v-else>(T4, T4, T4, T4): +4 最低等级, +4 最大等级<br></span>
+              <span v-if="hero.rebirthPts < 4000">达到 4000 重生点<br></span>
+              <span v-else>(T5, T5, T5, T5): +5 最低等级, +5 最大等级<br></span>
           </span>        
         </span>
       </h2>
@@ -34,7 +34,7 @@
           <p class="item-name" v-if="item.type != 'spRing'">{{ item.name }}[T{{ item.tier }}] <span v-if="hero.eqUps[item.type] > 0">(+{{hero.eqUps[item.type]}})</span>
             <span v-if="hero.awakened[item.type] > 0" class="awakened-txt">[{{hero.awakened[item.type]}}]</span>
             <Tooltip 
-              :text="'Increase the enhance power of this weapon. Your enhances will be reset.'"
+              :text="'提升该装备强化强度，当前强化将重置。'"
               position="left"
               boxShadow="0 0 10px rgba(100,255,204)"
             >
@@ -42,16 +42,16 @@
             </Tooltip>
           </p>
           <p class="item-name" v-if="item.type == 'spRing'">{{ item.name }}[T{{ item.tier }}] <span v-if="hero.eqUps[item.type] > 0">(+{{hero.eqUps[item.type]}})</span></p>
-          <span class="stat">BM:+{{ item.bonusDisplay + Math.floor(hero.eqUpsMult[item.type].cap) }} Max Level</span>
+          <span class="stat">BM:+{{ item.bonusDisplay + Math.floor(hero.eqUpsMult[item.type].cap) }} 最大等级</span>
           <span class="stat">AM:+{{ (item.ownProperty + hero.eqUpsMult[item.type].bonus).toFixed(2) }} {{ item.stat }}</span>
-          <span class="stat" v-if="hero.spCount/6 >= 3 && item.type == 'sword'">S: +{{(hero.eqUpsMult['sword'].crit).toFixed(2)}} CRIT</span>
-          <span class="stat" v-if="hero.spCount/6 >= 3 && item.type == 'sword'">P: +{{(hero.eqUpsMult['sword'].critDmg).toFixed(2)}} CRIT DMG</span>
+          <span class="stat" v-if="hero.spCount/6 >= 3 && item.type == 'sword'">S: +{{(hero.eqUpsMult['sword'].crit).toFixed(2)}} 暴击</span>
+          <span class="stat" v-if="hero.spCount/6 >= 3 && item.type == 'sword'">P: +{{(hero.eqUpsMult['sword'].critDmg).toFixed(2)}} 暴击伤害</span>
           <span class="stat" v-if="hero.spCount/6 >= 6 && item.type == 'armor'">S: +{{(hero.eqUpsMult['armor'].def).toFixed(2)}} DEF</span>
-          <span class="stat" v-if="hero.spCount/6 >= 6 && item.type == 'armor'">P: +{{(hero.eqUpsMult['armor'].heal).toFixed(2)}}% HEALING EFFECT</span>
-          <span class="stat" v-if="hero.spCount/6 >= 7 && item.type == 'boots'">S: -{{(hero.eqUpsMult['boots'].stage).toFixed(2)}} Base stage requirement</span>
+          <span class="stat" v-if="hero.spCount/6 >= 6 && item.type == 'armor'">P: +{{(hero.eqUpsMult['armor'].heal).toFixed(2)}}% 治疗效果</span>
+          <span class="stat" v-if="hero.spCount/6 >= 7 && item.type == 'boots'">S: -{{(hero.eqUpsMult['boots'].stage).toFixed(2)}} 基础关卡需求</span>
           <span class="stat" v-if="hero.spCount/6 >= 7 && item.type == 'boots'">P: +{{(hero.eqUpsMult['boots'].overkill).toFixed(2)}} Overkill</span>
           <span class="stat" v-if="hero.spCount/6 >= 8 && item.type == 'ring'">S: *{{(hero.eqUpsMult['ring'].level).toFixed(2)}} Level requirement</span>
-          <span class="stat" v-if="hero.spCount/6 >= 8 && item.type == 'ring'">P: *{{(1 + hero.eqUpsMult['ring'].multLevel).toFixed(2)}} MULT Max Level</span>
+          <span class="stat" v-if="hero.spCount/6 >= 8 && item.type == 'ring'">P: *{{(1 + hero.eqUpsMult['ring'].multLevel).toFixed(2)}} MULT 最大等级</span>
           <span class="stat" v-if="spaceShop[10].status && item.type == 'spRing'">S: +{{(hero.eqUpsMult['spRing'].potential)}} Potential</span>
           <span class="stat" v-if="spaceShop[10].status && item.type == 'spRing'">P: +{{(hero.eqUpsMult['spRing'].infPoints)}} IP</span>
         </div>
@@ -76,7 +76,7 @@
           @click="hero.isAutoForge = !hero.isAutoForge"
           :class="{ active: hero.isAutoForge }"
         >
-          {{ hero.isAutoForge ? 'Auto Forge: ON' : 'Auto Forge: OFF' }}
+          {{ hero.isAutoForge ? '自动锻造：开' : '自动锻造：关' }}
         </button>
       </p>
       <p>Select equipment to enhance its power.</p>
@@ -94,7 +94,7 @@
             @click="forgeUpgrade">
               Enhance ✨{{totalCostShow()}}
           </button>
-          <Tooltip :text="'Spend all your Stardust on your chosen weapon to enhance it to the maximum.'">
+          <Tooltip :text="'消耗全部星尘强化所选装备至当前可达上限。'">
             <button @click="autoEnchance()">Max</button>
           </Tooltip>
         </div>
@@ -191,11 +191,11 @@ const eqUpsReqSp = {
 
 const getStatName = (type) => {
   switch (type) {
-    case 'sword': return 'MULT DMG';
+    case 'sword': return '伤害倍率';
     case 'armor': return 'HP';
-    case 'boots': return 'ATTACK PER SECOND';
-    case 'ring': return 'MULT EXP';
-    case 'spRing': return 'Min Level';
+    case 'boots': return '每秒攻击';
+    case 'ring': return '经验倍率';
+    case 'spRing': return '最低等级';
     default: return '';
   }
 };
