@@ -1224,67 +1224,67 @@ watch(authors, () => {
 
 const styledSections = [
  {
-    title: 'Update 0.5 [Dark Dimensions]',
+    title: '更新 0.5【黑暗维度】',
     class: 'update-section update',
     content: [
-        `<span style="color: red">The update is in alpha. There may be bugs, as well as issues with files and game balance.
-        Future patches may introduce many changes and additions.</span>`,
+        `<span style="color: red">当前更新为 Alpha 阶段，可能存在 Bug，以及存档与平衡性问题。
+        后续补丁可能带来大量调整与新增内容。</span>`,
         
-        `<strong>Important changes</strong><br>`,
+        `<strong>重要改动</strong><br>`,
 
-        `<span style="color: #ef37ef"><strong>Dimensions</strong></span><br>
-        Dark Dimensions added.<br>
-        Two Dimension view modes.<br>
-        Progression view for Dimensions.<br>
-        The Home button now teleports directly into the Dimension (previously it teleported to the Dimension’s location in the Atlas).<br>`,
+        `<span style="color: #ef37ef"><strong>维度</strong></span><br>
+        新增黑暗维度。<br>
+        维度新增两种显示模式。<br>
+        新增维度进度视图。<br>
+        Home 按钮现在会直接传送到维度内（此前是传送到图鉴中的维度坐标）。<br>`,
 
-        `<span style="color: #00c0ff"><strong>Singularity</strong></span><br>
-        Progression has become easier. The required number of kills now depends on the Singularity tier. [T0] - 1250, [T1] - 2500...<br>`,
+        `<span style="color: #00c0ff"><strong>奇点</strong></span><br>
+        推进难度降低。所需击杀数现在取决于奇点阶级。[T0] - 1250，[T1] - 2500...<br>`,
 
-        `<span style="color: gold"><strong>Infinity</strong></span><br>
-        Milestone section.<br>
-        New Infinity bonuses.<br>
-        Quasar Core [Endgame content].<br>`,
+        `<span style="color: gold"><strong>无限</strong></span><br>
+        新增里程碑板块。<br>
+        新增无限加成。<br>
+        新增类星核（后期内容）。<br>`,
 
-        `<span style="color: #d4ff00"><strong>Radiation</strong></span><br>
-        Hover over a creature to see details.<br>
-        Danger Perk upgrades faster.<br>`,
+        `<span style="color: #d4ff00"><strong>辐射</strong></span><br>
+        悬停在生物上可查看详情。<br>
+        危险天赋升级更快。<br>`,
 
-        `<span style="color: orange"><strong>Space</strong></span><br>
-        Auto-system for Space.<br>
-        Space creatures now have a cooldown for fighting (Auto-Fighting).<br>
-        Space-INF and Astralis [Midgame content].<br>`,
+        `<span style="color: orange"><strong>太空</strong></span><br>
+        新增太空自动系统。<br>
+        太空生物现在有战斗冷却（自动战斗）。<br>
+        新增太空-INF 与 Astralis（中期内容）。<br>`,
 
-        `<span style="color: lightgreen"><strong>Rebirth</strong></span><br>
-        [T80] now capped at [T200].<br>`,
+        `<span style="color: lightgreen"><strong>重生</strong></span><br>
+        [T80] 现在上限为 [T200]。<br>`,
 
-        `<span style="color: purple"><strong>Souls</strong></span><br>
-        UI changes.<br>
-        Souls now provide a multiplier to Stardust and Mutagen drop.<br>`,
+        `<span style="color: purple"><strong>灵魂</strong></span><br>
+        UI 调整。<br>
+        灵魂现在会提供星尘与突变素掉落倍率。<br>`,
 
-        `<span style="color: gold"><strong>Buffs</strong></span><br>
-        New Buffs layout.<br>
-        Double-click the layout to open the edit menu.<br>
-        Prioritization system: buffs will be updated when the number of available buffs changes (chooses the most useful buffs first).<br>`,
+        `<span style="color: gold"><strong>增益</strong></span><br>
+        新增增益布局。<br>
+        双击布局可打开编辑菜单。<br>
+        新增优先级系统：可用增益数量变化时会自动更新（优先选择更有用的增益）。<br>`,
 
-        `<span style="color: lightblue"><strong>Equipment</strong></span><br>
-        Added Starforge Tier that improves the power of Enhances. The Tier depends on total Enhances.<br>
-        Min Chance removed and replaced with Extra Enhance Chance.<br>
-        Extra Enhance applies to both normal Enhances and [MAX].<br>`,
+        `<span style="color: lightblue"><strong>装备</strong></span><br>
+        新增星锻阶级，可提升强化强度。阶级取决于总强化次数。<br>
+        移除最小概率并替换为额外强化概率。<br>
+        额外强化同时作用于普通强化与 [MAX]。<br>`,
 
-        `<span style="color: green"><strong>Tree</strong></span><br>
-        Some Inf-perks related to DMG now have a higher cost.<br>`,
+        `<span style="color: green"><strong>天赋树</strong></span><br>
+        部分与伤害相关的无限天赋提高了消耗。<br>`,
 
-        `<span style="color: yellow"><strong>Combat</strong></span><br>
-        UI progression changes.<br>
-        Curses and most icons now show information when hovered.<br>
-        Icons now have static positions and a safety check (Settings).<br>`,
+        `<span style="color: yellow"><strong>战斗</strong></span><br>
+        UI 推进展示调整。<br>
+        诅咒与大部分图标现在支持悬停查看信息。<br>
+        图标现在有固定位置和安全校验（设置中）。<br>`,
 
-        `<span style="color: yellow"><strong>The next patch includes</strong></span><br>
-        Stats panel showing detailed stats.<br>
-        Rebalancing.<br>
-        Small visual fixes.<br>
-        Damage display?<br>`,
+        `<span style="color: yellow"><strong>下个补丁将包含</strong></span><br>
+        统计面板显示详细属性。<br>
+        数值再平衡。<br>
+        小型视觉修复。<br>
+        伤害显示？<br>`,
       ]
   },
   {
@@ -1313,61 +1313,61 @@ const styledSections = [
       ]
   },
   {
-    title: 'Usefull Info',
+    title: '实用信息',
     class: 'endless-section info',
     content: [
-      'S - Can be stacked with the same effect',
-      'ℹ️ - When you hover over it, a pop-up window appears with information or click on it click on it to go to a specific page',
-      '^ - Exponent',
-      'ApS - Attack per Second',
-      'Stage requirement scales better: You will need fewer kills to advance to the next Stage',
-      'Level requirement scales better: You will need fewer EXP to advance to the next Level',
-      'Total Level = Current Level + MIN Level',
-      'True Max Level - Level without any effects',
-      '<strong>Event information is revealed when you reach that event.</strong>',
-      'Stats from the level are added only those that are in the range of the maximum level + minimum level *When your current Level is higher than the Maximum Level*'
+      'S - 可与同类效果叠加',
+      'ℹ️ - 悬停可显示信息弹窗，点击可跳转到对应页面',
+      '^ - 指数',
+      'ApS - 每秒攻击次数',
+      '关卡需求成长更优：推进到下一关所需击杀更少',
+      '等级需求成长更优：升级所需经验更少',
+      '总等级 = 当前等级 + 最低等级',
+      '真实最高等级 - 不受任何效果影响的等级',
+      '<strong>到达对应事件后才会显示该事件信息。</strong>',
+      '等级属性仅在最高等级 + 最低等级范围内生效（当当前等级超过最高等级时）'
     ]
   },
   {
     title: '挂机',
     class: 'afk-section info',
     content: [
-      'You can kill a maximum of 1 enemy per second.',
+      '你最多每秒击杀 1 个敌人。',
       '挂机最大击杀 = 最高通关关卡 × 75。',
-      'You skip the boss fights if their stage is 5 below your max stage.',
+      '当首领关卡比你的最高关卡低 5 关时会被跳过。',
       '灵魂增幅会提高灵魂出现概率，强度取决于挂机总击杀。灵魂增幅一次仅对一个灵魂生效。',
     ]
   },
   {
-    title: 'Auto',
+    title: '自动',
     class: 'auto-section info',
     content: [
-      `Unlock *Stop at Stage* after reaching Infinity [T0]`,
-      `Unlock *Auto-Ascension* after reaching Infinity [T2]`,
-      `Unlock *Auto-Rebirth* after reaching Infinity [T3]`,
-      `Level+: Add Value to *Min Level* when you Rebirth`,
-      `Stage+: Add Value to *Stage to Stop* when your Kills > *Stop Until Kills*`
+      `达到无限 [T0] 后解锁 *停在关卡*`,
+      `达到无限 [T2] 后解锁 *自动飞升*`,
+      `达到无限 [T3] 后解锁 *自动重生*`,
+      `Level+：重生时给 *最低等级* 增加数值`,
+      `Stage+：当击杀数 > *停至击杀数* 时，给 *停止关卡* 增加数值`
     ]
   },
   {
     title: '天赋树',
     class: 'tree-section',
     content: [
-      'Reset Perks: Resets all to level 1 and refunds Points.',
-      'Increase the MAX level of perks by raising the Tree Tier',
-      'Unlock the Amulet Suffix to upgrade the Tree Tier.',
-      hero.value.infTier >= 1 && 'The Cap of Infinity Perks is equal to The Infinity Tier',
-      hero.value.infTier >= 1 && 'Auto - Activate to upgrade perks automatically '
+      '重置天赋：所有天赋重置为1级并返还点数。',
+      '提高天赋树阶级可提升天赋最大等级',
+      '解锁护符后缀可提升天赋树阶级。',
+      hero.value.infTier >= 1 && '无限天赋上限等于无限阶级',
+      hero.value.infTier >= 1 && '自动 - 开启后自动升级天赋'
     ]
   },
   {
     title: '飞升',
     class: 'ascension-section',
     content: [
-      'Gain Ascension Shards after stage 10.',
-      'Ascension Shards are obtained by completing stages',
+      '10关后可获得飞升碎片。',
+      '飞升碎片通过完成关卡获取',
       '灵魂只会提供一次飞升碎片奖励。',
-      hero.value.infTier >= 2 && 'Bosses give additional shards depending on the stage and Boss Loot [Infinity T2]'
+      hero.value.infTier >= 2 && '首领会根据关卡与首领掉落提供额外碎片 [无限 T2]'
     ]
   },
   {
@@ -1375,12 +1375,12 @@ const styledSections = [
     class: 'souls-section',
     content: [
       '灵魂是特殊生物。它们比普通敌人更强，但奖励也更高。',
-      'After stage 15, souls may appear with a certain chance',
-      'Each defeated Soul grants +1 Max Level and +10% EXP (up to 40 souls). After Infinity [T6], the bonus increases (up to 80 souls)',
-      '+1 MIN Level per 10 Soul Tier [Infinity T6]',
-      'Soul appearance chance and Soul power depend on the total number of Souls',
-      'Soul appearance chance depends on stage and total Souls',
-      'Soul cap = 20 (expandable after Abyss)',
+      '15关后灵魂会以一定概率出现',
+      '每击败1个灵魂 +1 最高等级并 +10% 经验（最多40个灵魂）。无限 [T6] 后上限提高至80。',
+      '每10个灵魂阶级 +1 最低等级 [无限 T6]',
+      '灵魂出现概率与灵魂强度取决于灵魂总数',
+      '灵魂出现概率取决于关卡与灵魂总数',
+      '灵魂上限 = 20（深渊后可扩展）',
     ]
   },
   {
@@ -1526,7 +1526,7 @@ const styledSections = [
   }
 ];
 
-const statTabs = ['Level', 'IP', 'EXP', 'BUFF EXP', '装备', 'Curse', '飞升', 'Stardust', 'Mutagen', '重生', 
+const statTabs = ['Level', 'IP', 'EXP', 'BUFF EXP', '装备', 'Curse', '飞升', 'Stardust', '突变素', '重生', 
 'Potential', 'Danger', 'Damage', 'HP', 'DEF', 'ApS', 'Rush', 'Corrupt.', 'Stage Req.'];
 
 
@@ -1970,7 +1970,7 @@ const statSections = [
         req: () => hero.value.rebirthPts >= 4.5e5
       },
        {
-        desc: 'Black Hole',
+        desc: '黑洞',
         value: () => 75 * hero.value.bhTier,
         color: '#a4ffe1',
         req: () => hero.value.bhTier > 0
@@ -2070,7 +2070,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 50,
       },
       {
-        desc: 'Black Hole',
+        desc: '黑洞',
         value: () => formatNumber(0.05 * hero.value.bhTier, true),
         color: '#00fdff',
         req: () => hero.value.bhTier > 0,
@@ -2228,7 +2228,7 @@ const statSections = [
         req: () => true,
       },
        {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: 'lightblue',
         req: () => hero.value.mainInfTier >= 1,
@@ -2257,7 +2257,7 @@ const statSections = [
         req: () => hero.value.mainInfTier > 0,
       },
       {
-        desc: 'Curse [T5]',
+        desc: '诅咒 [T5]',
         value: () => (hero.value.curset5? 2: 1),
         color: ' #a4ffe1',
         req: () => hero.value.singularity >= 8,
@@ -2269,7 +2269,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 50,
       },
       {
-        desc: 'Quasar Core [Quasar Radiance]',
+        desc: '类星核[类星辉光]',
         value: () => formatNumber((hero.value.selectedDivSkills.includes(7)? divineSkills.value[7].values[1]: 1), true),
         color: '#04fdff',
         req: () => hero.value.mainInfTier >= 50,
@@ -2374,7 +2374,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true) ,
         color: 'lightblue',
       },
@@ -2395,7 +2395,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Curse [T5]',
+        desc: '诅咒 [T5]',
         value: () => (hero.value.curset5? 2: 1),
         color: ' #a4ffe1',
       },
@@ -2580,7 +2580,7 @@ const statSections = [
         color: 'lightblue',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: 'lightblue',
       },
@@ -2620,7 +2620,7 @@ const statSections = [
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => (hero.value.rebirthPts >= 2? 2: 1),
         color: 'lightgreen',
       },
@@ -2705,12 +2705,12 @@ const statSections = [
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => formatNumber(hero.value.rebirthPts >= 1250? Math.min((1 + 0.01 * hero.value.rebirthTier) ** 8, 2) * ((1 + 0.01 * Math.max(hero.value.rebirthTier - 9, 0)) ** 2) : 1, true),
         color: 'lightgreen',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: 'lightblue',
       },
@@ -2763,7 +2763,7 @@ const statSections = [
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => (hero.value.rebirthPts >= 10? 2: 1),
         color: 'lightgreen',
       },
@@ -2901,7 +2901,7 @@ const statSections = [
         color: '',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: 'lightblue',
       },
@@ -2927,7 +2927,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Curse [T5]',
+        desc: '诅咒 [T5]',
         value: () => (hero.value.curset5? 2: 1),
         color: '#a4ffe1',
         req: () => hero.value.singularity >= 8,
@@ -2945,7 +2945,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 5
       },
       {
-        desc: 'Buff [Traveller] [T4]',
+        desc: '增益[旅行者] [T4]',
         value: () => formatNumber(hero.value.activeBuffs.includes(2) && buffs.value[2].tier >= 4? 2: 1, true),
         color: 'orange',
         req: () => dimensions.value[32].infTier >= 8
@@ -2969,7 +2969,7 @@ const statSections = [
         req: () => dimensions.value[37].infTier > 0
       },
       {
-        desc: 'Infinity [Penalty]',
+        desc: '无限[惩罚]',
         value: () => formatNumber((!hero.value.infProgress? 1 / (1 + 0.2 * Math.max(hero.value.infTier - 20, 0)): 1), true),
         color: 'red',
         req: () => !hero.value.infProgress
@@ -3001,10 +3001,10 @@ const statSections = [
     ],
   },
   {
-    title: 'Mutagen',
+    title: '突变素',
     id: 'only mutagen',
     content: [
-      { desc: 'Mutagen', value: '', color: 'orange',  uppercase: true, req: () => true },
+      { desc: '突变素', value: '', color: 'orange',  uppercase: true, req: () => true },
       {
         desc: '突变数量',
         value: () => (hero.value.mutations + (hero.value.infTier >= 4? 1: 0)),
@@ -3024,43 +3024,43 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '飞升[掉落]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: '#66ffcc',
         req: () => true
       },
       {
-        desc: 'Infinity [T40]',
+        desc: '无限 [T40]',
         value: () => formatNumber(1 + ascenPerks[34].level * 0.01, true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 40,
       },
       {
-        desc: 'Buff [Traveller] [T4]',
+        desc: '增益[旅行者] [T4]',
         value: () => (hero.value.activeBuffs.includes(2) && buffs.value[2].tier >= 4? 2: 1),
         color: 'orange',
         req: () => dimensions.value[32].infTier >= 8
       },
       {
-        desc: 'Quasar Core [Quasar Radiance]',
+        desc: '类星核[类星辉光]',
         value: () => formatNumber((hero.value.selectedDivSkills.includes(7)? divineSkills.value[7].values[1]: 1), true),
         color: 'red',
         req: () => hero.value.mainInfTier >= 50,
       },
       {
-        desc: 'Curse [T5]',
+        desc: '诅咒 [T5]',
         value: () => (hero.value.curset5? 2: 1),
         color: '#a4ffe1',
         req: () => hero.value.singularity >= 8
       },
       {
-        desc: 'Infinity [Penalty]',
+        desc: '无限[惩罚]',
         value: () => formatNumber(!hero.value.infProgress? 1 / (1 + 0.05 * Math.max(hero.value.infTier - 25, 0)): 1, true),
         color: 'red',
         req: () => !hero.value.infProgress
       },
        {
-        desc: 'Enemy [Buff] [Traveller]',
+        desc: '敌方[增益][旅行者]',
         value: () => formatNumber((enemy.value.buffs.includes(3)? 2: 1), true),
         color: 'red',
         req: () => enemy.value.buffs.includes(3),
@@ -3080,7 +3080,7 @@ const statSections = [
     content: [
       { desc: 'Potential', value: '', color: 'yellow',  uppercase: true, req: () => true },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => (hero.value.rebirthPts >= 3? 10: 0) + (hero.value.rebirthPts >= 75? 10: 0) + (hero.value.rebirthPts >= 250? 10: 0) + 
         (hero.value.rebirthPts >= 5000? 10: 0) + (hero.value.rebirthPts >= 17500? 10: 0) + (hero.value.rebirthPts >= 60000? 10: 0),
         color: 'lightgreen',
@@ -3564,7 +3564,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => formatNumber((hero.value.rebirthPts >= 150? 5: 0), true),
         color: 'lightgreen',
       },
@@ -4015,13 +4015,13 @@ const statSections = [
       { desc: '关卡冲刺 - 当当前关卡低于最大关卡的 x% 时提高关卡', value: '', color: 'blue',  uppercase: false, },
       { desc: '[Max: 75%]', value: '', color: 'blue',  uppercase: false, },
       {
-        desc: 'Infinity [T2]',
+        desc: '无限 [T2]',
         value: () => (hero.value.infEvents >= 2 || hero.value.infTier >= 2? 0.25: 0),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 2
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => (hero.value.rebirthPts >= 20000? 0.15: 0),
         color: 'lightgreen',
         req: () => true
@@ -4033,7 +4033,7 @@ const statSections = [
         req: () => hero.value.singularity > 0
       },
       {
-        desc: 'Black Hole',
+        desc: '黑洞',
         value: () => formatNumber(0.05 * hero.value.bhTier, true),
         color: 'rayn',
         req: () => hero.value.bhTier > 0,
@@ -4061,7 +4061,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => (hero.value.rebirthPts >= 70000? 0.1: 0),
         color: 'lightgreen',
         req: () => true
@@ -4073,7 +4073,7 @@ const statSections = [
         req: () => hero.value.singularity > 0
       },
       {
-        desc: 'Black Hole',
+        desc: '黑洞',
         value: () => formatNumber(0.05 * hero.value.bhTier, true),
         color: 'rayn',
         req: () => hero.value.bhTier > 0
@@ -4185,7 +4185,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生[点数]',
         value: () => formatNumber((hero.value.rebirthPts >= 22500? 0.01: 0), true),
         color: 'lightgreen',
         req: () => true,
