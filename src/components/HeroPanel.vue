@@ -3,7 +3,7 @@
     <div class="hero">
       <div class="hero-header">
         <Tooltip :text="() => stats()">
-          <h3 style="color: white">🧝 <sup style="font-size: 6px">ℹ️</sup>Hero</h3>
+          <h3 style="color: white">🧝 <sup style="font-size: 6px">ℹ️</sup>英雄</h3>
         </Tooltip>
         <div class="formations">
             <button
@@ -49,21 +49,21 @@
         <div>
           <span :class="[buffs[6].charges.power > 0? 'chargePower': 'charge']">
             [
-              <Tooltip :text="'+5% DMG and +0.1 APS per charge'" boxShadow="0 0 10px red">
+              <Tooltip :text="'+5% 伤害与 +0.1 攻速（每层充能）'" boxShadow="0 0 10px red">
                 <span class="svgCenter" v-html="getSvgIconHTML('redCharge', '1.5em')"></span>
               </Tooltip>
             {{buffs[6].charges.power}}]
           </span>
           <span :class="[buffs[6].charges.energy > 0? 'chargeEnergy': 'charge']">
             [
-            <Tooltip :text="'+1 CRIT and +5 CRIT DMG per charge'" boxShadow="0 0 10px blue">
+            <Tooltip :text="'+1 暴击与 +5 暴伤（每层充能）'" boxShadow="0 0 10px blue">
                 <span class="svgCenter" v-html="getSvgIconHTML('blueCharge', '1.5em')"></span>
               </Tooltip>
             {{buffs[6].charges.energy}}]
           </span>
           <span :class="[buffs[6].charges.life > 0? 'chargeLife': 'charge']">
             [
-            <Tooltip :text="'+5% HP and +5% DEF per charge'" boxShadow="0 0 10px green">
+            <Tooltip :text="'+5% 生命与 +5% 防御（每层充能）'" boxShadow="0 0 10px green">
                 <span class="svgCenter" v-html="getSvgIconHTML('greenCharge', '1.5em')"></span>
               </Tooltip>
             {{buffs[6].charges.life}}]
@@ -115,7 +115,7 @@
               : 'extraHit',
           ]"
         >
-        <Tooltip :text="`Extra hit(s) chance: ${Math.floor(buffs[14].extraHit)}%`" boxShadow="0 0 10px yellow">
+        <Tooltip :text="`额外攻击触发率：${Math.floor(buffs[14].extraHit)}%`" boxShadow="0 0 10px yellow">
           <span class="svgCenter" v-html="getSvgIconHTML('extraHit', '1.5em')"></span>
         </Tooltip>
         </div>
@@ -185,10 +185,10 @@
       </div>
       <div class="effects">
         <p>
-          🗡️ Hero DMG: <strong>-{{ damageReduction }}%</strong>
+          🗡️ 英雄伤害：<strong>-{{ damageReduction }}%</strong>
         </p>
         <p>
-          ⏱️ Enemy APS: <strong>-{{ speedReduction }}%</strong>
+          ⏱️ 敌人攻速：<strong>-{{ speedReduction }}%</strong>
         </p>
       </div>
     </div>
@@ -221,10 +221,10 @@ const def = computed(() => hero.value.def);
 
 function formationD(f) {
   if(f.id == 0)
-    return `<span style='color: lightgreen'>HP - x2</span> | <span style='color: red'>ATK - x0.5</span> | <span style='color: orange'>DEF - x0.5</span>`
+    return `<span style='color: lightgreen'>生命 - x2</span> | <span style='color: red'>攻击 - x0.5</span> | <span style='color: orange'>防御 - x0.5</span>`
 
   if(f.id == 2)
-    return `<span style='color: orange'>DEF - x2</span> | <span style='color: lightgreen'>HP - x0.5</span> | <span style='color: red'>ATK - x0.5</span>`
+    return `<span style='color: orange'>防御 - x2</span> | <span style='color: lightgreen'>生命 - x0.5</span> | <span style='color: red'>攻击 - x0.5</span>`
 
 
   if(f.id == 1 && perks[62].level)
@@ -289,11 +289,11 @@ function toggleFormation(index) {
 function stats() {
   let str = "";
 
-  str += `💢<span>BASE CRIT: ${hero.value.crit.toFixed(1)}</span><br>`;
-  str += `🔪<span>BASE CRIT DAMAGE: ${(hero.value.critAttack / 100).toFixed(1)}</span><br>`;
-  str += `🤺<span>DODGE: ${Math.floor(hero.value.totalAvoid)}%</span><br>`;
-  str += `💀<span>Overkill: ${Math.floor(hero.value.overkill - 1)}</span><br>`;
-  str += `🥾<span>APS: ${hero.value.attacksPerSecond.toFixed(1)}</span><br>`;
+  str += `💢<span>基础暴击： ${hero.value.crit.toFixed(1)}</span><br>`;
+  str += `🔪<span>基础暴伤： ${(hero.value.critAttack / 100).toFixed(1)}</span><br>`;
+  str += `🤺<span>闪避： ${Math.floor(hero.value.totalAvoid)}%</span><br>`;
+  str += `💀<span>溢出击杀： ${Math.floor(hero.value.overkill - 1)}</span><br>`;
+  str += `🥾<span>攻速： ${hero.value.attacksPerSecond.toFixed(1)}</span><br>`;
 
   return str;
 }
@@ -315,58 +315,58 @@ const speedReduction = computed(() => (hero.value.survivalLevel * 2).toFixed(1))
 
 function rageHandle() {
   return `
-    Rage Mechanics:
-    - Rage is accumulated through combat actions. Once Rage reaches 100, it starts to decay and cannot be accumulated again until it drops back to 0.
+    怒气机制：
+    - 怒气通过战斗行为累积。怒气达到100后会开始衰减，直到回落到0前无法再次累积。
 
-    Total Rage: ${Math.floor(buffs.value[12].rage)}
+    当前怒气： ${Math.floor(buffs.value[12].rage)}
 
-    Rage Gain:
-    • +1 Rage on hit.
-    • +3 Rage on critical hit.
-    • +5 Rage when you are hit.
-    • +5 Rage when you kill an enemy.
-    • +10 Rage when you kill a boss.
+    怒气获取：
+    • 命中时 +1 怒气。
+    • 暴击时 +3 怒气。
+    • 受击时 +5 怒气。
+    • 击杀敌人时 +5 怒气。
+    • 击杀首领时 +10 怒气。
 
-    Rage Loss & Effects:
-    • Lose 1 Rage on hit — Gain bonus damage multiplier by 1.01.
-    • Lose 3 Rage when you are hit — Reduce incoming damage by 25%.
-    • Lose 5 Rage per second when HP is below 30% — Increase healing effect by 25%.
-    • Lose 100 Rage when you die.
+    怒气消耗与效果：
+    • 命中时消耗1怒气——获得1.01伤害倍率。
+    • 受击时消耗3怒气——所受伤害降低25%。
+    • 生命低于30%时每秒消耗5怒气——治疗效果提高25%。
+    • 死亡时消耗100怒气。
   `;
 }
 
 
 function survivalLevelHandle() {
-  return ` You will gain double stats while you have remaining attempts. You lose an attempt whenever you die.<br>
-  Total attempts: ${hero.value.survivalLife}`
+  return ` 当你仍有剩余次数时，会获得双倍属性。每次死亡会损失一次次数。<br>
+  总次数： ${hero.value.survivalLife}`
 }
 
 function survivalHighLevelHandle() {
-  return `You will gain double stats while your level is lower than [<span style="color: gold">${Math.floor(hero.value.survivalStage ** 1.175)}</span>]`;
+  return `当你的等级低于 [<span style="color: gold">${Math.floor(hero.value.survivalStage ** 1.175)}</span>]`;
 }
 
 function irradiationHandle() {
-  return `<span style="color:#d4ff00; font-weight:bold;">☢ Irradiation</span>
-    Gain <span style="color:#d4ff00">+1 Radiation stack</span> on <span style="color:#ff5555">Hit</span>.<br>
-    Current stacks: <span style="color:#d4ff00; font-weight:bold;"> ${buffs.value[16].stack}</span>
+  return `<span style="color:#d4ff00; font-weight:bold;">☢ 辐照</span>
+    在<span style="color:#ff5555">命中</span>时获得 <span style="color:#d4ff00">+1 辐照层数</span>。<br>
+    当前层数： <span style="color:#d4ff00; font-weight:bold;"> ${buffs.value[16].stack}</span>
   `;
 }
 
 function transcendenceHandle() {
-  let text = `Your current <span style="color: #00ffae">transcendence</span> is <span style="color: cyan">${hero.value.transcendenceBH}</span><br>
-  Bonuses from <span style="color: #00ffae">transcendence:</span>`;
+  let text = `你当前的<span style="color: #00ffae">超越</span>为 <span style="color: cyan">${hero.value.transcendenceBH}</span><br>
+  <span style="color: #00ffae">超越</span>带来的加成：`;
 
   if (hero.value.bhTier > 0) {
-    text += `<br><span style="color: #00ffae">Max Level Mult: +${(0.1 * hero.value.transcendenceBH).toFixed(2)}</span>`;
+    text += `<br><span style="color: #00ffae">最高等级倍率： +${(0.1 * hero.value.transcendenceBH).toFixed(2)}</span>`;
   }
   if (hero.value.bhTier > 1) {
-    text += `<br><span style="color: #ff5050">Increased DMG by ${(1 + 0.05 * hero.value.transcendenceBH).toFixed(2)}</span>`;
+    text += `<br><span style="color: #ff5050">伤害提升至 ${(1 + 0.05 * hero.value.transcendenceBH).toFixed(2)}</span>`;
   }
   if (hero.value.bhTier > 2) {
-    text += `<br><span style="color: lightgreen">Min Level: +${1 * hero.value.transcendenceBH} </span>`;
+    text += `<br><span style="color: lightgreen">最低等级： +${1 * hero.value.transcendenceBH} </span>`;
   }
   if (hero.value.bhTier > 3) {
-    text += `<br><span style="color: #ffd700">IP MULT: +${(1 + 0.005 * hero.value.transcendenceBH).toFixed(2)} </span>`;
+    text += `<br><span style="color: #ffd700">IP 倍率： +${(1 + 0.005 * hero.value.transcendenceBH).toFixed(2)} </span>`;
   }
 
   return text;
@@ -375,37 +375,37 @@ function transcendenceHandle() {
 function comboHandle() {
   let text = ``;
   if (buffs.value[3].tier == 1)
-    text = `<span style="color:rgb(241, 83, 83)">+1% DMG</span> per COMBO [<span style="color:rgb(243, 187, 33)">MAX- 30</span>]<br><span style="color: #FF9800">+1 COMBO</span> per hit<br>`;
+    text = `<span style="color:rgb(241, 83, 83)">+1% 伤害</span> 每层连击 [<span style="color:rgb(243, 187, 33)">上限- 30</span>]<br><span style="color: #FF9800">+1 连击</span> 每次命中<br>`;
   
   if (buffs.value[3].tier == 2)
-    text = `<span style="color:rgb(241, 83, 83)">+1.25% DMG</span> per COMBO [<span style="color:rgb(243, 163, 33)">MAX- 40</span>]<br><span style="color: #FF9800">+1 COMBO</span> per hit [<span style="color: #9C27B0">50% chance</span> to get additional COMBO]<br>`;
+    text = `<span style="color:rgb(241, 83, 83)">+1.25% 伤害</span> 每层连击 [<span style="color:rgb(243, 163, 33)">上限- 40</span>]<br><span style="color: #FF9800">+1 连击</span> 每次命中 [<span style="color: #9C27B0">50% 概率</span> 获得额外连击]<br>`;
   
   if (buffs.value[3].tier == 3)
-    text = `<span style="color:rgb(241, 83, 83)">+1.5% DMG</span> per COMBO [<span style="color:rgb(243, 166, 33)">MAX- 50</span>]<br><span style="color: #FF9800">+1.5 COMBO</span> per hit<br>`;
+    text = `<span style="color:rgb(241, 83, 83)">+1.5% 伤害</span> 每层连击 [<span style="color:rgb(243, 166, 33)">上限- 50</span>]<br><span style="color: #FF9800">+1.5 连击</span> 每次命中<br>`;
   
   if (buffs.value[3].tier == 4)  
-    text = `<span style="color:rgb(241, 83, 83)">+1.75% DMG</span> per COMBO [<span style="color:rgb(243, 173, 33)">MAX- 100</span>]<br><span style="color: #FF9800">+2 COMBO</span> per hit<br><span style="color:rgb(233, 30, 223)">+0.3 Attack per Second</span> when COMBO is MAX<br>`;  
+    text = `<span style="color:rgb(241, 83, 83)">+1.75% 伤害</span> 每层连击 [<span style="color:rgb(243, 173, 33)">上限- 100</span>]<br><span style="color: #FF9800">+2 连击</span> 每次命中<br><span style="color:rgb(233, 30, 223)">+0.3 攻击速度</span> 当连击达到上限时<br>`;  
 
   return text;
 }
 
 function conquerHandle() {
-  let text = `Gain increased stats per second<br><br>`; 
+  let text = `每秒获得属性提升<br><br>`; 
 
   const b = buffs.value[8]; 
 
   if (b.tier >= 1)
-    text += `Max HP: <span style="color: #4CAF50">${(0.1 * b.time).toFixed(1)}%</span><br>`;
+    text += `最大生命： <span style="color: #4CAF50">${(0.1 * b.time).toFixed(1)}%</span><br>`;
 
   if (b.tier >= 2)
-    text += `DMG: <span style="color: #F44336">${(0.1 * b.time).toFixed(1)}%</span><br>`;
+    text += `伤害： <span style="color: #F44336">${(0.1 * b.time).toFixed(1)}%</span><br>`;
 
   if (b.tier >= 3)
-    text += `APS: <span style="color: #2196F3">${(0.1 * Math.floor(b.time / 250)).toFixed(1)}</span><br>`;
+    text += `攻速： <span style="color: #2196F3">${(0.1 * Math.floor(b.time / 250)).toFixed(1)}</span><br>`;
 
   if (b.tier >= 4) {
-    text += `<br>Decreases enemy stats every 50 seconds<br>`;
-    text += `Enemy weakness: <span style="color: #FF9800">${100 - Math.floor(b.time / 50)}%</span><br>`;
+    text += `<br>每50秒降低一次敌人属性<br>`;
+    text += `敌人削弱： <span style="color: #FF9800">${100 - Math.floor(b.time / 50)}%</span><br>`;
   }
 
   return text;
@@ -413,14 +413,14 @@ function conquerHandle() {
 
 function averageAttackHandle() {
   return `
-⚔️ Attack Stats
+⚔️ 攻击统计
 ───────────────
-🎯 Avg:     [${formatNumber(hero.value.averageAttack.avg)}]
-🎯 Current: [${formatNumber(hero.value.averageAttack.currentAttack)}]
+🎯 平均：     [${formatNumber(hero.value.averageAttack.avg)}]
+🎯 当前： [${formatNumber(hero.value.averageAttack.currentAttack)}]
 
-🔴 <span style="color: red">Red   - [CRIT] Critical Hit</span>
-🟢 <span style="color: green">Green - [MISS] Attack Dodged/
-    Attack Failed</span>
+🔴 <span style="color: red">红色 - [暴击] 触发暴击</span>
+🟢 <span style="color: green">绿色 - [未命中] 攻击被闪避/
+    攻击失败</span>
 `;
 }
 

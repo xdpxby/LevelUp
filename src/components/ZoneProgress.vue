@@ -119,17 +119,17 @@
         <button class="btnInf" @click="performInf" >
           <span class="infinity-glow">∞</span>
           <div class="inf-tooltip inf-shadow">
-              <p><strong>Infinity [T{{hero.mainInfTier}}]</strong></p>
-              <p>You have become The Omnipotent ,but <span style="color: gold">[D-Infinity]</span> seeks to prevent you from shattering a fragment of its creation.</p>
+              <p><strong>无限 [T{{hero.mainInfTier}}]</strong></p>
+              <p>你已接近全能，但 <span style="color: gold">[D-Infinity]</span> 正试图阻止你打碎它造物的一角。</p>
               <p>{{infRewards[hero.infTier]}}</p>
-              <p>The Dimension is trying to destroy you. Press the button, your progress will reset and you will face a Trial with EXP Gain & Max Level reduced by <span style='color: red'>^{{(hero.infPower).toFixed(2)}}</span>.
-              Overcoming it will grant you <span style='color: gold'>Infinity [T{{hero.mainInfTier+1}}]</span>.
-              The Celestials succumb to D's will, becoming stronger. Corruption spreads its influence among all entities of this dimension, making them wild.</p> 
-              <p style="color: red" v-if="hero.infTier >= 20">The [D-Infinity] tears the tissue of the universe, worsening the drop of stardust </p>
-              <p style="color: red" v-if="hero.infTier >= 25">The [D-Infinity] destroys all Celestial making them insignificant, worsening the drop of mutagen </p>
-              <p style="color: red" v-if="hero.infTier >= 30">Dimensions are being consumed by the power of the multiverse. Curses are getting stronger</p>
-              <p style="color: red" v-if="hero.infTier >= 35">You feel the touch of the Perdition. Every 10 Infinity Tiers you will get +1 MAX Curse and +1 MIN Curse.</p>
-              <p style="color: red" v-if="hero.infTier >= 35">You feel the touch of the Perdition. Every 10 Infinity Tiers you will gain new Curse</p>
+              <p>维度正在试图毁灭你。点击按钮后进度将重置，你将面对一场试炼：经验获取与最高等级按下列倍率削弱 <span style='color: red'>^{{(hero.infPower).toFixed(2)}}</span>.
+              完成试炼将获得 <span style='color: gold'>无限 [T{{hero.mainInfTier+1}}]</span>.
+              天界生物将屈从于 D 的意志而变得更强。腐化会扩散到此维度的所有实体，使其更加狂暴。</p> 
+              <p style="color: red" v-if="hero.infTier >= 20">[D-Infinity] 撕裂了宇宙结构，星尘掉落变差 </p>
+              <p style="color: red" v-if="hero.infTier >= 25">[D-Infinity] 摧毁了所有天界生物的稳定性，突变素掉落变差 </p>
+              <p style="color: red" v-if="hero.infTier >= 30">维度正被多元宇宙之力吞噬，诅咒将变得更强</p>
+              <p style="color: red" v-if="hero.infTier >= 35">你感受到湮灭之触。每10个无限阶级可获得 +1 最大诅咒 与 +1 最低诅咒。</p>
+              <p style="color: red" v-if="hero.infTier >= 35">你感受到湮灭之触。每10个无限阶级将获得一个新诅咒。</p>
           </div>
         </button>
       </div>
@@ -151,15 +151,15 @@
       <button class="btnSingularity" @click="performSingularity" >
           <SvgIcon name="singularity" size="1.4em" />
           <div class="singularity-tooltip singularity-shadow">
-              <p v-if="hero.singularity < 8"><strong>Singularity [T{{hero.singularity}}]</strong></p>
-              <p v-else><strong>Singularity-BH</strong></p>
-              <p>Dive into the edge of the Black Hole ruled by <span style="color: cyan">[D-Gravity]</span>.</p>
+              <p v-if="hero.singularity < 8"><strong>奇点 [T{{hero.singularity}}]</strong></p>
+              <p v-else><strong>奇点-黑洞</strong></p>
+              <p>潜入由 <span style="color: cyan">[D-Gravity]</span> 统御的黑洞边缘。</p>
               <p v-html="singularityD[hero.singularity]"></p>
               <p>{{singularityR[hero.singularity]}}</p>
-              <span v-if="hero.singularity >= 8 && hero.isSingularity">Total SP: {{totalSp()}}<br></span>
-              <span v-if="hero.singularity >= 8">Max kills: {{hero.singularityKills}}</span>
-              <p>Reach Level 700 to Enter the singularity</p>
-              <p v-if="hero.isSingularity">Click to leave the Singularity</p>
+              <span v-if="hero.singularity >= 8 && hero.isSingularity">总SP： {{totalSp()}}<br></span>
+              <span v-if="hero.singularity >= 8">最大击杀： {{hero.singularityKills}}</span>
+              <p>达到700级可进入奇点</p>
+              <p v-if="hero.isSingularity">点击离开奇点</p>
           </div>
         </button>
       </div>
@@ -339,118 +339,118 @@ const stage = computed(() => hero.value.stage);
 
 
 const singularityD = [
-  `Enter the singularity, where gravity devours space, opponents under the influence of gravity destroy galaxies and your level is on the verge of destruction.`,
-  `Enter the singularity, where the opponents have learned to recognize the essence of curses.`,
-  `Enter the singularity, where The Tree is locked`,
-  `Enter the singularity, where Ascension is locked`,
-  `Enter the singularity, where Space is locked`,
-  `Enter the singularity, where Buff is locked`,
-  `Enter the singularity, where Equipment is locked`,
-  `Enter the singularity, where Rebirth is locked`,
-  `Enter the singularity, where enemies under curse of <span style='color: cyan'>[D-Gravity]</span>. All enemies have curse [T5]`
+  `进入奇点：重力吞噬空间，受重力影响的敌人可摧毁星系，而你的等级也将濒临崩溃。`,
+  `进入奇点：敌人已学会识别诅咒本质。`,
+  `进入奇点：天赋树被锁定`,
+  `进入奇点：飞升被锁定`,
+  `进入奇点：太空被锁定`,
+  `进入奇点：增益被锁定`,
+  `进入奇点：装备被锁定`,
+  `进入奇点：重生被锁定`,
+  `进入奇点：敌人受 <span style='color: cyan'>[D-Gravity]</span> 诅咒影响，所有敌人均拥有诅咒 [T5]`
 ]
 
 const singularityR = [
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels, 
-  Overkill [T4], +2% to skip stage per Singularity Tier (S), level up while your level is below 2% of Max Level per Singularity Tier (S)`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. Each curse gets a bonus from the next Tier.`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. +1 Tree Tier. New Tree Perks on [T6]. Auto is always opened`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. Ascension no longer resets during Infinity. Open Tier-S. Unlock a Perk in Tier-S for each Singularity Tier`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. +1 Space Tier. Celestials from available dimensions see you. Auto is always opened`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. Buffs no longer reset during Infinity; +1 Max Buff`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. + Enhance Level per each Singularity Tier. Unlock Awakened Equipment`,
-  `Complete the singularity to obtain 1.05 MULT IP, +25 singularity levels. Rebirth starts with 1e5 Pts. Unlock Singularity BH`,
-  `Reach as max as possible to get Singularity Pts`
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级, 
+  溢出击杀 [T4]，每个奇点阶级(S) +2% 跳关率；当等级低于每个奇点阶级(S)对应的最高等级2%时自动升级`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. 每个诅咒都将获得下一阶加成。`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. +1 天赋树阶级。[T6] 解锁新天赋。自动功能永久开启`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. 无限过程中飞升不再重置。开启 Tier-S。每个奇点阶级可在 Tier-S 解锁一个天赋`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. +1 太空阶级. 已解锁维度中的天界生物将注意到你. 自动功能永久开启`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. 无限过程中增益不再重置；+1 最大增益`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. + 每个奇点阶级提供强化等级。解锁觉醒装备`,
+  `完成奇点可获得 1.05 MULT IP, +25 奇点等级. 重生初始获得 1e5 点。解锁奇点黑洞`,
+  `尽可能达到更高层以获取奇点点数`
 ]
 
 const abyssDescription = [
-  `You reached MAX Souls. Travell to the Abyss where enemies are stronger, Level scales worse. Buff EXP are locked. Souls are disappeared. 
-  Reach Stage ${20 + 10 * hero.value.abyssTier} when you affected first 7 curses [T1]`,
-  `You reached MAX Souls. Abyss feels inexplicable essence through the darkness and directs its power to this dimension. 
-  Travell to the Abyss where enemies are stronger, Level scales worse. Buff EXP are locked. Souls are disappeared.
-  Reach Stage ${20 + 10 * hero.value.abyssTier} when you affected first 10 curses [T2]`,
-   `You reached MAX Souls. Abyss now directs to enemies mind force them to evo faster. Corruption forces to affect the World Rule. 
-  Travell to the Abyss where enemies are stronger, Level scales worse. Buff EXP are locked. Souls are disappeared. 
-  Reach Stage ${20 + 10 * hero.value.abyssTier} when you affected first 13 curses [T3].`,
-  `Dive into the Endless darkness to open new possibilities to escape from this Dimension. Travell to the Abyss where enemies are stronger, Level scales worse. Buff EXP are locked. Souls are disappeared.
-  Reach as max as possible when you affected first 13 curses [T4]`
+  `你已达到灵魂上限。前往深渊后敌人更强，等级成长更差，增益经验被锁定，灵魂将消失。 
+  在承受前7个诅咒[T1]时到达关卡 ${20 + 10 * hero.value.abyssTier}`,
+  `你已达到灵魂上限。深渊在黑暗中感知到难以名状的本质，并将力量引导至该维度。 
+  前往深渊后敌人更强，等级成长更差，增益经验被锁定，灵魂将消失。
+  在承受前10个诅咒[T2]时到达关卡 ${20 + 10 * hero.value.abyssTier}`,
+   `你已达到灵魂上限。深渊会侵入敌人心智并加速其进化，腐化之力也开始影响世界规则。 
+  前往深渊后敌人更强，等级成长更差，增益经验被锁定，灵魂将消失。 
+  在承受前13个诅咒[T3]时到达关卡 ${20 + 10 * hero.value.abyssTier}。`,
+  `潜入无尽黑暗，开启逃离此维度的新可能。 前往深渊后敌人更强，等级成长更差，增益经验被锁定，灵魂将消失。
+  在承受前13个诅咒[T4]时尽可能冲击更高关卡`
 ]
 
 const abyssRewards = [
-  `After complete you will be cursed by 3 new curses. Soul CAP -> ${20 + 10 * (hero.value.abyssTier+1)}. x1.3 MULT Rebirth Pts per Abyss Tier. +50% souls appear for each curse`,
-  `After complete you will be cursed by 3 new curses. Soul CAP -> ${20 + 10 * (hero.value.abyssTier+1)}. There is a new enemie(Ascension Soul) after Stage 20 that drops Ascension Shards.
-  Ascension Shards now affect to enemies make them weaker. `,
-  "Break Rebirth Limits. Open Corruption. Unlock the Second Space Fragment.",
+  `完成后你会新增3个诅咒。 灵魂上限 -> ${20 + 10 * (hero.value.abyssTier+1)}. 每个深渊阶级提供 x1.3 重生点倍率. +50% 每个诅咒提高灵魂出现率`,
+  `完成后你会新增3个诅咒。 灵魂上限 -> ${20 + 10 * (hero.value.abyssTier+1)}. 20关后将出现新敌人（飞升灵魂），可掉落飞升碎片。
+  飞升碎片现在会作用于敌人，使其更弱。 `,
+  "打破重生限制。开启腐化。解锁第二太空碎片。",
 ]
 
 const infRewards = [ 
-  `Reset everyting you've got(except Abyss D), but you will get Inf-Tree. Force any perk to serve you forever, but everything has its own price. Auto-Tree. Double Points gaining. Auto-Stage`,
-  `Reset everyting you've got(except Abyss D), but you will get Ascend Permission. You have 5 Infinity Ascension Perks to serve you forever even after Infinity Reset. Extra skip stages until +25% Max Stage (S). You can get Shards from Bosses. Auto-Ascension`,
-  `Reset everyting you've got(except Abyss D), but you will get Integration of Rebirth. Your Rebirth Tier are unlimmited. Enemy Power equals to 1. Auto-Rebirth`,
-  `Reset everyting you've got(except Abyss D), but you will get Gamma Learning. Gain mutagens as if you have mutagen [T5]. Increase MAX Levels of Radiation Perks. Danger System scales betterand opens Inf-Enemy.`,
-  `Reset everyting you've got(except Abyss D), but you will get Expansion of Space. Unlock Space [T5]. x2 stardust. Auto-Fight`,
-  `Reset everyting you've got(except Abyss D), but you will get Thirst for Souls . D-Soul gives you a 100% chance to meet a soul, but its power will be limitless. Every Soul Tier gives you +1 MIN Level. EXP CAP SOULS - +40`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T0]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T1]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T2]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T3]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T4]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T5]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T6]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T7]`,
-  `Reset everyting you've got(except Abyss D). Complete to open Singularity [T8]`,
+  `重置你拥有的一切（深渊D除外），但你将获得无限天赋树。可将任意天赋永久保留，但一切都需付出代价。自动天赋。点数获取翻倍。自动关卡`,
+  `重置你拥有的一切（深渊D除外），但你将获得飞升权限。你将拥有5个可在无限重置后永久生效的无限飞升天赋。额外跳关最高可达 +25% 最大关卡（S）。可从首领获取碎片。自动飞升`,
+  `重置你拥有的一切（深渊D除外），但你将获得 重生整合。 你的重生阶级不再受限。 敌人强度固定为1。 自动重生`,
+  `重置你拥有的一切（深渊D除外），但你将获得 伽马学习。 按拥有突变[T5]的效果获取突变素。 提高辐射天赋最高等级。 危险系统成长更优并解锁无限敌人。`,
+  `重置你拥有的一切（深渊D除外），但你将获得太空扩展。解锁太空 [T5]。星尘 x2。自动战斗`,
+  `重置你拥有的一切（深渊D除外），但你将获得 渴魂。 灵魂维度中遇到灵魂的概率变为100%，但其强度将近乎无上限。 每个灵魂阶级提供 +1 最低等级。 灵魂经验上限 +40`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T0]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T1]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T2]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T3]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T4]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T5]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T6]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T7]`,
+  `重置你拥有的一切（深渊D除外）。完成后解锁奇点 [T8]`,
 ]
 
 function abyssRwrd(tier) {
   if (tier < 3) return abyssRewards[tier];
 
-  let str = `<span><span style="color: #f942f9">Beat Stage 20</span>: High Tier Curses appear more often </span><br/>`;
+  let str = `<span><span style="color: #f942f9">通过关卡 20</span>: 高阶诅咒出现更频繁 </span><br/>`;
 
   if (hero.value.abyssDStages >= 20)
-    str += `<span><span style="color: #f942f9">Beat Stage 30</span>: Level scales based on Max Stage in Abyss D</span>`; 
+    str += `<span><span style="color: #f942f9">通过关卡 30</span>: 等级成长基于深渊D最高关卡</span>`; 
   if (hero.value.abyssDStages >= 30){
     str += `<span>[*${Math.max(2 - (1.015 ** (hero.value.abyssDStages - 29)), 0.1).toFixed(2)}]</span><br/>`;
-    str += `<span><span style="color: #f942f9">Beat Stage 40</span>: Corruption weakness is based on Max Stage in Abyss D</span>`;
+    str += `<span><span style="color: #f942f9">通过关卡 40</span>: 腐化削弱基于深渊D最高关卡</span>`;
   }
   if (hero.value.abyssDStages >= 40){
     str += `<span>[+${Math.max(1 - (1 / (Math.sqrt(hero.value.abyssDStages - 39) ** 0.15)), 0.1).toFixed(2)}]</span><br/>`;
-    str += `<span><span style="color: #f942f9">Beat Stage 50</span>: Curse Bonus boost is based on Max Stage in Abyss D</span>`;  
+    str += `<span><span style="color: #f942f9">通过关卡 50</span>: 诅咒加成增幅基于深渊D最高关卡</span>`;  
   }
   if (hero.value.abyssDStages >= 50){
     str += `<span>[*${((1 + 0.005 * Math.min(hero.value.abyssDStages - 49, 100))).toFixed(2)}]</span><br/>`;
-    str += `<span><span style="color: #f942f9">Beat Stage 60</span>: Stardust drop is better based on Max Stage in Abyss D</span>`; 
+    str += `<span><span style="color: #f942f9">通过关卡 60</span>: 星尘掉落基于深渊D最高关卡提升</span>`; 
   }
   if (hero.value.abyssDStages >= 60){
     str += `<span >[*${(1 + 0.05 * (hero.value.abyssDStages - 59)).toFixed(2)}]</span><br/>`;
-    str += `<span><span style="color: #f942f9">Beat Stage 70</span>: Stage requirement scales better based on Max Stage in Abyss D</span><br/>`;
+    str += `<span><span style="color: #f942f9">通过关卡 70</span>: 关卡需求基于深渊D最高关卡优化</span><br/>`;
   }
   if (hero.value.abyssDStages >= 70){
-    str += `<span><span style="color: #f942f9">Beat Stage 80</span>: Open D-Atlas</span><br/>`;
+    str += `<span><span style="color: #f942f9">通过关卡 80</span>: 开启维度图鉴</span><br/>`;
   }
   if(hero.value.abyssDStages > 100){
-    str += `<span><span style="color: #f942f9">Beat Stage 100</span>: MULT to convert Curse [T4] to [T5] - </span>`;
+    str += `<span><span style="color: #f942f9">通过关卡 100</span>: MULT to convert Curse [T4] to [T5] - </span>`;
     if (hero.value.abyssDStages >= 100) {
       str += `<span>[*${(1.01 ** (hero.value.abyssDStages - 99)).toFixed(2)}]</span><br/>`;
-      str += `<span><span style="color: #f942f9">Beat Stage 120</span>: Stage Requirement reduced for Dimension Shards</span>`;
+      str += `<span><span style="color: #f942f9">通过关卡 120</span>: Stage Requirement reduced for Dimension Shards</span>`;
     }
     if (hero.value.abyssDStages >= 120) {
       str += `<span>[-${Math.floor((hero.value.abyssDStages - 119) ** 0.65)}]</span><br/>`;
-      str += `<span><span style="color: #f942f9">Beat Stage 140</span>: The Danger Power is weaker</span>`;
+      str += `<span><span style="color: #f942f9">通过关卡 140</span>: The Danger Power is weaker</span>`;
     }
     if(hero.value.abyssDStages >= 140){
       str += `<span>[^${formatNumber((100 - Math.sqrt(hero.value.abyssDStages - 139)) * 0.01, true)}]</span><br>`
-      str += `<span><span style="color: #f942f9">Beat Stage 160</span>: Celestials are weaker</span>`;
+      str += `<span><span style="color: #f942f9">通过关卡 160</span>: 天界生物强度为 weaker</span>`;
     }
     if(hero.value.abyssDStages >= 160){
       str += `<span>[*${Math.max(1 / (1.01 ** (hero.value.abyssDStages - 159)), 0.1).toFixed(2)}]</span><br>`;
-      str += `<span><span style="color: #f942f9">Beat Stage 180</span>: Soul-D is weaker</span><br>`;
+      str += `<span><span style="color: #f942f9">通过关卡 180</span>: Soul-D is weaker</span><br>`;
     }
     if(hero.value.abyssDStages >= 180){
-      str += `<span><span style="color: #f942f9">Beat Stage 200</span>: Max Level MULT</span>`;
+      str += `<span><span style="color: #f942f9">通过关卡 200</span>: Max Level MULT</span>`;
     }
     if(hero.value.abyssDStages >= 200){
      str += `<span>[+${(0.025 * (hero.value.abyssDStages - 199)).toFixed(2)}]</span><br>`;
-     str += `<span><span style="color: red">Beat Stage 1000</span>: ???</span><br>`;
+     str += `<span><span style="color: red">通过关卡 1000</span>: ???</span><br>`;
     }
   }
 
@@ -505,7 +505,7 @@ const performSingularity = () => {
 
   if(hero.value.eventDoubleClick){
     const confirmed = window.confirm(
-      "Click OK to confirm to enter the Singularity."
+      "点击确定以确认进入奇点"
     )
     if (!confirmed) return;
   }
@@ -699,7 +699,7 @@ const performInf = () => {
 
   if(hero.value.eventDoubleClick){
     const confirmed = window.confirm(
-      "Click OK to confirm The Infinity Trial"
+      "点击确定以确认无限试炼"
     )
     if (!confirmed) return;
   }
@@ -1053,7 +1053,7 @@ function useAfkTime() {
 }
 
 function deathRecovery() {
-  let text = `At this stage, the world suppresses your excessive power, making recovery after death take longer by [${(hero.value.recoveryPenalty).toFixed(2)}] times`;
+  let text = `在该阶段，世界会压制你过强的力量，使死亡后的恢复时间延长 [${(hero.value.recoveryPenalty).toFixed(2)}] 倍`;
 
   return text;
 }
@@ -1061,37 +1061,37 @@ function deathRecovery() {
 function infHandle() {
   let penalty = Math.max(Math.min(hero.value.infPower, 1), 0);
 
-  return `Penalty for this trial: 
-  Max Level: <span style='color: red'>[^${penalty.toFixed(2)}]</span>
-  EXP Gain: <span style='color: red'>[^${penalty.toFixed(2)}]</span>`;
+  return `本次试炼惩罚： 
+  最高等级： <span style='color: red'>[^${penalty.toFixed(2)}]</span>
+  经验获取： <span style='color: red'>[^${penalty.toFixed(2)}]</span>`;
 }
 
 function darkEnergyHandle() {
-  let text = `Kill all <span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[Obscurants]</span> to advance to the next <span style='color: gold'>Infinity Tier</span><br><br>`;
-  text += `<span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[Obscurants]</span>: ${enemy.value.darkEnergy.totalBosses} / ${enemy.value.darkEnergy.maxBosses}<br>`;
+  let text = `击败全部 <span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[遮晦体]</span> 以推进到下一<span style='color: gold'>无限阶级</span><br><br>`;
+  text += `<span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[遮晦体]</span>： ${enemy.value.darkEnergy.totalBosses} / ${enemy.value.darkEnergy.maxBosses}<br>`;
   
 
   if(enemy.value.darkEnergy.totalBosses < enemy.value.darkEnergy.maxBosses)
-    text += `Stage: <span style='color: gold'>${100 + 5 * enemy.value.darkEnergy.totalBosses}</span>`
-  else text += `All <span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[Obscurants]</span> are found`
+    text += `关卡： <span style='color: gold'>${100 + 5 * enemy.value.darkEnergy.totalBosses}</span>`
+  else text += `所有<span style="color: rgb(30, 67, 64); font-weight: bold; text-shadow: 0 0 5px rgb(0, 0, 0);">[遮晦体]</span>均已找到`
 
   return text;
 }
 
 function doomHandle() {
-  let text = `When you kill an enemy, you gain a stack of <span style="color: red">*Doom*</span>. Each stack reduces your stats.
+  let text = `击杀敌人时会获得1层 <span style="color: red">*末日*</span>。每层都会降低你的属性。
 
-    Current stacks: ${enemy.value.d_damagePenalty}
+    当前层数： ${enemy.value.d_damagePenalty}
 
-    DMG penalty: ${Math.floor(hero.value.d_damage_penalty.dmg)}
-    HP penalty: ${Math.floor(hero.value.d_damage_penalty.hp)}
-    DEF penalty: ${Math.floor(hero.value.d_damage_penalty.def)}
+    伤害惩罚： ${Math.floor(hero.value.d_damage_penalty.dmg)}
+    生命惩罚： ${Math.floor(hero.value.d_damage_penalty.hp)}
+    防御惩罚： ${Math.floor(hero.value.d_damage_penalty.def)}
   `;
 
   if(dimensions.value[28].infTier >= 20)
-    text += `<br>You have a 50% chance not to receive a stack of <span style="color: red">*Doom*</span> when you kill.`;
+    text += `<br>你有50%概率不会获得一层 <span style="color: red">*Doom*</span>（击杀时触发）。`;
   else if(dimensions.value[28].infTier >= 10)
-    text += `<br>You have a 25% chance not to receive a stack of <span style="color: red">*Doom*</span> when you kill.`;
+    text += `<br>你有25%概率不会获得一层 <span style="color: red">*Doom*</span>（击杀时触发）。`;
   
   return text;
 }
@@ -1099,11 +1099,11 @@ function doomHandle() {
 function darkEnemyHandle() {
   let danger = 1000 + 500 * dimensions.value[31].infTier;
   let stage = 100 + 10 * dimensions.value[31].infTier;
-  return `Find <span style="color: orange">Dimension Colossuses</span> to advance to the next <span style="color: gold">Infinity Tier</span>
+  return `寻找<span style="color: orange">维度巨像</span>以推进到下一<span style="color: gold">无限阶级</span>
   
-  Requirement: 
-  Danger: <span style="color: gold">[${danger}+]</span>
-  Stage: <span style="color: gold">[${stage}+]</span>
+  需求： 
+  危险度： <span style="color: gold">[${danger}+]</span>
+  关卡： <span style="color: gold">[${stage}+]</span>
   `
 }
 
@@ -1113,7 +1113,7 @@ function nextDimHandle() {
   if(hero.value.dId == 'd-next')
     return `This world has been shattered by gravity. Your maximum possible stage is <span style="color: red">${stage}</span>.`;
   if(hero.value.darkId.includes('d-next'))
-    return `You Max possible Stage is <span style="color: gold">${maxStage}</span>`;
+    return `你的最高可达关卡为 <span style="color: gold">${maxStage}</span>`;
 
   return "";
 }
@@ -1121,43 +1121,43 @@ function nextDimHandle() {
 function bleedingVeilHandle() {  
   return `<span style='color: #c31414'>[Bleeding Veil]</span>
 
-    Each second, you will take DMG equal to <span style='color: #c31414'>[${hero.value.bleedvealValue}]</span>
-    The power of <span style='color: #c31414'>[Bleeding Veil]</span> increases with each stage passed.
+    每秒你会受到等同于 <span style='color: #c31414'>[${hero.value.bleedvealValue}]</span>
+    The power of <span style='color: #c31414'>[Bleeding Veil]</span> 会随着通过关卡数增加而增强.
   `
 }
 
 function corruptionHandle() {
   let text = `<span style="color: violet">While you are affected by corruption:</span><br>`;
 
-  text += `<span style="color: orange">Celestials Power: *</span> <span style="color: gold">${formatNumber((hero.value.dId.startsWith('d-') && hero.value.isTravell? 2: 1) * hero.value.dCorruptionEffect)}</span><br>`;
+  text += `<span style="color: orange">天界生物强度： *</span> <span style="color: gold">${formatNumber((hero.value.dId.startsWith('d-') && hero.value.isTravell? 2: 1) * hero.value.dCorruptionEffect)}</span><br>`;
 
   // Enemy DMG
   if (hero.value.dId == 'd-corruption') {
-    text += `<span style="color: red">Enemy DMG: *</span> <span style="color: gold">${formatNumber(Math.floor(Math.max(
+    text += `<span style="color: red">敌人伤害： *</span> <span style="color: gold">${formatNumber(Math.floor(Math.max(
       100 - hero.value.overcorruption ** (2 - 0.025 * dimensions.value[26].infTier),
       10
     ) * 1.05 ** dimensions.value[26].infTier))}</span><br>`;
   } else if (hero.value.darkId.includes('d-corruption')) {
-    text += `<span style="color: red">Enemy DMG: *</span> <span style="color: gold">${Math.floor(
+    text += `<span style="color: red">敌人伤害： *</span> <span style="color: gold">${Math.floor(
       (hero.value.dId.startsWith('d-') && hero.value.isTravell? 2: 1) * Math.max(100 - hero.value.overcorruption ** (2 + 0.05 * dimensions.value[26].infTier), 10)
     )}</span><br>`;
   }
 
   // Enemy HP
   if (hero.value.dId == 'd-corruption') {
-    text += `<span style="color: lightgreen">Enemy HP: *</span> <span style="color: gold">${formatNumber(Math.floor(Math.max(
+    text += `<span style="color: lightgreen">敌人生命： *</span> <span style="color: gold">${formatNumber(Math.floor(Math.max(
       10000 - hero.value.overcorruption ** (4 - 0.05 * dimensions.value[26].infTier),
       100
     ) * 1.5 ** dimensions.value[26].infTier))}</span><br>`;
   } else if (hero.value.darkId.includes('d-corruption')) {
-    text += `<span style="color: lightgreen">Enemy HP: *</span> <span style="color: gold">${Math.floor(
+    text += `<span style="color: lightgreen">敌人生命： *</span> <span style="color: gold">${Math.floor(
       (hero.value.dId.startsWith('d-') && hero.value.isTravell? 2: 1) * Math.max(10000 - hero.value.overcorruption ** (4 + 0.075 * dimensions.value[26].infTier), 100)
     )}</span><br>`;
   }
 
   // Decrease Max Level
   if (hero.value.dId == 'd-corruption') {
-    text += `<span style="color: lightblue">Decrease your Max Level by</span> <span style="color: red">${(
+    text += `<span style="color: lightblue">降低你的最高等级：</span> <span style="color: red">${(
       hero.value.overcorruption /
       (10 + 2.5 * dimensions.value[26].infTier)
     ).toFixed(2)}</span>`;
@@ -1167,7 +1167,7 @@ function corruptionHandle() {
 }
 
 function dHardHandle() {
-  let text = `Curse Power: <span style="color: red">*${(hero.value.curseMult).toFixed(2)}</span>`;
+  let text = `诅咒强度： <span style="color: red">*${(hero.value.curseMult).toFixed(2)}</span>`;
 
   return text;
 }
@@ -1175,7 +1175,7 @@ function dHardHandle() {
 function dBuffsHandle() {
   let descrease = Math.min(Math.log(1 + dimensions.value[32].infTier) ** 4 , 80);
 
-  let text = `Buffs appearance chance: <span style='color: yellow'>${(100 - descrease).toFixed(2)}</span>`;
+  let text = `增益出现率： <span style='color: yellow'>${(100 - descrease).toFixed(2)}</span>`;
 
   return text;
 }
@@ -1188,7 +1188,7 @@ function dInfTreeHandle() {
   else if(hero.value.darkId.includes('d-noTree'))
     mult = 2 - 0.02 * dimensions.value[35].infTier;
 
-  let text = `Cost of Infinity Tree Perks: <span style="color: gold">${(mult).toFixed(2)}<span>`;
+  let text = `无限天赋点消耗： <span style="color: gold">${(mult).toFixed(2)}<span>`;
 
   return text;
 }
@@ -1197,9 +1197,9 @@ function apsHandle() {
   let aps =  0.01 * hero.value.stage * Math.sqrt(Math.log(3 + dimensions.value[39].infTier));
   let enemyAps = 0.01 * hero.value.stage * Math.sqrt(Math.log(3 + dimensions.value[39].infTier));
 
-  let text = `APS Penalty: <span style="color: red">-${aps.toFixed(2)}</span>
-  Max APS: <span style="color: red">${Math.max(hero.value.maxAPS, hero.value.attacksPerSecond)}</span>
-  Enemy APS: <span style="color: yellow">+${enemyAps.toFixed(2)}</span>: 
+  let text = `攻速惩罚： <span style="color: red">-${aps.toFixed(2)}</span>
+  最大攻速： <span style="color: red">${Math.max(hero.value.maxAPS, hero.value.attacksPerSecond)}</span>
+  敌人攻速： <span style="color: yellow">+${enemyAps.toFixed(2)}</span>: 
   `
   
   return text;
@@ -1209,50 +1209,50 @@ function noEqDimHandle() {
     let dark_d_penalty = (hero.value.dId == 'd-noEq'? (Math.E * (dimensions.value[36].infTier + 1)) ** 1.3: 1);
     dark_d_penalty = (hero.value.darkId.includes('d-noEq')? Math.max(Math.E ** (1.3 - 0.015 * dimensions.value[36].infTier), 1): dark_d_penalty);
 
-    let text = `Enhances Cost: <span style="color: gold">*${formatNumber(dark_d_penalty)}</span>`;
+    let text = `强化花费： <span style="color: gold">*${formatNumber(dark_d_penalty)}</span>`;
     if(hero.value.darkId.includes('d-noEq'))
-      text += `<br>Your possible Max Equipment Tier is <span style="color: rgb(0, 255, 255)">${dimensions.value[36].infTier + 1}</span>`
+      text += `<br>你可达到的装备最高阶为 <span style="color: rgb(0, 255, 255)">${dimensions.value[36].infTier + 1}</span>`
 
     return text; 
 }
 
 function unlimitedDimHandle() {
   let lvlRed = Math.max(hero.value.dTimer ** (0.1 + 0.01 * dimensions.value[38].infTier), 1);
-  let text = `Max Level Reduction: <span style="color: red">${lvlRed.toFixed(3)}</span>`;
+  let text = `最高等级削减： <span style="color: red">${lvlRed.toFixed(3)}</span>`;
 
   return text;
 }
 
 function stageHardCap() {
-  return `<span style="color: rgb(0, 255, 255)">Your knowledge of this world is too small, perhaps [D-Gravity] will give you a hint</span>`;
+  return `<span style="color: rgb(0, 255, 255)">你对这个世界的认知仍过于浅薄，也许 [D-Gravity] 会给你提示</span>`;
 }
 
 function darkSpaceHandle() {
   let power = (Math.E * (1 + dimensions.value[37].infTier)) ** 1.75;
   let count = 6 * (dimensions.value[37].infTier + 1);
-  let text = `Celestials are <span style="color: gold">${formatNumber(power)}</span> times stronger<br>`;
-  text +=  `Beat <span style="color: gold">${hero.value.spCount + hero.value.spsCount} / ${count}</span> celestials to advance to the next Infinity Tier`;
+  let text = `天界生物强度为 <span style="color: gold">${formatNumber(power)}</span> 倍<br>`;
+  text +=  `击败 <span style="color: gold">${hero.value.spCount + hero.value.spsCount} / ${count}</span> 个天界生物以推进到下一无限阶级`;
 
   return text;
 }
 
 function travellHandle() {
-  let text = `<span style="color: lightblue">Travel Effect</span>
+  let text = `<span style="color: lightblue">旅行效果</span>
   
-  Enemies are stronger by <span style="color: red">${hero.value.travellPenalty.toFixed(2)}</span>.
+  敌人强度提升为 <span style="color: red">${hero.value.travellPenalty.toFixed(2)}</span>.
   `
   if(hero.value.dId.startsWith('d-'))
-    text += `<br>While you are in the Dark Dimension, the effect of the travell is worse and extends to other effects:
-    - The effect of Corruption is doubled
-    - The effect of Curse is doubled
-    - You gain 2 Doom stacks instead of 1`;
+    text += `<br>在黑暗维度中，旅行效果会更严重并扩展到其他效果：
+    - 腐化效果翻倍
+    - 诅咒效果翻倍
+    - 每次获得2层末日而非1层`;
 
   return text;
 }
 
 function spaceTimerHandle() {
-  let text = `<span style="color: orange">[D-Space]</span> spreads its influence here. You can't stay for too long. 
-  You have <span style="color: gold">${Math.floor(hero.value.spaceTimer)}s</span> before you die.`;
+  let text = `<span style="color: orange">[D-Space]</span> 将影响扩散至此。你无法停留太久。 
+  你还有 <span style="color: gold">${Math.floor(hero.value.spaceTimer)}s</span>  后将死亡。`;
 
   return text;
 }
