@@ -19,7 +19,7 @@
       </div>
 
       <button class="reset-button" @click="resetPerks">
-        🔄 Reset perks
+        🔄 重置天赋
       </button>
     </div>
 

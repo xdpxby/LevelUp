@@ -75,10 +75,10 @@
         <button class="btnAscend" @click="performAscension">
         <img :src="ascensionIcon" width="24px" height="24px" style="vertical-align: -2px;"/>
           <div class="ascend-tooltip">
-            <p><strong>Ascension</strong></p>
-            <p>Reset to stage 1, but you will lose level, tree and equipment.</p>
-            <p>Total shards: {{ formatNumber(hero.totalAscensionShards) }} <span v-if="hero.ascendShardPerform > 0">(+{{formatNumber(hero.ascendShardPerform)}} after Ascension)</span> 💠</p>
-            <p v-if="dimensions[9].infTier == dimensions[9].maxInfTier && hero.dId == 'main'">Now you are available to get Dimension Shard(DS). Reach Stage {{hero.dsStage + 10 * hero.ds}} and Ascend to gain 1 DS</p>
+            <p><strong>飞升</strong></p>
+            <p>重置到第1关，但会失去等级、天赋树与装备。</p>
+            <p>总碎片： {{ formatNumber(hero.totalAscensionShards) }} <span v-if="hero.ascendShardPerform > 0">(+{{formatNumber(hero.ascendShardPerform)}} 飞升后)</span> 💠</p>
+            <p v-if="dimensions[9].infTier == dimensions[9].maxInfTier && hero.dId == 'main'">你现在可以获取维度碎片（DS）。达到关卡 {{hero.dsStage + 10 * hero.ds}} 并飞升即可获得 1 DS</p>
           </div>
         </button>
       </div>
@@ -86,17 +86,17 @@
         <button class="btnRebirth" @click="performRebirth">
         ♻️
           <div class="rebirth-tooltip">
-            <p><strong>Rebirth</strong></p>
+            <p><strong>重生</strong></p>
             <p>
-            You reached the Limit of Max Level. Rebirth to break this Limit<br>
-            Rebirth to stage 1, but you will lose level, tree, equipment, souls.<br>
-            Every tier provides stonger enemies and high rewards
+            你已达到最高等级上限。进行重生可突破该上限<br>
+            重生会回到第1关，但会失去等级、天赋树、装备与灵魂。<br>
+            每一阶都会带来更强敌人与更高奖励
             </p>
-            <p v-if="hero.mainInfTier < 2">Next rebirth Tier: {{Math.min(100 + (10 * hero.rebirthTier), 300)}} Level</p>
-            <p v-if="hero.infTier >= 3 || hero.infEvents >= 3">+{{Math.floor((hero.level - 90) / 10 > hero.rebirthTier? (hero.level - (90 + 10 * hero.rebirthTier)) / 10: 0)}} Rebirth Tier</p>
-            <p v-if="(hero.rebirthTier + 1)%5 == 0 && hero.rebirthTier < 21">Unlock new Rebirth Affect</p>
-            <p v-if="(hero.rebirthTier + 1)%10 == 0 && hero.rebirthTier >= 21 && hero.rebirthTier < 71">Unlock new Rebirth Affect</p>
-            <p v-if="hero.rebirthPts <= 1e5">You gained: {{format(hero.totalRebirthPts)}} Pts</p>
+            <p v-if="hero.mainInfTier < 2">下一级重生阶级需求：{{Math.min(100 + (10 * hero.rebirthTier), 300)}} 级</p>
+            <p v-if="hero.infTier >= 3 || hero.infEvents >= 3">+{{Math.floor((hero.level - 90) / 10 > hero.rebirthTier? (hero.level - (90 + 10 * hero.rebirthTier)) / 10: 0)}} 重生阶级</p>
+            <p v-if="(hero.rebirthTier + 1)%5 == 0 && hero.rebirthTier < 21">解锁新的重生效果</p>
+            <p v-if="(hero.rebirthTier + 1)%10 == 0 && hero.rebirthTier >= 21 && hero.rebirthTier < 71">解锁新的重生效果</p>
+            <p v-if="hero.rebirthPts <= 1e5">你将获得：{{format(hero.totalRebirthPts)}} 点</p>
           </div>
         </button>
       </div>
@@ -104,14 +104,14 @@
         <button class="btnAbyss" @click="performAbyss">
         🧿
           <div class="abyss-tooltip abyss-shadow">
-            <p v-if="hero.abyssTier < 3"><strong>Abyss[T{{hero.abyssTier}}]</strong></p>
-            <p v-if="hero.abyssTier >= 3"><strong>Abyss D</strong></p>
+            <p v-if="hero.abyssTier < 3"><strong>深渊[T{{hero.abyssTier}}]</strong></p>
+            <p v-if="hero.abyssTier >= 3"><strong>深渊 D</strong></p>
             <p> 
             {{abyssDescription[hero.abyssTier]}}
             </p>
-            <span v-if="hero.abyssTier >= 3">Max Stage: {{hero.abyssDStages}}</span>
+            <span v-if="hero.abyssTier >= 3">最高关卡：{{hero.abyssDStages}}</span>
             <p v-html="abyssRwrd(hero.abyssTier)"></p>
-            <p v-if="hero.isAbyss">Click to leave or complete Abyss</p>
+            <p v-if="hero.isAbyss">点击离开或结算深渊</p>
           </div>
         </button>
       </div>
@@ -138,12 +138,12 @@
           <img :src="redSkull" width="24px" height="24px" v-if="hero.soulD" />
           <span v-if="!hero.soulD">💀</span>
           <div class="soul-tooltip abyss-shadow">
-              <p><strong>D-Soul</strong></p>
-              <p>Enter the Dimension where souls have 100% appearence, but they are stronger than usual souls. Soul Loot scales better.</p>
-              <p>Click to <span v-if="!hero.soulD">Enter</span><span  v-if="hero.soulD">Leave</span> The Dimension</p>
-              <p v-if="hero.selectedDivSkills.includes(11)">D-Soul is blocked due to <span style='color: #00ffea'>Soul Eclipse</span></p>
-              <p v-if="hero.selectedDivSkills.includes(6)">D-Soul is blocked due to <span style='color: #00ffea'>The basis of the Limit</span></p>
-              <p v-if="hero.dId === 'd-next' && dimensions[34].infTier > 15">Your maximum possible stage is below to enter</p>
+              <p><strong>灵魂维度</strong></p>
+              <p>进入灵魂出现率 100% 的维度，但灵魂怪会比平时更强，灵魂掉落成长更高。</p>
+              <p>点击以<span v-if="!hero.soulD">进入</span><span  v-if="hero.soulD">离开</span>该维度</p>
+              <p v-if="hero.selectedDivSkills.includes(11)">灵魂维度被封锁，原因：<span style='color: #00ffea'>Soul Eclipse</span></p>
+              <p v-if="hero.selectedDivSkills.includes(6)">灵魂维度被封锁，原因：<span style='color: #00ffea'>极限基石</span></p>
+              <p v-if="hero.dId === 'd-next' && dimensions[34].infTier > 15">你的可达最高关卡不足，无法进入</p>
           </div>
         </button>
       </div>

@@ -33,7 +33,7 @@
         <button style="font-size: 14px;" v-if="hero.mainInfTier >= 4 || hero.infEvents >= 4" @click="upAll">
         Upgrade All (Except Danger)
         </button>
-        <Tooltip :text="() => `Reset Danger. You won't get mutagens back`">
+        <Tooltip :text="() => `重置危险等级（Danger），不会返还突变素`">
           <button style="font-size: 14px; margin-left: 6px;" @click="dReset">
             R
           </button>
