@@ -1,22 +1,22 @@
 <template>
   <div class="settings-wrapper">
     <div class="settings-panel">
-      <h2>⚙️ Settings</h2>
+      <h2>⚙️ 设置</h2>
 
       <div class="actions">
-        <button class="btn" @click="saveGame">💾 Save</button>
-        <button class="btn" @click="exportGame">📤 Export</button>
-        <button class="btn" @click="triggerFileInput">📥 Import</button>
+        <button class="btn" @click="saveGame">💾 保存</button>
+        <button class="btn" @click="exportGame">📤 导出</button>
+        <button class="btn" @click="triggerFileInput">📥 导入</button>
         <input type="file" ref="fileInput" accept=".json, .enc" style="display: none" />
-        <button class="btn danger" @click="resetGame">🧹 Reset</button>
+        <button class="btn danger" @click="resetGame">🧹 重置</button>
         <button v-if="hero.mainInfTier >= 6" class="btn infinity" @click="resetInf">
-          <span class="infinity-glow">∞</span> Reset Infinity
+          <span class="infinity-glow">∞</span> 重置无限
         </button>
       </div>
 
       <div class="toggles">
         <div class="setting-item">
-          <span>AFK Reminder</span>
+          <span>AFK提醒</span>
           <div 
             class="chip" 
             :class="{ active: hero.showAfkPopupRule }" 
@@ -27,18 +27,18 @@
         </div>
 
         <div class="setting-item">
-          <span>Idle System (On after Reset)</span>
+          <span>挂机系统（重置后开启）</span>
           <div 
             class="chip" 
             :class="{ active: hero.gcnpSetting }" 
             @click="hero.gcnpSetting = !hero.gcnpSetting"
           >
-            {{ hero.gcnpSetting ? 'Enabled' : 'Disabled' }}
+            {{ hero.gcnpSetting ? '已启用' : '已禁用' }}
           </div>
         </div>
 
         <div class="setting-item" v-if="hero.ascensionAutoUnlock">
-          <span>Auto-Perk Buyer [Ascension]</span>
+          <span>自动天赋购买[飞升]</span>
           <div 
             class="chip" 
             :class="{ active: hero.ascensionAuto }" 
@@ -49,7 +49,7 @@
         </div>
 
         <div class="setting-item">
-          <span>Safety Check </span>
+          <span>安全确认</span>
           <div 
             class="chip" 
             :class="{ active: hero.eventDoubleClick }" 
@@ -60,7 +60,7 @@
         </div>
 
         <div class="setting-item">
-          <span>Attack Display</span>
+          <span>攻击显示</span>
           <div class="chip-group">
             <div 
               class="chip" 
@@ -74,7 +74,7 @@
               :class="{ active: hero.averageAttack.status === 1 }" 
               @click="hero.averageAttack.status = 1"
             >
-              ⚔️ Current
+              ⚔️ 当前
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ const exportGame = () => {
   const blob = new Blob([encrypted], { type: "text/plain" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "savegame.enc";
+  link.download = "存档.enc";
   link.click();
 };
 
@@ -200,7 +200,7 @@ const triggerFileInputOld = () => {
         try {
           data = JSON.parse(raw);
         } catch (jsonErr) {
-          alert("Unable to load file: corrupted or invalid format");
+          alert("无法加载存档：文件损坏或格式无效");
           return;
         }
       }
@@ -236,7 +236,7 @@ const triggerFileInput = () => {
         try {
           data = JSON.parse(raw);
         } catch (jsonErr) {
-          alert("Unable to load file: corrupted or invalid format");
+          alert("无法加载存档：文件损坏或格式无效");
           return;
         }
       }
@@ -361,7 +361,7 @@ const triggerFileInput = () => {
 
 
 const resetGame = () => {
-  if (confirm("Are you sure you want to reset all progress?")) {
+  if (confirm("确定要重置全部进度吗？")) {
     localStorage.removeItem("gameSave");
     location.reload();
   }

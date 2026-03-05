@@ -11,7 +11,7 @@
         }"
         :class="{ active: activeEvent === event }"
       >
-        {{ event }}
+        {{ eventLabel(event) }}
       </button>
     </div>
 
@@ -32,13 +32,13 @@
     </div>
 
     <div v-if="activeEvent === 'Buffs'" class="info-card buffs-section">
-      <h3 class="info-title">Buffs</h3>
-      <p class="info-line">After stage 10 all Buffs become permanent(+10 Stages for each Abyss Tier). You can change them after <strong>ASCENSION</strong> & <strong>REBIRTH</strong></p>
-      <p class="info-line">Reach stage 20 to gain BUFF EXP</p>
-      <p>MAX available BUFF Tier - 3. </p>
-      <p class="info-line">Double Check - If the first attempt is false, the check is repeated.</p>
-      <p class="info-line">Overkill - The ability to kill an enemy without a fight. The enemy does not drop loot.</p>
-      <p class="info-line" v-if="hero.rebirthPts >= 100000 && hero.abyssTier >= 3">Space - Activate/deactivate to choose buffs for Space Fight. Space Buffs dont get BUFF EXP</p>
+      <h3 class="info-title">增益</h3>
+      <p class="info-line">10关后所有增益永久生效（每个深渊阶级+10关）。你可在<strong>飞升</strong>与<strong>重生</strong>后切换。</p>
+      <p class="info-line">达到20关可获得增益经验</p>
+      <p>可用增益最高阶级为3。</p>
+      <p class="info-line">双重判定 - 若第一次判定失败，则再次判定。</p>
+      <p class="info-line">溢出击杀 - 无需战斗直接击杀敌人。该敌人不掉落战利品。</p>
+      <p class="info-line" v-if="hero.rebirthPts >= 100000 && hero.abyssTier >= 3">太空 - 启用/禁用以选择太空战斗增益。太空增益不获得增益经验</p>
       <div class="buffs-list">
         <div v-for="buff in availableBuffs" :key="buff.id" class="buff-card">
           <h4 class="buff-name">🔹 {{ buff.name }}</h4>
@@ -74,12 +74,12 @@
           <h3 class="lore-title">{{ section.title }}</h3>
 
           <div class="lore-meta">
-            <span class="lore-author" v-if="section.author">From: {{ section.author }}</span>
-            <span class="lore-location" v-if="section.location"> Location: {{ section.location }}</span>
+            <span class="lore-author" v-if="section.author">来自：{{ section.author }}</span>
+            <span class="lore-location" v-if="section.location"> 地点：{{ section.location }}</span>
           </div>
 
           <div v-if="!section.locked" class="lore-content" v-html="section.content.join('<br>')"></div>
-          <p v-else class="lore-locked">🔒 Information locked. Complete the requirement to unlock.</p>
+          <p v-else class="lore-locked">🔒 信息已锁定。完成要求后解锁。</p>
         </div>
       </div>
     </div>
@@ -96,12 +96,12 @@
           class="tab-button"
           :class="[{ active: section === activeTab }]"
         >
-          {{ section }}
+          {{ statLabel(section) }}
         </button>
       </div>
 
       <div class="stats-content">
-        <div style="color: red">The stat section may contain bugs or mistakes</div>
+        <div style="color: red">统计面板可能存在错误或不准确之处</div>
         <ul v-if="currentSection">
           <li
             v-for="(item, index) in currentSection.content.filter(c => !c.req || c.req())"
@@ -223,6 +223,53 @@ const events = [
   'Dimension',
   'Stats',
 ];
+
+const eventNameMap = {
+  Update: '更新',
+  Lore: '剧情',
+  Info: '信息',
+  Tree: '天赋树',
+  Equipment: '装备',
+  Ascension: '飞升',
+  Souls: '灵魂',
+  Amulet: '护符',
+  Rebirth: '重生',
+  Abyss: '深渊',
+  Space: '太空',
+  Radiation: '辐射',
+  Corruption: '腐化',
+  Infinity: '无限',
+  Buffs: '增益',
+  Singularity: '奇点',
+  Dimension: '维度',
+  Stats: '统计',
+};
+
+function eventLabel(event) {
+  return eventNameMap[event] || event;
+}
+
+const statNameMap = {
+  Level: '等级',
+  EXP: '经验',
+  HP: '生命',
+  DMG: '伤害',
+  DEF: '防御',
+  APS: '攻速',
+  'CRIT': '暴击',
+  'CRIT DMG': '暴击伤害',
+  Stage: '关卡',
+  'Corrupt.': '腐化',
+  IP: 'IP',
+  Curse: '诅咒',
+  Soul: '灵魂',
+  Space: '太空',
+  Infinity: '无限',
+};
+
+function statLabel(stat) {
+  return statNameMap[stat] || stat;
+}
 
 
 
@@ -1303,7 +1350,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Tree',
+    title: '天赋树',
     class: 'tree-section',
     content: [
       'Reset Perks: Resets all to level 1 and refunds Points.',
@@ -1314,7 +1361,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Ascension',
+    title: '飞升',
     class: 'ascension-section',
     content: [
       'Gain Ascension Shards after stage 10.',
@@ -1324,7 +1371,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Souls',
+    title: '灵魂',
     class: 'souls-section',
     content: [
       'Souls are special creatures. They are stronger than regular enemies, but they provide greater rewards',
@@ -1337,7 +1384,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Equipment',
+    title: '装备',
     class: 'equipment-section',
     content: [
       'Get weapons from killed monsters',
@@ -1353,7 +1400,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Amulet',
+    title: '护符',
     class: 'amulet-section',
     content: [
       `Kill an enemy to get [Total Bonus]. [Total Bonus] is equals to sum of all curse bonuses from enemy`,
@@ -1365,7 +1412,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Rebirth',
+    title: '重生',
     class: 'rebirth-section',
     content: [
       'To get rebirth tier you need to reach the cap. The cap is equal to 100 + 10 * Rebirth Tier',
@@ -1379,7 +1426,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Abyss',
+    title: '深渊',
     class: 'abyss-section',
     content: [
       hero.value.soulsMax >= 20 && 'Abyss T1 - After complete you will be cursed by 3 new curses. Soul CAP -> 30. x1.3 MULT Rebirth Pts per Abyss Tier. +50% souls appear for each curse',
@@ -1404,7 +1451,7 @@ const styledSections = [
     ].filter(Boolean)
   },
   {
-    title: 'Space',
+    title: '太空',
     class: 'space-section',
     content: [
       'Kill a monster with a certain danger to find the boss',
@@ -1414,7 +1461,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Radiation',
+    title: '辐射',
     class: 'radiation-section',
     content: [
       'Curse [T3] can be mutated to Curse [T4]',
@@ -1438,7 +1485,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Corruption',
+    title: '腐化',
     class: 'corruption-section',
     content: [
       'Appears after Abyss T3.',
@@ -1447,7 +1494,7 @@ const styledSections = [
     ]
   },
   {
-  title: 'Infinity',
+  title: '无限',
   class: 'infinity-section',
   content: [
     'Each Infinity provides a rebuild mechanic, but everything is reset (except Abyss D).',
@@ -1457,7 +1504,7 @@ const styledSections = [
   ],
   },
   {
-    title: 'Singularity',
+    title: '奇点',
     class: 'singularity-section',
     content: [
       'Singularity levels increase the threshold after Max Level 700. After Level 700, your stats are doubled.',
@@ -1465,7 +1512,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Dimension',
+    title: '维度',
     class: 'dimension-section',
     content: [
       `In dimensions that are weakly imbued with the D-Rule, the maximum possible stage in the Abyss is 100`,
@@ -1479,7 +1526,7 @@ const styledSections = [
   }
 ];
 
-const statTabs = ['Level', 'IP', 'EXP', 'BUFF EXP', 'Equipment', 'Curse', 'Ascension', 'Stardust', 'Mutagen', 'Rebirth', 
+const statTabs = ['Level', 'IP', 'EXP', 'BUFF EXP', '装备', 'Curse', '飞升', 'Stardust', 'Mutagen', '重生', 
 'Potential', 'Danger', 'Damage', 'HP', 'DEF', 'ApS', 'Rush', 'Corrupt.', 'Stage Req.'];
 
 
@@ -1536,7 +1583,7 @@ const statSections = [
         req: () => hero.value.eqUpsMult['spRing'].bonus > 0 || hero.value.minLevel > 0
       },
       {
-        desc: 'Souls',
+        desc: '灵魂',
         value: () => (hero.value.infTier >= 6? Math.floor(hero.value.soulsMax/10): 0),
         color: '#d516d5',
         req: () => hero.value.mainInfTier >= 6,
@@ -1548,7 +1595,7 @@ const statSections = [
         req: () => dimensions.value[9].infTier >= 7,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => Math.floor(hero.value.infPoints / (200 - ((hero.value.mainInfTier >= 25? 0.0035: 0) > 0? 20: 0))),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 13,
@@ -1572,7 +1619,7 @@ const statSections = [
         req: () => dimensions.value[9].infTier >= 7,
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => (hero.value.spCount >= 41? Math.floor(hero.value.spCount / 6): 0),
         color: 'orange',
         req: () => hero.value.spCount >= 41 || hero.value.mainInfTier >= 15,
@@ -1648,13 +1695,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => (perks.value[4].status? 0: perks.value[4].value * perks.value[4].level),
         color: 'lightgreen',
         req: () => true,
       },
       {
-        desc: 'Ascension',
+        desc: '飞升',
         value: () => (ascenPerks[0].level + ascenPerks[9].level + ascenPerks[18].level),
         color: 'lightblue',
         req: () => true,
@@ -1666,13 +1713,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Souls',
+        desc: '灵魂',
         value: () => hero.value.souls * (dimensions.value[14].infTier == dimensions.value[14].maxInfTier? 2: 1),
         color: '#d516d5',
         req: () => true,
       },
       {
-        desc: 'Equipment',
+        desc: '装备',
         value: () => (equipment[0].tiers[hero.value.equipmentTiers['sword']].bonus.cap + 
           equipment[1].tiers[hero.value.equipmentTiers['armor']].bonus.cap + 
           equipment[2].tiers[hero.value.equipmentTiers['boots']].bonus.cap +
@@ -1716,13 +1763,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => radPerks[12].level,
         color: '#99ff99',
         req: () => true,
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => (hero.value.spCount >= 23? hero.value.sp * 2: 0),
         color: 'orange',
         req: () => true,
@@ -1773,7 +1820,7 @@ const statSections = [
         req: () => hero.value.maxLevelMult > 1
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => ((hero.value.mainInfTier >= 10? (1.07 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / (Math.sqrt(hero.value.infPoints)*Math.log(hero.value.infPoints))) - 1: 0)).toFixed(2),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 10 && hero.value.maxLevelMult > 1,
@@ -2112,7 +2159,7 @@ const statSections = [
         req: () => true,
       },
      {
-        desc: 'Souls',
+        desc: '灵魂',
         value: () => formatNumber(
           (1 + Math.min(
             hero.value.souls,
@@ -2151,13 +2198,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Rebirth',
+        desc: '重生',
         value: () => (hero.value.rebirthPts >= 5? 2: 1),
         color: 'lightgreen',
         req: () => true,
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => formatNumber(hero.value.sp >= 11? Math.min(1.025 * hero.value.sp, 5): 1, true),
         color: 'orange',
         req: () => true,
@@ -2269,7 +2316,7 @@ const statSections = [
     ],
   },
   {
-    title: 'Equipment',
+    title: '装备',
     content: [
       { desc: 'Equipment Drop Chance', value: '', color: 'orange',  uppercase: true, },
       {
@@ -2322,7 +2369,7 @@ const statSections = [
         color: '#61fccc',
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => formatNumber(1 + (hero.value.spCount >= 10? 0.1 * hero.value.sp: 1), true),
         color: 'orange',
       },
@@ -2337,7 +2384,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber(hero.value.mainInfTier >= 1? ((1.08 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1, true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 1,
@@ -2502,7 +2549,7 @@ const statSections = [
     ],
   },
   {
-    title: 'Ascension',
+    title: '飞升',
     content: [
       { desc: 'Ascension Shards', value: '', color: 'lightblue',  uppercase: true, },
       {
@@ -2550,7 +2597,7 @@ const statSections = [
         req: () => dimensions.value[32].infTier >= 8
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber(hero.value.mainInfTier >= 3? ((1.045 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1, true),
         color: '#66ffcc',
         req: () => hero.value.mainInfTier >= 3,
@@ -2613,9 +2660,9 @@ const statSections = [
     ],
   },
   {
-    title: 'Rebirth',
+    title: '重生',
     content: [
-      { desc: 'Rebirth', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '重生', value: '', color: 'lightgreen',  uppercase: true, },
       {
         desc: 'base',
         value: () => {
@@ -2648,7 +2695,7 @@ const statSections = [
         color: '#ed84ed',
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((perks.value[14].level? 1 + 0.2 * perks.value[14].level: 1), true),
         color: '#66ffcc',
       },
@@ -2668,7 +2715,7 @@ const statSections = [
         color: 'lightblue',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber(hero.value.mainInfTier >= 3? ((1.025 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1, true),
         color: 'gold',
       },
@@ -2706,7 +2753,7 @@ const statSections = [
         color: '',
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((1 + 0.25 * perks.value[16].level), true),
         color: 'lightgreen',
       },
@@ -2731,7 +2778,7 @@ const statSections = [
         color: '#11fffc',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber(hero.value.mainInfTier >= 4? ((1.035 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1, true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 4
@@ -2870,7 +2917,7 @@ const statSections = [
         color: '#ed14ed',
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((1 + perks.value[17].level * 0.01), true),
         color: 'green',
       },
@@ -2886,13 +2933,13 @@ const statSections = [
         req: () => hero.value.singularity >= 8,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber((hero.value.mainInfTier >= 18? (1.0145 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints)): 0), true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 18
       },
       {
-        desc: 'Souls',
+        desc: '灵魂',
         value: () => formatNumber(enemy.value.soulBuff.stardust, true),
         color: 'purple',
         req: () => hero.value.mainInfTier >= 5
@@ -2971,7 +3018,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => formatNumber(1.025 ** radPerks[4].level, true),
         color: 'lightgreen',
         req: () => true
@@ -3040,7 +3087,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => radPerks[6].level,
         color: 'lightgreen',
         req: () => true
@@ -3058,13 +3105,13 @@ const statSections = [
         req: () => enemy.value.dangerEnemyLoot[0] > 0
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => (perks.value[18].level),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => Math.floor(hero.value.infPoints / (250 - ((hero.value.mainInfTier >= 25? 0.0035: 0) > 0? 20: 0))),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 25
@@ -3125,7 +3172,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () =>  (hero.value.mainInfTier >= 16? Math.floor(hero.value.infPoints / (15 - ((hero.value.mainInfTier >= 25? 0.0035: 0) > 0? 1: 0))): 0),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 16
@@ -3149,7 +3196,7 @@ const statSections = [
         req: () => dimensions.value[15].infTier > 0
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => (hero.value.spCount >= 38? hero.value.sp: 0),
         color: 'orange',
         req: () => true
@@ -3256,7 +3303,7 @@ const statSections = [
         color: '#66ff66',
       },
        {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber(!perks.value[0].infStatus && !perks.value[0].status? perks.value[0].value ** perks.value[0].level: 1, true),
         color: '#66ffcc',
       },
@@ -3273,7 +3320,7 @@ const statSections = [
         req: () => hero.value.mainInfTier >= 1 || hero.value.spCount > 0
       },
        {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber((hero.value.mainInfTier >= 1 || hero.value.level >= 700? ((1.055 + (hero.value.mainInfTier >= 25? 0.0035: 0) + (dimensions.value[20].infTier == dimensions.value[20].maxInfTier? 0.005: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))) : 1), true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 1
@@ -3512,7 +3559,7 @@ const statSections = [
       },
       { desc: 'Crit Chance', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((perks.value[7].level * perks.value[7].value), true),
         color: 'lightgreen',
       },
@@ -3553,7 +3600,7 @@ const statSections = [
         color: '#22cccc',
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((perks.value[8].level * perks.value[8].value * 0.01), true),
         color: 'lightgreen',
       },
@@ -3612,12 +3659,12 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((perks.value[1].value * perks.value[1].level), true),
         color: 'green',
       },
       {
-        desc: 'Equipment',
+        desc: '装备',
         value: () => formatNumber(equipment[1].tiers[hero.value.equipmentTiers['armor']].bonus.hp, true),
         color: '#22cccc',
       },
@@ -3646,7 +3693,7 @@ const statSections = [
       },
       { desc: 'HP MULT', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber((hero.value.mainInfTier >= 1 || hero.value.level >= 700? ((1.015 + (hero.value.mainInfTier >= 25? 0.0035: 0)) ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1), true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 1
@@ -3755,7 +3802,7 @@ const statSections = [
         color: 'orange',
       },
        {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber((1 + ((perks.value[2].value * perks.value[2].level)*0.01)), true),
         color: 'lightgreen',
       },
@@ -3770,7 +3817,7 @@ const statSections = [
         color: 'orange',
       },
        {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber((hero.value.mainInfTier >= 1 || hero.value.level >= 700? (1.02 ** (hero.value.infPoints / Math.sqrt(hero.value.infPoints + 1))): 1), true),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 1,
@@ -3863,7 +3910,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber(perks.value[5].value * perks.value[5].level, true),
         color: 'lightgreen',
         req: () => true
@@ -3980,7 +4027,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => formatNumber(0.02 * hero.value.singularity, true),
         color: 'rayn',
         req: () => hero.value.singularity > 0
@@ -4008,7 +4055,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Souls',
+        desc: '灵魂',
         value: () => (hero.value.soulsMax >= 40? 0.1: 0),
         color: 'purple',
         req: () => true
@@ -4020,7 +4067,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => formatNumber(0.02 * hero.value.singularity, true),
         color: 'rayn',
         req: () => hero.value.singularity > 0
@@ -4044,7 +4091,7 @@ const statSections = [
     title: 'Corrupt.',
     id: 'corruption',
     content: [
-      { desc: 'Corruption', value: '', color: 'purple',  uppercase: true, req: () => true },
+      { desc: '腐化', value: '', color: 'purple',  uppercase: true, req: () => true },
       {
         desc: 'Base',
         value: 0.1,
@@ -4052,13 +4099,13 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => formatNumber((hero.value.spCount >= 22? 1.002 ** hero.value.sp - 1: 0), true),
         color: 'orange',
         req: () => true
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => formatNumber((radPerks[11].level? 0.01 * Math.floor((hero.value.maxStage-5)/5): 0), true),
         color: 'green',
         req: () => true
@@ -4070,7 +4117,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => formatNumber(hero.value.infCorruption, true),
         color: 'gold',
         req: () => true
@@ -4114,13 +4161,13 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Tree',
+        desc: '天赋树',
         value: () => formatNumber(perks.value[10].value * perks.value[10].level, true),
         color: 'lightgreen',
         req: () => true,
       },
       {
-        desc: 'Ascension',
+        desc: '飞升',
         value: () => formatNumber((ascenPerks[15].level == 1? 0.01: 0), true),
         color: 'lightblue',
         req: () => true,
@@ -4144,7 +4191,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Space',
+        desc: '太空',
         value: () => formatNumber((hero.value.spCount >= 16? 0.01: 0), true),
         color: 'orange',
         req: () => hero.value.spaceUnlocked || hero.value.mainInfTier > 0

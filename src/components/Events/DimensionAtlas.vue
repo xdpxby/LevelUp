@@ -623,10 +623,10 @@ function dimensionD(hovered) {
     d.r = unlimittedDescription();
   
 
-  let str = `<span><strong>Dimension: ${d.name} [${d.idx}]</strong></span><br>`
+  let str = `<span><strong>维度：${d.name} [${d.idx}]</strong></span><br>`
 
-  if(d.id == 'hard') str += `Enter the dimension where curses are [T5] and they are permanent. You won't get loot from curses. Abyss is locked. Reach Stage ${100 + 5 * (d.infTier - 15)} to be able to advance to the next INF Tier<br>`;
-  else if(d.id == 'overstage') str += `Enter the Dimension where you start from Stage ${100 + 5 * (d_data.value[19].infTier - 20)}<br>`
+  if(d.id == 'hard') str += `进入一个维度：诅咒为[T5]且永久生效。你无法从诅咒中获得掉落。深渊被锁定。达到关卡 ${100 + 5 * (d.infTier - 15)} 才能推进到下一无限阶级<br>`;
+  else if(d.id == 'overstage') str += `进入一个维度：你从关卡 ${100 + 5 * (d_data.value[19].infTier - 20)}<br>`
   else str += `<span>${d.d}</span><br><br>`;
 
   if(d_req(d)) str += `<span style="color: red">${d.c}</span><br>`;
@@ -636,16 +636,16 @@ function dimensionD(hovered) {
 
   if(d.id == 'noBuffs') str += `奖励：增益经验加成 - <spna>${formatNumber(1.15 ** (d.infTier - 5), true)}</span><br>`
   else if(d.id == 'time') str += dTime();
-  else if(d.id == 'danger') str += `Max Danger: +${Math.floor(1.45 ** (d.infTier - 10) - 1)}<br>`
-  else if(d.id == 'damage') str += `Damage MULT: ${(1.04 ** (d.infTier - 20)).toFixed(2)}<br>`
-  else if(d.id == 'survival-2') str += `Max stage: ${hero.value.survivalStage}<br>You will get double stats until Level(not includeing Min Level) ${Math.floor(hero.value.survivalStage ** 1.175)}<br>`
+  else if(d.id == 'danger') str += `最大危险度：+${Math.floor(1.45 ** (d.infTier - 10) - 1)}<br>`
+  else if(d.id == 'damage') str += `伤害倍率：${(1.04 ** (d.infTier - 20)).toFixed(2)}<br>`
+  else if(d.id == 'survival-2') str += `最大关卡：${hero.value.survivalStage}<br>你将获得双倍属性直到等级（不含最低等级）${Math.floor(hero.value.survivalStage ** 1.175)}<br>`
   else if(d.r != '') str += `奖励：<span>${d.r}</span><br>`;
 
   if(d.sp != '') str += `特殊奖励：<span>${d.sp}</span><br>`;
   if(d.id == hero.value.dId) str += `<span style="color: green">[你当前在此]</span><br>`
   if(hero.value.isSingularity) str += `<span style="color: #66ffcc">你当前处于奇点中</span><br>`
 
-  if(d.id == 'time') str += `<br>Your best time ${timeFormat(hero.value.dTimeReward)}`
+  if(d.id == 'time') str += `<br>你的最佳时间 ${timeFormat(hero.value.dTimeReward)}`
 
   return str;
 }
@@ -653,7 +653,7 @@ function dimensionD(hovered) {
 function darkDimensions(d){
 
 
-  let str = `<span><strong>Dimension: ${d.name} [${d.idx}]</strong></span><br>`
+  let str = `<span><strong>维度：${d.name} [${d.idx}]</strong></span><br>`
 
   if(d_req(d)) str += `<span style="color: red">${d.c}</span><br>`;
 
@@ -701,7 +701,7 @@ function bhChallenge() {
     hero.value.isBhBoss = true;
 
   if (!hero.value.isBhBoss) {
-    str += `<span style="color: #a3ffe0">达到超越 ${bhReq[tier]}, to enter the 黑洞</span><br>`;
+    str += `<span style="color: #a3ffe0">达到超越 ${bhReq[tier]}, 以进入黑洞</span><br>`;
     if (tier === 0) {
       str += `<span style="color: yellow">在主维度达到70,000真实等级</span>`;
     }
@@ -714,29 +714,29 @@ function bhChallenge() {
   str += `<span style="color: cyan; font-weight: bold">黑洞 [T${tier}]</span><br><br>`;
 
   str += `<span style="color: #cccccc">
-      Dive into the darkness of the 黑洞 ruled by <span style="color: cyan">[D-Gravity]</span> to face the 
+      潜入由 <span style="color: cyan">[D-Gravity]</span> 以对抗 
       <span style="color: cyan">Singulars</span>. 
-      Each of their attacks is stronger than the previous. 
-      When you die, your <span style="color: cyan">transcendence</span> will be destroyed, 
-      and you will return to the main dimension.
+      它们每次攻击都比上一次更强。 
+      当你死亡时，你的 <span style="color: cyan">transcendence</span> will be destroyed, 
+      并返回主维度。
   </span><br><br>`;
 
   const baseRewards = [
     `<span style="color: rgb(111, 245, 200)">+75 Singularity Levels</span>`,
     `<span style="color: gold">+0.05 IP MULT</span>`,
-    `<span style="color: lightblue">Lever Rush & Stage Rush: +5%</span>`,
+    `<span style="color: lightblue">等级冲刺与关卡冲刺：+5%</span>`,
   ];
 
   const uniqueRewards = {
     0: `<span style="color: red">BUFF: Black Impulse [T1]</span><br>
         <span style="color: lime">+0.1 最大等级 MULT</span> per each <span style="color: cyan">transcendence</span>
-        <span style="color: gold">You start with 10m stardust</span>`,
+        <span style="color: gold">开局获得1000万星尘</span>`,
     1: `<span style="color: red">BUFF: Black Impulse [T2]</span><br> 
         <span style="color: lime">+1.05</span> <span style="color: red">DMG</span> MULT per each <span style="color: cyan">transcendence</span>
-        <span style="color: gold">Unlock Auto-Forge</span>`,
+        <span style="color: gold">解锁自动锻造</span>`,
     2: `<span style="color: red">BUFF: Black Impulse [T3]</span><br> 
         <span style="color: lightgreen">+1 MIN LEVEL per each <span style="color: cyan">transcendence</span></span>
-        <span style="color: gold">Unlock Space-INF</span>`,
+        <span style="color: gold">解锁太空-INF</span>`,
     3: `<span style="color: red">BUFF: Black Impulse [T4]</span><br> 
         <span style="color: lime">+0.005</span> <span style="color: orange">IP MULT</span> per each <span style="color: cyan">transcendence</span><br> 
         <span style="color: gold">Unlock 时间线</span>`
@@ -752,7 +752,7 @@ function bhChallenge() {
 
 function advanceBH() {
   let text = `<span style="color: gold">时间线</span><br><br>
-  回到过去，前往远古泰坦时代。 Master the laws of existence and open new paths to power.<br><br>
+  回到过去，前往远古泰坦时代。 掌握存在法则，开启新的力量之路。<br><br>
 
   <span style="color: red">该功能将在0.6版本解锁[维度融合]</span>
   `;
@@ -804,7 +804,7 @@ function unlimittedDescription(){
   MIN Level ${hero.value.unlimitMinLevel}
   </span><br>
   </span><br><span>最大等级: ${hero.value.unlimitLevel}</span>/<span>[${hero.value.unlimitLevelMax}]</span><br>
-  <span>Reach Level ${1500 + 500 * infBonus} to get a Bonus to Infinite EXP in this Dimension by ${formatNumber((infBonus * 5 + 1) ** 1.5)}</span><br>
+  <span>达到等级 ${1500 + 500 * infBonus} 可在该维度获得无限经验加成：${formatNumber((infBonus * 5 + 1) ** 1.5)}</span><br>
   <span>达到等级2000以解锁新的无限目标</span><br>
   `
 
@@ -850,7 +850,7 @@ function d_danger_des_handle(d) {
   return `
     Enter the dimension where <span style='color: orange'>[D-Space]</span> stays its presence within <span style='color: orange'>Dimension Colossuses</span>. 
     You will encounter this entity in Stage <span style='color: gold'>[${stage}+]</span>, Danger <span style='color: gold'>[${danger}+]</span>. 
-    Defeat it to unlock the path to the next Infinity Tier and awaken a new dimension dark creature.
+    击败它以解锁下一无限阶级路线，并唤醒新的维度黑暗生物。
     <br><br>
   `
 }
@@ -925,8 +925,8 @@ function dark_energy_reward(d){
 
   if(d.infTier < 10)
     text += `达到 <span style="color: gold">无限 [T10]</span> 以解锁暗能量新影响<br>`;
-  else text += `Dark Energy is gathering the power of infinities from all dark dimensions and empowers itself with <span style="color: gold">${percent}%</span> of the total 
-  <span style="color: gold">infinities [${totalInfs}]</span>. This effect increases with each Infinity Tier<br>`;
+  else text += `暗能量正在汇聚所有黑暗维度的无限之力，并以 <span style="color: gold">${percent}%</span>  的总量进行强化：
+  <span style="color: gold">无限层数 [${totalInfs}]</span>. 该效果会随无限阶级提升<br>`;
 
   text += `<span style="color: #9cedd2">奖励：最大等级 [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
 
@@ -939,8 +939,8 @@ function d_damage_reward_handle(d){
     text = `You have a 50% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br><br>`;
   else if(d.infTier >= 10)
     text = `You have a 25% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br>
-    Reach <span style="color: gold">Infninity [T20]</span> to unlock new feature<br><br>`;
-  else text = `Reach <span style="color: gold">Infninity [T10]</span> to unlock new feature<br><br>`;
+    Reach <span style="color: gold">Infninity [T20]</span> 以解锁新功能<br><br>`;
+  else text = `Reach <span style="color: gold">Infninity [T10]</span> 以解锁新功能<br><br>`;
 
 
   let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
