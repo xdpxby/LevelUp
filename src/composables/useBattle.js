@@ -3804,19 +3804,19 @@ export function useBattle(hero, enemy, buffs) {
     let stardust = (hero.value.spCount >= 1? (avgLootPerMinute.value.stardust * (hero.value.afkTime / 60) * 0.95) * (hero.value.afkTimeHandle > 0? 1: -1): 0);
 
     hero.value.afkMessage = `
-    <span>Offline bonus for ${Math.floor(hero.value.afkTime / 3600)}h ${Math.floor(hero.value.afkTime/60%60)}m ${hero.value.afkTime%60}s (MAX - 8h) </span><br>
-    <span>You gained ${formatNumber(totalExp)} EXP.</span>
-    <span>You gained ${formatNumber(buffExp)} BUFF EXP.</span>
-    <span>You gained ${formatNumber(stardust)} stardust.</span>
-    <span>You gained ${formatNumber(mutagen)} mutagens.</span><br> 
+    <span>离线收益：${Math.floor(hero.value.afkTime / 3600)}小时 ${Math.floor(hero.value.afkTime/60%60)}分 ${hero.value.afkTime%60}秒（上限：8小时） </span><br>
+    <span>你获得了 ${formatNumber(totalExp)} 经验。</span>
+    <span>你获得了 ${formatNumber(buffExp)} 增益经验。</span>
+    <span>你获得了 ${formatNumber(stardust)} 星尘。</span>
+    <span>你获得了 ${formatNumber(mutagen)} 突变素。</span><br> 
     `
     if(hero.value.stage >= 15){
-      hero.value.afkMessage += `<spa(>Soul Booster Chance equals to ${hero.value.afkSoulBoost.toFixed(2)}</span><br>`;
+      hero.value.afkMessage += `<span>灵魂增幅概率为 ${hero.value.afkSoulBoost.toFixed(2)}</span><br>`;
     }
     if(dimensions.value[1].infTier == dimensions.value[1].maxInfTier){
       let shards = Math.floor(hero.value.totalAscensionShards * 0.001 * hero.value.afkTime);  
       hero.value.ascensionShards += shards * hero.value.afkTimeHandle;
-      hero.value.afkMessage += `<span>Ascension Shards: ${formatNumber(shards * hero.value.afkTimeHandle)}</span><br>`;
+      hero.value.afkMessage += `<span>飞升碎片：${formatNumber(shards * hero.value.afkTimeHandle)}</span><br>`;
     }
     if(Locked)
       hero.value.afkMessage += `<span>You passed from ${currentStage} stage ${currentZone} zone -> ${hero.value.stage} stage ${hero.value.zone} zone</span><br>`;
