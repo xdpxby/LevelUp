@@ -61,8 +61,8 @@
       <div class="perk" v-for="perk in filteredPerks" :key="perk.id">
         <h3>{{ perk.name }}</h3>
         <p class="perk-description">{{ getPerkDescription(perk) }}</p>
-        <p v-if="currentTier != 6">Level: {{ perk.level }} / {{ perk.max }}</p>
-        <p v-if="currentTier == 6">Level: {{ perk.level }}</p>
+        <p v-if="currentTier != 6">等级：{{ perk.level }} / {{ perk.max }}</p>
+        <p v-if="currentTier == 6">等级：{{ perk.level }}</p>
         <button :disabled="!canUpgrade(perk)" @click="upgradePerk(perk)">
           {{ formatNumber(getCost(perk)) }} 
           <img v-if="currentTier < 8" :src="ascensionIcon" width="16px" height="16px" style="vertical-align: -2px;"/>
@@ -208,31 +208,31 @@ const swordCheck = () => {
 
 function getPerkDescription(perk) {
   if (perk.id === 28) {
-    return `Enemies weakness based on Corruption weakness [${ Math.max(1 / (2 + Math.max(hero.value.corruption, 0))).toFixed(2)}]. Also works in The Abyss`
+    return `敌人削弱倍率基于腐化削弱 [${ Math.max(1 / (2 + Math.max(hero.value.corruption, 0))).toFixed(2)}]，在深渊中同样生效`
   }
   if (perk.id === 30) {
-    return `Gain Ascension Shards based on SP - [${(1 + 0.04 * hero.value.sp).toFixed(2)}]. Ascension Affect scales better`
+    return `基于 SP 获取飞升碎片 - [${(1 + 0.04 * hero.value.sp).toFixed(2)}]，飞升效果成长更优`
   }
   if(perk.id === 37){
-    return `Level Exp Reduction based on Rebirth Pts [${Math.max(1.2 / Math.log(Math.sqrt(hero.value.rebirthPts) + 2), 0.1).toFixed(2)}]`
+    return `等级经验惩罚基于重生点降低 [${Math.max(1.2 / Math.log(Math.sqrt(hero.value.rebirthPts) + 2), 0.1).toFixed(2)}]`
   }
   if(perk.id === 42){
-    return `Max Level MULT based on overcap corruption [${(1 + hero.value.overcorruption / (4 - 0.15 * (dimensions.value[22].infTier - 25))).toFixed(2) }]`
+    return `最高等级倍率基于超限腐化 [${(1 + hero.value.overcorruption / (4 - 0.15 * (dimensions.value[22].infTier - 25))).toFixed(2) }]`
   }
   if(perk.id === 48){
-    return `The reduction in the INF Penalty depends on Total Dimension completed [${(dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length/200).toFixed(3)}]`
+    return `无限惩罚减免取决于已完成维度总数 [${(dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length/200).toFixed(3)}]`
   }
   if(perk.id === 49){
-    return `+0.05% DMG for each Dimension completed [${(1 + 0.05 * dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length ).toFixed(2)}]`
+    return `每完成1个维度 +0.05% 伤害 [${(1 + 0.05 * dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length ).toFixed(2)}]`
   }
   if(perk.id === 50){
-    return `Enemies weakness based on Current Stage. [HARDCAP After 0.1] [${(1 - 0.006 * Math.min(hero.value.stage, 150) - 0.0003 * Math.max(hero.value.stage - 150, 0)).toFixed(2)}]`
+    return `敌人削弱倍率基于当前关卡。[0.1后进入硬上限] [${(1 - 0.006 * Math.min(hero.value.stage, 150) - 0.0003 * Math.max(hero.value.stage - 150, 0)).toFixed(2)}]`
   }
    if(perk.id === 53){
-    return `Get extra Enhances Level per 2 Dimensions completed [${Math.floor(dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length/2)}]`
+    return `每完成2个维度获得额外强化等级 [${Math.floor(dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length/2)}]`
   }
    if(perk.id === 55){
-    return `+Min Level based on Total Dimension completed [${dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length}]`
+    return `最低等级加成基于已完成维度总数 [${dimensions.value.filter(dim => dim.infTier >= dim.maxInfTier).length}]`
   }
 
 

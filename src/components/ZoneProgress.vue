@@ -628,7 +628,7 @@ const performAscension = () => {
 
   if(hero.value.eventDoubleClick){
     const confirmed = window.confirm(
-      "Click OK to confirm The Ascension"
+      "点击确定以确认飞升"
     )
     if (!confirmed) return;
   }
@@ -642,7 +642,7 @@ const performRebirth = () => {
 
   if(hero.value.eventDoubleClick){
     const confirmed = window.confirm(
-      "Click OK to confirm The Rebirth"
+      "点击确定以确认重生"
     )
     if (!confirmed) return;
   }
@@ -656,7 +656,7 @@ const performAbyss = () => {
 
   if(hero.value.eventDoubleClick){
     const confirmed = window.confirm(
-      "Click OK to confirm to enter the Abyss."
+      "点击确定以确认进入深渊"
     )
     if (!confirmed) return;
   }

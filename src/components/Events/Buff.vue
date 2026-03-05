@@ -1,11 +1,11 @@
 <template>
   <div class="buffs-panel">
-    <h2 @click="hero.eLink = { set: 'Info', info: 'Buffs' }">🌀 <sup style="font-size: 12px">ℹ️</sup>Buffs</h2>
-    <span><strong>Note: </strong>You will not be able to change the buff after Stage 10. For more information, click on [ℹ️]. </span>
+    <h2 @click="hero.eLink = { set: 'Info', info: 'Buffs' }">🌀 <sup style="font-size: 12px">ℹ️</sup>增益</h2>
+    <span><strong>注意：</strong>到达第10关后将无法更换增益。更多信息请点击 [ℹ️]。</span>
     <div class="buff-status">
     <div>
-      <span style="color: #fbbf24">Active: {{ hero.activeBuffs.length }} / {{ hero.maxBuffs }}</span>
-      <span v-if="hero.abyssTier >= 3 && hero.rebirthPts >= 100000" style="color: #66ffcc">  -  Active: {{hero.spActiveBuffs.length}} / {{hero.maxBuffs - (hero.rebirthTier >= 15 && hero.isAbyss? 1: 0) + (hero.spCount >= 43? 1: 0)}}</span>
+      <span style="color: #fbbf24">已激活：{{ hero.activeBuffs.length }} / {{ hero.maxBuffs }}</span>
+      <span v-if="hero.abyssTier >= 3 && hero.rebirthPts >= 100000" style="color: #66ffcc">  -  已激活：{{hero.spActiveBuffs.length}} / {{hero.maxBuffs - (hero.rebirthTier >= 15 && hero.isAbyss? 1: 0) + (hero.spCount >= 43? 1: 0)}}</span>
     </div>
     <button
         v-if="hero.abyssTier >= 3 && hero.rebirthPts >= 100000"
@@ -13,7 +13,7 @@
         :class="{ active: hero.isSpaceBuff }"
         @click="spaceSwitch()"
       >
-        Space
+        太空
       </button>
     </div>
 
@@ -46,10 +46,10 @@
       >
         <h3 class="buff-name">
           <strong>{{ buff.name }} [T{{ buff.tier }}]</strong>
-            <Tooltip :text="'This buff cannot affect some high-tier creatures'" maxWidth="125px" position="left" boxShadow="0 0 10px orange">
+            <Tooltip :text="'该增益无法影响部分高阶生物'" maxWidth="125px" position="left" boxShadow="0 0 10px orange">
               <span v-if='buff.id == 16'>⚠️</span>
             </Tooltip>
-            <Tooltip :text="'You gain the loot from only first killed enemy'" maxWidth="100px" position="left" boxShadow="0 0 10px orange">
+            <Tooltip :text="'仅可从首次击杀的敌人获取掉落'" maxWidth="100px" position="left" boxShadow="0 0 10px orange">
               <span v-if='buff.id == 7'>⚠️</span>
             </Tooltip>
         </h3>
@@ -73,17 +73,17 @@
 
   <div v-if="showLayoutEditor" class="modal-overlay">
     <div class="modal-box">
-      <h3>Edit Layout <span v-if="editLayout" style="color: lightgreen">[Edit buffs...]</span></h3>
+      <h3>编辑布局 <span v-if="editLayout" style="color: lightgreen">[编辑增益...]</span></h3>
       
       <input
         v-model="layoutNameInput"
         maxlength="15"
-        placeholder="Layout name (max 15 chars)"
+        placeholder="布局名称（最多15字）"
         @input="validateInput"
       />
       <p class="input-warning" v-if="inputError">{{ inputError }}</p>
 
-      <p><strong>Normal Buffs:</strong></p>
+      <p><strong>普通增益：</strong></p>
       <div class="buff-columns">
         <div class="column" v-for="col in splitBuffs(hero.buffLayouts[layoutBeingEdited]?.buffs)">
           <div v-for="id in col" :key="'buff-' + id">
@@ -92,7 +92,7 @@
         </div>
       </div>
 
-      <p><strong>Space Buffs:</strong></p>
+      <p><strong>太空增益：</strong></p>
       <div class="buff-columns">
         <div class="column" v-for="col in splitBuffs(hero.buffLayouts[layoutBeingEdited]?.spBuffs || [])">
           <div v-for="id in col" :key="'spbuff-' + id">
@@ -102,9 +102,9 @@
       </div>
 
       <div class="modal-actions">
-        <button @click="confirmLayoutEdit" :disabled="!!inputError">✅ Save</button>
-        <button @click="editLayoutEdit">✏️ Edit</button>
-        <button @click="cancelLayoutEdit">❌ Cancel</button>
+        <button @click="confirmLayoutEdit" :disabled="!!inputError">✅ 保存</button>
+        <button @click="editLayoutEdit">✏️ 编辑</button>
+        <button @click="cancelLayoutEdit">❌ 取消</button>
       </div>
     </div>
   </div>
@@ -136,10 +136,10 @@ function layoutUnlocked(layout) {
   if (layout.unlocked) return "";
 
   if (layout.id === 1 && hero.value.singularity < 5) {
-    return "Unlock at Singularity [T5]";
+    return "在奇点 [T5] 解锁";
   }
   if (layout.id === 2 && hero.value.mainInfTier < 30) {
-    return "Unlock at Infinity [T30]";
+    return "在无限 [T30] 解锁";
   }
 
   return "";
@@ -173,10 +173,10 @@ function buffNextTierD(buff) {
   const maxTier = buff.maxTier;
 
   if (nextTier >= buff.description.length - 1)
-    return "Max Tier";
+    return "已达最高阶";
 
   if (nextTier >= maxTier && buff.maxTier < buff.description.length && buff.nextTierReq)
-    return `Next Tier Requirement: ${buff.nextTierReq}`;
+    return `下一阶需求：${buff.nextTierReq}`;
 
 
   return buff.description[nextTier] || '';
@@ -184,16 +184,16 @@ function buffNextTierD(buff) {
 
 function specialBuffs(buff){
   if(buff.id == 7 && buff.tier == 4)
-    return `${10 + 5 * (dimensions.value[19].infTier == dimensions.value[19].maxInfTier? 1: 0)}% to gain EXP and WEAPON CHANCE for each overkilled Enemy`
+    return `每个溢出击杀敌人有 ${10 + 5 * (dimensions.value[19].infTier == dimensions.value[19].maxInfTier? 1: 0)}% 概率获得经验与武器掉落概率`
   
   if(buff.id == 10 && buff.tier == 1)
-    buff.description[0] = `${35 + 5 * dimensions.value[4].infTier}% to RISE UP after death with 50% HP. Does not work on the same enemy twice.`
+    buff.description[0] = `${35 + 5 * dimensions.value[4].infTier}% 概率在死亡后以50%生命复活。同一敌人不会重复触发。`
 }
 
 function buffCharge(buff, tier = 0){
   if(buff.id != 6)
     return buff.description[buff.tier];
-  let str = `[Charges Info in Info->Buff Section] ${25 + 1 * (buff.tier - 1 + tier)}% to gain random Charge, when you hit. ${50 - 2*(buff.tier - 1 + tier)}% to lost random Charge when you were hit; Max Charges: ${buff.tier + tier};`
+  let str = `[充能详情见 信息->增益] 命中时有 ${25 + 1 * (buff.tier - 1 + tier)}% 概率获得随机充能；受击时有 ${50 - 2*(buff.tier - 1 + tier)}% 概率失去随机充能；最大充能：${buff.tier + tier}；`
   
   return str;
 }
@@ -251,7 +251,7 @@ const editLayoutEdit = () => {
 
 function getBuffName(id) {
   const buff = buffs.value.find(b => b.id === id);
-  return buff ? buff.name : `Unknown [${id}]`;
+  return buff ? buff.name : `未知增益 [${id}]`;
 }
 
 function splitBuffs(buffIds) {

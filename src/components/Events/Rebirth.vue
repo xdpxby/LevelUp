@@ -1,46 +1,46 @@
 <template>
   <div class="rebirth-panel">
     <div class="left-panel">
-      <h2 @click="hero.eLink = { set: 'Info', info: 'Rebirth' }">♻️ <sup style="font-size: 12px">ℹ️</sup>Rebirth [T{{hero.rebirthTier}}]</h2>
+      <h2 @click="hero.eLink = { set: 'Info', info: 'Rebirth' }">♻️ <sup style="font-size: 12px">ℹ️</sup>重生 [T{{hero.rebirthTier}}]</h2>
       
       <p>
-        <strong class="pot"><span style="color: gold" @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Potential' }"><sup style="font-size: 12px">ℹ️</sup>Potential: {{hero.potential}}</span></strong><br>
-        <strong><span style="color: lightgreen">+0.5 HP per 10 Potential</span></strong>
-        <strong><span style="color: #eb4e4e">+0.2 DMG per 20 Potential</span></strong>
-        <strong><span style="color: orange">+0.1 DEF per 30 Potential</span></strong>
+        <strong class="pot"><span style="color: gold" @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Potential' }"><sup style="font-size: 12px">ℹ️</sup>潜能：{{hero.potential}}</span></strong><br>
+        <strong><span style="color: lightgreen">+每10潜能 +0.5 生命</span></strong>
+        <strong><span style="color: #eb4e4e">+每20潜能 +0.2 伤害</span></strong>
+        <strong><span style="color: orange">+每30潜能 +0.1 防御</span></strong>
       </p>
       <p style="font-weight: bold">
         <Tooltip :text="enemyEvo" boxShadow="0 0 10px lightgreen" position="right">
-          <span><sup style="font-size: 6px">ℹ️</sup>Enemy EVO</span>
+          <span><sup style="font-size: 6px">ℹ️</sup>敌人进化</span>
         </Tooltip>
-        <span>DMG - [{{enemy.rebirthEnemy["dmg"]}}]</span>
-        <span>HP - [{{enemy.rebirthEnemy["hp"]}}]</span>
+        <span>伤害 - [{{enemy.rebirthEnemy["dmg"]}}]</span>
+        <span>生命 - [{{enemy.rebirthEnemy["hp"]}}]</span>
         <Tooltip :text="rebirthLootHandle" boxShadow="0 0 10px lightgreen" position="right">
-          <span><sup style="font-size: 6px">ℹ️</sup>LOOT - [{{formatNumber(enemy.rebirthEnemy["drop"])}}] </span>
+          <span><sup style="font-size: 6px">ℹ️</sup>掉落 - [{{formatNumber(enemy.rebirthEnemy["drop"])}}] </span>
         </Tooltip>
       </p>
 
       <Tooltip :text="ascendEffectHandle" boxShadow="0 0 10px #062e9f" position="right">
-        <span v-if="hero.abyssTier >= 2" style="color: #062e9f; font-weight: bold"><sup style="font-size: 6px">ℹ️</sup>ASCENSION AFFECT</span>
+        <span v-if="hero.abyssTier >= 2" style="color: #062e9f; font-weight: bold"><sup style="font-size: 6px">ℹ️</sup>飞升影响</span>
       </Tooltip>
 
       <p class="rebirthTiers">
-        <span v-if="hero.rebirthTier >= 5">[T5] - Rebirth Tier forces Abyss enemies getting weaker [{{(1 / (1.025 ** hero.rebirthTier)).toFixed(2)}}]</span>
-        <span v-if="hero.rebirthTier >= 10">[T10] - 50% curse Bonus. +1 Max Curse</span>
-        <span v-if="hero.rebirthTier >= 15">[T15] - +1 max Buff in Abyss</span>
-        <span v-if="hero.rebirthTier >= 20">[T20] - Get Rebirth Pts as if you had 25 more Levels</span>
-        <span v-if="hero.rebirthTier >= 30">[T30] - Potential based on Rebirth Tier [{{Math.floor(1.053 ** Math.min(hero.rebirthTier, 80))}}]</span>
-        <span v-if="hero.rebirthTier >= 40">[T40] - MIN Level based on Rebirth Tier [{{Math.floor(1.05 ** Math.min(hero.rebirthTier, 80))}}]</span>
-        <span v-if="hero.rebirthTier >= 50">[T50] - Equipment Chance based on Rebirth Tier [{{formatNumber(1.03 ** hero.rebirthTier)}}]</span>
-        <span v-if="hero.rebirthTier >= 60">[T60] - Space Boss appearance based on Rebirth Tier [{{formatNumber(1.02 ** hero.rebirthTier)}}]</span>
-        <span v-if="hero.rebirthTier >= 70">[T70] - Corruption weakness based on Rebirth Tier [{{(1.02 ** Math.sqrt(hero.rebirthTier) - 1).toFixed(2)}}]</span>
-        <span v-if="hero.rebirthTier >= 80">[T80] - Max Level Mult based on Rebirth Tier [{{(0.02 * (Math.min(hero.rebirthTier, 200) - 79)).toFixed(2)}}]</span>
+        <span v-if="hero.rebirthTier >= 5">[T5] - 重生阶级使深渊敌人变弱 [{{(1 / (1.025 ** hero.rebirthTier)).toFixed(2)}}]</span>
+        <span v-if="hero.rebirthTier >= 10">[T10] - 诅咒加成 +50%。+1 最大诅咒</span>
+        <span v-if="hero.rebirthTier >= 15">[T15] - 深渊中 +1 最大增益</span>
+        <span v-if="hero.rebirthTier >= 20">[T20] - 重生点按额外25级计算</span>
+        <span v-if="hero.rebirthTier >= 30">[T30] - 潜能基于重生阶级 [{{Math.floor(1.053 ** Math.min(hero.rebirthTier, 80))}}]</span>
+        <span v-if="hero.rebirthTier >= 40">[T40] - 最低等级基于重生阶级 [{{Math.floor(1.05 ** Math.min(hero.rebirthTier, 80))}}]</span>
+        <span v-if="hero.rebirthTier >= 50">[T50] - 装备概率基于重生阶级 [{{formatNumber(1.03 ** hero.rebirthTier)}}]</span>
+        <span v-if="hero.rebirthTier >= 60">[T60] - 太空Boss出现率基于重生阶级 [{{formatNumber(1.02 ** hero.rebirthTier)}}]</span>
+        <span v-if="hero.rebirthTier >= 70">[T70] - 腐化削弱基于重生阶级 [{{(1.02 ** Math.sqrt(hero.rebirthTier) - 1).toFixed(2)}}]</span>
+        <span v-if="hero.rebirthTier >= 80">[T80] - 最高等级倍率基于重生阶级 [{{(0.02 * (Math.min(hero.rebirthTier, 200) - 79)).toFixed(2)}}]</span>
       </p>
     </div>
 
     <div class="right-panel">
-      <h2 v-if="hero.rebirthPts <= 1e5" class="rbPts" @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Rebirth' }"><sup style="font-size: 12px">ℹ️</sup>Rebirth Pts(RP): {{Math.floor(hero.rebirthPts)}}</h2>
-      <h2 v-else class="snPts">Singularity Pts(SP): {{Math.floor(hero.rebirthPts)}}</h2>
+      <h2 v-if="hero.rebirthPts <= 1e5" class="rbPts" @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Rebirth' }"><sup style="font-size: 12px">ℹ️</sup>重生点(RP)： {{Math.floor(hero.rebirthPts)}}</h2>
+      <h2 v-else class="snPts">奇点点数(SP)： {{Math.floor(hero.rebirthPts)}}</h2>
       <div class="rewards-panel">
         <div
             v-for="reward in rewardsFilter"
@@ -51,7 +51,7 @@
               hero.rebirthPts >= reward.points && reward.points > 1e5 ? 'unlocked' : ''
             ]"
         >
-            <span>{{ reward.points }} pts → {{ reward.description }}</span>
+            <span>{{ reward.points }} 点 → {{ reward.description }}</span>
         </div>
       </div>
       
@@ -76,26 +76,26 @@ const rewardsFilter = computed(() =>
 
 function ascendEffectHandle() {
   let effect = Math.max(1 / (1.04 + (ascenPerks[29].level? 0.01: 0)) ** Math.log(hero.value.ascensionShards + 3), 0.01);
-  let text = `Enemy weakness. Depends on Ascension Shards [${effect.toFixed(2)}]`;
+  let text = `敌人削弱倍率，取决于飞升碎片 [${effect.toFixed(2)}]`;
 
   return text;
 }
 
 function rebirthLootHandle() {
-  let text = `Rebirth [Loot] affects:<br>
+  let text = `重生[掉落]影响：<br>
     - <span style="color: #4CAF50">EXP</span><br>
-    - <span style="color:rgb(33, 243, 233)">Equipment Drop Chance</span><br>
-    - <span style="color: #FF9800">20 Rebirth Pts</span>: Chance of <span style="color:rgb(189, 30, 233)">Soul</span> appearance<br>
-    - <span style="color: #FF9800">100 Rebirth Pts</span>: <span style="color: lightgreen">Rebirth Pts</span> gain<br>
-    - <span style="color: #FF9800">2500 Rebirth Pts</span>: Gain <span style="color:rgb(57, 125, 234)">Ascension Shards</span> when you Ascend<br>
-    - <span style="color: #FF9800">50000 Rebirth Pts</span>: <span style="color: orange">Buff EXP</span>
+    - <span style="color:rgb(33, 243, 233)">装备掉落概率</span><br>
+    - <span style="color: #FF9800">20 重生点</span>: <span style="color:rgb(189, 30, 233)">灵魂</span>出现概率<br>
+    - <span style="color: #FF9800">100 重生点</span>: <span style="color: lightgreen">重生点</span>获取<br>
+    - <span style="color: #FF9800">2500 重生点</span>: 飞升时获得<span style="color:rgb(57, 125, 234)">飞升碎片</span><br>
+    - <span style="color: #FF9800">50000 重生点</span>: <span style="color: orange">增益经验</span>
   `;
   
   return text;
 }
 
 function enemyEvo() {
-  let text = `Each Rebirth Tier increases Enemy Power and increases Loot Drops.`;
+  let text = `每级重生阶级都会提高敌人强度并提升掉落收益。`;
 
   return text;
 }
