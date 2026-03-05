@@ -283,10 +283,10 @@ function statLabel(stat) {
 
 const loreSection = [
   {
-    title: 'Message',
+    title: '留言',
     id: 0,
-    author: 'Unknown',
-    location: 'Level 1',
+    author: '未知',
+    location: '等级 1',
     visible: true,
     locked: false, 
     content: [
@@ -296,10 +296,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note I',
+    title: '远古笔记 I',
     id: 1,
-    author: 'Unknown',
-    location: 'Infinity [T1]',
+    author: '未知',
+    location: '无限 [T1]',
     visible: true,
     locked: true, 
     content: [
@@ -310,10 +310,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note II',
+    title: '远古笔记 II',
     id: 2,
-    author: 'Unknown',
-    location: 'Infinity [T3]',
+    author: '未知',
+    location: '无限 [T3]',
     visible: true,
     locked: true, 
     content: [
@@ -323,10 +323,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note III',
+    title: '远古笔记 III',
     id: 3,
-    author: 'Unknown',
-    location: 'Infinity [T5]',
+    author: '未知',
+    location: '无限 [T5]',
     visible: true,
     locked: true, 
     content: [
@@ -337,10 +337,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note IV',
+    title: '远古笔记 IV',
     id: 4,
-    author: 'Unknown',
-    location: 'Infinity [T8]',
+    author: '未知',
+    location: '无限 [T8]',
     visible: true,
     locked: true, 
     content: [
@@ -351,10 +351,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note V',
+    title: '远古笔记 V',
     id: 5,
-    author: 'Unknown',
-    location: 'Infinity [T10]',
+    author: '未知',
+    location: '无限 [T10]',
     visible: true,
     locked: true, 
     content: [
@@ -365,9 +365,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note VI',
+    title: '远古笔记 VI',
     id: 6,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [R0-X9a] [2] [T5]',
     visible: true,
     locked: true, 
@@ -378,9 +378,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note VII',
+    title: '远古笔记 VII',
     id: 7,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [K7-D4n] [3] [T8]',
     visible: true,
     locked: true, 
@@ -392,9 +392,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note VIII',
+    title: '远古笔记 VIII',
     id: 8,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [K7-D4n] [1] [T2]',
     visible: true,
     locked: true, 
@@ -407,9 +407,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note IX',
+    title: '远古笔记 IX',
     id: 9,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [M2-Λ1s] [4] [T5]',
     visible: true,
     locked: true, 
@@ -421,9 +421,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note X',
+    title: '远古笔记 X',
     id: 10,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [V6-B3n] [6] [T15]',
     visible: true,
     locked: true, 
@@ -438,9 +438,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XI',
+    title: '远古笔记 XI',
     id: 11,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [DD-zΘaYY] [9] [T7]',
     visible: true,
     locked: true, 
@@ -453,9 +453,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XII',
+    title: '远古笔记 XII',
     id: 12,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [QZ-µaTT] [11] [T15]',
     visible: true,
     locked: true, 
@@ -466,10 +466,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 13,
     author: '[D-Infinity]',
-    location: 'Infinity [T10]',
+    location: '无限 [T10]',
     visible: true,
     locked: true, 
     content: [
@@ -478,10 +478,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 14,
     author: '[D-Infinity]',
-    location: 'Infinity [T20]',
+    location: '无限 [T20]',
     visible: true,
     locked: true, 
     content: [
@@ -490,10 +490,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 15,
     author: '[D-Infinity]',
-    location: 'Infinity [T40]',
+    location: '无限 [T40]',
     visible: true,
     locked: true, 
     content: [
@@ -502,10 +502,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 16,
     author: '[D-Infinity]',
-    location: 'Infinity [T60]',
+    location: '无限 [T60]',
     visible: true,
     locked: true, 
     content: [
@@ -515,7 +515,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 17,
     author: '[D-Gravity]',
     location: 'Singularity [T0]',
@@ -527,7 +527,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 18,
     author: '[D-Gravity]',
     location: 'Singularity [T1]',
@@ -539,7 +539,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 19,
     author: '[D-Gravity]',
     location: 'Singularity [T2]',
@@ -551,7 +551,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 20,
     author: '[D-Gravity]',
     location: 'Singularity [T3]',
@@ -563,7 +563,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 21,
     author: '[D-Gravity]',
     location: 'ISingularity [T4]',
@@ -575,7 +575,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 22,
     author: '[D-Gravity]',
     location: 'Singularity [T5]',
@@ -587,7 +587,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 23,
     author: '[D-Gravity]',
     location: 'Singularity [T6]',
@@ -599,7 +599,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 24,
     author: '[D-Gravity]',
     location: 'Singularity [T7]',
@@ -611,7 +611,7 @@ const loreSection = [
     ]
   },
    {
-    title: 'Message',
+    title: '留言',
     id: 25,
     author: '[D-Gravity]',
     location: 'Singularity [T8]',
@@ -623,10 +623,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 26,
     author: '[D-Gravity]',
-    location: 'Black Hole [T0]',
+    location: '黑洞 [T0]',
     visible: true,
     locked: true, 
     content: [
@@ -635,10 +635,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 27,
     author: '[D-Gravity]',
-    location: 'Black Hole [T1]',
+    location: '黑洞 [T1]',
     visible: true,
     locked: true, 
     content: [
@@ -647,10 +647,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 28,
     author: '[D-Gravity]',
-    location: 'Black Hole [T2]',
+    location: '黑洞 [T2]',
     visible: true,
     locked: true, 
     content: [
@@ -659,10 +659,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 29,
     author: '[D-Gravity]',
-    location: 'Black Hole [T3]',
+    location: '黑洞 [T3]',
     visible: true,
     locked: true, 
     content: [
@@ -672,10 +672,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 30,
     author: '[D-Corruption]',
-    location: 'Infinity [T60]',
+    location: '无限 [T60]',
     visible: true,
     locked: true, 
     content: [
@@ -684,7 +684,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 31,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T1]',
@@ -696,7 +696,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 32,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T2]',
@@ -708,7 +708,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 33,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T3]',
@@ -720,7 +720,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 34,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T4]',
@@ -732,7 +732,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 35,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T5]',
@@ -744,7 +744,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 36,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T6]',
@@ -756,7 +756,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 37,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T7]',
@@ -768,7 +768,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 38,
     author: '[D-Space]',
     location: 'Dimension [Ω VL-χtAR] [31] Infinity [T8]',
@@ -780,7 +780,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 39,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T1]',
@@ -791,7 +791,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 40,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T3]',
@@ -802,7 +802,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 41,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T6]',
@@ -813,7 +813,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 42,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T10]',
@@ -824,7 +824,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 43,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T12]',
@@ -835,7 +835,7 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 44,
     author: '[D-Ultimatum]',
     location: 'Dimension [Ω LD-δrAK] [38] Infinity [T15]',
@@ -846,10 +846,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 45,
     author: '[D-Gravity]',
-    location: 'Black Hole [T4]',
+    location: '黑洞 [T4]',
     visible: true,
     locked: true, 
     content: [
@@ -857,9 +857,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XIII',
+    title: '远古笔记 XIII',
     id: 46,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [BZ-ΦeLL] [15] [T20]',
     visible: true,
     locked: true, 
@@ -870,9 +870,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XIV',
+    title: '远古笔记 XIV',
     id: 47,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [HZ-βcTR] [19] [T25]',
     visible: true,
     locked: true, 
@@ -884,9 +884,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XV',
+    title: '远古笔记 XV',
     id: 48,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [YY-θsJP] [18] Stage: 101',
     visible: true,
     locked: true, 
@@ -896,9 +896,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XVI',
+    title: '远古笔记 XVI',
     id: 49,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [DV-χuQZ] [20] [T20]',
     visible: true,
     locked: true, 
@@ -908,9 +908,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XVII',
+    title: '远古笔记 XVII',
     id: 50,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [KL-σrXZ] [13] [T25]',
     visible: true,
     locked: true, 
@@ -921,9 +921,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XVIII',
+    title: '远古笔记 XVIII',
     id: 51,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [JK-λbYX] [22] [T35]',
     visible: true,
     locked: true, 
@@ -934,9 +934,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XIX',
+    title: '远古笔记 XIX',
     id: 52,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Et-n1t1] [24]',
     visible: true,
     locked: true, 
@@ -946,10 +946,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 53,
     author: '[D-Gravity]',
-    location: 'Black Hole [T5]',
+    location: '黑洞 [T5]',
     visible: true,
     locked: true, 
     content: [
@@ -957,10 +957,10 @@ const loreSection = [
     ]
   },
   {
-    title: 'Message',
+    title: '留言',
     id: 54,
     author: '[D-Gravity]',
-    location: 'Black Hole [T6]',
+    location: '黑洞 [T6]',
     visible: true,
     locked: true, 
     content: [
@@ -968,9 +968,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XX',
+    title: '远古笔记 XX',
     id: 55,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω DR-σvTH] [26] [T1]',
     visible: true,
     locked: true, 
@@ -982,9 +982,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXI',
+    title: '远古笔记 XXI',
     id: 56,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω NX-λrAZ] [28] [T1]',
     visible: true,
     locked: true, 
@@ -995,9 +995,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXII',
+    title: '远古笔记 XXII',
     id: 57,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω VL-χtAR] [31] [T1]',
     visible: true,
     locked: true, 
@@ -1008,9 +1008,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXIII',
+    title: '远古笔记 XXIII',
     id: 58,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω TH-μrAK] [34] [T1]',
     visible: true,
     locked: true, 
@@ -1020,9 +1020,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXIV',
+    title: '远古笔记 XXIV',
     id: 59,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω TH-μrAK] [34] [T5]',
     visible: true,
     locked: true, 
@@ -1032,9 +1032,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXV',
+    title: '远古笔记 XXV',
     id: 60,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω TH-μrAK] [34] [T10]',
     visible: true,
     locked: true, 
@@ -1044,9 +1044,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXV',
+    title: '远古笔记 XXV',
     id: 61,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω TH-μrAK] [34] [T15]',
     visible: true,
     locked: true, 
@@ -1056,9 +1056,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXVI',
+    title: '远古笔记 XXVI',
     id: 62,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω TH-μrAK] [34] [T20]',
     visible: true,
     locked: true, 
@@ -1068,9 +1068,9 @@ const loreSection = [
     ]
   },
   {
-    title: 'Ancient Note XXVII',
+    title: '远古笔记 XXVII',
     id: 63,
-    author: 'Unknown',
+    author: '未知',
     location: 'Dimension [Ω LD-δrAK] [38] [T1]',
     visible: true,
     locked: true, 
@@ -1083,7 +1083,7 @@ const loreSection = [
 
 
 const authorColors = {
-  'Unknown': '#2dffbd',
+  '未知': '#2dffbd',
   '[D-Infinity]': 'gold',
   '[D-Gravity]': '#00fdff',
   '[D-Space]': 'orange',
@@ -1102,7 +1102,7 @@ const authors = computed(() => {
     new Set(
       loreSection
         .filter(s => s.content && s.content.length > 0 && s.visible && !s.locked)
-        .map(s => s.author || 'Unknown')
+        .map(s => s.author || '未知')
     )
   );
 });
@@ -1329,13 +1329,13 @@ const styledSections = [
     ]
   },
   {
-    title: 'AFK',
+    title: '挂机',
     class: 'afk-section info',
     content: [
       'You can kill a maximum of 1 enemy per second.',
-      'Max AFK Kills = Max Stage Passed × 75.',
+      '挂机最大击杀 = 最高通关关卡 × 75。',
       'You skip the boss fights if their stage is 5 below your max stage.',
-      'Soul Booster increase The chance of soul appearence. The Power depends on Total AFK kills. Soul Booster works for only One Soul.',
+      '灵魂增幅会提高灵魂出现概率，强度取决于挂机总击杀。灵魂增幅一次仅对一个灵魂生效。',
     ]
   },
   {
@@ -1366,7 +1366,7 @@ const styledSections = [
     content: [
       'Gain Ascension Shards after stage 10.',
       'Ascension Shards are obtained by completing stages',
-      'Souls only reward once by Ascension Shards.',
+      '灵魂只会提供一次飞升碎片奖励。',
       hero.value.infTier >= 2 && 'Bosses give additional shards depending on the stage and Boss Loot [Infinity T2]'
     ]
   },
@@ -1374,7 +1374,7 @@ const styledSections = [
     title: '灵魂',
     class: 'souls-section',
     content: [
-      'Souls are special creatures. They are stronger than regular enemies, but they provide greater rewards',
+      '灵魂是特殊生物。它们比普通敌人更强，但奖励也更高。',
       'After stage 15, souls may appear with a certain chance',
       'Each defeated Soul grants +1 Max Level and +10% EXP (up to 40 souls). After Infinity [T6], the bonus increases (up to 80 souls)',
       '+1 MIN Level per 10 Soul Tier [Infinity T6]',
@@ -1535,9 +1535,9 @@ const statSections = [
     title: 'Level',
     id: 'only level',
     content: [
-      { desc: 'Min Level', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevel > 0 },
+      { desc: '最低等级', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevel > 0 },
       {
-        desc: 'Equipment [Set]',
+        desc: '装备[套装]',
         value: () => {
           return (hero.value.rebirthPts >= 25
             ? (hero.value.equipmentTiers.sword >= 3 && hero.value.equipmentTiers.armor >= 3 && hero.value.equipmentTiers.boots >= 3 ? 3 : 0)
@@ -1553,7 +1553,7 @@ const statSections = [
         req: () => hero.value.minLevel > 0 || hero.value.rebirthPts >= 25,
       },
       {
-        desc: 'Ascension [Destructive Play]',
+        desc: '飞升[毁灭演算]',
         value: () => (ascenPerks[26].level? Math.floor(hero.value.stage/5)-1: 0),
         color: 'lightblue',
         req: () => hero.value.minLevel > 0 || ascenPerks[26].level,
@@ -1707,7 +1707,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Ascension [Destructive Play]',
+        desc: '飞升[毁灭演算]',
         value: () => ((ascenPerks[26].level? 2*Math.floor(hero.value.stage/5)-1: 0)),
         color: 'lightblue',
         req: () => true,
@@ -1741,7 +1741,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Equipment [Set]',
+        desc: '装备[套装]',
         value: () => {
           return (hero.value.rebirthPts >= 25
             ? (hero.value.equipmentTiers.sword >= 3 && hero.value.equipmentTiers.armor >= 3 && hero.value.equipmentTiers.boots >= 3 ? 3 : 0)
@@ -2014,7 +2014,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Space Ring [Prefix]',
+        desc: '太空戒指[前缀]',
         value: () => (hero.value.eqUpsMult['spRing'].infPoints),
         color: 'gold',
         req: () => spaceShop.value[10].status,
@@ -3135,7 +3135,7 @@ const statSections = [
         req: () => enemy.value.darkEnemyLoot[4] > 0,
       },
       {
-        desc: 'Space Ring [Suffix]',
+        desc: '太空戒指[后缀]',
         value: () => (hero.value.eqUpsMult['spRing'].potential),
         color: ' #a4ffe1',
         req: () => spaceShop.value[11].status,
@@ -3574,7 +3574,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Sword [Suffix]',
+        desc: '剑[后缀]',
         value: () => formatNumber((Math.floor(hero.value.spCount/6) >= 3? hero.value.eqUpsMult['sword'].crit: 0), true),
         color: '#22cccc',
       },
@@ -3615,7 +3615,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Sword [Prefix]',
+        desc: '剑[前缀]',
         value: () => formatNumber((Math.floor(hero.value.spCount/6) >= 3? hero.value.eqUpsMult['sword'].critDmg * 0.01: 0) , true),
         color: '#22cccc',
       },
@@ -3785,7 +3785,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Body [Suffix]',
+        desc: '护甲[后缀]',
         value: () => formatNumber(hero.value.eqUpsMult['armor'].def, false),
         color: '#22cccc',
       },
@@ -4209,7 +4209,7 @@ const statSections = [
         req: () => dimensions.value[3].infTier > 0,
       },
       {
-        desc: 'Boots [Suffix]',
+        desc: '靴子[后缀]',
         value: () => formatNumber(hero.value.eqUpsMult['boots'].stage, true),
         color: 'yellow',
         req: () => hero.value.eqUpsMult['boots'].stage > 0 || hero.value.mainInfTier >= 10,

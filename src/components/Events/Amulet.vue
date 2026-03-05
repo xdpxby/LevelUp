@@ -1,6 +1,6 @@
 <template>
   <div class="amulet-panel red-theme">
-    <h2 @click="hero.eLink = { set: 'Info', info: 'Amulet' }">🔮 <sup style="font-size: 12px">ℹ️</sup>Amulets</h2>
+    <h2 @click="hero.eLink = { set: 'Info', info: 'Amulet' }">🔮 <sup style="font-size: 12px">ℹ️</sup>护符</h2>
     
     <div class="amulet-content">
       <div class="amulet-list">
@@ -12,17 +12,17 @@
           >
             <h3 class="amulet-name">{{ amulet.name }} [T{{amulet.tier}}]</h3>
             <ul class="amulet-stats" v-if="amulet.status === true">
-              <li>Max Level: <strong>+{{ amulet.maxLevel }}</strong></li>
-              <li>Max Curses: <strong>+{{ amulet.cursedSlot }}</strong></li>
-              <li>Buff Slot: 
+              <li>最高等级： <strong>+{{ amulet.maxLevel }}</strong></li>
+              <li>最大诅咒： <strong>+{{ amulet.cursedSlot }}</strong></li>
+              <li>增益槽位： 
                 <span v-if="hero.maxStage >= 20 + 10 * (amulet.tier-1)"><strong>+{{ amulet.buffSlot }}</strong></span>
-                <span v-else class="closed">Reach {{20 + 10 * (amulet.tier-1)}} stage</span>
+                <span v-else class="closed">达到 {{20 + 10 * (amulet.tier-1)}} 关卡</span>
               </li>
-              <li>Suffix: 
+              <li>后缀： 
                 <span v-if="amulet.suffix.status === false" class="closed">{{suff[index]}}</span>
                 <span v-else>{{ amulet.suffix.text }}</span>
               </li>
-              <li>Prefix:
+              <li>前缀：
                 <span v-if="amulet.prefix.status === false" class="closed">{{pref[index]}}</span>
                 <span v-else>{{ prefixHandle(amulet.tier) }}</span>
               </li>
@@ -32,9 +32,9 @@
       </div>
       <div class="curse-panel">
         <p class="curse-wrapper">
-          Max Curses: [{{hero.curse}}] | Min Curses [{{hero.minCurse}}]
+          最大诅咒： [{{hero.curse}}] | 最低诅咒 [{{hero.minCurse}}]
           <Tooltip :text="cursePowerHandle" boxShadow="0 0 10px #fda4af" position="bottom" maxWidth="120px">
-            <span v-if="hero.mainInfTier >= 30"><sup style="font-size: 6px">ℹ️</sup>Curse Power: [{{formatNumber(hero.curseMult, true)}}]</span>
+            <span v-if="hero.mainInfTier >= 30"><sup style="font-size: 6px">ℹ️</sup>诅咒强度： [{{formatNumber(hero.curseMult, true)}}]</span>
           </Tooltip>
         </p>
         <Tooltip :text="() => formatCurses()" position="right">
@@ -56,7 +56,7 @@
                     ]"
                   > 
                     [T{{ tIndex + 1 }}] {{ tEffect(tier, curse.id) }} 
-                    (Bonus: {{ tBonusEffect(tier) }})
+                    （加成： {{ tBonusEffect(tier) }}）
                   </li>
                 </template>
             </ul>
@@ -137,7 +137,7 @@ function tEffect(tier, curseId) {
 
 
 function prefixHandle(t){
-  return `Max Level MULT - ${1 + t * 0.02 * (hero.value.sp >= 99? 2: 1)}`
+  return `最高等级倍率 - ${1 + t * 0.02 * (hero.value.sp >= 99? 2: 1)}`
 }
 
 const CursesChance = computed(() => {
@@ -161,12 +161,12 @@ function formatCurses() {
   if (t5 > 0) s += `<br><span>[T5(%)] - ${t5.toFixed(2)}</span>`
 
   if(hero.value.stage < 14)
-    return `Reach Stage 15`;
+    return `达到关卡15`;
   return s;
 }
 
 function cursePowerHandle() {
-  return `Every curse has its threshold. Once you overcome this threshold, the curse becomes stronger depends on Curse Power. <spna style='color: red'>Curse power does not affect its bonus.</span>`
+  return `每种诅咒都有阈值。超过阈值后，诅咒效果会受诅咒强度影响而增强。<span style='color: red'>诅咒强度不会影响其加成数值。</span>`
 }
 
  const  formatNumber = (num, f = false) => {

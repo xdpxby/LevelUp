@@ -7,7 +7,7 @@
 
       <div class="progress-center" v-if="!hero.dId.startsWith('d-')">
         <span class="progress-icon">🌍</span>
-        <span class="progress-text">Progress</span>
+        <span class="progress-text">进度</span>
       </div>
         <div class="right-icons tooltip-content" >
         
@@ -167,38 +167,38 @@
 
    <div class="lock-stage-wrapper">
       <!-- Idle system button -->
-      <Tooltip :text="'Idle system: Locks the stage to prevent automatic progression'">
+      <Tooltip :text="'挂机系统：锁定关卡以防止自动推进'">
         <button class="lock-stage-button" @click="toggleLockStage">
           <span v-if="hero.isLocked" class="spinner"></span>
           <span v-else class="spinner fspinner"></span>
-          <span class="button-text">{{ hero.isLocked ? 'Locked' : 'Unlocked' }}</span>
+          <span class="button-text">{{ hero.isLocked ? '已锁定' : '未锁定' }}</span>
         </button>
       </Tooltip>
 
-      <Tooltip :text="'Travel to specific stage'">
+      <Tooltip :text="'跳转到指定关卡'">
         <button v-if="dimensions[3].infTier == dimensions[3].maxInfTier" class="lock-stage-button" @click="showStageModal = !showStageModal">
           <span class="icon">🌍</span>
-          <span class="button-text">Stage</span>
+          <span class="button-text">关卡</span>
         </button>
       </Tooltip>
 
-       <Tooltip :text="'AFK rewards'">
+       <Tooltip :text="'AFK收益'">
           <button v-if="dimensions[7].infTier == dimensions[7].maxInfTier" class="lock-stage-button" @click="showAfkModal = !showAfkModal">
             <span class="icon">🕒</span>
-            <span class="button-text">AFK</span>
+            <span class="button-text">挂机</span>
           </button>
         </Tooltip>
 
-        <Tooltip :text="'Auto Settings'">
+        <Tooltip :text="'自动设置'">
           <button v-if="hero.mainInfTier >= 1 || hero.infEvents >= 2" class="lock-stage-button" @click="showAutoModal = !showAutoModal">
-            ⚙️ Auto Settings
+            ⚙️ 自动设置
           </button>
         </Tooltip>
 
-        <Tooltip :text="'Pause or resume the game'">
+        <Tooltip :text="'暂停或继续游戏'">
           <button class="lock-stage-button" @click="hero.isPaused = !hero.isPaused">
-            <span v-if="hero.isPaused">▶️ Resume</span>
-            <span v-else>⏸️ Pause</span>
+            <span v-if="hero.isPaused">▶️ 继续</span>
+            <span v-else>⏸️ 暂停</span>
           </button>
         </Tooltip>
 
@@ -207,22 +207,22 @@
       </div>
 
       <div v-if="showStageModal" class="stage-modal">
-        <h3>Stage Travel</h3>
+        <h3>关卡跳转</h3>
         <div class="stage-input-group">
           <input type="number" v-model.number="targetStage" :max="hero.maxStage" />
-          <button @click="travelToStage">Travel</button>
+          <button @click="travelToStage">跳转</button>
         </div>
         <p class="stage-description">
-          Enter the stage you want to travel to. Max stage: {{ hero.maxStage }}
+          输入你要跳转的关卡。当前最高关卡： {{ hero.maxStage }}
         </p>
         <p class="stage-description" >
-          During travel, enemies become 4 times stronger. Over time, their strength will return to normal.
-          Skipping stages and receiving ascension shards is blocked until the next reset.
+          跳转期间敌人会变强4倍，随着时间会逐步恢复正常。
+          在下次重置前，无法通过跳关获得飞升碎片。
         </p>
       </div>
 
       <div v-if="showAfkModal" class="stage-modal">
-        <h3>🕒 AFK Reward</h3>
+        <h3>🕒 AFK 收益</h3>
 
         <div class="afk-bar-container">
           <div class="afk-bar" :style="{ width: `${afkPercent}%` }"></div>
@@ -230,7 +230,7 @@
         </div>
 
         <div class="afk-controls">
-          <label for="afkPercentInput">Use %:</label>
+          <label for="afkPercentInput">使用比例：</label>
           <input
             id="afkPercentInput"
             type="number"
@@ -238,43 +238,43 @@
             min="1"
             max="100"
           />
-          <button @click="useAfkTime">Use</button>
+          <button @click="useAfkTime">使用</button>
         </div>
       </div>
 
       <div v-if="showAutoModal" class="auto-settings-modal">
         <div class="auto-panel" v-if="hero.mainInfTier >= 2 || hero.infEvents >= 2">
-          <h4>🌌 Auto Ascension</h4>
+          <h4>🌌 自动飞升</h4>
           <label>
-            Min Shards:
+            最少碎片：
             <input type="number" v-model.number="autoTemp.ascensionMinShards" />
           </label>
           <label>
-            Min Stage:
+            最低关卡：
             <input type="number" v-model.number="autoTemp.ascensionMinStage" />
           </label>
         </div>
 
         <div class="auto-panel" v-if="hero.mainInfTier >= 3 || hero.infEvents >= 3">
-          <h4>♻️ Auto Rebirth</h4>
+          <h4>♻️ 自动重生</h4>
           <label>
-            Min Rebirth Pts:
+            最低重生点：
             <input type="number" v-model.number="autoTemp.rebirthMinPts" />
           </label>
           <label>
-            Min Level(100+):
+            最低等级（100+）：
             <input type="number" v-model.number="autoTemp.rebirthMinLevel" />
           </label>
           <label>
-            Level +:
+            等级增量：
             <input type="number" v-model.number="autoTemp.rebirthMinLevelNext" />
           </label>
         </div>
 
         <div class="auto-panel">
-          <h4>⚔️ Stop at Stage</h4>
+          <h4>⚔️ 停在关卡</h4>
           <label>
-            Stage to Stop:
+            停止关卡：
             <input type="number" v-model.number="autoTemp.stopStage" />
           </label>
           <label>
