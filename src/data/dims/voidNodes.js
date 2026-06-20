@@ -657,7 +657,7 @@ export const nodes = ref([
       x: 650,
       y: -150,
   
-      name: "EXP",
+      name: "经验值",
       desc: "+1.1 EXP gain",
       rewardLabel: 'EXP MULT',
       rewardValue: '0',

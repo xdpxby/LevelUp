@@ -12,7 +12,7 @@
       <Tooltip :text="() => ''">
         <button v-if="getDimSpecialReward(3)" class="lock-stage-button" @click="modalsHandler('stage')">
           <span class="icon">🌍</span>
-          <span class="button-text">Stage</span>
+          <span class="button-text">关卡</span>
         </button>
       </Tooltip>
 
@@ -31,8 +31,8 @@
 
         <Tooltip :text="() => 'Pause or resume the game'">
           <button class="lock-stage-button" @click="hero.isPaused = !hero.isPaused">
-            <span v-if="hero.isPaused">▶️ Resume</span>
-            <span v-else>⏸️ Pause</span>
+            <span v-if="hero.isPaused">▶️ 返回</span>
+            <span v-else>⏸️ 暂停</span>
           </button>
         </Tooltip>
 
@@ -92,7 +92,7 @@
           </div>
 
           <div class="afk-controls">
-            <label for="afkPercentInput">Use %:</label>
+            <label for="afkPercentInput">使用 %:</label>
             <input
               id="afkPercentInput"
               type="number"
@@ -142,7 +142,7 @@
         </div>
 
         <div class="auto-panel" v-if="hero.infExpansions.ascensioin">
-          <h4>🌌 Auto Ascension</h4>
+          <h4>自动转生</h4>
           <label>
             <Tooltip :text="() => stageTooltip(6)" position="right" maxWidth="100px">
               Min Shards:
@@ -158,7 +158,7 @@
         </div>
 
         <div class="auto-panel" v-if="hero.infExpansions.rebirth">
-          <h4>♻️ Auto Rebirth</h4>
+          <h4>♻️ 自动重生</h4>
           <label>
             <Tooltip :text="() => stageTooltip(3)" position="right" maxWidth="100px">
               Min Rebirth Pts:
@@ -205,7 +205,7 @@
         <div class="modal-buttons">
           <button @click="applyAutoSettings">Apply</button>
           <button @click="showAutoModal = false">Cancel</button>
-          <button @click="resetSettings">Reset</button>
+          <button @click="resetSettings">重置</button>
         </div>
       </div>
 

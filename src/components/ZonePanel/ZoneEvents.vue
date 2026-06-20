@@ -207,39 +207,39 @@ function canShowSingShards(h) {
 }
 
 function ascensionContent () {
-  let text = `<p style="color: #0011ff; font-weight: bold">Ascension</p>
-  <p>Reset to stage 1, but you will lose Level, Tree and Equipment progression.</p>`;
+  let text = `<p style="color: #0011ff; font-weight: bold">转生</p>
+  <p>重置到关卡 1，但会失去等级、技能树和装备进度。</p>`;
 
-  text += `<p>Total shards: ${ fn(hero.value.totalAscensionShards) } `;
+  text += `<p>总碎片： ${ fn(hero.value.totalAscensionShards) } `;
   if(hero.value.ascendShardPerform > 0)
-    text += `<span>[+${fn(hero.value.ascendShardPerform)} after Ascension]</span> 💠</p> `;
+    text += `<span>[+${fn(hero.value.ascendShardPerform)} 转生后]</span> 💠</p> `;
   else text += `💠</p>`;
 
   if(getDimSpecialReward(9) && hero.value.dId == 'main')
-    text += `<p>Now you are available to get <span style="color: #fe41fe">Dimension Shards <strong>[DS]</strong></span>. 
-  Reach Stage ${dsGain()} and Ascend to gain <span style="color: #fe41fe">1 DS</span></p>`;
+    text += `<p>你现在可以获得 <span style="color: #fe41fe">Dimension Shards <strong>[DS]</strong></span>. 
+  达到关卡 ${dsGain()} 并转生以获得 <span style="color: #fe41fe">1 DS</span></p>`;
 
   return text;
 }
 
 function rebirthContent () {
-  let text = `<p style="color: #00ff80; font-weight: bold">Rebirth</p>`;
+  let text = `<p style="color: #00ff80; font-weight: bold">重生</p>`;
 
   if(!hero.value.infExpansions.rebirth)
-    text += `<span>You are affected by <span style="color: red">Rebirth Suppression</span><br>
-    <span>You reached the Limit of Max Level. Rebirth to break this Limit</span><br><br>`;
+    text += `<span>你受到 <span style="color: red">重生压制</span> 影响<br>
+    <span>您已达到最高等级限制。重生以打破这个限制</span><br><br>`;
 
-  text += `<span>Reset to stage 1, but you will reset Levels, Tree, Equipment and Soul progression</span><br><br>`;
+  text += `<span>重置到关卡 1，同时重置等级、技能树、装备和灵魂进度</span><br><br>`;
 
 
   let rebirth = calculateRebirthTier(hero.value.level, hero.value.rebirthTier);
 
   if(rebirth > 0)
-    text += `<span>+${rebirth} Rebirth Tier after Reset</span><br><br>`;
+    text += `<span>+${rebirth} 重置后的重生层级</span><br><br>`;
     
 
   if(hero.value.rebirthPts < 1e5)
-    text += `Gain ${fn(hero.value.totalRebirthPts)} Rebirth Pts after Reset`;
+    text += `重置后获得 ${fn(hero.value.totalRebirthPts)} 重生点数`;
 
   return text;
 }
@@ -248,23 +248,23 @@ function abyssContent () {
   let text = '';
 
   if(hero.value.abyssTier < 3)
-    text += `<p style="color: #f942f9; font-weight: bold">Abyss [T${hero.value.abyssTier}]</p>`;
-  else text += `<p style="color: #f942f9; font-weight: bold">Abyss-D</p>`;
+    text += `<p style="color: #f942f9; font-weight: bold">深渊[T${hero.value.abyssTier}]</p>`;
+  else text += `<p style="color: #f942f9; font-weight: bold">深渊维度</p>`;
 
   text += `<p>${abyssMilestones[hero.value.abyssTier].description}`;
-  if (hero.value.abyssTier >= 3) text += `. Reduced Essense gain by [^${fn(0.25 + perksHandler(46))}]`;
+  if (hero.value.abyssTier >= 3) text += `. 精华获取降低 [^${fn(0.25 + perksHandler(46))}]`;
   text += '</p>';
   text += `<p>${abyssMilestones[hero.value.abyssTier].reward}</p>`;
 
   if(hero.value.abyssDStages >= 100 && hero.value.dId != 'abyss-d') 
-    text += `<span style="color: #f942f9; font-weight: bold">You've reached max Stage in D-Abyss. Find another way to progress.</span><br><br>`
+    text += `<span style="color: #f942f9; font-weight: bold">你已达到深渊维度最高关卡。寻找其他方式继续推进。</span><br><br>`
 
   if(hero.value.abyssTier >= 3)
-    text += `<span>Max Stage: ${hero.value.abyssDStages}</span>
+    text += `<span>最高关卡： ${hero.value.abyssDStages}</span>
     <p>${abyssRewardList()}</p>`;
   
   if(hero.value.isAbyss)
-    text += `Click to leave or Complete The Abyss when you reach a certain Stage.`;
+    text += `点击离开，或在达到指定关卡后完成深渊。`;
   
   return text;
 }
@@ -278,37 +278,37 @@ function infinityContent () {
   let text = `<span style="color: ${color}"><strong>Infinity [T${hero.value.mainInfTier}]</strong></span>`;
 
   if(t < 60)
-    text += `<p>You have become The Omnipotent ,but <span style="color: gold">[D-Infinity]</span> seeks to prevent you from shattering a fragment of its creation.</p>`;
-  else text += `<p><span style="color: ${color}; font-weight: bold">[D-Corruption]</span> interfere with the structure of the <span style="color: gold">[D-Infinity]</span> by altering behavior.`
+    text += `<p>你已成为全能者，但 <span style="color: gold">[D-Infinity]</span> 试图阻止你击碎其造物的一块碎片。</p>`;
+  else text += `<p><span style="color: ${color}; font-weight: bold">[D-Corruption]</span> 正在干扰 <span style="color: gold">[D-Infinity]</span> 的结构并改变其行为。`
 
   
   if(t < 23)
     text += `<p>${ infinityMilestones[t].description }</p>`;
   
-  text += `<p>Press the button, your progress will reset and you will face a Trial with [EXP Gain] and [Max Level] reduced by <span style='color: red'>^${(hero.value.infPower).toFixed(2)}</span>.
-  Once you reach Level <span style="color: ${color}">${level}</span> you will receive <span style='color: ${color}'>Infinity [T${hero.value.mainInfTier + 1}]</span>.`;
+  text += `<p>按下按钮后，进度将重置，你会面对一场使[经验获取]和[最高等级]降低的试炼，倍率为 <span style='color: red'>^${(hero.value.infPower).toFixed(2)}</span>.
+  当你达到等级 <span style="color: ${color}">${level}</span> 你将获得 <span style='color: ${color}'>Infinity [T${hero.value.mainInfTier + 1}]</span>.`;
 
   if(t >= 20)
-    text += `<p>The <span style="color: gold">[D-Infinity]</span> gathers its forces and will cast <span style="color: red">[Prediction]</span> on you every 5 Infinity Tiers</p>`;
+    text += `<p>The <span style="color: gold">[D-Infinity]</span> 正在集结力量，并会每 5 个无限层级对你施加 <span style="color: red">[Prediction]</span> </p>`;
 
   return text;
 }
 
 function souldContent () {
-  let text = `<p style="color: #e100ffcc; font-weight: bold">D-Soul</p>
-  <p>Enter a sub-space where souls have 100% appearance, but are stronger than regular souls. <strong>Souls do not drop Loot</strong></p>`;
+  let text = `<p style="color: #e100ffcc; font-weight: bold">维度灵魂</p>
+  <p>进入一个灵魂 100% 出现的子空间，但其中灵魂比普通灵魂更强。<strong>灵魂不会掉落战利品</strong></p>`;
 
   if(hero.value.selectedDivSkills.includes(11))
-    text += `<p>D-Soul is blocked due to <span style='color: #00ffea'>Soul Eclipse</span></p>`;
+    text += `<p>灵魂维度被阻止，原因： <span style='color: #00ffea'>灵魂蚀</span></p>`;
   
   if(hero.value.selectedDivSkills.includes(6))
-    text += `<p>D-Soul is blocked due to <span style='color: #00ffea'>The basis of the Limit</p>`;
+    text += `<p>灵魂维度被阻止，原因： <span style='color: #00ffea'>限制之基</p>`;
 
   if(hero.value.souls >= hero.value.soulsCap)
-    text += `<p>D-Soul is blocked due to <span style='color: #f424fb'>Soul Cap</p>`;
+    text += `<p>灵魂维度被阻止，原因： <span style='color: #f424fb'>灵魂上限</p>`;
   
   if(hero.value.stages.current < 15)
-    text += `<p>D-Soul is blocked. You can enter from stage 15</p>`;
+    text += `<p>灵魂维度被阻止。你可从关卡 15 开始进入</p>`;
 
 
 
@@ -320,30 +320,30 @@ function singularityContent () {
   let text = '';
 
   if(hero.value.singularity < 8)
-    text += `<p style="color: cyan"><strong>Singularity [T${hero.value.singularity}]</strong></p>`;
-  else text += `<p style="color: cyan"><strong>Singularity BH</strong></p>`
+    text += `<p style="color: cyan"><strong>奇点[T${hero.value.singularity}]</strong></p>`;
+  else text += `<p style="color: cyan"><strong>奇点黑洞</strong></p>`
 
-  text += `<p>Dive into the edge of the Black Hole ruled by <span style="color: cyan">[D-Gravity]</span>.</p>`;
+  text += `<p>潜入由 <span style="color: cyan">[D-Gravity]</span>.</p>`;
   text += `<p>${ singularityMilestones[hero.value.singularity].challenge }</p>`;
 
   if(hero.value.isSingularity)
-    text += `Singularity increases the [Enemy Power] depending on the number of enemies killed: <span style="color: cyan">${fn(singPower())}<br><br></span>`;
+    text += `奇点会根据已击杀敌人数量提高[敌人强度]： <span style="color: cyan">${fn(singPower())}<br><br></span>`;
   
   if(hero.value.singularity < 8)
-  text += `<p>Perform the singularity to obtain: ${singularityMilestones[hero.value.singularity].reward}</p>`;
+  text += `<p>执行奇点以获得： ${singularityMilestones[hero.value.singularity].reward}</p>`;
 
   if(hero.value.singularity >= 8) {
-    text += `<span>Max kills: ${hero.value.singularityKills}</span><br>`; 
+    text += `<span>最高击杀： ${hero.value.singularityKills}</span><br>`; 
   }
   if (hero.value.singularity >= 8 && hero.value.isSingularity) {
-    text += `<span>Total SP: <b>${fn(getTotalSp())}</b></span><br><br>`
+    text += `<span>总 SP： <b>${fn(getTotalSp())}</b></span><br><br>`
   }
     
   if(hero.value.eLevel < 700 && !hero.value.isSingularity)
-    text += `<span>Reach Level 700 to Enter the Singularity</span><br>`;
+    text += `<span>达到 700 级以进入奇点</span><br>`;
   
   if(hero.value.isSingularity)
-    text += `<span>Click to leave the Singularity</span>`;
+    text += `<span>点击离开奇点</span>`;
   
   return text;
 }
@@ -351,19 +351,19 @@ function singularityContent () {
 function singShardsContent () {
   let text = '';
 
-  if (hero.value.stages.current < 300) return 'Reach Stage 300';
+  if (hero.value.stages.current < 300) return '达到关卡 300';
 
   text += `<p style="color: cyan"><strong>Singularity [D-S]</strong></p>`;
 
-  text += `<p>You've realized the full weight of this world. Gravity itself is yours to command. 
-    Enter the critical point of the singularity itself. 
-    By harnessing this point, you'll obtain a <b style="color: cyan">Singularity Shard</b>. 
-    Each <b style="color: cyan">Singularity Shard</b> increases the strength of your enemies and the kill requirements.</p>
+  text += `<p>你已理解这个世界的全部重量。重力本身将听从你的号令。 
+    进入奇点本身的临界点。 
+    驾驭这一点后，你将获得一枚 <b style="color: cyan">奇点碎片</b>. 
+    每枚 <b style="color: cyan">奇点碎片</b> 都会提高敌人强度和击杀需求。</p>
     
-    <p style="color: cyan"><b>Objective: To find out what is beyond this world.</b></p>`;
+    <p style="color: cyan"><b>目标：探明这个世界之外的事物。</b></p>`;
 
-  text += `<p>Base Stage Requirement: +${fn(singStageReq(false))}</p>
-  <p>Enemy HP: ${fn(enemyShardsMult(false).hp)} | Enemy DMG: ${fn(enemyShardsMult(false).dmg)}</p>`
+  text += `<p>基础关卡需求： +${fn(singStageReq(false))}</p>
+  <p>敌人生命值： ${fn(enemyShardsMult(false).hp)} | 敌人伤害： ${fn(enemyShardsMult(false).dmg)}</p>`
 
   return text;
 }

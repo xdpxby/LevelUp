@@ -38,7 +38,7 @@
     <!-- Curse -->
     <div v-if="canShowCursePanel(hero, villian)" class="curse-wrapper">
       <div class="curse-header">
-        <span>Curses</span>
+        <span>诅咒</span>
       </div>
 
       <div class="curse-list">

@@ -1,8 +1,8 @@
 <template>
   <div class="space-panel">
     <div class="toggle-tabs">
-      <button :class="{ active: currentTab === 'battle' }" @click="switchTab('battle')">Space</button>
-      <button :class="{ active: currentTab === 'rewards' }" @click="switchTab('rewards')">Space Power</button>
+      <button :class="{ active: currentTab === 'battle' }" @click="switchTab('battle')">空间</button>
+      <button :class="{ active: currentTab === 'rewards' }" @click="switchTab('rewards')">空间之力</button>
       <button v-if="hero.bhTier >= 3" :class="{ active: currentTab === 'shop' }" @click="switchTab('shop')">Astralis</button>
     </div>
 

@@ -65,7 +65,7 @@ function totalRegen (unit) {
 
 const statsConfig = [
     {
-      title: "Combat",
+      title: "战斗",
       visibleFor: ["player", "villian"],
       stats: [
         {
@@ -85,7 +85,7 @@ const statsConfig = [
       group: { 
         keys: [
           { label: "Current", get: ({ unit }) => unit.APS.current },
-          { label: "Total", get: ({ unit }) => unit.APS.total },
+          { label: "总计", get: ({ unit }) => unit.APS.total },
           { label: "Min Cap", get: ({ unit }) => unit.APS.min },
           { label: "Max Cap", get: ({ unit }) => unit.APS.max },
         ]
@@ -98,7 +98,7 @@ const statsConfig = [
       group: { 
         keys: [
           { label: "Curent", get: ({ unit }) => unit.avoid.base * 100 },
-          { label: "Total", get: ({ unit }) => unit.avoid.total * 100 },
+          { label: "总计", get: ({ unit }) => unit.avoid.total * 100 },
           { label: "Cap", get: ({ unit }) => unit.avoid.max * 100 },
           { label: "Accuracy", get: ({ unit }) => unit.stats.final.hit * 100 },
         ]
@@ -118,11 +118,11 @@ const statsConfig = [
     },
 
     {
-      title: "Overkill",
+      title: "超杀",
       visibleFor: ["player"],
       group: { 
         keys: [
-          { label: "Overkill", get: ({ unit }) => unit.overkill.count },
+          { label: "超杀", get: ({ unit }) => unit.overkill.count },
           { label: "Overloot [%]", get: ({ unit }) => unit.overkill.loot },
         ]
       }

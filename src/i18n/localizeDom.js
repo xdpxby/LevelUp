@@ -310,13 +310,22 @@ function prepareTranslations() {
   }
 
   runtime.templates = runtime.templates.filter(Boolean);
-  runtime.phrases = Object.entries(phraseEntries)
+
+  const phrases = new Map();
+
+  for (const [source, target] of runtime.dictionary.entries()) {
+    if (!isPhraseCandidate(source, target)) continue;
+    phrases.set(source, target);
+  }
+
+  for (const [source, target] of Object.entries(phraseEntries)) {
+    phrases.set(source, target);
+  }
+
+  runtime.phrases = Array.from(phrases.entries())
     .sort((a, b) => b[0].length - a[0].length)
-    .map(([source, target]) => ({
-      source,
-      target,
-      pattern: new RegExp(escapeRegExp(source), 'gi'),
-    }));
+    .map(([source, target]) => createPhraseMatcher(source, target))
+    .filter(Boolean);
 }
 
 function createTemplateMatcher(template, replacement) {
@@ -441,10 +450,46 @@ function translatePhrases(text) {
   let result = text;
 
   for (const phrase of runtime.phrases) {
-    result = result.replace(phrase.pattern, phrase.target);
+    result = result.replace(phrase.pattern, (...args) => {
+      const prefix = phrase.boundary ? args[1] : '';
+      return `${prefix}${phrase.target}`;
+    });
   }
 
   return result;
+}
+
+function isPhraseCandidate(source, target) {
+  if (!source || !target) return false;
+  if (source === target) return false;
+  if (source.includes('{{') || target.includes('{{')) return false;
+  if (!hasLatinText(source)) return false;
+  if (source.length < 3) return false;
+  if (/^https?:\/\//i.test(source)) return false;
+  if (/[{}]/.test(source)) return false;
+
+  const hasSeparator = /[\s:[\]().,+/%-]/.test(source);
+  const isKnownShortTerm = Object.hasOwn(phraseEntries, source);
+  return hasSeparator || isKnownShortTerm || source.length >= 6;
+}
+
+function createPhraseMatcher(source, target) {
+  try {
+    const escaped = escapeRegExp(source);
+    const needsLeadingBoundary = /^[A-Za-z0-9_]/.test(source);
+    const needsTrailingBoundary = /[A-Za-z0-9_]$/.test(source);
+    const prefix = needsLeadingBoundary ? '(^|[^A-Za-z0-9_])' : '';
+    const suffix = needsTrailingBoundary ? '(?=$|[^A-Za-z0-9_])' : '';
+
+    return {
+      source,
+      target,
+      boundary: needsLeadingBoundary,
+      pattern: new RegExp(`${prefix}${escaped}${suffix}`, 'gi'),
+    };
+  } catch {
+    return null;
+  }
 }
 
 function patchDialogs() {

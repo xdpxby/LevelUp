@@ -274,7 +274,7 @@ function minIconsHandler(id){
   switch(id){
     case 0: {
       let d = (hero.value.eLevel > 700? 2: 1)
-      let text = `<b style="color: lightgreen">Every level gives you:</b>
+      let text = `<b style="color: lightgreen">每级给予：</b>
       <b style='color: lightgreen'>${(2 + 0.5 * Math.floor(hero.value.potential/10) * d).toFixed(1)} HP</b>
       <b style='color: red'>${(1 + 0.2 * Math.floor(hero.value.potential/20) * d).toFixed(1)} DMG</b>
       <b style='color: yellow'>${(0.5 + 0.1 * Math.floor(hero.value.potential/30) * d).toFixed(1)} DEF</b>`;
@@ -283,7 +283,7 @@ function minIconsHandler(id){
         text += `<br><b style='color: orange'>${0.001 * d} CRIT DMG</b>`;
 
       if(hero.value.eLevel > 700)
-        text += `<br><br><b style="color: #6adfdf">Stats after Level 700 are doubled</b>`;
+        text += `<br><br><b style="color: #6adfdf">700级后的属性翻倍</b>`;
 
       return text;
     }
@@ -356,7 +356,7 @@ function minIconsHandler(id){
     }
     case 4: {
 
-      let text = `<div style="display:flex;flex-direction:column;gap:4px;width:170px"><b>All Resources</b>`;
+      let text = `<div style="display:flex;flex-direction:column;gap:4px;width:170px"><b>所有资源</b>`;
 
         const row = (label, value, color) =>
         `<div style="display:flex;justify-content:space-between;align-items:center">

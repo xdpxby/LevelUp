@@ -468,7 +468,7 @@ const styledSections = [
       ]
   },
   {
-    title: 'Links',
+    title: '链接',
     class: 'auto-section info style-section',
     content: [
       `
@@ -485,7 +485,7 @@ const styledSections = [
       ]
   },
   {
-    title: 'Endless Progress',
+    title: '无尽的进度',
     class: 'endless-section info style-section',
     content: [
       'Endgame content is The Black Hole [T4]',
@@ -493,7 +493,7 @@ const styledSections = [
       ]
   },
   {
-    title: 'Usefull Info you should know',
+    title: '你应该知道的有用信息',
     class: 'endless-section info style-section',
     content: [
       '^ - Exponent',
@@ -538,7 +538,7 @@ const styledSections = [
     ]
   },
   {
-    title: 'Level Info',
+    title: '等级信息',
     class: 'afk-section info style-section',
     content: [
       'Current Level - Level gained by using EXP to level up',
@@ -550,7 +550,7 @@ const styledSections = [
     ]
   },
    {
-    title: 'DMG Display [Icons]',
+    title: '伤害显示[图标]',
     class: 'afk-section info style-section',
     content: [
       'If you are using a DMG display, you need to know about these icons.',
@@ -596,7 +596,7 @@ const v = villian.value;
 
 const statSections = [
   {
-    title: 'Level',
+    title: '等级',
     id: 'only level',
     content: [
       { desc: 'Min Level', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevel > 0 },
@@ -606,18 +606,18 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => nodesHandler(12, ['inf']),
         color: 'lightgreen',
         req: () => h.infExpansions.tree
       },
       {
-        desc: 'Equipment [Set]',
+        desc: '装备 [套装]',
         value: () => eqCpmplect(),
         color: '#66ffcc',
       },
       {
-        desc: 'Ascension [Destructive Play]',
+        desc: '转生 [破坏性游戏]',
         value: () => perksHandler(26),
         color: 'lightblue',
         req: () => hero.value.minLevel > 0 || ascenPerks[26].level,
@@ -647,13 +647,13 @@ const statSections = [
         req: () => h.infExpansions.soul,
       },
       {
-        desc: 'Rebirth Pts',
+        desc: '重生点数',
         value: () => ((hero.value.rebirthPts >= 50? 5: 0) + (hero.value.rebirthPts > 3500? 5: 0) + (hero.value.rebirthPts > 30000? 5: 0)),
         color: 'lightgreen',
         req: () => h.level >= 100 || h.mainInfTier > 0,
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生层级',
         value: () => (hero.value.rebirthTier >= 40? Math.floor(hero.value.rebirthBonusesHandle[5].value): 0),
         color: 'lightgreen',
         req: () => h.infExpansions.rebirth
@@ -677,7 +677,7 @@ const statSections = [
         req: () => h.spaceUnlocked || h.mainInfTier > 0
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => (hero.value.spCount >= 41? Math.floor(hero.value.spCount / 6): 0),
         color: 'orange',
         req: () => hero.value.spCount >= 41 || hero.value.mainInfTier >= 15,
@@ -689,13 +689,13 @@ const statSections = [
         req: () => spaceShop.value[9].status,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => infBonusesHandler(24, hero),
         color: 'gold',
         req: () => hero.value.mainInfTier >= 13,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (h.rebirthPts >= 9e5? h.singularity: 0),
         color: '#a4ffe1',
         req: () => h.rebirthPts >= 9e5,
@@ -755,7 +755,7 @@ const statSections = [
         req: () => h.mainInfTier >= 100,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => h.minLevelAdd,
         color: 'gold',
       },
@@ -773,22 +773,22 @@ const statSections = [
         req: () => h.mainInfTier >= 50,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(hero.value.minLevelMult),
         color: 'gold',
         req: () => hero.value.minLevelMult > 1,
       },
       { desc: 'TOTAL [MIN LEVEL]', value: '', color: 'gold',  uppercase: true, req: () => hero.value.minLevel > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => (hero.value.minLevel),
         color: 'gold',
         req: () => hero.value.minLevel > 0,
       },
   
-      { desc: 'Max Level', value: '', color: 'lightgreen',  uppercase: true, req: () => true },
+      { desc: '最大等级', value: '', color: 'lightgreen',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 30,
         color: '',
       },
@@ -798,35 +798,35 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => nodesHandler(4, ['inf']),
         color: 'lightgreen',
         req: () => h.infExpansions.tree
       },
       {
-        desc: 'Equipment',
+        desc: '装备',
         value: () => fn(getEqMaxLevel()),
         color: '#66ffcc',
       },
       {
-        desc: 'Equipment [Enhances]',
+        desc: '装备 [强化]',
         value: () => fn(getEqEnhanceMaxLevel()),
         color: '#66ffcc',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
       },
       {
-        desc: 'Equipment [Set]',
+        desc: '装备 [套装]',
         value: () => eqCpmplect(),
         color: '#66ffcc',
         req: () => true,
       },
       {
-        desc: 'Ascension',
+        desc: '转生',
         value: () => (ascenPerks[0].level + ascenPerks[9].level + ascenPerks[18].level),
         color: 'lightblue',
       },
       {
-        desc: 'Ascension [Destructive Play]',
+        desc: '转生 [破坏性游戏]',
         value: () => perksHandler(26) * 2,
         color: 'lightblue',
       },
@@ -848,25 +848,25 @@ const statSections = [
       },
       
       {
-        desc: 'Amulets',
+        desc: '护身符',
         value: () => fn(corrHeartHandler().totalML),
         color: 'red',
         req: () => true,
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => radPerks[12].level,
         color: '#99ff99',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => (hero.value.spCount >= 23? hero.value.sp * 2: 0),
         color: 'orange',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
       },
       {
-        desc: 'Space [Bosses]',
+        desc: '空间 [Boss]',
         value: () => spaceBossesMaxLevel(),
         color: 'orange',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
@@ -878,13 +878,13 @@ const statSections = [
         req: () => h.bhTier >= 3
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.maxLevelAdd),
         color: 'gold',
       },
-      { desc: 'Max Level MULT', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.maxLevelMult > 1 },
+      { desc: '最大等级乘数', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.maxLevelMult > 1 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1,
         color: '',
         req: () => hero.value.maxLevelMult > 1,
@@ -896,7 +896,7 @@ const statSections = [
         req: () => hero.value.maxLevelMult > 1,
       },
       {
-        desc: 'Ascension [Endless Levels]',
+        desc: '转生 [无尽的等级]',
         value: () => fn(perksHandler(31)),
         color: 'lightblue',
         req: () => h.infExpansions.ascensioin
@@ -908,7 +908,7 @@ const statSections = [
         req: () => getDimSpecialReward(60),
       },
       {
-        desc: 'Ascension [Corrupted Amplification]',
+        desc: '转生[腐化放大]',
         value: () => fn(perksHandler(41)),
         color: 'lightblue',
         req: () => h.maxLevelMult > 1,
@@ -920,19 +920,19 @@ const statSections = [
         req: () => h.maxLevelMult > 1
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(11)),
         color: '#991099',
         req: () => h.maxLevelMult > 1
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生层级',
         value: () => (hero.value.rebirthTier >= 80? fn(hero.value.rebirthBonusesHandle[9].value): 0),
         color: 'lightgreen',
         req: () => h.infExpansions.rebirth,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(16, hero)),
         color: 'gold',
         req: () => infBonusesHandler(16, hero) > 0,
@@ -968,14 +968,14 @@ const statSections = [
         req: () => hero.value.maxLevelMult > 1,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(hero.value.maxLevelMult),
         color: 'gold',
         req: () => hero.value.maxLevelMult > 1,
       },
       { desc: `Dark Energy`, value: '', color: 'gold',  uppercase: true, req: () => dimensions.value[29].infTier > 0},
       {
-        desc: 'Total [^]',
+        desc: '总计 [^]',
         value: () => fn(enemy.value.darkEnergy.deTotal),
         color: 'gold',
         req: () => dimensions.value[29].infTier > 0,
@@ -1007,13 +1007,13 @@ const statSections = [
       },
       { desc: `True Level`, value: '', color: 'lightgreen',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.trueLevel, true),
         color: 'gold',
       },
       { desc: `Infinity Resistance`, value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPenalty > 0 || hero.value.mainInfTier >= 20 },
       {
-        desc: 'Ascension [Singularity Seed]',
+        desc: '转生 [奇点种子]',
         value: () => perksHandler(42),
         color: 'lightblue',
         req: () => h.singularity > 5,
@@ -1025,19 +1025,19 @@ const statSections = [
         req: () => getDimSpecialReward(9),
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (hero.value.rebirthPts >= 2.5e6? fn(Math.sqrt(Math.log(hero.value.rebirthPts)) * 0.015): 0),
         color: '#a4ffe1',
         req: () => h.rebirthPts >= 2.5e6,
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(17)),
         color: '#a4ffe1',
         req: () => h.mainInfTier > 0,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(36, hero)),
         color: 'gold',
         req: () => h.mainInfTier >= 180,
@@ -1099,20 +1099,20 @@ const statSections = [
       },
       { desc: `Total`, value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPenalty > 0 || hero.value.mainInfTier >= 20 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(hero.value.infPenalty),
         color: 'gold',
         req: () => hero.value.infPenalty > 0 || h.mainInfTier >= 20,
       },
       { desc: `Singularity Levels`, value: '', color: '#a4ffe1',  uppercase: true, req: () => hero.value.singularityLevels > 0 },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => fn(25 * h.singularity),
         color: '#a4ffe1',
         req: () => h.singularity > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => Math.floor((h.rebirthPts >= 4.5e5? fn(Math.log(hero.value.rebirthPts + 3) ** 1.906): 0)),
         color: '#a4ffe1',
         req: () => h.rebirthPts >= 4.5e5
@@ -1138,7 +1138,7 @@ const statSections = [
 
       { desc: `Total`, value: '', color: 'gold',  uppercase: true, req: () => h.singularityLevels > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.singularityLevels),
         color: 'gold',
         req: () => h.singularityLevels > 0,
@@ -1149,7 +1149,7 @@ const statSections = [
     title: 'INF',
     id: 'only ip',
     content: [
-      { desc: 'IP', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '无限点数', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
         desc: 'Infinity Goals',
         value: () => (hero.value.infPointsGoals),
@@ -1157,7 +1157,7 @@ const statSections = [
         req: () => hero.value.infPointsGoals > 0,
       },
       {
-        desc: 'Mirror of the Infinity',
+        desc: '无限之镜',
         value: () => e.specialCreatures.inf2.loot,
         color: 'gold',
         req: () => h.infExpansions.radiation
@@ -1169,14 +1169,14 @@ const statSections = [
         req: () => spaceShop.value[10].status,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.infPointsAdd),
         color: 'gold',
         req: () => true,
       },
-      { desc: 'IP MULT', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
+      { desc: '无限点数乘数', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPointsMult > 1 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1,
         color: '',
         req: () => h.infPointsMult > 1,
@@ -1188,13 +1188,13 @@ const statSections = [
         req: () => h.singularity > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => fn((h.rebirthPts >= 5e6? Math.log(h.rebirthPts) * 0.015: 0)),
         color: '#a4ffe1',
         req: () => h.singularity >= 8,
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(15)),
         color: '#a4ffe1',
         req: () => h.infPointsMult > 1,
@@ -1254,13 +1254,13 @@ const statSections = [
         req: () => h.mainInfTier >= 100,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.infPointsMult),
         color: 'gold',
         req: () => h.infPointsMult > 1,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.infPointsMult),
         color: 'gold',
         req: () => h.infPointsMult > 1,
@@ -1280,7 +1280,7 @@ const statSections = [
       },
       { desc: 'IP TOTAL', value: '', color: 'gold',  uppercase: true, req: () => hero.value.infPoints > 0 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.infPoints),
         color: 'gold',
         req: () => h.infPoints > 0
@@ -1294,7 +1294,7 @@ const statSections = [
       },
       { desc: 'Other Sources', value: '', color: 'cyan',  uppercase: true, req: () => h.mainInfTier >= 50 },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(31, hero)),
         color: 'gold',
         req: () => h.mainInfTier >= 50,
@@ -1306,7 +1306,7 @@ const statSections = [
         req: () => h.bhTier >= 4,
       },
       {
-        desc: 'Abyss',
+        desc: '深渊',
         value: () => fn(corrInflueceHandle(9)),
         color: 'purple',
         req: () => h.mainInfTier >= 50,
@@ -1330,14 +1330,14 @@ const statSections = [
         req: () => h.mainInfTier >= 100,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.quasar.power),
         color: 'gold',
         req: () => h.mainInfTier >= 50,
       },
       { desc: 'TOTAL QUASAR POWER', value: '', color: 'cyan',  uppercase: true, req: () => h.mainInfTier >= 50 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.quasar.power * Math.min(h.mainInfTier - 50, 50)),
         color: 'gold',
         req: () => h.mainInfTier >= 50,
@@ -1345,10 +1345,10 @@ const statSections = [
     ],
   },
   {
-    title: 'EXP',
+    title: '经验值',
     id: 'only exp',
     content: [
-      { desc: 'EXP', value: '', color: 'purple',  uppercase: true, req: () => true },
+      { desc: '经验值', value: '', color: 'purple',  uppercase: true, req: () => true },
       {
         desc: 'Stage EXP',
         value: () => fn(Math.log(h.stages.current + 5) ** 4),
@@ -1380,7 +1380,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Ascension [Blacksmithing Experience]',
+        desc: '转生[锻造经验]',
         value: () => fn(perksHandler(6)),
         color: 'lightblue',
         req: () => true,
@@ -1428,25 +1428,25 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Boss [Loot]',
+        desc: 'Boss [战利品]',
         value: () => v.spawnType == 'boss'? fn(e.boss.drop): 1,
         color: 'red',
         req: () => true,
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => fn((h.spCount >= 9? Math.min(1.025 * h.sp, 5): 1)),
         color: 'orange',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: 'lightblue',
         req: () => h.infExpansions.ascensioin,
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生 [战利品]',
         value: () => fn(e.rebirthEnemy["drop"]),
         color: 'lightgreen',
         req: () => true,
@@ -1500,7 +1500,7 @@ const statSections = [
         req: () => h.singularity >= 8,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (h.rebirthPts >= 3.5e5 && h.eLevel > 700? fn(Math.sqrt(Math.log(h.rebirthPts + 3))/2): 1),
         color: ' #a4ffe1',
         req: () => h.singularity >= 8,
@@ -1542,7 +1542,7 @@ const statSections = [
         req: () => h.mainInfTier >= 60,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.totalExp),
         color: 'gold',
       },
@@ -1554,7 +1554,7 @@ const statSections = [
         req: () => h.infUnlocked
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.totalExp ** h.infPower),
         color: 'gold',
         req: () => h.infUnlocked
@@ -1562,16 +1562,16 @@ const statSections = [
     ],
   },
   {
-    title: 'Equipment',
+    title: '装备',
     content: [
-      { desc: 'Equipment Drop Chance', value: '', color: 'orange',  uppercase: true, },
+      { desc: '装备掉率', value: '', color: 'orange',  uppercase: true, },
       {
         desc: 'Tree [Base]',
         value: () => fn(nodesHandler(15, ["base"])),
         color: 'lightgreen',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(15, ["inf"])),
         color: 'lightgreen',
         req: () => h.infUnlocked
@@ -1605,13 +1605,13 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Boss [Loot]',
+        desc: 'Boss [战利品]',
         value: () => v.spawnType == 'boss'? fn(e.boss.drop): 1,
         color: 'red',
         req: () => true,
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: 'lightblue',
         req: () => h.infExpansions.ascensioin
@@ -1623,12 +1623,12 @@ const statSections = [
         req: () => h.mainInfTier >= 10
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生 [战利品]',
         value: () => fn(e.rebirthEnemy["drop"]),
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Tier]',
+        desc: '重生 [层级]',
         value: () => fn((h.rebirthTier >= 50 ? h.rebirthBonusesHandle[7].value: 1)),
         color: 'lightgreen',
       },
@@ -1638,13 +1638,13 @@ const statSections = [
         color: '#61fccc',
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => fn((h.spCount >= 10 ? 1 + 0.1 * h.sp : 1)),
         color: 'orange',
       },
       
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(4, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -1703,16 +1703,16 @@ const statSections = [
         req: () => h.dId == 'dimMerge',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.eqTotalDrop),
         color: 'gold',
       },
     ],
   },
   {
-    title: 'Ascension',
+    title: '转生',
     content: [
-      { desc: 'Ascension Shards', value: '', color: 'lightblue',  uppercase: true, },
+      { desc: '转生碎片', value: '', color: 'lightblue',  uppercase: true, },
       {
         desc: `Base [Stage ${h.stages.current}]`,
         value: () => fn(Math.sqrt(Math.log(Math.min(h.stages.current + 2, 300)) ** (Math.min(h.stages.current, 300)/7)) * Math.min(1 + h.maxLevel / 100, 7)),
@@ -1724,18 +1724,18 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Boss [Loot]',
+        desc: 'Boss [战利品]',
         value: () => fn((v.spawnType == 'boss'? Math.min(Math.max(e.boss.drop ** 0.75, 1), 10): 1)),
         color: 'red',
         req: () => v.spawnType == 'boss'
       },
       {
-        desc: 'Ascension [Astral Harvest]',
+        desc: '转生[星光收割]',
         value: () => fn(perksHandler(29)),
         color: 'lightblue',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: 'lightblue',
         req: () => h.infExpansions.ascensioin
@@ -1758,7 +1758,7 @@ const statSections = [
         req: () => h.mainInfTier >= 100
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(7, hero)),
         color: '#66ffcc',
         req: () => hero.value.mainInfTier >= 3,
@@ -1781,63 +1781,63 @@ const statSections = [
         color: '#66ffcc',
         req: () => h.bhTier >= 3,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.shardsMult),
         color: 'gold',
       },
-      { desc: 'Ascension Shards after Ascension', value: '', color: 'lightblue',  uppercase: true, },
+      { desc: '转生后转生碎片', value: '', color: 'lightblue',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1.5,
         color: '',
       },
       {
-        desc: 'Soul [Tier]',
+        desc: '灵魂 [层级]',
         value: () => fn((h.soulTier < 4? 1.5 ** h.soulTier: 1.5 ** 3)),
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => fn((h.rebirthPts >= 2? 2: 1)),
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Tier]',
+        desc: '重生 [层级]',
         value: () =>  fn((h.rebirthPts >= 2500? e.rebirthEnemy["drop"]: 1)),
         color: 'lightgreen',
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.shardsPerformMult),
         color: 'gold',
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.ascendShardPerform),
         color: 'gold',
       },
     ],
   },
   {
-    title: 'Rebirth',
+    title: '重生',
     content: [
-      { desc: 'Rebirth', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '重生', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'base',
+        desc: '基础',
         value: () => fn(h.baseRebirthPts),
         color: '',
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生 [战利品]',
         value: () => fn((h.rebirthPts >= 5 ? e.rebirthEnemy["drop"] : 1)),
         color: 'lightgreen',
       },
       {
-        desc: 'Abyss [Tier]',
+        desc: '深渊 [层级]',
         value: () => fn(1.3 ** h.abyssTier),
         color: '#ed84ed',
       },
@@ -1852,28 +1852,28 @@ const statSections = [
         color: '#66ffcc',
       },
       {
-        desc: 'Soul [Tier]',
+        desc: '灵魂 [层级]',
         value: () => fn(h.soulTier >= 4 ? 1.5 : 1),
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => fn((h.rebirthPts >= 1250? Math.min((1 + 0.01 * h.rebirthTier) ** 8, 2) * (1 + 0.01 * Math.max(h.rebirthTier - 9, 0)) ** 2: 1)),
         color: 'lightgreen',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: 'lightblue',
         req: () => h.infExpansions.ascensioin
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(8, hero)),
         color: 'gold',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.totalPtsMult),
         color: 'gold',
       },
@@ -1906,22 +1906,22 @@ const statSections = [
         req: () => h.mainInfTier >= 60,
       },
       {
-        desc: 'Soul [Tier]',
+        desc: '灵魂 [层级]',
         value: () => fn(1.5 ** Math.min(h.soulTier, 3)),
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => (h.rebirthPts >= 10? 2: 1),
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生 [战利品]',
         value: () => fn((h.rebirthPts >= 5e4 ? e.rebirthEnemy.drop : 1) ),
         color: 'lightgreen',
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => fn((h.spCount > 28? 1.25 ** h.spbCount: 1)),
         color: 'lightgreen',
       },
@@ -1931,7 +1931,7 @@ const statSections = [
         color: '#11fffc',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(9, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -1974,14 +1974,14 @@ const statSections = [
         req: () => h.mainInfTier >= 100,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.cursedBonus),
         color: 'gold',
       },
     ],
   },
   {
-    title: 'Curse',
+    title: '诅咒',
     id: 'only curse',
     content: [
       { desc: 'Essence', value: '', color: 'red',  uppercase: true, },
@@ -1996,12 +1996,12 @@ const statSections = [
         color: 'red',
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(5)),
         color: '#ed14ed',
       },
       {
-        desc: 'Rebirth [Tier]',
+        desc: '重生 [层级]',
         value: () => (h.rebirthTier >= 60 ? fn(h.rebirthBonusesHandle[7].value) : 1) ,
         color: 'lightgreen',
         req: () => h.infExpansions.rebirth
@@ -2039,15 +2039,15 @@ const statSections = [
         },
         color: 'red',
       },
-      { desc: 'Total', value: '', color: 'red',  uppercase: true, },
+      { desc: '总计', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.cursedBonusExp),
         color: 'gold',
       },
-      { desc: 'Abyss [Penalty]', value: '', color: 'red',  uppercase: true, },
+      { desc: '深渊 [惩罚]', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => 0.25,
         color: '#ed14ed',
       },
@@ -2063,19 +2063,19 @@ const statSections = [
       },
       { desc: 'Resonace', value: '', color: 'red',  uppercase: true, req: () => h.singularity > 1, },
       {
-        desc: 'Abyss',
+        desc: '深渊',
         value: () => fn(abyssHandler(13)),
         color: '#ed14ed',
         req: () => h.singularity > 1,
       },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => fn((h.singularity >= 2? 1 - 0.02 * h.singularity: 1)),
         color: 'cyan',
         req: () => h.singularity > 1,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(23, hero)),
         color: 'gold',
         req: () => h.singularity > 1,
@@ -2135,7 +2135,7 @@ const statSections = [
         req: () => h.mainInfTier >= 100,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.curseMult),
         color: 'gold',
         req: () => h.singularity > 1,
@@ -2143,10 +2143,10 @@ const statSections = [
     ],
   },
   {
-    title: 'Stardust',
+    title: '星尘',
     id: 'only stardust',
     content: [
-      { desc: 'Stardust', value: '', color: 'gold',  uppercase: true, },
+      { desc: '星尘', value: '', color: 'gold',  uppercase: true, },
       {
         desc: 'Base [Stage]',
         value: () => fn((1.0525 ** (h.stages.current - h.stardustStage))),
@@ -2163,7 +2163,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: 'lightblue',
       },
@@ -2179,7 +2179,7 @@ const statSections = [
         req: () => h.infExpansions.space
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(4)),
         color: '#ed14ed',
         req: () => h.spaceUnlocked || h.mainInfTier > 0
@@ -2202,7 +2202,7 @@ const statSections = [
         req: () => h.singularity >= 8,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(19, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -2273,9 +2273,9 @@ const statSections = [
         color: 'red',
         req: () => h.bhTier >= 5,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.stardustInfo),
         color: 'gold',
       },
@@ -2293,7 +2293,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(hero.value.mutations ** 2.5),
         color: '#66ff66',
         req: () => true
@@ -2305,7 +2305,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Ascension [Loot]',
+        desc: '转生 [战利品]',
         value: () => fn(perksHandler(34)),
         color: '#66ffcc',
         req: () => true
@@ -2341,7 +2341,7 @@ const statSections = [
         req: () => h.singularity >= 1,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(25, hero) ),
         color: 'gold',
         req: () => h.infUnlocked,
@@ -2377,9 +2377,9 @@ const statSections = [
         color: 'red',
         req: () => h.mainInfTier >= 70,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.currentMutagen),
         color: 'gold',
         req: () => true
@@ -2387,10 +2387,10 @@ const statSections = [
     ],
   },
   {
-    title: 'Potential',
+    title: '潜能',
     id: 'only potential',
     content: [
-      { desc: 'Potential', value: '', color: 'yellow',  uppercase: true, req: () => true },
+      { desc: '潜能', value: '', color: 'yellow',  uppercase: true, req: () => true },
       {
         desc: 'Tree [Base]',
         value: () => fn(nodesHandler(18, ['base'])),
@@ -2398,26 +2398,26 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(18, ['inf'])),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => (h.rebirthPts >= 3? 10: 0) + (h.rebirthPts >= 75? 10: 0) + (h.rebirthPts >= 250? 10: 0) + 
         (h.rebirthPts >= 5000? 10: 0) + (h.rebirthPts >= 17500? 10: 0) + (h.rebirthPts >= 60000? 10: 0),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => radPerks[6].level,
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Rebirth [Tier]',
+        desc: '重生 [层级]',
         value: () => (h.rebirthTier >= 30 ? fn(hero.value.rebirthBonusesHandle[4].value) : 0),
         color: 'lightgreen',
         req: () => true
@@ -2430,7 +2430,7 @@ const statSections = [
       },
       
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(20, hero)),
         color: 'gold',
         req: () => h.mainInfTier >= 10
@@ -2442,7 +2442,7 @@ const statSections = [
         req: () => dimensions.value[10].infTier > 0,
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => (h.rebirthPts >= 5e5? 30: 0),
         color: '#a4ffe1',
         req: () => h.singularity >= 8,
@@ -2466,7 +2466,7 @@ const statSections = [
         req: () => h.mainInfTier >= 35,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.potential),
         color: 'gold',
         req: () => true
@@ -2474,12 +2474,12 @@ const statSections = [
     ],
   },
   {
-    title: 'Danger',
+    title: '危险',
     id: 'only danger',
     content: [
-      { desc: 'MAX Danger', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '危险上限', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 100,
         color: '',
         req: () => true
@@ -2491,7 +2491,7 @@ const statSections = [
         req: () => h.infExpansions.radiation,
       },
       {
-        desc: 'Ascension [Void Hazard]',
+        desc: '转生 [虚空危险]',
         value: () => perksHandler(40),
         color: 'lightblue',
         req: () => h.singularity > 0,
@@ -2503,13 +2503,13 @@ const statSections = [
         req: () => getDimSpecialReward(9)
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () =>  fn(infBonusesHandler(18, hero)),
         color: 'gold',
         req: () => h.infUnlocked
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () =>  Math.floor(hero.value.rebirthPts >= 2e6? Math.log(hero.value.rebirthPts) ** 2: 0),
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 2e6,
@@ -2522,7 +2522,7 @@ const statSections = [
         req: () => h.mainInfTier >= 10
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => (hero.value.spCount >= 38? hero.value.sp: 0),
         color: 'orange',
         req: () => true
@@ -2545,21 +2545,21 @@ const statSections = [
         color: 'purple',
         req: () => h.mainInfTier >= 60,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true},
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(radPerks[10].max),
         color: 'gold',
         req: () => true
       },
       { desc: 'Danger Power', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => h.baseDangerPower.toFixed(3),
         color: '',
       },
       {
-        desc: 'Danger',
+        desc: '危险',
         value: () => fn(h.baseDangerPower ** radPerks[10].level),
         color: 'lightgreen',
       },
@@ -2611,9 +2611,9 @@ const statSections = [
         color: 'gold',
         req: () => h.mainInfTier >= 60,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true},
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(e.enemyPower),
         color: 'gold',
         req: () => true
@@ -2621,29 +2621,29 @@ const statSections = [
     ],
   },
   {
-    title: 'Damage',
+    title: '伤害',
     id: 'only damage',
     content: [
-     { desc: 'Damage', value: '', color: 'red',  uppercase: true, },
+     { desc: '伤害', value: '', color: 'red',  uppercase: true, },
      {
-        desc: 'Base',
+        desc: '基础',
         value: 10,
         color: '',
       },
       {
-        desc: 'Level',
+        desc: '等级',
         value: () => fn(hero.value.levelFactor.atk),
         color: 'lightgreen',
       },
-      { desc: 'Damage MULT', value: '', color: 'red',  uppercase: true, },
+      { desc: '伤害乘数', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(0, ["inf"])),
         color: '#66ff66',
         req: () => h.infExpansions.tree
       },
       {
-        desc: 'Tree [Radiation]',
+        desc: '树 [辐射]',
         value: () => fn(nodesHandler(0, ["rad"])),
         color: '#66ff66',
         req: () => h.infExpansions.tree || h.spCount >= 5,
@@ -2679,7 +2679,7 @@ const statSections = [
       },
 
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(0, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -2744,7 +2744,7 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Curse [Cursed Shield]',
+        desc: '诅咒 [诅咒之盾]',
         value: () => fn(p.curses.cursedShield),
         color: 'red',
       },
@@ -2842,14 +2842,14 @@ const statSections = [
       },
 
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.attack.final),
         color: 'gold',
       },
 
-      { desc: 'Singularity', value: '', color: 'cyan', uppercase: true },
+      { desc: '奇点', value: '', color: 'cyan', uppercase: true },
       { 
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => ((h.gravity.isTrial || h.isSingularity) && h.rebirthPts >= 6e5? 2: 1),
         color: 'orange',
         req: () => h.rebirthPts >= 6e5,
@@ -2860,27 +2860,27 @@ const statSections = [
         color: '#930df3',
         req: () => getDimSpecialReward(10)
       },
-      { desc: 'Space', value: '', color: 'orange', uppercase: true },
+      { desc: '空间', value: '', color: 'orange', uppercase: true },
       { 
-        desc: 'Ascension [Celestial Overdrive]',
+        desc: '转生[天体超速]',
         value: () => fn(perksHandler(28)),
         color: 'lightblue',
         req: () => h.spCount >= 5 || h.infUnlocked
       },
       { 
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => 1.5,
         color: 'cyan',
         req: () => h.rebirthPts >= 4e5
       },
-      { desc: 'Crit Chance', value: '', color: 'red',  uppercase: true, },
+      { desc: '暴击几率', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 5,
         color: 'grey',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(7, ['inf'])),
         color: 'lightgreen',
         req: () => h.infUnlocked
@@ -2891,7 +2891,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => fn(h.rebirthPts >= 150? 5: 0),
         color: 'lightgreen',
       },
@@ -2936,13 +2936,13 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.stats.final.crit),
         color: 'gold',
       },
-      { desc: 'Crit DMG', value: '', color: 'red',  uppercase: true, },
+      { desc: '暴击伤害', value: '', color: 'red',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 1.5,
         color: 'grey',
       },
@@ -2958,7 +2958,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(8, ['inf'])),
         color: 'lightgreen',
         req: () => h.infUnlocked
@@ -2987,7 +2987,7 @@ const statSections = [
         req: () => h.mainInfTier >= 60,
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => h.spCount >= 43? fn(0.01 * h.sp): 0,
         color: 'orange',
       },
@@ -3018,23 +3018,23 @@ const statSections = [
 
 
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.stats.final.critDmg),
         color: 'gold',
       },
     ],
   },
   {
-    title: 'HP',
+    title: '生命值',
     content: [
-      { desc: 'HP', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '生命值', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 100,
         color: '',
       },
       {
-        desc: 'Level',
+        desc: '等级',
         value: () => fn(h.levelFactor.hp),
         color: 'lightgreen',
       },
@@ -3044,13 +3044,13 @@ const statSections = [
         color: 'green',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(1, ["inf"])),
         color: 'green',
         req: () => h.infUnlocked
       },
       { 
-        desc: 'Weapon',
+        desc: '武器',
         value: () => fn(getEqBase('armor')),
         color: '#22cccc',
       },
@@ -3061,7 +3061,7 @@ const statSections = [
         req: () => h.mainInfTier >= 1 || h.spCount > 0
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(1, hero)),
         color: 'gold',
         req: () => h.infUnlokcked
@@ -3088,7 +3088,7 @@ const statSections = [
         req: () => h.mainInfTier >= 15
       },
        {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => ((h.gravity.isTrial || h.isSingularity) && h.rebirthPts >= 6e5? 2: 1),
         color: '#a4ffe1',
         req: () => h.singularity >= 8,
@@ -3123,20 +3123,20 @@ const statSections = [
         color: 'red',
         req: () => h.mainInfTier >= 60
       },
-      { desc: 'Total', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '总计', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.stats.final.hp),
         color: 'gold',
       },
     ],
   },
   {
-    title: 'DEF',
+    title: '防御',
     content: [
-      { desc: 'Defense', value: '', color: 'yellow',  uppercase: true, },
+      { desc: '防御', value: '', color: 'yellow',  uppercase: true, },
       {
-        desc: 'Level',
+        desc: '等级',
         value: () => fn(h.levelFactor.def),
         color: 'lightgreen',
       },
@@ -3146,13 +3146,13 @@ const statSections = [
         color: 'green',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(2, ["inf"])),
         color: 'green',
         req: () => h.infUnlocked
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(2, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -3174,7 +3174,7 @@ const statSections = [
         req: () => h.mainInfTier >= 15
       },
        {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => ((h.gravity.isTrial || h.isSingularity) && h.rebirthPts >= 6e5? 2: 1),
         color: '#a4ffe1',
         req: () => h.singularity >= 8,
@@ -3209,9 +3209,9 @@ const statSections = [
         color: 'red',
         req: () => h.mainInfTier >= 60
       },
-      { desc: 'Total', value: '', color: 'lightgreen',  uppercase: true, },
+      { desc: '总计', value: '', color: 'lightgreen',  uppercase: true, },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.stats.final.def),
         color: 'gold',
       },
@@ -3222,7 +3222,7 @@ const statSections = [
     content: [
       { desc: 'Attack Speed', value: '', color: 'orange',  uppercase: true, req: () => true},
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(p.APS.min),
         color: '',
         req: () => true
@@ -3234,7 +3234,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(5, ["inf"])),
         color: 'lightgreen',
         req: () => true
@@ -3294,7 +3294,7 @@ const statSections = [
         req: () => h.mainInfTier >= 35,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.APS.total),
         color: 'gold',
         req: () => true
@@ -3307,7 +3307,7 @@ const statSections = [
       },
       { desc: 'MAX AS', value: '', color: 'orange',  uppercase: true, req: () => true},
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => 4,
         color: '',
         req: () => true
@@ -3319,20 +3319,20 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Tree [Radiation]',
+        desc: '树 [辐射]',
         value: () => fn(nodesHandler(5, ["rad"])),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.APS.max),
         color: 'gold',
         req: () => true
       },
       { desc: 'MIN AS', value: '', color: 'orange',  uppercase: true, req: () => true},
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => 0.5,
         color: '',
         req: () => true
@@ -3344,7 +3344,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.APS.min),
         color: 'gold',
         req: () => true
@@ -3363,13 +3363,13 @@ const statSections = [
         req: () => h.infExpansions.ascensioin
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => (h.rebirthPts >= 20000? 0.15: 0),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => fn(0.02 * hero.value.singularity),
         color: 'cyan',
         req: () => hero.value.singularity > 0
@@ -3381,7 +3381,7 @@ const statSections = [
         req: () => hero.value.bhTier > 0,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.stageRush.c),
         color: 'gold',
         req: () => true
@@ -3389,7 +3389,7 @@ const statSections = [
       { desc: '[Max]', value: () => h.stageRush.m, color: 'lightblue',  uppercase: false, },
       { desc: 'Level Rush', value: '', color: 'blue',  uppercase: true, },
       {
-        desc: 'Tree [Radiation]',
+        desc: '树 [辐射]',
         value: () => fn(nodesHandler(3, ['rad']) * 0.01),
         color: 'lightgreen',
         req: () => true
@@ -3401,13 +3401,13 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => (h.rebirthPts >= 70000? 0.1: 0),
         color: 'lightgreen',
         req: () => true
       },
       {
-        desc: 'Singularity',
+        desc: '奇点',
         value: () => fn(0.02 * h.singularity),
         color: 'cyan',
         req: () => h.singularity > 0
@@ -3419,7 +3419,7 @@ const statSections = [
         req: () => h.bhTier > 0
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.levelRush.c),
         color: 'gold',
         req: () => true
@@ -3431,39 +3431,39 @@ const statSections = [
     title: 'Corrupt.',
     id: 'corruption',
     content: [
-      { desc: 'Corruption', value: '', color: 'purple',  uppercase: true, req: () => true },
+      { desc: '腐败', value: '', color: 'purple',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: 0.1,
         color: '',
         req: () => true
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => fn(h.spCount >= 22? 1.002 ** h.sp - 1: 0),
         color: 'orange',
         req: () => true
       },
       {
-        desc: 'Radiation',
+        desc: '辐射',
         value: () => radPerks[11].level? fn(0.02 * Math.floor((hero.value.maxStage - 5)/5)): 0,
         color: 'green',
         req: () => true
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(2)),
         color: 'purple',
         req: () => true
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(10, hero)),
         color: 'gold',
         req: () => true
       },
       {
-        desc: 'Rebirth Tier',
+        desc: '重生层级',
         value: () => (hero.value.rebirthTier >= 70? fn(hero.value.rebirthBonusesHandle[8].value): 0),
         color: 'lightgreen',
         req: () => true
@@ -3480,16 +3480,16 @@ const statSections = [
         color: 'purple',
         req: () => h.mainInfTier >= 35,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.corruption.total),
         color: 'gold',
         req: () => true
       },
       { desc: 'Corruption Influence', value: '', color: 'purple',  uppercase: true, req: () => h.mainInfTier >= 60 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => 5,
         color: '',
         req: () => h.mainInfTier >= 60,
@@ -3537,7 +3537,7 @@ const statSections = [
         req: () => h.mainInfTier >= 60,
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(18)),
         color: 'gold',
         req: () => h.mainInfTier >= 60,
@@ -3554,9 +3554,9 @@ const statSections = [
         color: 'purple',
         req: () => h.mainInfTier >= 60,
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => h.mainInfTier >= 60 },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => h.mainInfTier >= 60 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.corrInfluence),
         color: 'gold',
         req: () => h.mainInfTier >= 60
@@ -3575,7 +3575,7 @@ const statSections = [
         req: () => h.mainInfTier >= 100
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => abyssHandler(21),
         color: 'purple',
         req: () => h.mainInfTier >= 100
@@ -3598,9 +3598,9 @@ const statSections = [
         color: '#f9453f',
         req: () => h.mainInfTier >= 100
       },
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => h.mainInfTier >= 60 },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => h.mainInfTier >= 60 },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.dims.corrShards),
         color: 'gold',
         req: () => h.mainInfTier >= 60
@@ -3613,7 +3613,7 @@ const statSections = [
     content: [
       { desc: 'Stage requirement', value: '', color: 'yellow',  uppercase: true, req: () => true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(h.baseStage),
         color: '',
         req: () => true
@@ -3660,7 +3660,7 @@ const statSections = [
         color: 'lightgreen',
       },
       {
-        desc: 'Tree [Infinity]',
+        desc: '树 [无限]',
         value: () => fn(nodesHandler(10, ['inf'])),
         color: 'lightgreen',
         req: () => h.infUnlocked
@@ -3678,25 +3678,25 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Soul [Tier]',
+        desc: '灵魂 [层级]',
         value: () => fn(0.01 * Math.min(h.soulTier, 4)),
         color: 'purple',
         req: () => true,
       },
       {
-        desc: 'Rebirth [Pts]',
+        desc: '重生 [点数]',
         value: () => fn((h.rebirthPts >= 125? 0.01: 0) + (h.rebirthPts >= 22500? 0.01: 0)),
         color: 'lightgreen',
         req: () => true,
       },
       {
-        desc: 'Space',
+        desc: '空间',
         value: () => fn(h.spCount >= 16? 0.01: 0),
         color: 'orange',
         req: () => hero.value.spaceUnlocked || hero.value.mainInfTier > 0
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(1)),
         color: 'purple',
         req: () => hero.value.spCount >= 15 ||  hero.value.mainInfTier > 0
@@ -3720,7 +3720,7 @@ const statSections = [
         req: () => h.eqUpsMult['boots'].stage > 0 || h.mainInfTier >= 35,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(13, hero)),
         color: 'gold',
         req: () => h.infUnlocked
@@ -3768,9 +3768,9 @@ const statSections = [
         req: () => h.bhTier >= 6
       },
       
-      { desc: 'Total', value: '', color: 'gold',  uppercase: true, req: () => true },
+      { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.stageReq),
         color: 'gold',
         req: () => true,
@@ -3788,7 +3788,7 @@ const statSections = [
     title: 'Enemy HP',
     id: 'stats',
     content: [
-      { desc: 'HP', value: '', color: 'yellow',  uppercase: true },
+      { desc: '生命值', value: '', color: 'yellow',  uppercase: true },
       {
         desc: 'Base [Stage]',
         value: () => fn(e.enemyStats.main.hpStage),
@@ -3823,7 +3823,7 @@ const statSections = [
         color: '#b6ff00',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(14, hero)),
         color: 'gold',
         req: () => h.infUnlocked,
@@ -3913,13 +3913,13 @@ const statSections = [
       },
       { desc: 'HP [Soul]', value: '', color: 'yellow',  uppercase: true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(soulHp().base),
         color: '#e578fa',
         req: () => true,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(11, hero)),
         color: 'gold',
         req: () => h.infUnlocked,
@@ -3931,7 +3931,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(10)),
         color: '#e578fa',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
@@ -3957,13 +3957,13 @@ const statSections = [
         req: () => h.isAbyss,
       },
       {
-        desc: 'Rebirth',
+        desc: '重生',
         value: () => fn(h.rebirthBonusesHandle[0].value),
         color: 'lightgreen',
         req: () => h.isAbyss,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(5, hero)),
         color: 'gold',
         req: () => h.isAbyss,
@@ -3977,7 +3977,7 @@ const statSections = [
         req: () => h.isSingularity,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(21, hero)),
         color: 'gold',
         req: () => h.gravity.isTrial || h.isSingularity,
@@ -3996,7 +3996,7 @@ const statSections = [
       },
       { desc: 'Total HP', value: '', color: 'yellow',  uppercase: true,},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(v.stats.final.hp),
         color: 'gold',
       },
@@ -4006,7 +4006,7 @@ const statSections = [
     title: 'Enemy DMG',
     id: 'stats',
     content: [
-      { desc: 'HP', value: '', color: 'yellow',  uppercase: true },
+      { desc: '生命值', value: '', color: 'yellow',  uppercase: true },
       {
         desc: 'Base [Stage]',
         value: () => fn(e.enemyStats.main.dmgStage),
@@ -4035,7 +4035,7 @@ const statSections = [
         color: '#b6ff00',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(14, hero)),
         color: 'gold',
         req: () => h.infUnlocked,
@@ -4113,13 +4113,13 @@ const statSections = [
       },
       { desc: 'DMG [Soul]', value: '', color: 'yellow',  uppercase: true },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(soulDmg().base),
         color: '#e578fa',
         req: () => true,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(11, hero)),
         color: 'gold',
         req: () => h.infUnlocked,
@@ -4131,7 +4131,7 @@ const statSections = [
         req: () => true,
       },
       {
-        desc: 'Abyss D',
+        desc: '深渊维度',
         value: () => fn(abyssHandler(10)),
         color: '#e578fa',
         req: () => h.spaceUnlocked || h.mainInfTier > 0,
@@ -4157,13 +4157,13 @@ const statSections = [
         req: () => h.isAbyss,
       },
       {
-        desc: 'Rebirth',
+        desc: '重生',
         value: () => fn(h.rebirthBonusesHandle[0].value),
         color: 'lightgreen',
         req: () => h.isAbyss,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(5, hero)),
         color: 'gold',
         req: () => h.isAbyss,
@@ -4177,7 +4177,7 @@ const statSections = [
         req: () => h.isSingularity,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(21, hero)),
         color: 'gold',
         req: () => h.gravity.isTrial || h.isSingularity,
@@ -4196,7 +4196,7 @@ const statSections = [
       },
       { desc: 'Total DMG', value: '', color: 'yellow',  uppercase: true,},
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(v.stats.final.atk),
         color: 'gold',
       },
@@ -4208,13 +4208,13 @@ const statSections = [
     content: [
       { desc: 'Ancient Shards MULT', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => 1,
         color: '',
         req: () => h.bhTier >= 4,
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(29, hero)),
         color: 'gold',
         req: () => h.bhTier >= 4,
@@ -4238,7 +4238,7 @@ const statSections = [
         req: () => h.mainInfTier >= 60
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(ancientShardsMult()),
         color: 'gold',
         req: () => true
@@ -4257,7 +4257,7 @@ const statSections = [
         req: () => true
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(radiusSourses()),
         color: 'gold',
         req: () => true
@@ -4265,17 +4265,17 @@ const statSections = [
     ]
   },
   {
-    title: 'Soul',
+    title: '灵魂',
     id: 'soul',
     content: [
       { desc: 'Soul Appearance Chance', value: '', color: 'gold',  uppercase: true, },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => fn(soulBaseChance()),
         color: '',
       },
       {
-        desc: 'Tree',
+        desc: '技能树',
         value: () => fn(nodesHandler(13, 'base')),
         color: 'lightgreen',
       },
@@ -4285,12 +4285,12 @@ const statSections = [
         color: 'lightblue',
       },
       {
-        desc: 'Rebirth [Tier]',
+        desc: '重生 [层级]',
         value: () => fn((1 + 0.35 * (h.rebirthPts >= 1000? h.rebirthTier: 0))),
         color: 'lightgreen',
       },
       {
-        desc: 'Rebirth [Loot]',
+        desc: '重生 [战利品]',
         value: () => fn((h.rebirthPts >= 20? e.rebirthEnemy["drop"] * 2: 1)),
         color: 'lightgreen',
       },
@@ -4300,12 +4300,12 @@ const statSections = [
         color: 'orange',
       },
       {
-        desc: 'Abyss',
+        desc: '深渊',
         value: () => fn((h.abyssTier >= 1? (1 + 0.5 * cursed.filter(c => c.status === true).length): 1)),
         color: 'lightpurple',
       },
       {
-        desc: 'Danger',
+        desc: '危险',
         value: () => fn((e.danger >= 10? e.specialCreatures.souls.chance: 1)),
         color: '#b6ff00',
         req: () => h.spaceUnlocked || h.mainInfTier > 0
@@ -4335,7 +4335,7 @@ const statSections = [
         req: () => h.mainInfTier >= 100
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(soulTotalChance()),
         color: 'gold',
         req: () => true
@@ -4343,17 +4343,17 @@ const statSections = [
     ]
   },
   {
-    title: 'Overkill',
+    title: '超杀',
     id: 'overkill',
     content: [
-      { desc: 'Overkill', value: '', color: 'gold',  uppercase: true, },
+      { desc: '超杀', value: '', color: 'gold',  uppercase: true, },
       {
         desc: 'Ascension [Overkill]',
         value: () => fn(perksHandler(21)),
         color: 'lightblue',
       },
       {
-        desc: 'Infinity',
+        desc: '无限',
         value: () => fn(infBonusesHandler(6, hero)),
         color: 'gold',
         req: () => h.mainInfTier > 0
@@ -4404,14 +4404,14 @@ const statSections = [
         req: () => h.bhTier >= 5
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.overkill),
         color: 'gold',
         req: () => true
       },
       { desc: 'Overloot', value: '', color: 'gold',  uppercase: true, req: () => h.singularity > 0 },
       {
-        desc: 'Base',
+        desc: '基础',
         value: () => (overkillSkill(3)? 1: 0),
         color: '',
         req: () => h.singularity > 0
@@ -4429,13 +4429,13 @@ const statSections = [
         req: () => h.mainInfTier >= 60
       },
       {
-        desc: 'Singularity Pts',
+        desc: '奇点点数',
         value: () => fn((h.rebirthPts >= 8e5? 1: 0)),
         color: 'cyan',
         req: () => h.singularity >= 8,
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(p.overkill.loot),
         color: 'gold',
         req: () => h.singularity > 0
@@ -4458,7 +4458,7 @@ const statSections = [
         color: 'gold',
       },
       {
-        desc: 'Abyss',
+        desc: '深渊',
         value: () => fn(abyssHandler(20)),
         color: 'lightpurple',
       },
@@ -4489,7 +4489,7 @@ const statSections = [
         color: 'red',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(voidMults()),
         color: 'gold',
       }
@@ -4511,7 +4511,7 @@ const statSections = [
         color: 'gold',
       },
       {
-        desc: 'Abyss',
+        desc: '深渊',
         value: () => fn(abyssHandler(19)),
         color: 'lightpurple',
       },
@@ -4537,7 +4537,7 @@ const statSections = [
         color: 'red',
       },
       {
-        desc: 'Total',
+        desc: '总计',
         value: () => fn(h.singMult),
         color: 'gold',
       }

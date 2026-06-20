@@ -107,7 +107,7 @@ export const perks = ref([
   },
   {
     id: 4,
-    name: "Extra Level",
+    name: "额外等级",
     description: "+1 Max Level per level",
     value: 1,
     level: {
@@ -160,7 +160,7 @@ export const perks = ref([
   {
     id: 6,
     name: "Invisible",
-    description: "Unlock new BUFF",
+    description: "解锁新BUFF",
     value: 0,
     level: {
       inf: 0,
@@ -185,7 +185,7 @@ export const perks = ref([
   },
   {
     id: 7,
-    name: "CRIT",
+    name: "暴击",
     description: "+1% Crit per level",
     value: 1,
     level: {
@@ -211,7 +211,7 @@ export const perks = ref([
   },
   {
     id: 8,
-    name: "CRIT DMG",
+    name: "暴击伤害",
     description: "+0.025 Crit DMG per level",
     value: 0.025,
     level: {
@@ -238,7 +238,7 @@ export const perks = ref([
   {
     id: 9,
     name: "Traveller",
-    description: "Unlock new BUFF",
+    description: "解锁新BUFF",
     value: 0,
     level: {
       inf: 0,
@@ -289,7 +289,7 @@ export const perks = ref([
   },
   {
     id: 11,
-    name: "Reset",
+    name: "重置",
     description: "Faster recovery from death per level",
     value: 0.25,
     level: {
@@ -315,7 +315,7 @@ export const perks = ref([
   },
   {
     id: 12,
-    name: "Only Up",
+    name: "只有向上",
     description: "+1 Min Level per level",
     value: 1,
     level: {
@@ -341,7 +341,7 @@ export const perks = ref([
   },
   {
     id: 13,
-    name: "The Lord",
+    name: "领主",
     description: "Soul appearance chance scales with unspent points",
     value: 1,
     level: {

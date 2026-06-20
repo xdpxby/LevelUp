@@ -1,6 +1,6 @@
 <template>
   <div class="law-tab">
-    <h2 class="title">Law Stones</h2>
+    <h2 class="title">法则之石</h2>
     <div style="padding-bottom: 10px">
       <span style="color: #66ffcc; font-weight: bold"
         >Ancient Fragments <b>[AF]</b>:
@@ -46,8 +46,8 @@
           <Tooltip :text="() => 'Sort by'">
             <select v-model="sortMode" class="inventory-select">
               <option value="tier">Tier</option>
-              <option value="fragments">Fragments</option>
-              <option value="radius">Radius</option>
+              <option value="fragments">碎片</option>
+              <option value="radius">半径</option>
             </select>
           </Tooltip>
           <button class="filter-btn" @click="toggleFilterPanel">
@@ -74,7 +74,7 @@
           </div>
 
           <div class="filter-actions">
-            <button @click="resetFilters">Reset</button>
+            <button @click="resetFilters">重置</button>
           </div>
 
         </div>
@@ -104,7 +104,7 @@
             </div>
           </template>
           <template v-else>
-            <div class="empty-slot">Empty Slot</div>
+            <div class="empty-slot">空槽位</div>
           </template>
         </div>
       </div>

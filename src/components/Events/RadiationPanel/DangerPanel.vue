@@ -1,11 +1,11 @@
 <template>
     <div class="danger-panel">
-        <span class="danger-title">AUTO-DANGER</span>
-        <input novalidate v-model.number="hero.rad.tempTarget" type="number" placeholder="Target Power" class="danger-input" />
+        <span class="danger-title">自动危险</span>
+        <input novalidate v-model.number="hero.rad.tempTarget" type="number" placeholder="目标强度" class="danger-input" />
 
         <div class="danger-buttons">
-            <button @click="hero.rad.radTarget = hero.rad.tempTarget">Set</button>
-            <button @click="maxDangerUp">Max</button>
+            <button @click="hero.rad.radTarget = hero.rad.tempTarget">设置</button>
+            <button @click="maxDangerUp">最大</button>
         </div>
 
     </div>

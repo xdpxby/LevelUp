@@ -23,7 +23,7 @@ const { hero } = useHero();
 const { villian } = useBaseEnemy("space");
 
 const modes = [
-  { id: 'space', icon: '✨', label: 'Space' },
+  { id: 'space', icon: '✨', label: '空间' },
   { id: 'main', icon: '🌍', label: 'World' }
 ];
 

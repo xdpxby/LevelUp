@@ -5,7 +5,7 @@
         class="ip-title"
         @click="hero.eLink = { set: 'Info', info: 'Infinity' }"
       >
-        <sup class="info-icon"></sup> INFINITY POINTS (IP):
+        <sup class="info-icon"></sup> 无限点数（IP）：
       </span>
 
       <span
@@ -20,7 +20,7 @@
       <!-- LEFT: GOALS -->
       <div class="goals-panel">
         <div class="goals-header">
-          <h2>INFINITY GOALS</h2>
+          <h2>无限目标</h2>
 
           <div class="tier-buttons">
             <button
@@ -57,7 +57,7 @@
       <!-- RIGHT SIDE PANELS -->
       <div class="right-panels">
         <div class="panel-block">
-          <h2>INFINITY BONUSES</h2>
+          <h2>无限加成</h2>
           <div class="scroll-box">
             <div
               v-for="bonus in filterBonuses"
@@ -69,7 +69,7 @@
             </div>
 
             <div class="bonus-requirement" v-if="filterBonuses.length">
-              Reach Infinity [T{{ getBonusReq(hero.mainInfTier) }}]
+              达到无限[T{{ getBonusReq(hero.mainInfTier) }}]
             </div>
           </div>
         </div>
@@ -208,7 +208,7 @@ function infDescription(goal) {
 
   let str = goal.requirement[goal.tier];
   str += ` [<span>${goal.tier}/${goal.maxTier}</span>]`;
-  str += `<br><span style="color: gold">Reward: ${goal.reward} IP</span>`;
+  str += `<br><span style="color: gold">奖励：${goal.reward} IP</span>`;
 
   return str;
 }
@@ -217,16 +217,16 @@ function infVoidDecr(goal) {
   let id = goal.id;
 
   switch(id) {
-    case 36: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Total Void Shards`
-    case 37: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Singularity Shards`
-    case 38: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Total infinities in Dark dimensions`
-    case 39: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Total Level`
-    case 40: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Transcendence`
-    case 41: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Total Ascension Shards`
-    case 42: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on DMG dealed`
-    case 43: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Infinity Tier in main dimension`
-    case 44: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Enhances to the Space Ring`
-    case 45: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> based on Void Tier`
+    case 36: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于虚空碎片总量`
+    case 37: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于奇点碎片`
+    case 38: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于黑暗维度中的无限总量`
+    case 39: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于总等级`
+    case 40: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于超越`
+    case 41: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于转生碎片总量`
+    case 42: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于造成的伤害`
+    case 43: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于主维度无限层级`
+    case 44: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于空间戒指强化`
+    case 45: return `<b style="color: gold">+${fn(goalRankTwoHandle(id))} IP</b> 基于虚空层级`
 
   }
 }
@@ -234,178 +234,178 @@ function infVoidDecr(goal) {
 const bonuses = computed(() => [
   {
     id: 0,
-    stat: "DMG MULT",
+    stat: "伤害乘数",
     value: `${fn(infBonusesHandler(0, hero))}`,
     status: 0,
   },
   {
     id: 1,
-    stat: "HP MULT",
+    stat: "生命值乘数",
     value: `${fn(infBonusesHandler(1, hero))}`,
     status: 0,
   },
   {
     id: 2,
-    stat: "Defense MULT",
+    stat: "防御乘数",
     value: `${fn(infBonusesHandler(2, hero))}`,
     status: 0,
   },
   {
     id: 3,
-    stat: "EXP Gain",
+    stat: "经验获取",
     value: `${fn(infBonusesHandler(3, hero))}`,
     status: 0,
   },
 
   {
     id: 4,
-    stat: "Equipment Drop Chance",
+    stat: "装备掉落几率",
     value: `${fn(infBonusesHandler(4, hero))}`,
     status: 1,
   },
   {
     id: 5,
-    stat: "Abyss enemies are weaker",
+    stat: "深渊敌人削弱",
     value: `${fn(infBonusesHandler(5, hero))}`,
     status: 1,
   },
 
   {
     id: 6,
-    stat: "Overkill",
+    stat: "超杀",
     value: `${fn(infBonusesHandler(6, hero))}`,
     status: 2,
   },
 
   {
     id: 7,
-    stat: "Ascension Shards Gain",
+    stat: "转生碎片获取",
     value: `${fn(infBonusesHandler(7, hero))}`,
     status: 3,
   },
   {
     id: 8,
-    stat: "Rebirth Shards Gain",
+    stat: "重生碎片获取",
     value: `${fn(infBonusesHandler(8, hero))}`,
     status: 3,
   },
 
   {
     id: 9,
-    stat: "Skill Exp Gain",
+    stat: "技能经验获取",
     value: `${fn(infBonusesHandler(9, hero))}`,
     status: 4,
   },
 
   {
     id: 10,
-    stat: "Corruption weakness",
+    stat: "腐化弱点",
     value: `${fn(infBonusesHandler(10, hero))}`,
     status: 5,
   },
 
   {
     id: 11,
-    stat: "Souls are weaker",
+    stat: "灵魂削弱",
     value: `${fn(infBonusesHandler(11, hero))}`,
     status: 6,
   },
 
   {
     id: 12,
-    stat: "Level requirement is reduced",
+    stat: "等级需求降低",
     value: `${fn(infBonusesHandler(12, hero))}`,
     status: 7,
   },
   {
     id: 13,
-    stat: "Stage requirement is reduced",
+    stat: "关卡需求降低",
     value: `${fn(infBonusesHandler(13, hero))}`,
     status: 7,
   },
 
   {
     id: 14,
-    stat: "Enemies are weaker",
+    stat: "敌人削弱",
     value: `${fn(infBonusesHandler(14, hero))}`,
     status: 8,
   },
 
   {
     id: 15,
-    stat: "You start with 2k mutagens",
+    stat: "初始获得 2k 诱变剂",
     value: ``,
     status: 10,
   },
 
   {
     id: 16,
-    stat: "Max Level Mult",
+    stat: "最高等级乘数",
     value: `${fn(infBonusesHandler(16, hero))}`,
     status: 10,
   },
-  { id: 17, stat: "Min Level", value: `${fn(infBonusesHandler(24, hero))}`, status: 13 },
+  { id: 17, stat: "最低等级", value: `${fn(infBonusesHandler(24, hero))}`, status: 13 },
 
-  { id: 18, stat: "New Infinity Buff: Charges", value: ``, status: 15 },
+  { id: 18, stat: "新无限技能：充能", value: ``, status: 15 },
 
   {
     id: 19,
-    stat: "Max Danger",
+    stat: "最高危险",
     value: `${fn(infBonusesHandler(18, hero))}`,
     status: 16,
   },
   
   {
     id: 20,
-    stat: "Stardust gain",
+    stat: "星尘获取",
     value: `${fn(infBonusesHandler(19, hero))}`,
     status: 18,
   },
 
   {
     id: 21,
-    stat: "Potential",
+    stat: "潜能",
     value: `${fn(infBonusesHandler(20, hero))}`,
     status: 20,
   },
 
   {
     id: 22,
-    stat: "Singularity enemies are weaker",
+    stat: "奇点敌人削弱",
     value: `${fn(infBonusesHandler(21, hero))}`,
     status: 22,
   },
 
-  { id: 23, stat: "IP Bonuses scale better", value: ``, status: 25 },
+  { id: 23, stat: "IP 加成成长更好", value: ``, status: 25 },
 
   { 
     id: 24, 
-    stat: "Resonance weakness", value: `${fn(infBonusesHandler(23, hero))}`, 
+    stat: "共鸣弱点", value: `${fn(infBonusesHandler(23, hero))}`, 
     status: 30 
   },
   {
     id: 25,
-    stat: "Mutagen",
+    stat: "诱变剂",
     value: `${fn(infBonusesHandler(25, hero))}`,
     status: 40,
   },
 
-  { id: 26, stat: "Unlock Quasar Core", value: ``, status: 50 },
-  { id: 27, stat: "You save the maximum of Infinity Wardens in the Main Dimension", value: ``, status: 60 },
-  { id: 28, stat: "Unlock Infinity Goals [T2]", value: ``, status: 70 },
-  { id: 29, stat: "Ancient Shards gain", value: `${fn(infBonusesHandler(29, hero))}`, status: 80 },
-  { id: 30, stat: "Soul Appereance Chance", value: `${fn(infBonusesHandler(30, hero))}`, status: 85 },
-  { id: 31, stat: "Quasar Core effects", value: `${fn(infBonusesHandler(31, hero))}`, status: 90 },
-  { id: 32, stat: "Unlock new 3 Quasar Cores", value: ``, status: 100 },
-  { id: 33, stat: "Corruption Influence weakness", value: `${fn(infBonusesHandler(33, hero))}`, status: 110 },
-  { id: 34, stat: "Singularity Shards MULT", value: `${fn(infBonusesHandler(34, hero))}`, status: 120 },
-  { id: 35, stat: "Void shards gain", value: `${fn(infBonusesHandler(35, hero))}`, status: 130 },
-  { id: 36, stat: "Infinity Resistance", value: `${fn(infBonusesHandler(36, hero))}`, status: 140 },
-  { id: 37, stat: "Unlock new 3 Quasar Cores", value: ``, status: 150 },
-  { id: 38, stat: "5% of Transcendence Power is spread to all dimensions.", value: ``, status: 160 },
-  { id: 39, stat: "Awakened Tiers Requirement is lower", value: `${fn(infBonusesHandler(39, hero))}`, status: 170 },
-  { id: 40, stat: "Enhance cost is lower", value: `${fn(infBonusesHandler(40, hero))}`, status: 180 },
-  { id: 42, stat: "Unlock new 3 Quasar Cores", value: ``, status: 200 },
+  { id: 26, stat: "解锁类星体核心", value: ``, status: 50 },
+  { id: 27, stat: "在主维度保留最大无限守卫数", value: ``, status: 60 },
+  { id: 28, stat: "解锁无限目标[T2]", value: ``, status: 70 },
+  { id: 29, stat: "远古碎片获取", value: `${fn(infBonusesHandler(29, hero))}`, status: 80 },
+  { id: 30, stat: "灵魂出现几率", value: `${fn(infBonusesHandler(30, hero))}`, status: 85 },
+  { id: 31, stat: "类星体核心效果", value: `${fn(infBonusesHandler(31, hero))}`, status: 90 },
+  { id: 32, stat: "解锁 3 个新类星体核心", value: ``, status: 100 },
+  { id: 33, stat: "腐化影响弱点", value: `${fn(infBonusesHandler(33, hero))}`, status: 110 },
+  { id: 34, stat: "奇点碎片乘数", value: `${fn(infBonusesHandler(34, hero))}`, status: 120 },
+  { id: 35, stat: "虚空碎片获取", value: `${fn(infBonusesHandler(35, hero))}`, status: 130 },
+  { id: 36, stat: "无限抗性", value: `${fn(infBonusesHandler(36, hero))}`, status: 140 },
+  { id: 37, stat: "解锁 3 个新类星体核心", value: ``, status: 150 },
+  { id: 38, stat: "5% 超越之力扩散到所有维度。", value: ``, status: 160 },
+  { id: 39, stat: "觉醒层级需求降低", value: `${fn(infBonusesHandler(39, hero))}`, status: 170 },
+  { id: 40, stat: "强化花费降低", value: `${fn(infBonusesHandler(40, hero))}`, status: 180 },
+  { id: 42, stat: "解锁 3 个新类星体核心", value: ``, status: 200 },
 ])
 
 </script>

@@ -2,7 +2,7 @@ export const perks = [
     {
       id: 0,
       tier: 1,
-      name: 'Max Level',
+      name: '最大等级',
       description: '+1 Max Level',
       level: 0,
       max: 10,
@@ -77,7 +77,7 @@ export const perks = [
     {
       id: 5,
       tier: 1,
-      name: 'Ring Slot',
+      name: '戒指栏位',
       description: 'Unlock the Ring',
       level: 0,
       max: 1,
@@ -92,7 +92,7 @@ export const perks = [
     {
       id: 6,
       tier: 1,
-      name: 'Blacksmithing Experience',
+      name: '锻造经验',
       description: '+1.02 MULT EXP for each Equipment Tier',
       level: 0,
       max: 1,
@@ -108,7 +108,7 @@ export const perks = [
       id: 7,
       tier: 1,
       name: 'First Strike [T1]',
-      description: 'Unlock new BUFF',
+      description: '解锁新BUFF',
       level: 0,
       max: 1,
       baseCost: 50,
@@ -137,7 +137,7 @@ export const perks = [
     {
       id: 9,
       tier: 2,
-      name: 'Extra Max Level',
+      name: '额外等级上限',
       description: '+1 Max Level',
       level: 0,
       max: 15,
@@ -167,7 +167,7 @@ export const perks = [
     {
       id: 11,
       tier: 2,
-      name: 'Armor Base',
+      name: '护甲基数',
       description: '+1 MIN Armor Cap',
       level: 0,
       max: 1,
@@ -212,7 +212,7 @@ export const perks = [
     {
       id: 14,
       tier: 2,
-      name: 'Amulet Suffix',
+      name: '护身符后缀',
       description: 'Unlock Amulet Slot: Suffix [T1]',
       level: 0,
       max: 1,
@@ -227,7 +227,7 @@ export const perks = [
     {
       id: 15,
       tier: 2,
-      name: 'Deeper',
+      name: '更深层次',
       description: 'Reduce Stage requirement for each unlocked Tier in Ascension',
       level: 0,
       max: 1,
@@ -242,7 +242,7 @@ export const perks = [
     {
       id: 16,
       tier: 2,
-      name: 'Soul Spreading',
+      name: '灵魂蔓延',
       description: '+30% Soul Appearance for each Soul consumed',
       level: 0,
       max: 1,
@@ -258,7 +258,7 @@ export const perks = [
       id: 17,
       tier: 2,
       name: 'COMBO [T1]',
-      description: 'Unlock new BUFF',
+      description: '解锁新BUFF',
       level: 0,
       max: 1,
       baseCost: 3000,
@@ -272,7 +272,7 @@ export const perks = [
     {
       id: 18,
       tier: 3,
-      name: 'Through the Sky',
+      name: '穿越天空',
       description: '+1 Max Level',
       level: 0,
       max: 30,
@@ -287,7 +287,7 @@ export const perks = [
     {
       id: 19,
       tier: 3,
-      name: 'Revolution',
+      name: '革命',
       description: 'Souls become weaker by 1% for each Soul Tier',
       level: 0,
       max: 1,
@@ -302,7 +302,7 @@ export const perks = [
     {
       id: 20,
       tier: 3,
-      name: 'Contribution',
+      name: '贡献',
       description: '+30% Souls LOOT',
       level: 0,
       max: 1,
@@ -317,7 +317,7 @@ export const perks = [
     {
       id: 21,
       tier: 3,
-      name: 'Overkill',
+      name: '超杀',
       description: 'Gain +1 Overkiil per digit in your Stage kill count',
       level: 0,
       max: 1,
@@ -332,7 +332,7 @@ export const perks = [
     {
       id: 22,
       tier: 3,
-      name: 'Weakness',
+      name: '虚弱',
       description: 'Magnitude of enemy HP with higher chance will be lower',
       level: 0,
       max: 1,
@@ -347,7 +347,7 @@ export const perks = [
     {
       id: 23,
       tier: 3,
-      name: 'Trap',
+      name: '陷阱',
       description: 'The enemy receives -0.02 APS for each curse applied',
       level: 0,
       max: 1,
@@ -378,7 +378,7 @@ export const perks = [
       id: 25,
       tier: 3,
       name: 'Fast Slash [T1]',
-      description: 'Unlock new BUFF',
+      description: '解锁新BUFF',
       level: 0,
       max: 1,
       baseCost: 80000,
@@ -392,8 +392,8 @@ export const perks = [
     {
       id: 26,
       tier: 3,
-      name: 'Destructive Play',
-      description: 'All dead bosses give you +1 MIN LEVEL and +2 MAX LEVEL',
+      name: '破坏性玩法',
+      description: '所有死去的boss给你+1最小等级和+2最大等级',
       level: 0,
       max: 1,
       baseCost: 100000,
@@ -407,7 +407,7 @@ export const perks = [
     {
       id: 27,
       tier: 5,
-      name: 'Corrupted Insight',
+      name: '腐败洞察力',
       description: 'Reduce Enemy HP based on the Corruption weakness',
       level: 0,
       max: 1,
@@ -422,7 +422,7 @@ export const perks = [
     {
       id: 28,
       tier: 5,
-      name: 'Celestial Overdrive',
+      name: '天体超速',
       description: '+50% DMG, HP, DEF while you are in Space Fight',
       level: 0,
       max: 1,
@@ -437,7 +437,7 @@ export const perks = [
     {
       id: 29,
       tier: 5,
-      name: 'Astral Harvest',
+      name: '星体收获',
       description: 'Gain Ascension Shards based on SP',
       level: 0,
       max: 1,
@@ -452,7 +452,7 @@ export const perks = [
     {
       id: 30,
       tier: 5,
-      name: 'Veilbreaker',
+      name: '破面纱者',
       description: 'Unlock Invisible [T4]',
       level: 0,
       max: 1,
@@ -467,7 +467,7 @@ export const perks = [
     {
       id: 31,
       tier: 6,
-      name: 'Endless Levels',
+      name: '无尽等级',
       description: '+0.01 Max MULT Level',
       level: 0,
       max: 50,
@@ -482,7 +482,7 @@ export const perks = [
     {
       id: 32,
       tier: 6,
-      name: 'HP Reduction',
+      name: '生命值降低',
       description: 'Reduce Enemy HP exponentially by 0.0001',
       level: 0,
       max: 50,
@@ -512,7 +512,7 @@ export const perks = [
     {
       id: 34,
       tier: 6,
-      name: 'Loot Increase',
+      name: '战利品增加',
       description: '+1% EXP, Equipment Drop Chance, Skill EXP, Ascension Shards, Rebirth Pts, Mutagens, Stardust',
       level: 0,
       max: 50,
@@ -527,7 +527,7 @@ export const perks = [
     {
       id: 35,
       tier: 6,
-      name: 'The Distance',
+      name: '距离',
       description: 'Reduce Stage requirement',
       level: 0,
       max: 10000,
@@ -542,7 +542,7 @@ export const perks = [
     {
       id: 36,
       tier: 5,
-      name: 'Accelerated Mutation',
+      name: '加速突变',
       description: 'Reduce Level requirement based on Rebirth Pts',
       level: 0,
       max: 1,

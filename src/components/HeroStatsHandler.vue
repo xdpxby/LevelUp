@@ -49,8 +49,8 @@ function stats(id) {
         return text;
       }
 
-      text += `<br><span style="font-weight: bold; text-align: center; display: block;">MILESTONES</span>
-      <span style='color: red;font-weight: bold;'>Reach the required Crit Chance to activate milestones</span>
+      text += `<br><span style="font-weight: bold; text-align: center; display: block;">里程碑</span>
+      <span style='color: red;font-weight: bold;'>达到所需暴击率以激活里程碑</span>
       <div style="font-family: 'Orbitron', sans-serif; line-height: 1.6; color: #fff; background: #1e1e1e; padding: 12px; border-radius: 8px; max-height: 300px; overflow-y: auto">
         ${renderMilestones(hero.value.crit)}
       </div>`

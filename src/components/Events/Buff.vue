@@ -118,8 +118,8 @@
       <p class="input-warning" v-if="inputError">{{ inputError }}</p>
 
       <div class="modal-actions">
-        <button @click="confirmLayoutEdit" :disabled="!!inputError">Save</button>
-        <button @click="resetLayoutEdit">Reset</button>
+        <button @click="confirmLayoutEdit" :disabled="!!inputError">保存</button>
+        <button @click="resetLayoutEdit">重置</button>
         <button @click="cancelLayoutEdit">Cancel</button>
       </div>
     </div>

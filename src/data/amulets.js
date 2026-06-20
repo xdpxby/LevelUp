@@ -10,7 +10,7 @@ export const amulets = [
         status: false 
       },
       prefix: {
-        text: "Max Level MULT",
+        text: "最大等级乘数",
         value: 0.02,
         status: false 
       },
@@ -27,7 +27,7 @@ export const amulets = [
         status: false
       },
       prefix: {
-        text: "Max Level MULT", 
+        text: "最大等级乘数", 
         value: 0.04,
         status: false
       },
@@ -44,7 +44,7 @@ export const amulets = [
           status: false
         },
         prefix: {
-          text: "Max Level MULT", 
+          text: "最大等级乘数", 
           value: 0.06,
           status: false
         },
@@ -61,7 +61,7 @@ export const amulets = [
           status: false
         },
         prefix: {
-          text: "Max Level MULT",
+          text: "最大等级乘数",
           value: 0.08, 
           status: false
         },

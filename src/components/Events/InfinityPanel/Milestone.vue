@@ -35,8 +35,8 @@
       </div>
       <div v-if="activeMilestoneTab === 'Perditions'">
         <p class="milestonePrediction">
-          <span class="highlight">[D-Infinity]</span> spread the <span style='color: #ff6666'>Perdition</span>. 
-          Next perdition at <span class="highlight">Infinity [T{{ getCurseTier() }}]</span>
+          <span class="highlight">[D-无限]</span> 散播了 <span style='color: #ff6666'>沉沦</span>。
+          下一次沉沦出现在 <span class="highlight">Infinity [T{{ getCurseTier() }}]</span>
         </p>
       </div>
     </div>
@@ -45,9 +45,9 @@
       <!-- Abyss -->
       <div v-if="activeMilestoneTab === 'Abyss'" class="milestone-grid">
         <div v-for="s in abyssMilestones.filter(s => s.tier <= hero.abyssTier)" :key="s.tier" class="milestone-card abyss-card">
-          <h3>Abyss [T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">Challenge:</span> {{ s.description }}</p>
-          <p><span style="color:#ff6666">Reward:</span> {{ s.reward }}</p>
+          <h3>深渊[T{{ s.tier }}]</h3>
+          <p><span style="color:#ff6666">挑战：</span> {{ s.description }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
         </div>
       </div>
       <!-- Infinity -->
@@ -61,17 +61,17 @@
       <!-- Singularity -->
       <div v-if="activeMilestoneTab === 'Singularity'" class="milestone-grid">
         <div v-for="s in singularityMilestones.filter(s => s.tier < hero.singularity)" :key="s.tier" class="milestone-card singularity-card">
-          <h3>Singularity [T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">Challenge:</span> {{ s.challenge }}</p>
-          <p><span style="color:#ff6666">Reward:</span> {{ s.reward }}</p>
+          <h3>奇点[T{{ s.tier }}]</h3>
+          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
         </div>
       </div>
 
       <div v-if="activeMilestoneTab === 'Black Hole'" class="milestone-grid">
         <div v-for="s in bhMilestones.filter(s => s.tier < hero.bhTier)" :key="s.tier" class="milestone-card singularity-card">
-          <h3>Black Hole [T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">Challenge:</span> {{ s.challenge }}</p>
-          <p><span style="color:#ff6666">Reward:</span> {{ s.reward }}</p>
+          <h3>黑洞[T{{ s.tier }}]</h3>
+          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
         </div>
       </div>
 
@@ -80,7 +80,7 @@
         <div v-for="c in globalCurses.filter(c => c.tier <= getPredactionTier())" 
             :key="c.tier" 
             class="milestone-card curse-card">
-          <h3>Perdition [T{{ c.tier }}]</h3>
+          <h3>沉沦[T{{ c.tier }}]</h3>
           <p>{{ c.description }}</p>
         </div>
       </div>
@@ -116,9 +116,9 @@ const isTabUnlocked = (tab) => {
 };
 
 const getUnlockRequirement = (tab) => {
-  if (tab === "Singularity" && hero.value.mainInfTier < 7) return "Unlocks at Infinity [T7]";
-  if (tab === "Perditions" && hero.value.mainInfTier < 20) return "Unlocks at Infinity [T20]";
-  if (tab === "Black Hole" && hero.value.bhTier < 1) return "Beat your first Black Hole";
+  if (tab === "Singularity" && hero.value.mainInfTier < 7) return "无限[T7]解锁";
+  if (tab === "Perditions" && hero.value.mainInfTier < 20) return "无限[T20]解锁";
+  if (tab === "Black Hole" && hero.value.bhTier < 1) return "击败第一个黑洞";
 
   return "";
 };
@@ -149,21 +149,21 @@ function getPredactionTier() {
 }
 
 function singMilestoneHandle() {
-  if (hero.value.singularity >= 8) return "<span style='color: #ffd700; font-weight: bold;'>All milestones are unlocked</span>";
+  if (hero.value.singularity >= 8) return "<span style='color: #ffd700; font-weight: bold;'>所有里程碑均已解锁</span>";
 
-  return `Unlock the next milestone at <span style='color: #00ffea'>Singularity [T${hero.value.singularity + 1}]</span>`;
+  return `下一里程碑解锁于 <span style='color: #00ffea'>奇点[T${hero.value.singularity + 1}]</span>`;
 }
 
 function bhMilestoneHandle() {
-  if(hero.value.bhTier >= 4) return "<span style='color: #ffd700; font-weight: bold;'>All milestones are unlocked</span>";
+  if(hero.value.bhTier >= 4) return "<span style='color: #ffd700; font-weight: bold;'>所有里程碑均已解锁</span>";
 
-  return `Beat The <span style='color: #00ffea'>Black Hole [T${hero.value.bhTier}]</span> to unlock the next milestone`;
+  return `击败 <span style='color: #00ffea'>黑洞[T${hero.value.bhTier}]</span> 以解锁下一里程碑`;
 }
 
 function infMilestones() {
-  if (hero.value.mainInfTier >= 14) return "<span style='color: #ffd700; font-weight: bold;'>All milestones are unlocked</span>";
+  if (hero.value.mainInfTier >= 14) return "<span style='color: #ffd700; font-weight: bold;'>所有里程碑均已解锁</span>";
 
-  return `Unlock the next milestone at <span style='color: #ffd700; font-weight: bold;'>Infinity [T${hero.value.mainInfTier + 1}]</span>`;
+  return `下一里程碑解锁于 <span style='color: #ffd700; font-weight: bold;'>Infinity [T${hero.value.mainInfTier + 1}]</span>`;
 }
 
 </script>

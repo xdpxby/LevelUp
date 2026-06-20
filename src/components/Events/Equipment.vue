@@ -159,7 +159,7 @@
           <h2 class="enhance-title">Enhance</h2>
 
           <div class="enhance-info">
-            <span class="label">Lvl:</span>
+            <span class="label">等级：</span>
             <span class="badge level"
               >{{ hero.eqUps[selectedType]
               }}{{ getMaxEquipmentSuffix(selectedType) }}</span

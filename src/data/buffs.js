@@ -101,7 +101,7 @@ const buffs = ref([
   },
   {
     id: 4,
-    name: "Blood Art",
+    name: "血液艺术",
     description: [
       "Restore 5% of Max HP every second.",
       "Restore 5% of Max HP when you kill an enemy.",
@@ -178,7 +178,7 @@ const buffs = ref([
   },
   {
     id: 7,
-    name: "Overkill",
+    name: "超杀",
     description: [
       "+1 Overkill per 10 Max Stages passed",
       "+1 Overkill per each 100 Max Level",
@@ -280,7 +280,7 @@ const buffs = ref([
   },
   {
     id: 11,
-    name: "Sniper",
+    name: "狙击手",
     description: [
       "+5% CRIT and +0.25 CRIT DMG per skill tier.",
       `When you land a Critical Hit, the enemy’s Attack Speed is reduced by 8% per skill tier for 0.25 second.
@@ -308,7 +308,7 @@ const buffs = ref([
   },
   {
     id: 12,
-    name: "Berserk",
+    name: "狂暴",
     description: [
       `On Low Life: deal x1.25 DMG MULT per Skill Tier`,
       "On Low Life: Gain +3% Crit Chance and +0.15 Crit DMG per Skill Tier",

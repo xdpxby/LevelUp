@@ -254,7 +254,7 @@ const tooltip = reactive({
 })
 
 const artifacts = [
-  { id: 'singularity', x: 300, y: 100, color: '#cc66ff', radius: 12, glow: true, pulse: true, label: 'Singularity' },
+  { id: 'singularity', x: 300, y: 100, color: '#cc66ff', radius: 12, glow: true, pulse: true, label: '奇点' },
   { id: 'satellite', x: 250, y: 250, orbit: true, label: 'Lost Satellite' },
   { id: 'void', x: 500, y: 300, color: '#00000088', radius: 20, label: 'Void' },
 ]

@@ -1,6 +1,6 @@
 <template>
   <div class="amulet-panel">
-    <h2 class="amulet-title"><sup style="font-size: 6px"></sup>Amulet</h2>
+    <h2 class="amulet-title"><sup style="font-size: 6px"></sup>护身符</h2>
 
     <div class="effects-cards">
             <Tooltip

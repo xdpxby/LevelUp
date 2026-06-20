@@ -58,7 +58,7 @@
     </div>
 
     <div class="footer">
-      <button class="btn close" @click="emit('close')">Close</button>
+      <button class="btn close" @click="emit('close')">关闭</button>
     </div>
   </div>
 

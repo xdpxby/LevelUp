@@ -19,7 +19,7 @@
     <h2>{{ currentEnemy.name }}</h2>
 
     <p v-if="!hero.isInfSpace" class="boss-reward-sp">
-      Reward: {{ currentEnemy.reward }}
+      奖励：{{ currentEnemy.reward }}
     </p>
 
     <div class="stats-row">
@@ -54,14 +54,14 @@
                 {{ specialStats[stat.key].breakdown.celestials >= 0
                 ? '+' + specialStats[stat.key].breakdown.celestials
                 : specialStats[stat.key].breakdown.celestials }}
-                per Celestial Defeated
+                每击败一个天界生物
               </p>
 
               <p class="sub" v-else>
                 {{ specialStats[stat.key].breakdown.infWarden >= 0
                 ? '+' + specialStats[stat.key].breakdown.infWarden
                 : specialStats[stat.key].breakdown.infWarden }}
-                per IW Defeated
+                每击败一个无限守卫
               </p>
             </span>
           </template>
@@ -77,8 +77,7 @@
     style="text-align: center"
     @click="hero.eLink = { set: 'Info', info: 'Space' }"
   >
-    <sup style="font-size: 12px"></sup>Raise your Danger level to attract the attention of Celestial Beings or
-    Increase the Space Tier.
+    <sup style="font-size: 12px"></sup>提高危险等级以吸引天界生物的注意，或提升空间层级。
   </div>
 
   <div
@@ -93,7 +92,7 @@
       class="attack-button"
       @click="attackSpaceEnemy"
     >
-      ⚔️ Attack
+      ⚔️ 攻击
     </button>
 
     <button
@@ -109,7 +108,7 @@
       class="attack-button"
       @click="leaveSpaceEnemy"
     >
-      Leave
+      离开
     </button>
   </div>
 </template>
@@ -144,7 +143,7 @@ const { player } = usePlayer("space");
 const currentEnemy = computed(() => {
   if (hero.value.isInfSpace) {
     return {
-      name: `Infinity Warden - ${hero.value.spsCount}`,
+      name: `无限守卫 - ${hero.value.spsCount}`,
       reward: null,
       type: 'boss',
       status: true,

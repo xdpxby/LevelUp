@@ -9,10 +9,10 @@
                     <span class="offline-icon">⏳</span>
                     <div>
                         <div class="offline-title">
-                            Offline Rewards
+                            离线奖励
                         </div>
                         <div class="offline-subtitle">
-                            You were away for
+                            你离开了
                             <b>{{ timeFormat(hero.afkTime) }}</b>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="offline-section">
-                <div class="section-title">Resources</div>
+                <div class="section-title">资源</div>
                 <div class="section-grid">
 
                     <div class="offline-reward-card">
@@ -34,7 +34,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    EXP
+                                    经验值
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Skill EXP
+                                    Skill 经验值
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Stardust
+                                    星尘
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Mutagen
+                                    诱变剂
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Ascension Shards
+                                    转生碎片
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Rebirth Pts
+                                    重生点数
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
             </div>
 
             <div class="offline-section">
-                <div class="section-title cyan-text">Special</div>
+                <div class="section-title cyan-text">特殊</div>
                 <div class="section-grid">
                 
                     <div class="offline-reward-card">
@@ -142,7 +142,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Kills
+                                    击杀数
                                 </div>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Soul Appearance Boost
+                                    灵魂出现提升
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
             </div>
 
             <div v-if="hero.bhTier >= 4" class="offline-section">
-                <div class="section-title">Progress</div>
+                <div class="section-title">进度</div>
                 <div class="section-grid">
                 
                     <div v-if="hero.dims.corrShards >= 20" class="offline-reward-card">
@@ -180,7 +180,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Void Pulsation
+                                    虚空脉动
                                 </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                             </div>
                             <div>
                                 <div class="offline-reward-name">
-                                    Timeline [Stones]
+                                    时间线[石头]
                                 </div>
                             </div>
                         </div>
@@ -219,10 +219,10 @@
             <div class="stored-header">
                 <div>
                     <div class="stored-title">
-                        Temporal Storage
+                        时间储存
                     </div>
                     <div class="stored-subtitle">
-                        You were away for
+                        你离开了
                         <b>{{ timeFormat(hero.afkTime) }}</b>
                     </div>
                 </div>
@@ -235,7 +235,7 @@
                 <div class="stored-core-ring"></div>
                 <div class="stored-core">
                     <div class="stored-core-label">
-                        STORED TIME
+                        已储存时间
                     </div>
                     <div class="stored-core-time">
                         {{ timeFormat(hero.settings.storedTime) }}

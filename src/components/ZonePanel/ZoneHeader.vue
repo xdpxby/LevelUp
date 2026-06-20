@@ -25,7 +25,7 @@
     </div>
 
     <div class="progress-center" v-if="!hero.dId.startsWith('d-')">
-      <span class="progress-text">Progress</span>
+      <span class="progress-text">进度</span>
     </div>
 
     <div class="right-icons tooltip-content">
@@ -242,8 +242,7 @@ const {
 } = useTimeline();
 
 function deathRecovery() {
-  let text = `At this stage, the world suppresses your excessive power, making recovery 
-  after death take longer by <span style="color: red">[${fn(1 + 0.01 * Math.max(hero.value.stages.current - 100, 0))}]</span> times`;
+  let text = `在这个关卡，世界会压制你过度膨胀的力量，使死亡后的恢复时间延长 <span style="color: red">[${fn(1 + 0.01 * Math.max(hero.value.stages.current - 100, 0))}]</span> 倍`;
 
   return text;
 }
@@ -259,56 +258,56 @@ function infHandle() {
   let text = ``;
 
   if (h.dId != 'advanceBH' && h.dId != 'dimMerge')
-    text = `<span style="color: #feed8a">Reach Total Level <b style="color: ${color}">${req}</b> to complete the Infinity Trial</span><br>`
+    text = `<span style="color: #feed8a">达到总等级 <b style="color: ${color}">${req}</b> 以完成无限试炼</span><br>`
 
-  text += `<span style="color: #feed8a">Penalty for this trial: 
-  Max Level: <span style='color: red'>[^${penalty.toFixed(2)}]</span>
-  EXP Gain: <span style='color: red'>[^${penalty.toFixed(2)}]</span></span><br>`
+  text += `<span style="color: #feed8a">本次试炼惩罚：
+  最高等级： <span style='color: red'>[^${penalty.toFixed(2)}]</span>
+  经验获取： <span style='color: red'>[^${penalty.toFixed(2)}]</span></span><br>`
   
   if(t >= 20)
     text += `<span style="color: #ff6666; font-weight: bold">[Predictions]</span>
-    <span style="color: gold">Reduce Starudust Drop by </span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().stardust)}</span><br>`;
+    <span style="color: gold">星尘掉落降低 </span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().stardust)}</span><br>`;
   if(t >= 25)
-    text += `<span style="color: #b6ff00">Reduce Mutagen Drop by</span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().mutagen)}</span><br>`;
+    text += `<span style="color: #b6ff00">诱变剂掉落降低</span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().mutagen)}</span><br>`;
   if(t >= 30)
     text += `<span style="color: #f9453f">Resonanse [Curses]: <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().curseMult)}</span><br>`;
 
-  text += `<span style="color:#bfbfbf; font-style:italic; font-size:0.85em;">These effects apply only during Infinity Trials.</span><br><br>`;
+  text += `<span style="color:#bfbfbf; font-style:italic; font-size:0.85em;">这些效果只在无限试炼中生效。</span><br><br>`;
   
   if(h.infPenalty > 0)
-    text += `<span style="color: #feed8a">Infinity Resistance: <b style="color: gold">[${fn(h.infPenalty)}]</b></span>`;
+    text += `<span style="color: #feed8a">无限抗性： <b style="color: gold">[${fn(h.infPenalty)}]</b></span>`;
   
   return text;
 }
 
 function darkEnergyHandle() {
-  let text = `Kill all <b style="color: cyan">[Obscurants]</b> to advance to the next <span style='color: gold'>Infinity Tier</span><br><br>`;
-  text += `<b style="color: cyan">[Obscurants]</b>: ${enemy.value.darkEnergy.totalBosses} / ${enemy.value.darkEnergy.maxBosses}<br>`;
+  let text = `击杀所有 <b style="color: cyan">[朦胧者]</b> 以进入下一 <span style='color: gold'>无限层级</span><br><br>`;
+  text += `<b style="color: cyan">[朦胧者]</b>： ${enemy.value.darkEnergy.totalBosses} / ${enemy.value.darkEnergy.maxBosses}<br>`;
 
   if (enemy.value.darkEnergy.totalBosses < enemy.value.darkEnergy.maxBosses)
-    text += `Stage: <span style='color: gold'>${
+    text += `关卡：<span style='color: gold'>${
       100 + 5 * enemy.value.darkEnergy.totalBosses
     }</span>`;
   else
-    text += `All <span style="color: cyan">[Obscurants]</span> are found`;
+    text += `所有 <span style="color: cyan">[朦胧者]</span> 均已找到`;
 
   return text;
 }
 
 function doomHandle() {
-  let text = `When you kill an enemy, you gain a stack of <span style="color: red">[Doom]</span>. Each stack reduces your stats.
+  let text = `击杀敌人时，你会获得一层 <span style="color: red">[毁灭]</span>。每层都会降低你的属性。
 
-    Current stacks: <span style="color: red; font-weight: bond">${villian.value.status.dims.ddamage.kills}</span>
+    当前层数： <span style="color: red; font-weight: bond">${villian.value.status.dims.ddamage.kills}</span>
 
-    <span style="color: red">DMG [Penalty]: ${fn(getDimEffect(28).dmg)}</span>
-    <span style="color: lightgreen">HP [Penalty]: ${fn(getDimEffect(28).stats)}</span>
-    <span style="color: yellow">DEF [Penalty]: ${fn(getDimEffect(28).stats)}</span>
+    <span style="color: red">伤害[惩罚]： ${fn(getDimEffect(28).dmg)}</span>
+    <span style="color: lightgreen">生命值[惩罚]： ${fn(getDimEffect(28).stats)}</span>
+    <span style="color: yellow">防御[惩罚]： ${fn(getDimEffect(28).stats)}</span>
   `;
 
   if (dimensions.value[28].infTier >= 20)
-    text += `<br>You have a 50% chance not to receive a stack of <span style="color: red">*Doom*</span> when you kill.`;
+    text += `<br>击杀时有 50% 几率不获得一层 <span style="color: red">*毁灭*</span>。`;
   else if (dimensions.value[28].infTier >= 10)
-    text += `<br>You have a 25% chance not to receive a stack of <span style="color: red">*Doom*</span> when you kill.`;
+    text += `<br>击杀时有 25% 几率不获得一层 <span style="color: red">*毁灭*</span>。`;
 
   return text;
 }
@@ -319,14 +318,14 @@ function darkEnemyHandle() {
   let stage = 100 + 10 * tier;
 
   
-  let text = `Find <span style="color: orange">Dimension Colossuses</span> to advance to the next <span style="color: gold">Infinity Tier</span><br><br>`;
+  let text = `找到 <span style="color: orange">维度巨像</span> 以进入下一 <span style="color: gold">无限层级</span><br><br>`;
   if (enemy.value.specialCreatures['ddim' + (tier + 1)]?.req === undefined)
-    text += `<b style="color: orange">All creatures from the Dark Dimension was found</b>`;
+    text += `<b style="color: orange">来自黑暗维度的所有生物均已找到</b>`;
   else if (enemy.value.specialCreatures['ddim' + (tier + 1)].req)
-    text += `<b style="color: orange">A being from the Dark Dimension was found</b>`;
+    text += `<b style="color: orange">已找到一个来自黑暗维度的存在</b>`;
   else 
-    text += `Requirement: 
-  Danger: <span style="color: gold">[${danger}+]</span>
+    text += `需求：
+  危险： <span style="color: gold">[${danger}+]</span>
   Stage: <span style="color: gold">[${stage}+]</span>
   `;
 
@@ -338,36 +337,36 @@ function nextDimHandle() {
   let stage = Math.max(30 - dimensions.value[34].infTier, 1);
   let maxStage = 30 + 5 * dimensions.value[34].infTier;
   if (hero.value.dId == "d-next")
-    return `This world has been shattered by gravity. Your maximum possible stage is <span style="color: red">${stage}</span>.`;
+    return `这个世界已被重力击碎。你可达到的最高关卡为 <span style="color: red">${stage}</span>.`;
   if (hero.value.darkId.includes("d-next"))
-    return `You Max possible Stage is <span style="color: gold">${maxStage}</span>`;
+    return `你可达到的最高关卡为 <span style="color: gold">${maxStage}</span>`;
 
   return "";
 }
 
 function bleedingVeilHandle() {
-  return `<span style='color: #c31414'>[Bleeding Veil]</span>
+  return `<span style='color: #c31414'>[血幕]</span>
 
-    You are affected by the <span style="color: #F8686A">[Bleeding Veil]</span> effect and take <span style="color: #F8686A">${fn(player.value.status.dims.veil.damage)}</span> DMG per second
-    The power of <span style='color: #c31414'>[Bleeding Veil]</span> increases with each stage passed.
+    你受到 <span style="color: #F8686A">[血幕]</span> 效果影响，每秒承受 <span style="color: #F8686A">${fn(player.value.status.dims.veil.damage)}</span> 点伤害
+    <span style='color: #c31414'>[血幕]</span> 的力量会随通过的关卡提升。
   `;
 }
 
 function corruptionHandle() {
-  let text = `<span style="color: violet">While you are affected by corruption:</span><br>`;
+  let text = `<span style="color: violet">当你受到腐化影响时：</span><br>`;
 
-  text += `<span style="color: red">Enemy DMG: </span> <b style="color: gold">${fn(getDimEffect(26).dmg)}</b><br>`;
-  text += `<span style="color: lightgreen">Enemy HP: </span> <b style="color: gold">${fn(getDimEffect(26).hp)}</b><br>`;
+  text += `<span style="color: red">敌人伤害： </span> <b style="color: gold">${fn(getDimEffect(26).dmg)}</b><br>`;
+  text += `<span style="color: lightgreen">敌人生命值： </span> <b style="color: gold">${fn(getDimEffect(26).hp)}</b><br>`;
   if (getDimEffect(26).corr > 1)
-    text += `<span style="color: #d537d5">Increase Max Level Penalty by</span> <b style="color: gold">${fn(getDimEffect(26).corr)}</b><br>`;
-  text += "<span style='font-size: 11px; color: #ffb3b3;'>Tip: The corruption weakness will lead to a reduction in these indicators.</span>"
+    text += `<span style="color: #d537d5">最高等级惩罚提高</span> <b style="color: gold">${fn(getDimEffect(26).corr)}</b><br>`;
+  text += "<span style='font-size: 11px; color: #ffb3b3;'>提示：腐化弱点会降低这些数值。</span>"
 
   return text;
 }
 
 function dHardHandle() {
   let resonance = getDimEffect(27);
-  let text = `<span style="color: #ff4d4d">Curse [Resonance]</span>: <span style="color: red">x${fn(resonance)}</span>`;
+  let text = `<span style="color: #ff4d4d">诅咒[共鸣]</span>: <span style="color: red">x${fn(resonance)}</span>`;
 
   return text;
 }
@@ -375,7 +374,7 @@ function dHardHandle() {
 function dBuffsHandle() {
   let descrease = Math.min(Math.log(1 + dimensions.value[32].infTier) ** 4, 80);
 
-  let text = `Skills appearance chance: <span style='color: yellow'>${(
+  let text = `技能出现几率： <span style='color: yellow'>${(
     100 - descrease
   ).toFixed(2)}</span>`;
 
@@ -390,14 +389,14 @@ function dInfTreeHandle() {
   else if (hero.value.darkId.includes("d-noTree"))
     mult = getDimEffect(35).darkId;
 
-  let text = `Infinity Nodes Cost: <span style="color: gold">${fn(mult)}<span>`;
+  let text = `无限节点花费： <span style="color: gold">${fn(mult)}<span>`;
 
   return text;
 }
 
 function apsHandle() {
-  let text = `AS Penalty: <span style="color: red">-${fn(getDimEffect(39).aps)}</span>
-  Enemy AS: <span style="color: yellow">+${fn(getDimEffect(39).vaps)}</span>`;
+  let text = `攻速惩罚： <span style="color: red">-${fn(getDimEffect(39).aps)}</span>
+  敌人攻速： <span style="color: yellow">+${fn(getDimEffect(39).vaps)}</span>`;
 
   return text;
 }
@@ -411,11 +410,11 @@ function noEqDimHandle() {
     ? Math.max(Math.E ** (1.3 - 0.015 * dimensions.value[36].infTier), 1)
     : dark_d_penalty;
 
-  let text = `Enhances Cost: <span style="color: gold">*${fn(
+  let text = `强化花费： <span style="color: gold">*${fn(
     dark_d_penalty
   )}</span>`;
   if (hero.value.darkId.includes("d-noEq"))
-    text += `<br>Your possible Max Equipment Tier is <span style="color: rgb(0, 255, 255)">${
+    text += `<br>你可达到的最高装备层级为 <span style="color: rgb(0, 255, 255)">${
       dimensions.value[36].infTier + 1
     }</span>`;
 
@@ -423,40 +422,40 @@ function noEqDimHandle() {
 }
 
 function unlimitedDimHandle() {
-  let text = `Max Level Reduction: <span style="color: red">${fn(getDimEffect(38))}</span>`;
+  let text = `最高等级降低： <span style="color: red">${fn(getDimEffect(38))}</span>`;
 
   return text;
 }
 
 function stageHardCap() {
-  return `<span style="color: rgb(0, 255, 255)">Your knowledge of this world is too small, perhaps [D-Gravity] will give you a hint</span>`;
+  return `<span style="color: rgb(0, 255, 255)">你对这个世界的认知仍太浅，也许[D-重力]会给你提示</span>`;
 }
 
 function darkSpaceHandle() {
   let power = (Math.E * (1 + dimensions.value[37].infTier)) ** 1.75;
   let count = 6 * (dimensions.value[37].infTier + 1);
-  let text = `Celestials are <span style="color: gold">${fn(
+  let text = `天界生物强度提升 <span style="color: gold">${fn(
     power
-  )}</span> times stronger<br>`;
+  )}</span> 倍<br>`;
   text += `Beat <span style="color: gold">${
     hero.value.spCount + hero.value.spsCount
-  } / ${count}</span> celestials to advance to the next Infinity Tier`;
+  } / ${count}</span> 个天界生物以进入下一无限层级`;
 
   return text;
 }
 
 function travellHandle() {
-  let text = `<span style="color: lightblue">Travel Effect</span>
+  let text = `<span style="color: lightblue">旅行效果</span>
   
-  Enemies are stronger by <span style="color: red">${hero.value.travellPenalty.toFixed(
+  敌人强度提升 <span style="color: red">${hero.value.travellPenalty.toFixed(
     2
   )}</span>.
   `;
   if (hero.value.dId.startsWith("d-"))
-    text += `<br>While you are in the Dark Dimension, the effect of the travell is worse and extends to other effects:
-    - The effect of Corruption is doubled
-    - The effect of Curse is doubled
-    - Increase the effect of Doom`;
+    text += `<br>处于黑暗维度时，旅行效果会恶化并扩展到其他效果：
+    - 腐化效果翻倍
+    - 诅咒效果翻倍
+    - 毁灭效果提高`;
 
   return text;
 }
@@ -472,56 +471,56 @@ function corruptionEffect() {
   <div style="font-size: 14px; line-height: 1.35;">
     
     <div style="margin-bottom: 6px;">
-      <span style="color:#ee29ff; font-weight: 600;">Corruption</span> — 
-      a subtle influence of <span style="color:#ee29ff;">[D-Corruption]</span> that affects you.
+      <span style="color:#ee29ff; font-weight: 600;">腐败</span> — 
+      一种来自 <span style="color:#ee29ff;">[D-腐化]</span> 并影响你的隐秘力量。
     </div>
 
     <div style="margin-bottom: 10px;">
-      <span style="color:#ee29ff; font-weight: 600;">Corruption</span> reduces your <span style="color:rgb(159, 255, 127);">Max Level</span> by
+      <span style="color:#ee29ff; font-weight: 600;">腐败</span> 会降低你的 <span style="color:rgb(159, 255, 127);">最大等级</span> ，在 300 级后倍率为
       <span style="color:#ff6b6b; font-weight: 600;">×${(
         getCorruptionEffect()
-      ).toFixed(2)}</span> after level 300.<br>
-      <span>If you die, you lose <b style="color: red">${fn(hero.value.corruption.killsLose * 100)}%</b> of stage kills</span>
+      ).toFixed(2)}</span>。<br>
+      <span>死亡时会失去 <b style="color: red">${fn(hero.value.corruption.killsLose * 100)}%</b> 的关卡击杀数</span>
     </div>
 
     <div style="margin-bottom: 8px;">
-      <span style="color:#ee29ff; font-weight: 900;">Corruption:</span>
+      <span style="color:#ee29ff; font-weight: 900;">腐败：</span>
       <span style="color:#ee29ff;">${fn(corruption)}</span>
     </div>
 
-    <div style="margin-top: 10px; font-weight: 600; color:#bbbbbb;">Sources:</div>
+    <div style="margin-top: 10px; font-weight: 600; color:#bbbbbb;">来源：</div>
 
     <div style="margin-top: 4px;">
-      <div>Base — <span style="color:#fff;">0.1</span></div>
+      <div>基础 — <span style="color:#fff;">0.1</span></div>
 
-      <div><span style="color: lightgreen;">Rebirth</span> — 
+      <div><span style="color: lightgreen;">重生</span> — 
         <span style="color: lightgreen;">${fn(getCorruptionSourses("rebirth"))}</span>
       </div>
 
-      <div><span style="color: #d88bff;">Abyss</span> — 
+      <div><span style="color: #d88bff;">深渊</span> — 
         <span style="color: #d88bff;">${fn(getCorruptionSourses("abyss"))}</span>
       </div>
 
-      <div><span style="color: #b6ff00;">Radiation</span> — 
+      <div><span style="color: #b6ff00;">辐射</span> — 
         <span style="color: #b6ff00;">${fn(getCorruptionSourses("rad"))}</span>
       </div>
 
-      <div><span style="color: orange;">Space</span> — 
+      <div><span style="color: orange;">空间</span> — 
         <span style="color: orange;">${fn(getCorruptionSourses("space"))}</span>
       </div>`;
 
       if(hero.value.mainInfTier >= 5) {
-        text += `<div><span style="color: gold;">Infinity</span> — 
+        text += `<div><span style="color: gold;">无限</span> — 
           <span style="color: gold;">${fn(getCorruptionSourses("inf"))}</span>
         </div>`
       }
       if(dimensions.value[22].infTier > 25) {
-        text += `<div><span style="color: #ad7bff;">Dimensions</span> — 
+        text += `<div><span style="color: #ad7bff;">维度</span> — 
           <span style="color: #ad7bff;">${fn(getCorruptionSourses("dim"))}</span>
         </div>`
       }
       
-        text += `<div><span style="color:#eeff04;">Total</span> — 
+        text += `<div><span style="color:#eeff04;">总计</span> — 
         <span style="color: #eeff04;">${fn(hero.value.corruption.total)}</span>
       </div>
     </div>
@@ -550,8 +549,8 @@ function corruptionInfluence() {
   if (!hero.value.dId.startsWith('c-') && 
   !corrInfDims.includes(hero.value.dId)) return corruptionEffect();
 
-  let text = `<span style="color: #d8b4fe"><span style='color:#ee29ff'>Corruption Influence</span> – the overwhelming impact of 
-    <span style='color:#ee29ff'>[D-Corruption]</span> that distorts aspects of reality.</span><br><br>
+  let text = `<span style="color: #d8b4fe"><span style='color:#ee29ff'>腐化影响</span> - 来自 
+    <span style='color:#ee29ff'>[D-Corruption]</span> 的压倒性冲击，会扭曲现实的各个层面。</span><br><br>
     <span style='color:#ee29ff'>Corruption Influence: </span><span style='color:red'>${hero.value.corrInfluence}%</span><br><br>`;
 
   const corr = hero.value.corrInfluence;
@@ -559,63 +558,63 @@ function corruptionInfluence() {
   const effects = [
     {
       t: 5,
-      d: "+1% Enemy HP and DMG per completed Stage per Corruption Influence",
+      d: "每点腐化影响、每个已完成关卡使敌人生命值和伤害 +1%",
       v: () => `(${fn(corrInflueceHandle(0).hp)}) (${fn(corrInflueceHandle(0).dmg)})`,
     },
     {
       t: 10,
-      d: "+0.0025 Base stage requirement per Corruption Influence",
+      d: "每点腐化影响使基础关卡需求 +0.0025",
       v: () => `${fn(corrInflueceHandle(1))}`,
     },
     {
       t: 15,
-      d: "Increse the Level Requirement per Corruption Influence",
+      d: "每点腐化影响提高等级需求",
       v: () => `${fn(corrInflueceHandle(2))}`,
     },
     {
       t: 20,
-      d: "Stats weaken based on your total deaths this trial per Corruption Influence",
+      d: "每点腐化影响都会根据本次试炼总死亡次数削弱属性",
       v: () => `${fn(corrInflueceHandle(3))}`,
     },
     {
       t: 25,
-      d: "IP scales worse per used Skill",
+      d: "每个已使用技能都会让无限点数收益变差",
       v: () => `${fn(corrInflueceHandle(4))}`,
     },
     {
       t: 30,
-      d: "-1% CRIT and 0.1 CRIT DMG per Corruption Influence",
+      d: "每点腐化影响 -1% 暴击和 -0.1 暴击伤害",
       v: () => `(${fn(corrInflueceHandle(5).crit)}) (${fn(corrInflueceHandle(5).critDmg)})`,
     },
-    { t: 35, d: "You cannot receive Tiers from Rebirth", v: null },
+    { t: 35, d: "无法通过重生获得层级", v: null },
     {
       t: 40,
-      d: "Enhancements decrease per Corruption Influence",
+      d: "每点腐化影响降低强化效果",
       v: () => `${fn(corrInflueceHandle(7))}`,
     },
     {
       t: 45,
-      d: "Increase stage kill loss per Corruption Inluence.",
+      d: "每点腐化影响提高关卡击杀损失。",
       v: () => `${fn(corrInflueceHandle(8))}`,
     },
-    { t: 50, d: "Quasar Powers are becoming weaker per Corruption Influence", 
+    { t: 50, d: "每点腐化影响都会削弱类星体之力", 
       v: () => `${fn(corrInflueceHandle(9))}` },
-    { t: 55, d: "Celestials grant no SP", v: null },
-    { t: 60, d: "Max Level Reduction depends on the difference between the Max Level and the Current One.", 
+    { t: 55, d: "天界生物不再提供 SP", v: null },
+    { t: 60, d: "最高等级降低取决于最高等级与当前等级的差值。", 
       v: () => `${fn(corrInflueceHandle(11))}` },
-    { t: 65, d: "Equipment Drop Chance is lower per Corruption Influence", 
+    { t: 65, d: "每点腐化影响降低装备掉落几率", 
       v: () => `${fn(corrInflueceHandle(12))}` },
     {
       t: 70,
-      d: "You gain less EXP",
+      d: "获得的经验减少",
       v: () => `^${fn(corrInflueceHandle(13))}`,
     },
-    { t: 75, d: "On death: Reset the 10% of stage kills", v: null },
-    { t: 80, d: "On death: You lose 10 Levels", v: null },
-    { t: 85, d: "Healing is disabled", v: null },
-    { t: 90, d: "DEF is disabled", v: null },
-    { t: 95, d: "Your Attack becomes 0", v: null },
-    { t: 100, d: "Your Attack Speed becomes 0", v: null },
+    { t: 75, d: "死亡时：重置 10% 关卡击杀数", v: null },
+    { t: 80, d: "死亡时：失去 10 级", v: null },
+    { t: 85, d: "禁用治疗", v: null },
+    { t: 90, d: "禁用防御", v: null },
+    { t: 95, d: "攻击变为 0", v: null },
+    { t: 100, d: "攻击速度变为 0", v: null },
   ];
 
   effects.forEach((e) => {
@@ -639,60 +638,60 @@ function transcendenceEffects() {
   };
 
   let text = `
-    <span style="color:${c.title}">Transcendence [Tr] </span>
+    <span style="color:${c.title}">超越[Tr] </span>
     <span style="color:${c.text}">
-      is the first path to overcome gravity and gain powers beyond ordinary existence.
-      For every 70,000 True Levels, you gain 1
+      是克服重力、获得超越凡俗之力的第一条道路。
+      每 70,000 真实等级获得 1 点
     </span>
     <span style="color:${c.title}"> [Tr]</span>.
     <br><br>
 
     <span style="color:${c.text}">
-      Pass the
+      通过
     </span>
     <span style="color:${c.title}"> [D-Gravity] </span>
     <span style="color:${c.text}"> 
-      Trials to unlock new effects of 
+      试炼以解锁新的效果： 
     </span>
     <span style="color:${c.title}"> [Tr] </span>.
     <br><br>
 
     <span style="color:${c.text}"> 
-      The power of these effects depends on the number of 
+      这些效果的强度取决于 
     </span>
     <span style="color:${c.title}"> [Tr] </span>.
     <br><br>
 
     <span style="color:${c.title}"> [Tr] </span>
     <span style="color:${c.text}">
-      only exists in the Main Dimension and
+      只存在于主维度和
     </span>
     <span style="color:${c.title}"> [Black Hole] </span>.
     <br><br>
 
     <span style="color:${c.text}">
-      By entering the
+      进入
     </span>
     <span style="color:${c.title}"> [Black Hole] </span>,
     <span style="color:${c.text}">
-      you destroy your body and leave behind only your 
+      后，你会摧毁自己的身体，只留下你的 
     </span>
     <span style="color:${c.title}"> [Tr] </span>
     <span style="color:${c.text}">
-      energy.
+      能量。
     </span>
   `;
 
   if (hero.value.tr.spread > 0) {
     text += `
       <br><br>
-      <span style="color:${c.title}"> [Tr] Spread</span>
+      <span style="color:${c.title}"> [Tr] 扩散</span>
       <span style="color:${c.text}">
-        — allows
+        - 允许
       </span>
       <span style="color:${c.title}"> [Tr] </span>
       <span style="color:${c.text}">
-        to exist in all dimensions. 
+        存在于所有维度。 
       </span>
     `;
   }
@@ -703,28 +702,28 @@ function transcendenceEffects() {
 function dimsEffect() {
   let id = hero.value.dId;
 
-  let text = `<span style="color: #f942f9; font-weight: bold">Dimensions Effect Statuses</span><br><br>`;
+  let text = `<span style="color: #f942f9; font-weight: bold">维度效果状态</span><br><br>`;
 
   switch(id) {
     case "gravity": {
-      text += `Hero DMG: <span style="color: red">${fn(getDimEffect(2).dmg)}</span>
-      Enemy HP: <span style="color: lightgreen">${fn(getDimEffect(2).hp)}</span>`;
+      text += `英雄伤害： <span style="color: red">${fn(getDimEffect(2).dmg)}</span>
+      敌人生命值： <span style="color: lightgreen">${fn(getDimEffect(2).hp)}</span>`;
       break;
     }
     case "overkill": {
-      text += `Enemy DMG: <span style="color: red">${fn(getDimEffect(3).dmg)}</span>
-      Enemy HP: <span style="color: lightgreen">${fn(getDimEffect(3).hp)}</span>`;
+      text += `敌人伤害： <span style="color: red">${fn(getDimEffect(3).dmg)}</span>
+      敌人生命值： <span style="color: lightgreen">${fn(getDimEffect(3).hp)}</span>`;
       break;
     }
     case "damage": {
-      text += `Enemy DMG: <span style="color: red">${fn(getDimEffect(20).dmg)}</span>
-      Enemy HP: <span style="color: lightgreen">${fn(getDimEffect(20).hp)}</span>
-      The effect can be reset by Ascension or Rebirth.`
+      text += `敌人伤害： <span style="color: red">${fn(getDimEffect(20).dmg)}</span>
+      敌人生命值： <span style="color: lightgreen">${fn(getDimEffect(20).hp)}</span>
+      该效果可通过转生或重生重置。`
       break;
     }
     case "unlimitted": {
-      text += `<span style="color: red">Level Rush is locked</span>
-      <span style="color: red">Infinity Nodes cost twice as much.</span>`
+      text += `<span style="color: red">等级冲刺已锁定</span>
+      <span style="color: red">无限节点花费翻倍。</span>`
       break;
     }
     case "dimMerge": {
@@ -739,9 +738,9 @@ function dimsEffect() {
 }
 
 function firstHelp () {
-  let text = `<span style="color: #f942f9; font-weight: bold">Dimensions Effect</span><br><br>`;
+  let text = `<span style="color: #f942f9; font-weight: bold">维度效果</span><br><br>`;
 
-  text += `<p style="color:#f87171; text-align: justify; text-justify: inter-word; word-break: break-word;">Before unlocking the D-Atlas, you have:</p>
+  text += `<p style="color:#f87171; text-align: justify; text-justify: inter-word; word-break: break-word;">解锁维度图谱前，你拥有：</p>
   <span style="color: lightgreen">x2 EXP MULT</span>
   <span style="color: orange">x2 SKILL EXP MULT</span>
   <span style="color: lightblue">x2 ASCENSION SHARDS MULT</span>
@@ -758,53 +757,53 @@ let labelColor = '#c95ec9';
 let labelEffect = 'gold';
 return (`
   <span style="color:#a78bfa;">
-  Every passed stage strengthens the Void influence.
+  每个已通过关卡都会增强虚空影响。
   </span><br><br>
 
-  <span style="color: ${labelColor};">Stage Requirement: </span>
+  <span style="color: ${labelColor};">关卡需求： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(0))}</b><br>
 
-  <span style="color:${labelColor};">Equipment Drop Chance Reduction: </span>
+  <span style="color:${labelColor};">装备掉落几率降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(1))}</b><br>
 
-  <span style="color:${labelColor};">Enhance Cost Reduction: </span>
+  <span style="color:${labelColor};">强化花费降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(2))}</b><br>
 
-  <span style="color:${labelColor};">Level Requirement: </span>
+  <span style="color:${labelColor};">等级需求： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(3))}</b><br>
 
-  <span style="color:${labelColor};">Min Level Decrease: </span>
+  <span style="color:${labelColor};">最低等级降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(4))}</b><br>
 
-  <span style="color:${labelColor};">Enemy Power: </span>
+  <span style="color:${labelColor};">敌人强度： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(5))}</b><br>
 
-  <span style="color:${labelColor};">Soul Appearance Reduction: </span>
+  <span style="color:${labelColor};">灵魂出现几率降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(6))}</b><br>
 
-  <span style="color:${labelColor};">Resonance Power: </span>
+  <span style="color:${labelColor};">共鸣力量： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(7))}</b><br>
 
-  <span style="color:${labelColor};">Skill EXP Gain Reduction: </span>
+  <span style="color:${labelColor};">技能经验获取降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(8))}</b><br>
 
   <span style="color:${labelColor};">Corruption Influence: </span>
   <b style="color:${labelEffect};">${fn(voidEffects(9))}</b><br>
 
-  <span style="color:${labelColor};">Infinity Tier: </span>
+  <span style="color:${labelColor};">无限层级： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(10))}</b><br><br>
 
-  <span style="color:#f87171;"><b>Space Fights is locked</b></span><br>
+  <span style="color:#f87171;"><b>空间战斗已锁定</b></span><br>
 
-  <span style="color:#f87171;"><b>Soul-D is locked</b></span><br>
+  <span style="color:#f87171;"><b>灵魂维度已锁定</b></span><br>
 
-  <span style="color:#f87171;"><b>Stage Travel is locked</b></span><br>
+  <span style="color:#f87171;"><b>关卡旅行已锁定</b></span><br>
 
-  <span style="color:#f87171;"><b>Stage Rush is locked</b></span><br>
+  <span style="color:#f87171;"><b>关卡冲刺已锁定</b></span><br>
 
-  <span style="color:#f87171;"><b>Ascension Reset is locked</b></span><br>
+  <span style="color:#f87171;"><b>转生重置已锁定</b></span><br>
 
-  <span style="color:#f87171;"><b>Rebirth Reset is locked</b></span><br>
+  <span style="color:#f87171;"><b>重生重置已锁定</b></span><br>
   `).replace(/\n\s*/g, '');
 }
 
@@ -812,9 +811,9 @@ function timelineHandle () {
   let text = ``;
   let req = timelineReq();
 
-  text += `<span style="color: #66ffcc; font-weight: bold;">Completion Conditions:</span><br>`;
-  text += `<span style="color: #ffff66;">Stage</span>: <span style="color: white; font-weight: bold;">${req.stage}</span><br>`;
-  text += `<span style="color: #ffff66;">Total Level</span>: <span style="color: white; font-weight: bold;">${req.level}</span>`;
+  text += `<span style="color: #66ffcc; font-weight: bold;">完成条件：</span><br>`;
+  text += `<span style="color: #ffff66;">关卡</span>: <span style="color: white; font-weight: bold;">${req.stage}</span><br>`;
+  text += `<span style="color: #ffff66;">总等级</span>: <span style="color: white; font-weight: bold;">${req.level}</span>`;
 
   return text;
 }
@@ -827,9 +826,9 @@ function timePenaltyEffect() {
 
   const endDate = new Date(hero.value.maxTime);
 
-  return `<span style="color:#ff5555">You've entered a space-time anomaly. You can't obtain resources inside the anomaly. 
-    You'll be able to exit the anomaly in</span><br><span style="color:gold">${timeFormat(remaining / 1000)}</span>
-    Expires:<span style="color:#87cefa">${endDate.toLocaleString()}</span>`;
+  return `<span style="color:#ff5555">你进入了时空异常，无法在异常中获得资源。
+    你将在以下时间后可以离开异常：</span><br><span style="color:gold">${timeFormat(remaining / 1000)}</span>
+    结束时间：<span style="color:#87cefa">${endDate.toLocaleString()}</span>`;
 }
 
 

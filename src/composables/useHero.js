@@ -273,9 +273,9 @@ const hero = ref({
   totalPtsMult: 0,
   potential: 0,
   formationTypes : [
-    { name: 'HP', id: 0, icon: '💚', description: 'HP - x2, ATK - x0.5, DEF - x0.5', status: false },
+    { name: '生命值', id: 0, icon: '💚', description: 'HP - x2, ATK - x0.5, DEF - x0.5', status: false },
     { name: 'Attack', id: 1, icon: '⚔️', description: 'ATK - x2, HP - x0.5, DEF - x0.5' , status: false},
-    { name: 'Defense', id: 2, icon: '🛡️', description: 'DEF - x2, HP - x0.5, ATK - x0.5' , status: false},
+    { name: '防御', id: 2, icon: '🛡️', description: 'DEF - x2, HP - x0.5, ATK - x0.5' , status: false},
     { name: 'Loot', id: 3, icon: '💎', description: 'DEF - x0.5, HP - x0.5, ATK - x0.5, LOOT: 2' , status: false},
   ],
   abyssTier: 0,

@@ -4,7 +4,7 @@ export const equipment = [
   {
     type: 'sword',
     tiers: [
-      { tier: 0, name: 'None', bonus: { cap: 0, multDmg: 1 } },
+      { tier: 0, name: '无', bonus: { cap: 0, multDmg: 1 } },
       { tier: 1, name: 'Rusty Sword', bonus: { cap: 1, multDmg: 1.1 } },
       { tier: 2, name: 'Iron Sword', bonus: { cap: 2, multDmg: 1.2 } },
       { tier: 3, name: 'Steel Blade', bonus: { cap: 4, multDmg: 1.3 } },
@@ -61,7 +61,7 @@ export const equipment = [
   {
     type: 'armor',
     tiers: [
-      { tier: 0, name: 'None', bonus: { cap: 0, hp: 1 } },
+      { tier: 0, name: '无', bonus: { cap: 0, hp: 1 } },
       { tier: 1, name: 'Cloth Armor', bonus: { cap: 2, hp: 1.05 } },
       { tier: 2, name: 'Leather Armor', bonus: { cap: 4, hp: 1.1 } },
       { tier: 3, name: 'Chainmail', bonus: { cap: 7, hp: 1.15 } },
@@ -89,7 +89,7 @@ export const equipment = [
   {
     type: 'boots',
     tiers: [
-      { tier: 0, name: 'None', bonus: { cap: 0, speed: 0 } },
+      { tier: 0, name: '无', bonus: { cap: 0, speed: 0 } },
       { tier: 1, name: 'Worn Slippers', bonus: { cap: 1, speed: 0.1 } },
       { tier: 2, name: 'Leather Boots', bonus: { cap: 2, speed: 0.2 } },
       { tier: 3, name: 'Scout Boots', bonus: { cap: 3, speed: 0.3 } },
@@ -117,7 +117,7 @@ export const equipment = [
   {
     type: 'ring',
     tiers: [
-      { tier: 0, name: 'None', bonus: { cap: 0, expMult: 1 } },
+      { tier: 0, name: '无', bonus: { cap: 0, expMult: 1 } },
       { tier: 1, name: 'Novice Ring', bonus: { cap: 3, expMult: 1.1 } },
       { tier: 2, name: 'Bronze Ring', bonus: { cap: 6, expMult: 1.25 } },
       { tier: 3, name: 'Silver Ring', bonus: { cap: 10, expMult: 1.4 } },
@@ -146,7 +146,7 @@ export const equipment = [
   {
     type: 'spRing',
     tiers: [
-      { tier: 0, name: 'None', bonus: { cap: 0, minLevel: 0 } },
+      { tier: 0, name: '无', bonus: { cap: 0, minLevel: 0 } },
       { tier: 1, name: 'Comet Ring ', bonus: { cap: 10, minLevel: 2 } },
       { tier: 2, name: 'Comet Ring ', bonus: { cap: 11, minLevel: 2 } },
       { tier: 3, name: 'Comet Ring ', bonus: { cap: 12, minLevel: 3 } },

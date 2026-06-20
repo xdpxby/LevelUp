@@ -28,7 +28,7 @@
 
             <div class="stone-stats">
                 <p class="stat-line">
-                    <span>Radius:</span>
+                    <span>半径：</span>
                     <span class="radius-value">
                         {{ radiusCalc(selectedStone, 0) }}
                         <span class="arrow">→</span>

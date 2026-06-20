@@ -74,7 +74,7 @@ function voidDesc() {
 
   <br><br>
 
-  <span style="color:#c084fc; font-weight: bold">Increase the Void Tier to obtain</span>
+  <span style="color:#c084fc; font-weight: bold">提升虚空层级以获得</span>
 
   <div style="
       display:flex;

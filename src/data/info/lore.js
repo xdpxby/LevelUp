@@ -1,6 +1,6 @@
 export const loreSection = [
     {
-      title: 'Mysterious Message',
+      title: '神秘讯息',
       id: 0,
       author: 'Ancient Notes',
       location: 'Level 1',
@@ -14,7 +14,7 @@ export const loreSection = [
       condition: (ctx) => true,
     },
     {
-      title: 'Ancient Note I',
+      title: '远古笔记 I',
       id: 1,
       author: 'Ancient Notes',
       location: 'Infinity [T1]',
@@ -29,7 +29,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 1,
     },
     {
-      title: 'Ancient Note II',
+      title: '远古笔记 II',
       id: 2,
       author: 'Ancient Notes',
       location: 'Infinity [T3]',
@@ -43,7 +43,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 3,
     },
     {
-      title: 'Ancient Note III',
+      title: '远古笔记 III',
       id: 3,
       author: 'Ancient Notes',
       location: 'Infinity [T5]',
@@ -58,7 +58,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 5,
     },
     {
-      title: 'Ancient Note IV',
+      title: '远古笔记 IV',
       id: 4,
       author: 'Ancient Notes',
       location: 'Infinity [T8]',
@@ -73,7 +73,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 8,
     },
     {
-      title: 'Ancient Note V',
+      title: '远古笔记 V',
       id: 5,
       author: 'Ancient Notes',
       location: 'Infinity [T10]',
@@ -88,7 +88,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 10,
     },
     {
-      title: 'Ancient Note VI',
+      title: '远古笔记 VI',
       id: 6,
       author: 'Ancient Notes',
       location: 'Dimension [R0-X9a] [2] [T5]',
@@ -102,7 +102,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[2].infTier >= 5,
     },
     {
-      title: 'Ancient Note VII',
+      title: '远古笔记 VII',
       id: 7,
       author: 'Ancient Notes',
       location: 'Dimension [K7-D4n] [3] [T8]',
@@ -117,7 +117,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[3].infTier >= 8,
     },
     {
-      title: 'Ancient Note VIII',
+      title: '远古笔记 VIII',
       id: 8,
       author: 'Ancient Notes',
       location: 'Dimension [K7-D4n] [1] [T2]',
@@ -133,7 +133,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[1].infTier >= 2,
     },
     {
-      title: 'Ancient Note IX',
+      title: '远古笔记 IX',
       id: 9,
       author: 'Ancient Notes',
       location: 'Dimension [M2-Λ1s] [4] [T5]',
@@ -148,7 +148,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[4].infTier >= 5,
     },
     {
-      title: 'Ancient Note X',
+      title: '远古笔记 X',
       id: 10,
       author: 'Ancient Notes',
       location: 'Dimension [V6-B3n] [6] [T15]',
@@ -166,7 +166,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[6].infTier >= 15,
     },
     {
-      title: 'Ancient Note XI',
+      title: '远古笔记 XI',
       id: 11,
       author: 'Ancient Notes',
       location: 'Dimension [DD-zΘaYY] [9] [T4]',
@@ -182,7 +182,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[9].infTier >= 4,
     },
     {
-      title: 'Ancient Note XII',
+      title: '远古笔记 XII',
       id: 12,
       author: 'Ancient Notes',
       location: 'Dimension [QZ-µaTT] [11] [T15]',
@@ -196,7 +196,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[11].infTier >= 15,
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 13,
       author: '[D-Infinity]',
       location: 'Infinity [T10]',
@@ -208,7 +208,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 10
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 14,
       author: '[D-Infinity]',
       location: 'Infinity [T20]',
@@ -220,7 +220,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 20
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 15,
       author: '[D-Infinity]',
       location: 'Infinity [T40]',
@@ -232,7 +232,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 40
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 16,
       author: '[D-Infinity]',
       location: 'Infinity [T60]',
@@ -244,7 +244,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 60
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 17,
       author: '[D-Gravity]',
       location: 'Singularity [T0]',
@@ -257,7 +257,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 6
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 18,
       author: '[D-Gravity]',
       location: 'Singularity [T1]',
@@ -270,7 +270,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 0
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 19,
       author: '[D-Gravity]',
       location: 'Singularity [T2]',
@@ -283,7 +283,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 1
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 20,
       author: '[D-Gravity]',
       location: 'Singularity [T3]',
@@ -296,7 +296,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 2
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 21,
       author: '[D-Gravity]',
       location: 'ISingularity [T4]',
@@ -309,7 +309,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 3
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 22,
       author: '[D-Gravity]',
       location: 'Singularity [T5]',
@@ -322,7 +322,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 4
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 23,
       author: '[D-Gravity]',
       location: 'Singularity [T6]',
@@ -335,7 +335,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 5
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 24,
       author: '[D-Gravity]',
       location: 'Singularity [T7]',
@@ -348,7 +348,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 6
     },
      {
-      title: 'Message',
+      title: '讯息',
       id: 25,
       author: '[D-Gravity]',
       location: 'Singularity [T8]',
@@ -361,7 +361,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.singularity > 7
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 26,
       author: '[D-Gravity]',
       location: 'Black Hole [T0]',
@@ -374,7 +374,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.rebirthPts >= 1e7
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 27,
       author: '[D-Gravity]',
       location: 'Black Hole [T1]',
@@ -387,7 +387,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.bhTier >= 1
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 28,
       author: '[D-Gravity]',
       location: 'Black Hole [T2]',
@@ -400,7 +400,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.bhTier >= 2
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 29,
       author: '[D-Gravity]',
       location: 'Black Hole [T3]',
@@ -413,7 +413,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.bhTier >= 3
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 30,
       author: '[D-Corruption]',
       location: 'Infinity [T60]',
@@ -425,7 +425,7 @@ export const loreSection = [
       condition: (ctx) => ctx.hero.mainInfTier >= 60
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 31,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T1]',
@@ -438,7 +438,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 1
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 32,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T2]',
@@ -451,7 +451,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 2
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 33,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T3]',
@@ -464,7 +464,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 3
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 34,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T4]',
@@ -477,7 +477,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 4
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 35,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T5]',
@@ -490,7 +490,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 5
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 36,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T6]',
@@ -503,7 +503,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 6
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 37,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T7]',
@@ -516,7 +516,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 7
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 38,
       author: '[D-Space]',
       location: 'Dimension [Ω VL-χtAR] [31] Infinity [T8]',
@@ -529,7 +529,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[31].infTier >= 8
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 39,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T1]',
@@ -541,7 +541,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 1
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 40,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T3]',
@@ -553,7 +553,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 3
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 41,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T6]',
@@ -565,7 +565,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 6
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 42,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T10]',
@@ -577,7 +577,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 10
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 43,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T12]',
@@ -589,7 +589,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 12
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 44,
       author: '[D-Ultimatum]',
       location: 'Dimension [Ω LD-δrAK] [38] Infinity [T15]',
@@ -601,7 +601,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[38].infTier >= 15
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 45,
       author: '[D-Gravity]',
       location: 'Black Hole [T4]',
@@ -710,7 +710,7 @@ export const loreSection = [
       condition: (ctx) => ctx.d[22].infTier >= 35 && ctx.d[13].infTier >= 25 && ctx.hero.mainInfTier >= 35
     },
     {
-      title: 'Message',
+      title: '讯息',
       id: 53,
       author: '[D-Gravity]',
       location: 'Black Hole [T5]',

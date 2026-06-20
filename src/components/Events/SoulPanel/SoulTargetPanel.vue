@@ -16,7 +16,7 @@
       </div>
 
       <div class="soul-chance">
-        <span class="label">Appearance</span>
+        <span class="label">外观</span>
         <span class="value">
           {{ fn(enemy.soulBuff.chance) }}%
         </span>
@@ -58,12 +58,12 @@
       <h4 class="soul-section-title">Loot MULT</h4>
 
       <div class="s-stats-wrapper">
-        <span class="s-stats-name">EXP</span>
+        <span class="s-stats-name">经验值</span>
         <span class="s-stats-value">{{ fn(enemy.soulBuff.drop) }}</span>
       </div>
 
       <div class="s-stats-wrapper">
-        <span class="s-stats-name">Equipment Drop Chance</span>
+        <span class="s-stats-name">装备掉率</span>
         <span class="s-stats-value">{{ fn(enemy.soulBuff.drop) }}</span>
       </div>
     </div>
@@ -93,7 +93,7 @@ const soulStatsView = computed(() => ([
   },
   {
     key: 'hp',
-    label: 'HP',
+    label: '生命值',
     unlocked: true,
     value: enemy.value.soulBuff.hp || 0,
   }

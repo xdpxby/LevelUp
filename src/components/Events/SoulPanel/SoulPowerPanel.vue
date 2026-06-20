@@ -10,7 +10,7 @@
                   [T{{ hero.soulPower.tier }}]
               </div>
               <div class="souls">
-              {{ hero.souls }} / {{ hero.soulPower.req }} Souls
+              {{ hero.souls }} / {{ hero.soulPower.req }} 灵魂
               </div>
         </div>
     </div>
@@ -58,23 +58,23 @@
 
         <div v-if="tab === 'Base'">
           <div class="base-card">
-            +{{ fn(hero.soulPower.label.maxLevel) }} Max Level per <span style="color: #e600ff">Soul</span> 
+            +{{ fn(hero.soulPower.label.maxLevel) }} 最高等级 每 <span style="color: #e600ff">灵魂</span> 
             <span style="color: #bd44ca;font-weight: bold"> [{{ hero.soulPower.base.maxLevel }}]</span>
           </div>
           <div class="base-card">
-            +{{ fn(hero.soulPower.label.exp)}} EXP MULT per <span style="color: #e600ff">Soul</span> 
+            +{{ fn(hero.soulPower.label.exp)}} 经验乘数 每 <span style="color: #e600ff">灵魂</span> 
             <span style="color: #bd44ca;font-weight: bold"> [{{ fn(hero.soulPower.base.exp) }}]</span>
-            <span style="color: red"> HARDCAP <strong>[{{ 40 + (hero.infExpansions.soul? 40: 0) }} SOULS]</strong></span>
+            <span style="color: red"> 硬上限 <strong>[{{ 40 + (hero.infExpansions.soul? 40: 0) }} 灵魂]</strong></span>
           </div>
           <div class="base-card" v-if="hero.infExpansions.soul">
-            +{{ fn(hero.soulPower.label.minLevel)}} Min Level per <span style="color: #e600ff"> Soul Tier</span>
+            +{{ fn(hero.soulPower.label.minLevel)}} 最低等级 每 <span style="color: #e600ff"> 灵魂层级</span>
             <span style="color: #bd44ca;font-weight: bold"> [{{ hero.soulPower.base.min, true }}]</span>
           </div>
           <div class="base-card" style="color: yellow" v-if="hero.souls > 40">
-            Stardust MULT [{{ fn(hero.soulPower.base.stardust) }}]
+            星尘乘数 [{{ fn(hero.soulPower.base.stardust) }}]
           </div>
           <div class="base-card" style="color: #b6ff00" v-if="hero.souls > 40">
-             Mutagen MULT [{{ fn(hero.soulPower.base.mutagen) }}]
+             诱变剂乘数 [{{ fn(hero.soulPower.base.mutagen) }}]
           </div>
         </div>
 
@@ -101,7 +101,7 @@
               <h3>{{ item.title }}</h3>
 
               <span v-if="!isUnlocked(item)" class="unique-lock">
-                Consume {{ item.req }} Soul in D56
+                在 D56 消耗 {{ item.req }} 灵魂
               </span>
             </div>
 
@@ -154,13 +154,13 @@ const circleSize = computed(() => {
 });
 
 const specialBonuses = ref([
-  "[] DMG per soul []",
-  "[] CRIT CHANCE per soul []",
-  "[] CRIT DMG per soul []",
-  "[] Attack Speed per soul []",
-  "[] Less DMG taken per soul []",
-  "[] Accuracy per soul []",
-  "[] Dodge per soul []",
+  "[] 伤害 每灵魂 []",
+  "[] 暴击几率 每灵魂 []",
+  "[] 暴击伤害 每灵魂 []",
+  "[] 攻击速度 每灵魂 []",
+  "[] 受到伤害降低 每灵魂 []",
+  "[] 命中 每灵魂 []",
+  "[] 闪避 每灵魂 []",
 ]);
 
 const formattedSpecialBonuses = computed(() => {
@@ -185,14 +185,14 @@ const formattedSpecialBonuses = computed(() => {
 });
 
 const uniqueBonuses = ref([
-  { req: 120, title: "Fast Slash [Awakened]", desc: "Fast Slash has no cap tier. Increase the effect of [T4] by 1% for each extra Tier" },
-  { req: 140, title: "Overkill [Awakened]", desc: "Overkill has no cap tier. Increase overloot by 1% for each extra Tier" },
-  { req: 160, title: "Conquer [Awakened]", desc: "Conquer has no cap tier. Increase Max Time by 100s for each extra Tier" },
-  { req: 180, title: "Traveler [Awakened]", desc: "Traveler has no cap tier. Each extra Tier increase the effect of [T4] by 1.1" },
-  { req: 200, title: "First Strike [Awakened]", desc: "First Strike has no cap tier. Increase the effect of [T4] by 1% for each extra Tier" },
-  { req: 220, title: "Sniper [Awakened]", desc: "Sniper has no cap tier." },
-  { req: 240, title: "Berserk [Awakened]", desc: "Berserk has no cap tier. Increase the Low Life threshold by 2% for each extra Tier" },
-  { req: 260, title: "Combo [Awakened]", desc: "Combo has no cap tier. Increse the max stacks of combo by 10 for each extra Tier" },
+  { req: 120, title: "快速斩击[觉醒]", desc: "快速斩击不再有层级上限。每个额外层级使[T4]效果提高 1%" },
+  { req: 140, title: "超杀[觉醒]", desc: "超杀不再有层级上限。每个额外层级使超额战利品提高 1%" },
+  { req: 160, title: "征服[觉醒]", desc: "征服不再有层级上限。每个额外层级使最大时间提高 100 秒" },
+  { req: 180, title: "旅行者[觉醒]", desc: "旅行者不再有层级上限。每个额外层级使[T4]效果提高 1.1" },
+  { req: 200, title: "先发制人[觉醒]", desc: "先发制人不再有层级上限。每个额外层级使[T4]效果提高 1%" },
+  { req: 220, title: "狙击手[觉醒]", desc: "狙击手不再有层级上限。" },
+  { req: 240, title: "狂暴[觉醒]", desc: "狂暴不再有层级上限。每个额外层级使低生命阈值提高 2%" },
+  { req: 260, title: "连击[觉醒]", desc: "连击不再有层级上限。每个额外层级使连击最大层数提高 10" },
 ]);
 
 function isUnlocked(item) {
@@ -200,9 +200,9 @@ function isUnlocked(item) {
 }
 
 function btnUnlocked(id) {
-    if (!hero.value.infExpansions.soul && id == 1) return `Unlock <span style='color: gold; font-weight: 600'>Infinity Expansion</span> for soul`;
-    if (!getDimSpecialReward(56) && id == 2 && hero.value.mainInfTier >= 60) return `Reach <span style='color: gold; font-weight: 600'>Complete D56</span> to unlock`;
-    if (getDimSpecialReward(56) && id == 2 && hero.value.mainInfTier < 60) return `<span style='color: gold; font-weight: 600'>Locked</span>`;
+    if (!hero.value.infExpansions.soul && id == 1) return `解锁灵魂的 <span style='color: gold; font-weight: 600'>无限扩展</span>`;
+    if (!getDimSpecialReward(56) && id == 2 && hero.value.mainInfTier >= 60) return `完成 <span style='color: gold; font-weight: 600'>D56</span> 以解锁`;
+    if (getDimSpecialReward(56) && id == 2 && hero.value.mainInfTier < 60) return `<span style='color: gold; font-weight: 600'>已锁定</span>`;
 
   return "";
 }

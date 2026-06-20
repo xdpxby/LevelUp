@@ -8,7 +8,7 @@ export const spaceAbilityUI = [
     },
   
     {
-      title: 'Defense',
+      title: '防御',
       unlock: 1,
       stats: [
         { key: 'defIgnore', label: 'Ignore DEF' },
@@ -41,7 +41,7 @@ export const spaceAbilityUI = [
       title: 'Crit',
       unlock: 4,
       stats: [
-        { key: 'critChance', label: 'Crit Chance' },
+        { key: 'critChance', label: '暴击几率' },
         { key: 'critDMG', label: 'Crit Damage' },
       ],
     },
