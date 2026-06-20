@@ -1,0 +1,83 @@
+export const soulNames = [
+    "Whispering Soul",
+    "Flickering Essence",
+    "Shard of Dusk",
+    "Veiled Wraith",
+    "Ebon Spark",
+    "Twilight Remnant",
+    "Ashen Echo",
+    "Lurking Spirit",
+    "Moonbound Wisp",
+    "Crimson Trace",
+    "Phantom Ember",
+    "Duskwrought Fragment",
+    "Soul of the Hollow",
+    "Banshee's Cry",
+    "Eclipse Residue",
+    "Forgotten Light",
+    "Nether Gleam",
+    "Spectral Dust",
+    "Haunting Core",
+    "Obsidian Whisper",
+    "Graveborn Flicker",
+    "Palefire Essence",
+    "Fate-Touched Spirit",
+    "Gloomveil",
+    "Abyssal Murmur",
+    "Lingering Spark",
+    "Soul of Regret",
+    "Waning Spirit",
+    "Lucid Echo",
+    "Celestial Husk",
+    "Vortexmaw",
+    "Feargnasher", 
+    "Bleakhorn", 
+    "Crimsonmaw", 
+    "Ragesnap", 
+    "Scabfang", 
+    "Wreckhide", 
+    "Hauntfang", 
+    "Soulgnaw", 
+    "Abysslash",
+    "Terrorclaw", 
+    "Venomjaw", 
+    "Darklash", 
+    "Rotspike", 
+    "Cursedfang", 
+    "Deathgleam", 
+    "Dreadclaw", 
+    "Emberfang", 
+    "Plaguedozer", 
+    "Malignhorn"
+  ];
+
+  export const rewards = [
+    [
+      "Ascension Shard MULT increased by 1.5x when Ascended",
+      "Skill EXP MULT increased by 1.5x",
+      "New Skill - Overkill (P)",
+      "Increase The Equipment Drop Chance by 75% per SOUL TIER"
+    ],
+    [
+      "Ascension Shard MULT increased by 1.5x when Ascended",
+      "Skill EXP MULT increased by 1.5x",
+      "New Skill - Blood Art (P)",
+      "Unlock the Amulet Stone [T3]",
+      "Reduce stage requirement"
+    ],
+    [
+      "Ascension Shard MULT increased by 1.5x when Ascended",
+      "Skill EXP MULT increased by 1.5x",
+      "New Skill - Sniper (P)",
+      "Unlock a suffix for the Amulet Stone",
+      "+5% Extra EXP MULT for each soul",
+      "Your HP is always full when a special enemy appears"
+    ],
+    [
+      "Rebirth Pts multiplier increased by 1.5",
+      "New Skill - Berserk (P)",
+      "Unlock a prefix for the Amulet Stone",
+      "Level Rush: +10%",
+      "Base Strength [Tree] scales better for each Tree Tier"
+    ]
+  ];

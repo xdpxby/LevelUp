@@ -1,0 +1,961 @@
+<template>
+  <div class="radiation-panel">
+    <div class="mutation-chances">
+      <h2>
+        <span @click="hero.eLink = { set: 'Info', info: 'Radiation' }"><sup style="font-size: 12px"></sup>Mutagen:</span>
+        <span @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Mutagen' }"><sup style="font-size: 12px"></sup>{{fn(hero.mutagen)}}</span>
+      </h2>  
+
+      <div class="effects-cards">
+          <Tooltip
+            v-for="key in effectsActivated()"
+            :key="key"
+            :text="() => effectsHandler(key)"
+            position="right"
+            maxWidth="300px"
+          >
+            <div
+              class="effect-card"
+              :class="['effect-' + key, { active: activeSelect(key) }]"
+              @click="clickEffects(key)"
+            >
+              {{ key }}
+            </div>
+          </Tooltip>
+      </div>
+
+      <div class="mutations">
+        <div
+          v-for="(mutation, idx) in hero.mutation"
+          :key="mutation.type"
+          class="mutation"
+        >
+          <span class="glow"> Mutation [T{{idx+1}}]</span> — {{ mutation.chance.toFixed(1) }}%
+        </div>
+      </div>
+      <div v-if="perks[10].level > 0" class="danger-wrapper">
+        <div @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Danger' }">
+          <sup style="font-size: 12px"></sup>DANGER: [{{perks[10].level}}]
+        </div> 
+        <p>Enemy Power: [{{fn(enemy.enemyPower, true)}}]</p>
+      </div>
+      <div class="tab-buttons">
+        <button :class="{ active: activeTab === 'perks' }" @click="activeTab = 'perks'">🧬 Radiation Perks</button>
+        <button :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">💀 Special Creatures</button>
+      </div>
+      <div class="tab-buttons">
+
+        <Tooltip :text="() => `Except Danger`" position="right">
+          <button v-if="hero.mainInfTier >= 4 || hero.infEvents >= 4" @click="upAll">
+            Upgrade All
+          </button>
+        </Tooltip>
+
+        <Tooltip :text="() => `You won't get mutagens back`" position="right">
+          <button @click="dReset">
+            Reset Danger
+          </button>
+        </Tooltip>
+      </div>
+      <div v-if="getDimSpecialReward(62)" class="tab-buttons">
+        <DangerPanel />
+      </div>
+
+    </div>
+
+    <div v-if="activeTab === 'perks'" class="radiation-perks">
+      <h2>Radiation Perks</h2>
+
+      <div class="perks-scroll">
+        <div class="perks-grid">
+          <div
+            v-for="perk in filteredPerks"
+            :key="perk.id"
+            class="perk"
+          >
+            <h3>{{ perk.name }}</h3>
+            <p class="perk-description">{{ perk.description }}</p>
+            <small class="perk-level">Lvl: {{ perk.level }} / {{ perk.max }}</small>
+            <Tooltip :text="() => quasarCoreDangerHandle(perk)" boxShadow="0 0 10px #00ffea" position="top">
+              <button
+                class="btn-up"
+                :disabled="perk.level >= perk.max"
+                @click="upgradePerk(perk)"
+                @mousedown="startAutoUpgrade(perk, $event)"
+                @mouseup="stopAutoUpgrade"
+                @mouseleave="stopAutoUpgrade"
+                @mouseenter="isHovering = true"
+              >
+                {{ getCostShow(perk) }}
+              </button>
+            </Tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div v-if="activeTab === 'info'" class="radiation-wrapper">
+      <div class="row">
+        <span style="color: orange" class="label">Celestial [Space] [T{{Math.floor(hero.spCount / 6) + 1}}]</span>
+        <span class="value">{{ (enemy.specialCreatures.celestials.chance).toFixed(2) }}%</span>
+      </div>
+
+      <div v-if="perks[10].level >= 10" class="row">
+        <span class="label">Souls Chance</span>
+        <span class="value">*{{ fn(enemy.specialCreatures.souls.chance) }}</span>
+      </div>
+
+      <div v-if="perks[10].level >= 20" class="row">
+        <span class="label">Progress Boss Chance</span>
+        <span class="value">*{{ fn(enemy.specialCreatures.boss.chance, true) }}</span>
+      </div>
+
+      <p style="color: gold" class="section-title" v-if="hero.infExpansions.radiation">Infinity Creatures</p>
+
+      <template v-if="hero.infExpansions.radiation">
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Ω-Infinity')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">Ω-Infinity [{{enemy.specialCreatures.inf1.loot}} / {{enemy.specialCreatures.inf1.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(0)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.inf1.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Mirror of the Infinity')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">Mirror of the Infinity [{{enemy.specialCreatures.inf2.loot}} / {{enemy.specialCreatures.inf2.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(1)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.inf2.chance, 100).toFixed(2)  }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('The Infinite One')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">The Infinite One [{{enemy.specialCreatures.inf3.loot}} / {{enemy.specialCreatures.inf3.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(2)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.inf3.chance, 100).toFixed(2)  }}%</template>
+          </span>
+        </div>
+      </template>
+      
+
+      <p class="section-title" v-if="getDimSpecialReward(15)">Dimension Creatures</p>
+
+      <template v-if="getDimSpecialReward(15)">
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Twisted Rootspawn')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Twisted Rootspawn [{{enemy.specialCreatures.dim1.loot}} / {{enemy.specialCreatures.dim1.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(4)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim1.chance, 100).toFixed(2)  }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Voidpulse Entity')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Voidpulse Entity [{{enemy.specialCreatures.dim2.loot}} / {{enemy.specialCreatures.dim2.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(5)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim2.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Fracture Beast')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Fracture Beast[{{enemy.specialCreatures.dim3.loot}} / {{enemy.specialCreatures.dim3.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(6)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim3.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Clot of Dark Energy')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Clot of Dark Energy [{{enemy.specialCreatures.dim4.loot}} / {{enemy.specialCreatures.dim4.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(7)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim4.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Infinitron Prime')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Infinitron Prime [{{enemy.specialCreatures.dim5.loot}} / {{enemy.specialCreatures.dim5.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(8)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim5.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+        <div class="row">
+          <Tooltip :text="() => creaturesHandle('Entropy Reaver')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">Entropy Reaver [{{enemy.specialCreatures.dim6.loot}} / {{enemy.specialCreatures.dim6.max}}]</span>
+          </Tooltip>
+          <span class="value">
+            <template v-if="creaturesActive(9)">Locked</template>
+            <template v-else>{{ Math.min(enemy.specialCreatures.dim6.chance, 100).toFixed(2) }}%</template>
+          </span>
+        </div>
+
+      </template>
+
+      <p style="color: #f36e6e" class="section-title" v-if="enemy.specialCreatures['ddim1'].req">Creatures from Dark Dimensions</p>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim1'].req">
+        <Tooltip :text="() => creaturesHandle('Dreadfang')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Dreadfang [{{enemy.specialCreatures.ddim1.loot}} / {{enemy.specialCreatures.ddim1.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(10)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim1.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim2'].req">
+        <Tooltip :text="() => creaturesHandle('Voidborn Might')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Voidborn Might [{{enemy.specialCreatures.ddim2.loot}} / {{enemy.specialCreatures.ddim2.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(11)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim2.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim3'].req">
+        <Tooltip :text="() => creaturesHandle('Overseer Prime')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Overseer Prime [{{enemy.specialCreatures.ddim3.loot}} / {{enemy.specialCreatures.ddim3.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(12)">Locked</template>
+          <template v-else>{{Math.min(enemy.specialCreatures.ddim3.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim4'].req">
+        <Tooltip :text="() => creaturesHandle('Baselurker')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Baselurker [{{enemy.specialCreatures.ddim4.loot}} / {{enemy.specialCreatures.ddim4.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(13)">Locked</template>
+          <template v-else>{{Math.min(enemy.specialCreatures.ddim4.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim5'].req">
+        <Tooltip :text="() => creaturesHandle('Infinity Bane')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Infinity Bane [{{enemy.specialCreatures.ddim5.loot}} / {{enemy.specialCreatures.ddim5.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(14)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim5.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim6'].req">
+        <Tooltip :text="() => creaturesHandle('Crushdepth')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Crushdepth [{{enemy.specialCreatures.ddim6.loot}} / {{enemy.specialCreatures.ddim6.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(15)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim6.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim7'].req">
+        <Tooltip :text="() => creaturesHandle('Entropy Leech')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Entropy Leech [{{enemy.specialCreatures.ddim7.loot}} / {{enemy.specialCreatures.ddim7.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(16)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim7.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim8'].req">
+        <Tooltip :text="() => creaturesHandle('Flameveil')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Flameveil [{{enemy.specialCreatures.ddim8.loot}} / {{enemy.specialCreatures.ddim8.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(17)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim8.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim9'].req">
+        <Tooltip :text="() => creaturesHandle('Bloodhowl')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Bloodhowl [{{enemy.specialCreatures.ddim9.loot}} / {{enemy.specialCreatures.ddim9.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(18)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim9.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim10'].req">
+        <Tooltip :text="() => creaturesHandle('Tormenthide')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Tormenthide [{{enemy.specialCreatures.ddim10.loot}} / {{enemy.specialCreatures.ddim10.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(19)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim10.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim11'].req">
+        <Tooltip :text="() => creaturesHandle('Plaguedozer')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Plaguedozer [{{enemy.specialCreatures.ddim11.loot}} / {{enemy.specialCreatures.ddim11.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(20)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim11.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+      <div class="row" v-if="enemy.specialCreatures['ddim12'].req">
+        <Tooltip :text="() => creaturesHandle('Malignhorn')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">Malignhorn [{{enemy.specialCreatures.ddim12.loot}} / {{enemy.specialCreatures.ddim12.max}}]</span>
+        </Tooltip>
+        <span class="value">
+          <template v-if="creaturesActive(21)">Locked</template>
+          <template v-else>{{ Math.min(enemy.specialCreatures.ddim12.chance, 100).toFixed(2) }}%</template>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, reactive } from 'vue';
+import { perks as rawPerks } from '../../data/radPerks.js';
+import { useHero } from '../../composables/useHero.js';
+import { useEnemy } from '../../composables/useEnemy.js';
+import { dimensions } from '../../data/dimensions.js';
+import { divineSkills } from '../../data/quasarCore.js';
+
+import DangerPanel from './RadiationPanel/DangerPanel.vue';
+import { fn } from '../../composables/utils/global.js';
+
+import { useRadiations } from '../../composables/battleUtils/useRadiation.js';
+import { useDimensions } from '../../composables/battleUtils/useDimensions.js';
+import { usePlayer } from '../../composables/utils/playerSetup.js';
+import { useBaseEnemy } from '../../composables/utils/enemySetup.js';
+
+const perks = reactive([...rawPerks]);
+const { hero } = useHero();
+const { enemy } = useEnemy();
+const { player } = usePlayer();
+const { villian } = useBaseEnemy();
+
+const {
+  effectsActivated,
+  activeSelect,
+  clickEffects,
+  effectsHandler,
+  getCost,
+  enemyPowerHandle
+} = useRadiations();
+
+const {
+  getDimSpecialReward
+} = useDimensions();
+
+const activeTab = ref('perks');
+
+const creaturesActive = (id) => {
+  let d = enemy.value.danger;
+  let s = hero.value.stages.current;
+
+  switch(id) {
+    case 0: return !(d >= 100 && s > 59);
+    case 1: return !(d >= 150 && s > 64);
+    case 2: return !(d >= 200 && s > 69);
+
+    case 4: return !(d >= 400 && s > 119);
+    case 5: return !(d >= 550 && s > 139);
+    case 6: return !(d >= 600 && s > 134);
+    case 7: return !(d >= 400 && s > 119);
+    case 8: return !(d >= 600 && s > 144);
+    case 9: return !(d >= 700 && s > 149);
+
+    case 10: return !(d >= 1000 && s >= 100);
+    case 11: return !(d >= 1500 && s >= 110);
+    case 12: return !(d >= 2000 && s >= 120);
+    case 13: return !(d >= 2500 && s >= 130);
+    case 14: return !(d >= 3000 && s >= 140);
+    case 15: return !(d >= 3500 && s >= 150);
+    case 16: return !(d >= 4000 && s >= 160);
+    case 17: return !(d >= 4500 && s >= 170);
+    case 18: return !(d >= 5000 && s >= 180);
+    case 19: return !(d >= 5500 && s >= 190);
+    case 20: return !(d >= 6000 && s >= 200);
+    case 21: return !(d >= 6500 && s >= 210);
+  }
+}
+
+const getCostShow = (perk) => {
+  if(hero.value.selectedDivSkills.includes(14)) return 'Locked';
+  if(perk.id == 9 && hero.value.isSingularity && hero.value.singularity >= 3) return 'Locked'; 
+
+  return `Upgrade (${fn(getCost(perk))} mut)`;
+};
+
+const filteredPerks = computed(() => {
+  let maxId = 14 + (getDimSpecialReward(62)? 4: 0);
+  return perks.filter((p) => p.id < maxId)
+})
+
+function upAll(){
+  if(hero.value.selectedDivSkills.includes(14)) return;
+
+  let maxId = 14 + (getDimSpecialReward(62)? 4: 0);
+
+  for(let perk of perks){
+    if (perk.id >= maxId) break;
+    while(perk.level < perk.max && getCost(perk) <= hero.value.mutagen){
+      if(perk.id == 11) break;
+      if(perk.id == 9 && hero.value.isSingularity && hero.value.singularity >= 3) break;
+
+      hero.value.mutagen -= getCost(perk);
+      perk.level++;
+ 
+    }
+  }
+
+  enemy.value.danger = rawPerks[10].level;
+  enemy.value.enemyPower = enemyPowerHandle();
+}
+
+function quasarCoreDangerHandle(perk) {
+  if(perk.id != 11) return "";
+
+  let str = ``;
+  if(hero.value.selectedDivSkills.includes(7))
+    str += `<span style='color: #00ffea'>Quasar Radiance</span>
+    <span style='color: gold'>Stardust MULT</span>: ${(divineSkills.value[7].values[0]).toFixed(2)}
+    
+    `;
+  
+  str += `<span style='color: red'>Hero Base DMG: ${fn(player.value.attack.final)}</span>
+  <span style='color: lightgreen'>Hero Base HP: ${fn(player.value.stats.final.hp)}</span>
+
+  <span style='color: red'>Enemy Base DMG: ${fn(villian.value.attack.final)}</span>
+  <span style='color: lightgreen'>Enemy Base HP: ${fn(villian.value.stats.final.hp)}</span>`
+  
+
+  return str;
+}
+
+function dReset(){
+  if(hero.value.selectedDivSkills.includes(14)) return;
+
+  rawPerks[10].level = 0;
+}
+
+function upgradePerk(perk) {
+  if(hero.value.selectedDivSkills.includes(14)) return;
+  if(perk.id == 9 && hero.value.isSingularity && hero.value.singularity >= 3) return;
+  
+  if (perk.level < perk.max && getCost(perk) <= hero.value.mutagen) {  
+    
+    let steps = 1 + Math.floor(perk.max/1000);
+
+    for (let i = 0; i < steps; i++) {
+      if (perk.level < perk.max && getCost(perk) <= hero.value.mutagen) {
+        hero.value.mutagen -= getCost(perk);
+        perk.level++;
+      }
+    } 
+  }
+}
+
+let holdTimeout = null;
+let intervalId = null;
+const isHovering = ref(false);
+
+function startAutoUpgrade(perk, event) {
+  
+  isHovering.value = true;
+
+  holdTimeout = setTimeout(() => {
+    intervalId = setInterval(() => {
+      upgradePerk(perk);
+    }, 10);
+  }, 250);
+}
+
+function stopAutoUpgrade() {
+  clearTimeout(holdTimeout);
+  if (intervalId !== null) {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+  holdTimeout = null;
+  isHovering.value = false;
+}
+
+function creaturesHandle(creature){
+  switch(creature){
+    case 'Ω-Infinity': 
+          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">60+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(88, 255, 160)">+1 Potential</span></span>`
+    case 'Mirror of the Infinity': 
+          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">65+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(243, 218, 31)">+1 IP</span></span>`
+    case 'The Infinite One': 
+          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">70+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(255, 230, 88)">+1 STAR(ST)</span></span>`
+    
+    case 'Twisted Rootspawn': 
+          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">120+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(88, 255, 107)">+1 Tree Point(TP)</span></span>`
+
+    case 'Voidpulse Entity':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">140+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(88,176,255)">+1 Space Power(SP)</span><br></span>`
+
+    case 'Fracture Beast':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">600+</span>, Stage <span style="color:gold">135+</span>
+          Dimension: main
+          Reward: <span style="color:violet">+1 Dimension Shard(DS)</span><br></span>`
+
+    case 'Clot of Dark Energy':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">120+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(180,88,255)">Enemies of the Singularity are weakened by 1%</span><br></span>`
+
+    case 'Infinitron Prime':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">600+</span>, Stage <span style="color:gold">145+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(255,215,0)">+0.01 IP MULT</span><br></span>`
+
+    case 'Entropy Reaver':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">700+</span>, Stage <span style="color:gold">150+</span>
+          Dimension: main
+          Reward: <span style="color:rgb(255, 200, 0)">+0.01 Infinity Resistance</span><br></span>`
+    
+    case 'Dreadfang':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">1000+</span>, Stage <span style="color:gold">100+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:rgb(255, 200, 0)">+0.0075 Infinity Resistance</span><br></span>`
+
+    case 'Voidborn Might':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">1500+</span>, Stage <span style="color:gold">110+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#ff69b4">+0.01 DMG MULT</span><br></span>`
+
+    case 'Overseer Prime':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">2000+</span>, Stage <span style="color:gold">120+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#00bfff">+0.01 Max Level MULT</span><br></span>`
+
+    case 'Baselurker':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">2500+</span>, Stage <span style="color:gold">130+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#7fff00">+1 Min Level</span><br></span>`
+
+    case 'Infinity Bane':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">3000+</span>, Stage <span style="color:gold">140+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#ff4500">+0.05 Stardust MULT</span><br></span>`
+
+    case 'Crushdepth':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">3500+</span>, Stage <span style="color:gold">150+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#ba55d3">+1 Dimension Shard (DS)</span><br></span>`
+
+    case 'Entropy Leech':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">4000+</span>, Stage <span style="color:gold">160+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+1 Potential</span><br></span>`
+    
+    case 'Flameveil':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">4500+</span>, Stage <span style="color:gold">170+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+0.1 CRIT DMG</span><br></span>`
+
+    case 'Bloodhowl':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">5000+</span>, Stage <span style="color:gold">180+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+0.01 Increased Quasar Power</span><br></span>`
+
+    case 'Tormenthide':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">5500+</span>, Stage <span style="color:gold">190+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+0.01 Void Shards MULT</span><br></span>`
+
+    case 'Plaguedozer':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">6000+</span>, Stage <span style="color:gold">200+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+0.01 Singularity Shards</span><br></span>`
+
+    case 'Malignhorn':
+          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">6500+</span>, Stage <span style="color:gold">210+</span>
+          Dimension: [Ω VL-χtAR] [31]
+          Reward: <span style="color:#1e90ff">+1 Corruption Shard</span><br></span>`
+
+
+  }
+}
+
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+.radiation-panel {
+  background: radial-gradient(circle at center, #0a0f0a, #0b0b12);
+  color: #d4ff00;
+  
+   box-sizing: border-box;
+
+  height: 100dvh; 
+
+
+  padding: clamp(12px, 2vh, 24px);
+
+  border-radius: 0; 
+  box-shadow: none;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 18px);
+
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+@media (min-width: 768px) {
+  .radiation-panel {
+    flex-direction: row;
+  }
+
+  .mutation-chances {
+    flex: 3;
+  }
+
+  .radiation-perks, .radiation-wrapper {
+    flex: 7;
+  }
+}
+
+.mutation-chances,
+.radiation-perks {
+  background: rgba(0, 255, 0, 0.05);
+  border: 2px solid #66ff66;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.radiation-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid #66ff66;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #e0e0ff;
+  flex: 7;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(29, 252, 0) transparent;
+  overflow-x: hidden;
+
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.radiation-wrapper .section-title, .d-section-title {
+  font-size: 1.1rem;
+  color: #ff99ff;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 0 6px #aa00aa;
+}
+
+.radiation-wrapper .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #9992;
+  padding: 4px 0;
+}
+
+.radiation-wrapper .label {
+  color: #ccccff;
+  font-size: 0.95rem;
+}
+
+.radiation-wrapper .value {
+  color: #d4ff00;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-shadow: 0 0 4px #88ff88;
+}
+
+
+.mutation {
+  padding: 0.25rem 0;
+  font-size: 1rem;
+  list-style: none;
+}
+
+.mutations {
+  padding: 0.8rem;
+}
+
+.glow {
+  color: #b6ff00;
+  text-shadow: 0 0 4px #b6ff00, 0 0 8px #88ff88;
+}
+
+.perk-description {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.perks-scroll {
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(29, 252, 0) transparent;
+}
+
+.perks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.perks {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.perk-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 170px; /* ширина одной "колонки" из двух перков */
+  flex-shrink: 0;
+}
+
+.perk {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid #aaffaa;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  animation: fadeInUp 0.4s ease-out both;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  background: #b6ff00;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #dfff00;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .perks {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .perk {
+    font-size: 0.8rem;
+  }
+}
+
+.perk-level {
+  font-size: 0.75rem;
+  color: #99ff99;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+
+.tooltip {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1c1917;
+  color: #fef2f2;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  width: 220px;
+  font-size: 0.85rem;
+  text-align: left;
+  z-index: 10000000;
+  box-shadow: 0 0 10px #66ff66;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.info-button {
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 50%;
+  color: #fee2e2;
+  transition: transform 0.2s;
+}
+
+.info-button:hover {
+  transform: scale(1.2);
+}
+
+.danger-wrapper {
+  max-width: 250px;
+  overflow: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.tab-buttons > * {
+  flex: 1;
+}
+
+.tab-buttons button {
+  width: 100%;
+  padding: 6px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  background: #111;
+  color: #b6ff00;
+  border: 1px solid #66ff66;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-buttons button.active {
+  background: #b6ff00;
+  color: #111;
+  font-weight: bold;
+}
+
+.btn-up {
+  width: 100%;
+}
+
+
+
+.effects-cards {
+  display: flex;
+  gap: 6px;
+}
+
+.effect-card {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: default;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.08);
+}
+
+.effect-M, .effect-D, .effect-S, .effect-L { color: #cde651; box-shadow: 0 0 6px #cde651; }
+.effect-i { color: gold; box-shadow: 0 0 6px gold; }
+
+.effect-A {
+  background-color: #333333;          
+  border: 1px solid #666666;
+}
+
+.effect-A:hover {
+  background-color: #555555;         
+  box-shadow: 0 0 6px rgba(0, 255, 136, 0.5);
+}
+
+.effect-A.active {
+  background-color: #cfed3a;       
+  border-color: #cfed3a;
+  color: #0a0a0a;                
+  box-shadow: 0 0 10px #cfed3a, 0 0 15px #cfed3a;
+  transform: scale(1.1);         
+}
+
+</style>
