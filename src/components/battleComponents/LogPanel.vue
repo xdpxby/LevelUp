@@ -7,7 +7,7 @@
         :class="{ active: hero.combatFilterStatus === type }"
         @click="hero.combatFilterStatus = type"
       >
-        {{ type }}
+        {{ tr(type) }}
       </button>
     </div>
 
@@ -17,7 +17,7 @@
         :key="index"
         class="log-entry"
       >
-        <span class="message" v-html="log.message"></span><br>
+        <span class="message" v-html="tr(log.message)"></span><br>
         <small class="timestamp">{{ log.timestamp }}</small>
       </div>
     </div>
@@ -28,6 +28,7 @@
 import { ref, computed, watch, nextTick } from 'vue';
 import { addLog, getLogs } from '../../composables/logService.js';
 import { useHero } from '../../composables/useHero.js';
+import { tr } from '../../i18n/index.js';
 
 const { hero } = useHero();
 

@@ -9,7 +9,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(0)" position="right">
-                  AFK Popup
+                  {{ tr('AFK Popup') }}
                 </Tooltip>
               </span>
             </div>
@@ -19,7 +19,7 @@
               :class="{ active: hero.settings.showAfkPopupRule }"
               @click="hero.settings.showAfkPopupRule = !hero.settings.showAfkPopupRule"
             >
-              {{ hero.settings.showAfkPopupRule ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.showAfkPopupRule ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -29,7 +29,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(1)" position="right">
-                  Stored Time
+                  {{ tr('Stored Time') }}
                 </Tooltip>
               </span>
             </div>
@@ -39,7 +39,7 @@
               :class="{ active: hero.settings.afkStoredTime }"
               @click="hero.settings.afkStoredTime = !hero.settings.afkStoredTime"
             >
-              {{ hero.settings.afkStoredTime ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.afkStoredTime ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -48,7 +48,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(2)" position="right">
-                  Safety Check
+                  {{ tr('Safety Check') }}
                 </Tooltip>
               </span>
             </div>
@@ -58,7 +58,7 @@
               :class="{ active: hero.eventDoubleClick }"
               @click="hero.eventDoubleClick = !hero.eventDoubleClick"
             >
-              {{ hero.eventDoubleClick ? 'ON' : 'OFF' }}
+              {{ tr(hero.eventDoubleClick ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -67,7 +67,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(3)" position="right">
-                  Damage Display
+                  {{ tr('Damage Display') }}
                 </Tooltip>
               </span>
             </div>
@@ -77,7 +77,7 @@
               :class="{ active: hero.settings.damageDisplay }"
               @click="hero.settings.damageDisplay  = !hero.settings.damageDisplay "
             >
-              {{ hero.settings.damageDisplay  ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.damageDisplay  ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -86,7 +86,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(4)" position="right">
-                  Notafications
+                  {{ tr('Notafications') }}
                 </Tooltip>
               </span>
             </div>
@@ -96,7 +96,7 @@
               :class="{ active: hero.settings.notes }"
               @click="hero.settings.notes = !hero.settings.notes"
             >
-              {{ hero.settings.notes ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.notes ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -105,7 +105,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(5)" position="right">
-                  Dimension Teleport
+                  {{ tr('Dimension Teleport') }}
                 </Tooltip>
               </span>
             </div>
@@ -115,7 +115,7 @@
               :class="{ active: hero.settings.dimTeleport  }"
               @click="hero.settings.dimTeleport = !hero.settings.dimTeleport"
             >
-              {{ hero.settings.dimTeleport ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.dimTeleport ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -124,7 +124,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(6)" position="right">
-                  Auto Save
+                  {{ tr('Auto Save') }}
                 </Tooltip>
               </span>
             </div>
@@ -134,7 +134,7 @@
               :class="{ active: hero.settings.autoSave  }"
               @click="hero.settings.autoSave = !hero.settings.autoSave"
             >
-              {{ hero.settings.autoSave ? 'ON' : 'OFF' }}
+              {{ tr(hero.settings.autoSave ? 'ON' : 'OFF') }}
             </div>
 
           </div>
@@ -146,21 +146,21 @@
         <div class="actions">
 
           <button class="btn save" @click="saveGame">
-            💾 Save
+            💾 {{ tr('Save') }}
           </button>
 
           <button class="btn export" @click="exportGame">
-            📤 Export
+            📤 {{ tr('Export') }}
           </button>
 
           <button class="btn import" @click="triggerFileInput">
-            📥 Import
+            📥 {{ tr('Import') }}
           </button>
 
           <input type="file" ref="fileInput" accept=".enc" hidden @change="handleFileImport" />
 
           <button class="btn danger" @click="resetGame">
-            Reset
+            {{ tr('Reset') }}
           </button>
 
           <button
@@ -172,7 +172,7 @@
               ∞
             </span>
 
-            Reset Infinity
+            {{ tr('Reset Infinity') }}
           </button>
 
         </div>
@@ -189,6 +189,7 @@ import { useHero } from "../../composables/useHero.js";
 
 import { loading } from "../../composables/utils/loading.js";
 import { useDimensions } from '../../composables/battleUtils/useDimensions.js';
+import { tr } from '../../i18n/index.js';
 
 const fileInput = ref(null);
 
@@ -208,13 +209,13 @@ const { hero } = useHero();
 
 function tooltipText (id) {
   switch(id) {
-    case 0: return `Show popup after returning from offline progress.`
-    case 1: return `Offline time is stored and can be used later manually.`
-    case 2: return `Confirmation is required before events are reset.`
-    case 3: return `Displays damage received and dealt on the screen`
-    case 4: return `Display a notification window every time a message appears.`
-    case 5: return `If you use teleportation, you will automatically enter to the dimension`
-    case 6: return 'Automatically saves your progress every 30 seconds.'
+    case 0: return tr(`Show popup after returning from offline progress.`)
+    case 1: return tr(`Offline time is stored and can be used later manually.`)
+    case 2: return tr(`Confirmation is required before events are reset.`)
+    case 3: return tr(`Displays damage received and dealt on the screen`)
+    case 4: return tr(`Display a notification window every time a message appears.`)
+    case 5: return tr(`If you use teleportation, you will automatically enter to the dimension`)
+    case 6: return tr('Automatically saves your progress every 30 seconds.')
   }
 }
 

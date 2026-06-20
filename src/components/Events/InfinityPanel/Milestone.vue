@@ -11,7 +11,7 @@
         ]"
       > 
       <Tooltip :text="() => getUnlockRequirement(tab)" boxShadow="0 0 10px gold">
-        {{ tab }}
+        {{ tr(tab) }}
       </Tooltip>
       </button>
     </div>
@@ -36,7 +36,7 @@
       <div v-if="activeMilestoneTab === 'Perditions'">
         <p class="milestonePrediction">
           <span class="highlight">[D-无限]</span> 散播了 <span style='color: #ff6666'>沉沦</span>。
-          下一次沉沦出现在 <span class="highlight">Infinity [T{{ getCurseTier() }}]</span>
+          下一次沉沦出现在 <span class="highlight">无限[T{{ getCurseTier() }}]</span>
         </p>
       </div>
     </div>
@@ -46,15 +46,15 @@
       <div v-if="activeMilestoneTab === 'Abyss'" class="milestone-grid">
         <div v-for="s in abyssMilestones.filter(s => s.tier <= hero.abyssTier)" :key="s.tier" class="milestone-card abyss-card">
           <h3>深渊[T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">挑战：</span> {{ s.description }}</p>
-          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
+          <p><span style="color:#ff6666">挑战：</span> {{ tr(s.description) }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ tr(s.reward) }}</p>
         </div>
       </div>
       <!-- Infinity -->
       <div v-if="activeMilestoneTab === 'Infinity'" class="milestone-grid">
         <div v-for="m in infinityMilestones.filter(i => i.tier <= hero.mainInfTier && i.type)" :key="m.tier" class="milestone-card infinity-card">
-          <h3>Infinity [T{{ m.tier }}]</h3>
-          <p v-html="m.description"></p>
+          <h3>无限[T{{ m.tier }}]</h3>
+          <p v-html="tr(m.description)"></p>
         </div>
       </div>
 
@@ -62,16 +62,16 @@
       <div v-if="activeMilestoneTab === 'Singularity'" class="milestone-grid">
         <div v-for="s in singularityMilestones.filter(s => s.tier < hero.singularity)" :key="s.tier" class="milestone-card singularity-card">
           <h3>奇点[T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
-          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
+          <p><span style="color:#ff6666">挑战：</span> {{ tr(s.challenge) }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ tr(s.reward) }}</p>
         </div>
       </div>
 
       <div v-if="activeMilestoneTab === 'Black Hole'" class="milestone-grid">
         <div v-for="s in bhMilestones.filter(s => s.tier < hero.bhTier)" :key="s.tier" class="milestone-card singularity-card">
           <h3>黑洞[T{{ s.tier }}]</h3>
-          <p><span style="color:#ff6666">挑战：</span> {{ s.challenge }}</p>
-          <p><span style="color:#ff6666">奖励:</span> {{ s.reward }}</p>
+          <p><span style="color:#ff6666">挑战：</span> {{ tr(s.challenge) }}</p>
+          <p><span style="color:#ff6666">奖励:</span> {{ tr(s.reward) }}</p>
         </div>
       </div>
 
@@ -81,7 +81,7 @@
             :key="c.tier" 
             class="milestone-card curse-card">
           <h3>沉沦[T{{ c.tier }}]</h3>
-          <p>{{ c.description }}</p>
+          <p>{{ tr(c.description) }}</p>
         </div>
       </div>
     </div>
@@ -100,6 +100,7 @@ import {
   bhMilestones
 } from "../../../data/infinityMilestones.js";
 import { fn } from '../../../composables/utils/global.js';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 

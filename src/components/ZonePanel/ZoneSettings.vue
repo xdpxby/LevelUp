@@ -1,11 +1,11 @@
 <template>
 <div class="lock-stage-wrapper">
       <!-- Idle system button -->
-      <Tooltip :text="() => 'Idle system: Locks the stage to prevent automatic progression'">
+      <Tooltip :text="() => tr('Idle system: Locks the stage to prevent automatic progression')">
         <button class="lock-stage-button" @click="toggleLockStage">
           <span v-if="hero.isLocked" class="spinner"></span>
           <span v-else class="spinner fspinner"></span>
-          <span class="button-text">{{ hero.isLocked ? 'Locked' : 'Unlocked' }}</span>
+          <span class="button-text">{{ tr(hero.isLocked ? 'Locked' : 'Unlocked') }}</span>
         </button>
       </Tooltip>
 
@@ -18,7 +18,7 @@
 
         <Tooltip :text="() => ''">
           <button v-if="hero.infExpansions.tree" class="lock-stage-button" @click="modalsHandler('auto')">
-            ⚙️ Auto Settings
+            ⚙️ {{ tr('Auto Settings') }}
           </button>
         </Tooltip>
 
@@ -29,7 +29,7 @@
           </button>
         </Tooltip>
 
-        <Tooltip :text="() => 'Pause or resume the game'">
+        <Tooltip :text="() => tr('Pause or resume the game')">
           <button class="lock-stage-button" @click="hero.isPaused = !hero.isPaused">
             <span v-if="hero.isPaused">▶️ 返回</span>
             <span v-else>⏸️ 暂停</span>
@@ -43,40 +43,40 @@
       <div v-if="showStageModal" @click.self="showStageModal = false">
         <div class="stage-modal">
           
-          <h3> Stage Travel</h3>
+          <h3>{{ tr('Stage Travel') }}</h3>
 
           <div class="stage-input-group">
             <input
               type="number"
               v-model.number="targetStage"
               :max="hero.maxStage"
-              placeholder="Enter stage..."
+              :placeholder="tr('Enter stage...')"
             />
 
             <button @click="travelToStage">
-              Travel
+              {{ tr('Travel') }}
             </button>
           </div>
 
           <div class="stage-info">
             <p>
-              Max Stage:
+              {{ tr('Max Stage:') }}
               <span class="highlight">{{ hero.maxStage }}</span>
             </p>
           </div>
 
           <div class="stage-warning">
             <p>
-              Enemies become stronger as you travel. Their strength will return to normal over time.
+              {{ tr('Enemies become stronger as you travel. Their strength will return to normal over time.') }}
             </p>
             <p>
-              Stage Rush and Ascension Shards are disabled until the next reset.
+              {{ tr('Stage Rush and Ascension Shards are disabled until the next reset.') }}
             </p>
             <p v-if="travellBlock.includes(hero.dId)">
-              Stage Travell does not work in this dimension
+              {{ tr('Stage Travell does not work in this dimension') }}
             </p>
             <p v-if="hero.dId.startsWith('d-')">
-              In the dark dimensions, the penalty for travel is much greater.
+              {{ tr('In the dark dimensions, the penalty for travel is much greater.') }}
             </p>
           </div>
 
@@ -84,7 +84,7 @@
       </div>
 
       <div v-if="showAfkModal" class="stage-modal">
-          <h3>🕒 Stored Offline Time</h3>
+          <h3>🕒 {{ tr('Stored Offline Time') }}</h3>
 
           <div class="afk-bar-container">
             <div class="afk-bar" :style="{ width: `${afkPercent}%` }"></div>
@@ -100,14 +100,14 @@
               min="1"
               max="100"
             />
-            <button @click="useAfkTime">Use</button>
+            <button @click="useAfkTime">{{ tr('Use') }}</button>
           </div>
 
             <div class="stage-warning">
               <p>
-                Store your offline time and use it when needed. Stored Offline Time accumulates as usual. When using time, you spend a percentage of your current time.<br>
-                <b>Note: When storing offline time, you earn half as much time as with regular offline time.</b><br>
-                <b>Turn on time accumulation in Setting Panel</b>
+                {{ tr('Store your offline time and use it when needed. Stored Offline Time accumulates as usual. When using time, you spend a percentage of your current time.') }}<br>
+                <b>{{ tr('Note: When storing offline time, you earn half as much time as with regular offline time.') }}</b><br>
+                <b>{{ tr('Turn on time accumulation in Setting Panel') }}</b>
               </p>
             </div>
       </div>
@@ -115,20 +115,20 @@
       <div v-if="showAutoModal" class="auto-settings-modal">
         <div class="auto-panel">
           <label>
-            Stage Rush:
+            {{ tr('Stage Rush:') }}
 
             <button
               class="toggle-btn"
               :class="{ active: hero.stageRush.active }"
               @click="hero.stageRush.active = !hero.stageRush.active"
             >
-              {{ hero.stageRush.active ? "ON" : "OFF" }}
+              {{ tr(hero.stageRush.active ? "ON" : "OFF") }}
             </button>
           </label>
           
           <label>
             <Tooltip :text="() => stageTooltip(8)" position="right" maxWidth="150px">
-              Auto-Leave
+              {{ tr('Auto-Leave') }}
             </Tooltip>
             
             <button
@@ -136,7 +136,7 @@
               :class="{ active: hero.settings.autoLeave }"
               @click="hero.settings.autoLeave = !hero.settings.autoLeave"
             >
-              {{ hero.settings.autoLeave ? "ON" : "OFF" }}
+              {{ tr(hero.settings.autoLeave ? "ON" : "OFF") }}
             </button>
           </label>
         </div>
@@ -145,13 +145,13 @@
           <h4>自动转生</h4>
           <label>
             <Tooltip :text="() => stageTooltip(6)" position="right" maxWidth="100px">
-              Min Shards:
+              {{ tr('Min Shards:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.ascensionMinShards" />
           </label>
           <label>
             <Tooltip :text="() => stageTooltip(7)" position="right" maxWidth="100px">
-              Min Stage:
+              {{ tr('Min Stage:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.ascensionMinStage" />
           </label>
@@ -161,50 +161,50 @@
           <h4>♻️ 自动重生</h4>
           <label>
             <Tooltip :text="() => stageTooltip(3)" position="right" maxWidth="100px">
-              Min Rebirth Pts:
+              {{ tr('Min Rebirth Pts:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.rebirthMinPts" />
           </label>
           <label>
             <Tooltip :text="() => stageTooltip(4)" position="right" maxWidth="100px">
-              Min Level(100+):
+              {{ tr('Min Level(100+):') }}
             </Tooltip>
             
             <input type="number" v-model.number="autoTemp.rebirthMinLevel" />
           </label>
           <label>
             <Tooltip :text="() => stageTooltip(5)" position="right" maxWidth="100px">
-              Level+:
+              {{ tr('Level+:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.rebirthMinLevelNext" />
           </label>
         </div>
 
         <div class="auto-panel">
-          <h4>⚔️ Stop at Stage</h4>
+          <h4>⚔️ {{ tr('Stop at Stage') }}</h4>
           <label>
             <Tooltip :text="() => stageTooltip(0)" position="right" maxWidth="100px">
-              Stage to Stop:
+              {{ tr('Stage to Stop:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.stopStage" />
           </label>
           <label>
             <Tooltip  :text="() => stageTooltip(1)" position="right" maxWidth="100px">
-              Stage+:
+              {{ tr('Stage+:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.stopStageNext" />
           </label>
           <label>
             <Tooltip :text="() => stageTooltip(2)" position="right" maxWidth="100px">
-              Stop Until Kills:
+              {{ tr('Stop Until Kills:') }}
             </Tooltip>
             <input type="number" v-model.number="autoTemp.stopUntilKills" />
           </label>
         </div>
 
         <div class="modal-buttons">
-          <button @click="applyAutoSettings">Apply</button>
-          <button @click="showAutoModal = false">Cancel</button>
+          <button @click="applyAutoSettings">{{ tr('Apply') }}</button>
+          <button @click="showAutoModal = false">{{ tr('Cancel') }}</button>
           <button @click="resetSettings">重置</button>
         </div>
       </div>
@@ -225,6 +225,7 @@ import { fn, timeFormat } from '../../composables/utils/global.js';
 import { auto, autoTemp } from "../../composables/autoProgression.js";
 import { useDimensions } from '../../composables/battleUtils/useDimensions.js';
 import { loading } from '../../composables/utils/loading.js';
+import { tr } from '../../i18n/index.js';
 
 const { hero } = useHero();
 
@@ -343,15 +344,15 @@ const modalsHandler = (modal) => {
 
 function stageTooltip(id) {
   switch(id) {
-    case 0: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">This indicator will block the Idle System at a certain stage.</span>`;
-    case 1: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If the indicator [Stop Until Kills] meets its condition, it adds a number to the indicator [Stage to Stop].</span>`;
-    case 2: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">This indicator unlocks the Idle System if the corresponding condition is met.</span>`;
-    case 3: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Rebirth if you meet the the Rebirth Pts requirements.</span>`;
-    case 4: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Rebirth if you meet the the Level requirements.</span>`;
-    case 5: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If you perform Rebirth, it will increase the [Min Level] value by the value that is in [Level+].</span>`;
-    case 6: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Ascension if you meet the the Ascension Shards requirements.</span>`;
-    case 7: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Ascension if you meet the the Stage requirements.</span>`;
-    case 8: return `<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If you encounter a powerful enemy, you can leave the battle after 10 seconds. <b>Leaving the battle is considered death</b>.</span>`
+    case 0: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">This indicator will block the Idle System at a certain stage.</span>`);
+    case 1: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If the indicator [Stop Until Kills] meets its condition, it adds a number to the indicator [Stage to Stop].</span>`);
+    case 2: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">This indicator unlocks the Idle System if the corresponding condition is met.</span>`);
+    case 3: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Rebirth if you meet the the Rebirth Pts requirements.</span>`);
+    case 4: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Rebirth if you meet the the Level requirements.</span>`);
+    case 5: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If you perform Rebirth, it will increase the [Min Level] value by the value that is in [Level+].</span>`);
+    case 6: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Ascension if you meet the the Ascension Shards requirements.</span>`);
+    case 7: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Perform Ascension if you meet the the Stage requirements.</span>`);
+    case 8: return tr(`<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">If you encounter a powerful enemy, you can leave the battle after 10 seconds. <b>Leaving the battle is considered death</b>.</span>`)
   }
 }
 

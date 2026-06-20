@@ -21,10 +21,10 @@
 
     <div class="tabs">
       <button :class="{ active: tab === 'stones' }" @click="tab = 'stones'">
-        Stones
+        {{ tr('Stones') }}
       </button>
       <button :class="{ active: tab === 'curses' }" @click="tab = 'curses'">
-        Curses
+        {{ tr('Curses') }}
       </button>
     </div>
 
@@ -40,6 +40,7 @@ import StonePanel from './AmuletPanel/StonePanel.vue';
 import CursesPanel from './AmuletPanel/CursesPanel.vue';
 
 import { useAmulets } from '../../composables/battleUtils/useAmulets.js';
+import { tr } from '../../i18n/index.js';
 
 const {
   effectsActivated,

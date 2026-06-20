@@ -1,14 +1,14 @@
 <template>
     <div class="atlas-quick-panel" style="right: 200px" v-if="hero.dimDisplayMode === 'map' && !hero.timeline.show">
         <div class="quick-block teleport-block">
-            <div class="block-title">Teleports</div>
+            <div class="block-title">{{ tr('Teleports') }}</div>
 
             <button 
                 v-for="(t, i) in hero.dims.teleports" :key="i" 
                 class="reset-button"
                 @click="resetView(i)"
             >
-                {{ t.name }}
+                {{ tr(t.name) }}
 
                 <span class="remove" @click.stop="hero.dims.teleports.splice(i, 1)">
                     ✕
@@ -17,7 +17,7 @@
 
             <button v-if="hero.dims.teleports.length < 10 && !hero.dims.teleportedMode" class="reset-button add-button"
                 @click="hero.dims.teleportedMode = true">
-                +ADD
+                {{ tr('+ADD') }}
             </button>
 
         </div>
@@ -26,19 +26,19 @@
     <div v-if="hero.dims.teleportedMode" class="teleport-modal">
         <div class="modal-box">
 
-            <div class="title">Choose dimension</div>
+            <div class="title">{{ tr('Choose dimension') }}</div>
 
             <input v-if="hero.dims.selectedDim" v-model="hero.dims.teleportName" maxlength="7" class="teleport-input"
-                placeholder="Name (max 7)" />
+                :placeholder="tr('Name (max 7)')" />
 
             <div class="actions">
                 <button v-if="hero.dims.selectedDim" class="save"
                     :disabled="!hero.dims.selectedDim || !hero.dims.teleportName" @click="saveTeleport">
-                    Save
+                    {{ tr('Save') }}
                 </button>
 
                 <button class="cancel" @click="dateClear">
-                    Cancel
+                    {{ tr('Cancel') }}
                 </button>
             </div>
 
@@ -52,6 +52,7 @@ import { dimensions } from '../../../data/dimensions';
 import { ref, computed } from 'vue';
 import { useDimHandler } from '../../../composables/battleUtils/dims/useDimHandler';
 import { selectDimension } from '../../../composables/battleUtils/dims/dimPerform';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 

@@ -41,7 +41,7 @@
           :class="{ active: activeAuthor === author }"
           :style="{ color: authorColors[author] || '#ccc' }"
         >
-          {{ author }}
+          {{ tr(author) }}
         </button>
       </div>
 
@@ -93,8 +93,8 @@
           <h3 class="lore-title">{{ tr(section.title) }}</h3>
 
           <div class="lore-meta">
-            <span class="lore-author" v-if="section.author">{{ t('info.meta.from', { author: section.author }) }}</span>
-            <span class="lore-location" v-if="section.location"> {{ t('info.meta.location', { location: section.location }) }}</span>
+            <span class="lore-author" v-if="section.author">{{ t('info.meta.from', { author: tr(section.author) }) }}</span>
+            <span class="lore-location" v-if="section.location"> {{ t('info.meta.location', { location: tr(section.location) }) }}</span>
           </div>
 
           <div v-if="!section.locked" class="lore-content" v-html="tr(section.content.join('<br>'))"></div>
@@ -229,8 +229,8 @@ const {
   eqCpmplect
 } = useEquipments();
 
-const { 
-  corrHeartHandler 
+const {
+  corrHeartHandler
 } = useAmulets();
 
 const {
@@ -289,8 +289,8 @@ const activeTab = computed(() => {
   return hero.value.eLink.stat !== '' ? hero.value.eLink.stat : selectedTab.value
 });
 
-const selectedEvent = ref('Info'); 
-const activeEvent = computed(() => 
+const selectedEvent = ref('Info');
+const activeEvent = computed(() =>
   hero.value.eLink.info !== '' ? hero.value.eLink.info : selectedEvent.value
 );
 
@@ -455,25 +455,25 @@ const styledSections = [
     title: 'Update 1.0 [Dimensional Merge]',
     class: 'update-section update style-section',
     content: [
-        `<b style="color: gold">Important changes</b><br>`,
+        `<b style="color: gold">重要改动</b><br>`,
 
         `<b>
-        All events have been slightly reworked.<br>
-        Each event now has its own information panel.<br>
-        Balance has been reworked.<br>
-        Many UI changes.<br>
-        Some mechanics are no longer capped.<br>
-        Some dimensions werr reworked.<br>
-        Added a lot of stats in Stat section<br></b>`,
+        所有事件都进行了轻微重做。<br>
+        每个事件现在都有自己的信息面板。<br>
+        平衡性已重做。<br>
+        UI 有大量变化。<br>
+        部分机制不再受上限限制。<br>
+        部分维度已重做。<br>
+        属性区域新增了大量统计项。<br></b>`,
 
-        `<b style="color: gold">New Content</b><br>`,
+        `<b style="color: gold">新增内容</b><br>`,
 
         `<b>
-        Timeline and Laws<br>
-        Black Hole [T4] and [T5]<br>
-        D-Singularity<br>
-        D-Corruption<br>
-        Void<br></b>`,
+        时间线与法则<br>
+        黑洞[T4]与[T5]<br>
+        D-奇点<br>
+        D-腐化<br>
+        虚空<br></b>`,
       ]
   },
   {
@@ -482,13 +482,13 @@ const styledSections = [
     content: [
       `
       <a href="https://discord.gg/EVnTk9HZwu" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" width="32" title="Join our Discord community" />
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" width="32" :title="tr('Join our Discord community')" />
       </a>
       <a href="https://your-username.github.io/your-repo" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub Pages" width="32" title="Play the game on github.io" />
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub Pages" width="32" :title="tr('Play the game on github.io')" />
       </a>
       <a href="https://yourname.itch.io/your-game" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="itch.io" width="32" title="Play the game on itch.io" />
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="itch.io" width="32" :title="tr('Play the game on itch.io')" />
       </a>
       `
       ]
@@ -497,52 +497,52 @@ const styledSections = [
     title: '无尽的进度',
     class: 'endless-section info style-section',
     content: [
-      'Endgame content is The Black Hole [T4]',
-      'Next update 0.6: Dimensional Merge'
+      '当前终局内容为黑洞[T4]',
+      '下次更新 0.6：维度融合'
       ]
   },
   {
     title: '你应该知道的有用信息',
     class: 'endless-section info style-section',
     content: [
-      '^ - Exponent',
-      'Reduce Stag Req - you need fewer kills to advance to the next stage',
-      'Reduce Level Req - you need less exp to level up',
-      'Magnitude - when enemies spawn, their HP and DMG are generated in the range of [0.7] to [1.5].',
-      'Loot - Resources obtained after killing an enemy: EXP, Skill EXP, Mutagen, Starudst',
-      'Stats - DMG, HP, DEF',
-      'Events - are located on the left and represent unique mechanics for obtaining various types of bonuses.',
-      'Heal MULT - Increase the healing effect',
-      'Enemy Weakness/Power - Reduce or Increase the Enemy HP and DMG',
-      'Hint: Hover over the text, it might contained a info',
-      hero.value.mainInfTier >= 10 && `Abyssal Covenant Requirement is a certain count of souls and a certain stage. For the Abyss [T0] is 20 souls and Stage 20 and so on`,
+      '^ - 指数',
+      '降低关卡需求 - 推进到下一关所需击杀更少',
+      '降低等级需求 - 升级所需经验更少',
+      '强度 - 敌人生成时，生命值和伤害会在[0.7]到[1.5]范围内生成。',
+      '战利品 - 击杀敌人后获得的资源：经验、技能经验、诱变剂、星尘',
+      '属性 - 伤害、生命值、防御',
+      '事件 - 位于左侧，代表用于获得各类加成的独特机制。',
+      '治疗乘数 - 提高治疗效果',
+      '敌人弱化/力量 - 降低或提高敌人的生命值和伤害',
+      '提示：将鼠标悬停在文本上，可能会显示信息',
+      hero.value.mainInfTier >= 10 && `深渊契约需求为一定数量的灵魂和指定关卡。深渊[T0]需要20个灵魂和关卡20，之后依此类推。`,
     ]
   },
   {
-    title: 'Abbreviations you should know',
+    title: '你应该知道的缩写',
     class: 'endless-section info style-section',
     content: [
-      'DMG - Damage',
-      'HP - Health Points',
-      'DEF - Defense',
-      'AS - Attack Speed',
-      'MULT - Multiplier',
-      'MAX - Maximum',
-      'MIN - Minimum',
-      hero.value.mainInfTier >= 10 && 'D - Dimension',
-      hero.value.mainInfTier >= 6 && 'S - Singularity',
-      hero.value.tr >= 1 && 'Tr - Transcendence',
-      hero.value.tr >= 1 && 'BH - Black Hole',
-      hero.value.bhTier >= 4 && 'TL - Timeline',
+      'DMG - 伤害',
+      'HP - 生命值',
+      'DEF - 防御',
+      'AS - 攻击速度',
+      'MULT - 乘数',
+      'MAX - 最大值',
+      'MIN - 最小值',
+      hero.value.mainInfTier >= 10 && 'D - 维度',
+      hero.value.mainInfTier >= 6 && 'S - 奇点',
+      hero.value.tr >= 1 && 'Tr - 超越',
+      hero.value.tr >= 1 && 'BH - 黑洞',
+      hero.value.bhTier >= 4 && 'TL - 时间线',
     ]
   },
   {
-    title: 'Combat Mechanics',
+    title: '战斗机制',
     class: 'endless-section info style-section',
     content: [
-      `Boss - The final enemy in the stage is stronger than the others. You won't be able to complete the stage unless you kill the boss. 
-      Stage requirements have been increased for stages containing a boss.`,
-      'Boss Spawn - If you kill an enemy, there is a chance that a boss will spawn; if not, the chance increases with each kill. This chance is indicated in red square brackets.' + 
+      `首领 - 关卡中的最终敌人比其他敌人更强。除非击杀首领，否则无法完成该关卡。
+      含有首领的关卡需求会提高。`,
+      '首领生成 - 击杀敌人时有几率生成首领；如果没有生成，该几率会随每次击杀提高。该几率以红色方括号显示。' +
       '',
     ]
   },
@@ -550,24 +550,24 @@ const styledSections = [
     title: '等级信息',
     class: 'afk-section info style-section',
     content: [
-      'Current Level - Level gained by using EXP to level up',
-      'Total Level - Current Level + Min Level',
-      'True Level - Max Level without any negative effects',
-      'Min Level - Level that does not require EXP and ignores any penalties.',
-      'Max Level - The Сap which the Current level cannot pass. HARDCAP [700]',
-      hero.value.singularityLevels > 0 && 'Singularity Levels - allows you to increase HARDCAP of max level. Level requirements are higher after level 700. Your stats double after level 700.'
+      '当前等级 - 使用经验升级获得的等级',
+      '总等级 - 当前等级 + 最低等级',
+      '真实等级 - 不受任何负面效果影响的最高等级',
+      '最低等级 - 不需要经验且无视任何惩罚的等级。',
+      '最高等级 - 当前等级无法超过的上限。硬上限[700]',
+      hero.value.singularityLevels > 0 && '奇点等级 - 允许提高最高等级硬上限。700级后的等级需求更高，700级后属性翻倍。'
     ]
   },
    {
     title: '伤害显示[图标]',
     class: 'afk-section info style-section',
     content: [
-      'If you are using a DMG display, you need to know about these icons.',
-      '💥 - CRIT DMG',
-      '🤺 - Dodge',
-      '🛡️ - you block the full DMG by DEF',
-      '🔰 - Invisible [T2]',
-      '🧘 - cannot deal DMG while you are immune',
+      '如果你启用了伤害显示，需要了解这些图标。',
+      '💥 - 暴击伤害',
+      '🤺 - 闪避',
+      '🛡️ - 你用防御完全格挡了伤害',
+      '🔰 - 隐形[T2]',
+      '🧘 - 免疫期间无法造成伤害',
       '💫 - Hit inflicts Stun',
       buffs.value[10].maxTier >= 4 && '⛨ - blocks one hit completely',
       '🔪 - Curse [Self-Destruction]',
@@ -586,22 +586,22 @@ const styledSections = [
   },
 ];
 
-const statTabs = ['Level', 'INF', 'EXP', 'Skill EXP', 'Equipment', 'Curse', 'Ascension', 'Stardust', 'Mutagen', 'Rebirth', 
+const statTabs = ['Level', 'INF', 'EXP', 'Skill EXP', 'Equipment', 'Curse', 'Ascension', 'Stardust', 'Mutagen', 'Rebirth',
 'Potential', 'Danger', 'Damage', 'HP', 'DEF', 'AS', 'Rush', 'Corrupt.', 'Stage Req.', 'Enemy HP', 'Enemy DMG'];
 
-statTabs.push('Soul') 
+statTabs.push('Soul')
 statTabs.push('Overkill');
 if (hero.value.mainInfTier >= 100)
   statTabs.push('Void')
 if (hero.value.bhTier >= 5)
   statTabs.push('S-Shards')
 if (hero.value.bhTier >= 4)
-statTabs.push('Laws') 
+statTabs.push('Laws')
 
 const h = hero.value;
 const e = enemy.value;
 const p = player.value;
-const v = villian.value; 
+const v = villian.value;
 
 const statSections = [
   {
@@ -794,7 +794,7 @@ const statSections = [
         color: 'gold',
         req: () => hero.value.minLevel > 0,
       },
-  
+
       { desc: '最大等级', value: '', color: 'lightgreen',  uppercase: true, req: () => true },
       {
         desc: '基础',
@@ -855,7 +855,7 @@ const statSections = [
         value: () => hero.value.soulPower.base.maxLevel,
         color: '#d516d5',
       },
-      
+
       {
         desc: '护身符',
         value: () => fn(corrHeartHandler().totalML),
@@ -1051,7 +1051,7 @@ const statSections = [
         color: 'gold',
         req: () => h.mainInfTier >= 180,
       },
-      
+
       {
         desc: 'D5',
         value: () => fn(d5RewardHandler(2, hero)),
@@ -1651,7 +1651,7 @@ const statSections = [
         value: () => fn((h.spCount >= 10 ? 1 + 0.1 * h.sp : 1)),
         color: 'orange',
       },
-      
+
       {
         desc: '无限',
         value: () => fn(infBonusesHandler(4, hero)),
@@ -1963,7 +1963,7 @@ const statSections = [
         color: '#b6ff00',
         req: () => h.mainInfTier >= 100,
       },
-      
+
       {
         desc: 'D13 [Penalty]',
         value: () => (h.dId == 'hard'? 0: 1),
@@ -2015,7 +2015,7 @@ const statSections = [
         color: 'lightgreen',
         req: () => h.infExpansions.rebirth
       },
-      
+
       {
         desc: 'D13 [Penalty]',
         value: () => (h.dId == 'hard'? 0: 1),
@@ -2367,7 +2367,7 @@ const statSections = [
         color: 'orange',
         req: () => h.mainInfTier >= 80,
       },
-      
+
       {
         desc: 'Infinity [Perdition]',
         value: () => hero.value.infProgress? fn(infPenalties().mutagen): 1,
@@ -2414,7 +2414,7 @@ const statSections = [
       },
       {
         desc: '重生 [点数]',
-        value: () => (h.rebirthPts >= 3? 10: 0) + (h.rebirthPts >= 75? 10: 0) + (h.rebirthPts >= 250? 10: 0) + 
+        value: () => (h.rebirthPts >= 3? 10: 0) + (h.rebirthPts >= 75? 10: 0) + (h.rebirthPts >= 250? 10: 0) +
         (h.rebirthPts >= 5000? 10: 0) + (h.rebirthPts >= 17500? 10: 0) + (h.rebirthPts >= 60000? 10: 0),
         color: 'lightgreen',
         req: () => true
@@ -2437,7 +2437,7 @@ const statSections = [
         color: 'yellow',
         req: () => h.infExpansions.radiation
       },
-      
+
       {
         desc: '无限',
         value: () => fn(infBonusesHandler(20, hero)),
@@ -2523,7 +2523,7 @@ const statSections = [
         color: '#a4ffe1',
         req: () => hero.value.rebirthPts >= 2e6,
       },
-      
+
        {
         desc: 'D15',
         value: () => fn(getDimReward(15)),
@@ -2595,7 +2595,7 @@ const statSections = [
         value: () => (hero.value.selectedDivSkills.includes(12)? fn(divineSkills.value[12].values[1]): 1),
         color: '#66ffcc',
         req: () => hero.value.mainInfTier >= 50
-      }, 
+      },
       {
         desc: 'Quasar Core [Anti-Radiation] [^]',
         value: () => fn(divineSkills.value[14].values[0]),
@@ -2662,7 +2662,7 @@ const statSections = [
         value: () => fn(nodesHandler(0, ["base"])),
         color: '#66ff66',
       },
-      { 
+      {
         desc: 'Sword',
         value: () => fn(getEqBase('sword')),
         color: '#22cccc',
@@ -2694,10 +2694,10 @@ const statSections = [
         req: () => h.infUnlocked
       },
 
-     
-      
 
-      
+
+
+
       {
         desc: 'Skill: First Strike [T1]',
         value: () =>  (p.buff.activeBuffs.includes(1) && !p.status.firstStrike? 2: 1),
@@ -2746,7 +2746,7 @@ const statSections = [
         color: 'orange',
         req: () => hero.value.bhTier > 3
       },
-      
+
       {
         desc: 'Skill: Juggernaut',
         value: () => (p.buff.activeBuffs.includes(13)? 0.75: 1),
@@ -2857,7 +2857,7 @@ const statSections = [
       },
 
       { desc: '奇点', value: '', color: 'cyan', uppercase: true },
-      { 
+      {
         desc: '奇点点数',
         value: () => ((h.gravity.isTrial || h.isSingularity) && h.rebirthPts >= 6e5? 2: 1),
         color: 'orange',
@@ -2870,13 +2870,13 @@ const statSections = [
         req: () => getDimSpecialReward(10)
       },
       { desc: '空间', value: '', color: 'orange', uppercase: true },
-      { 
+      {
         desc: '转生[天体超速]',
         value: () => fn(perksHandler(28)),
         color: 'lightblue',
         req: () => h.spCount >= 5 || h.infUnlocked
       },
-      { 
+      {
         desc: '奇点点数',
         value: () => 1.5,
         color: 'cyan',
@@ -2933,7 +2933,7 @@ const statSections = [
         value: () => fn(p.status.berserk.crit),
         color: 'orange',
       },
-      
+
       {
         desc: 'Skill: Sniper [T1]',
         value: () => fn(p.status.sniper.crit),
@@ -3012,7 +3012,7 @@ const statSections = [
         value: () => fn(p.status.berserk.critDmg),
         color: 'orange',
       },
-      
+
       {
         desc: 'Skill: Sniper [T1]',
         value: () => fn(p.status.sniper.critDmg),
@@ -3058,7 +3058,7 @@ const statSections = [
         color: 'green',
         req: () => h.infUnlocked
       },
-      { 
+      {
         desc: '武器',
         value: () => fn(getEqBase('armor')),
         color: '#22cccc',
@@ -3776,7 +3776,7 @@ const statSections = [
         color: 'cyan',
         req: () => h.bhTier >= 6
       },
-      
+
       { desc: '总计', value: '', color: 'gold',  uppercase: true, req: () => true },
       {
         desc: '总计',
@@ -4377,13 +4377,13 @@ const statSections = [
         desc: 'Equipment [Prefix]',
         value: () => fn(h.eqUpsMult['boots'].overkill),
         color: 'cyan',
-        req: () => h.mainInfTier >= 10 
+        req: () => h.mainInfTier >= 10
       },
       {
         desc: 'CRIT [Milestone]',
         value: () => fn(p.status.critMls.overkill),
         color: 'orange',
-        req: () => h.mainInfTier >= 60 
+        req: () => h.mainInfTier >= 60
       },
       {
         desc: 'Void',
@@ -4560,14 +4560,14 @@ const statSections = [
 .info-container {
   box-sizing: border-box;
 
-  height: 100dvh; 
+  height: 100dvh;
 
   background: linear-gradient(145deg, #0b0d0f, #05070c);
   color: #f0f0f0;
 
   padding: clamp(12px, 2vh, 24px);
 
-  border-radius: 0; 
+  border-radius: 0;
   box-shadow: none;
 
   display: flex;
@@ -4743,14 +4743,14 @@ const statSections = [
   justify-content: space-between;
   font-size: 13px;
   line-height: 1.6;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .stat-item .desc {
   min-width: 160px;
   font-weight: 500;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .stat-item .value {
@@ -4805,7 +4805,7 @@ const statSections = [
 }
 
 .lore-location {
-  color: #ffd166; 
+  color: #ffd166;
   font-weight: 500;
 }
 
@@ -4819,12 +4819,12 @@ const statSections = [
   font-size: 50px;
   font-weight: bold;
   background: linear-gradient(
-    90deg, 
+    90deg,
     red, orange, yellow, green, blue, indigo, violet
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
+
   background-clip: text;
   color: transparent;
 }

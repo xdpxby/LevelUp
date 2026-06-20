@@ -1,12 +1,12 @@
 <template>
   <div class="tree-wrapper">
     <h2 class="tree-title">
-      Tree [T{{ hero.tree.tier }}]
+      {{ tr('Tree') }} [T{{ hero.tree.tier }}]
     </h2>
 
     <div class="perk-points">
       <span :class="hero.tree.points > 0 ? 'has-points' : 'no-points'">
-        Tree Points [TP]: <strong>{{ hero.tree.points }}</strong>
+        {{ tr('Tree Points') }} [TP]: <strong>{{ hero.tree.points }}</strong>
       </span>
     </div>
 
@@ -45,11 +45,11 @@
         <!-- Header -->
         <div class="perk-header">
           <h3 :class="perk.currentStatus">
-            {{ perk.name }} 
+            {{ tr(perk.name) }}
             {{ perk.currentStatus == 'inf'? "[T" + Math.floor(perk.level.inf / perk.infThreshold) + "]": "" }}
           </h3>
           <span class="perk-level" v-if="perk.currentStatus != 'rad'">
-            Lvl {{ perk.level[perk.currentStatus] }} 
+            {{ tr('Lvl') }} {{ perk.level[perk.currentStatus] }}
             <span v-if="perk.currentStatus == 'base'"> / {{ perk.maxLevel[hero.tree.tier] }}</span>
           </span>
         </div>
@@ -76,8 +76,8 @@
         </div>
 
         <!-- Description -->
-        <div 
-          class="perk-desc" 
+        <div
+          class="perk-desc"
           :class="perk.currentStatus"
           :style="nodeProgressStyle(perk)"
           >
@@ -99,11 +99,11 @@
             class="upgrade-button"
             @click="upgradeMaxNode(perk)"
           >
-            MAX
+            {{ tr('Max') }}
           </button>
         </div>
 
-        
+
 
       </div>
     </div>
@@ -114,13 +114,14 @@
           :hero="hero"
           @close="systemPerk = null"
         />
-  
+
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
 import { useHero } from '../../composables/useHero.js';
+import { tr } from '../../i18n/index.js';
 import { perks } from '../../data/perks.js';
 import { perks as radPerks } from '../../data/radPerks.js';
 import { useTrees } from '../../composables/battleUtils/useTree.js';
@@ -175,17 +176,17 @@ const upgradeLabel = (perk) =>
 
 function TooltipHandler(id) {
   switch(id) {
-    case 1: 
-      return '<span style="font-size:0.9em;">Click to activate / deactivate the radiation node</span>'
-    case 3: 
-      return '<span style="font-size:0.9em;">Refund all <span style="color:lightgreen;">[TP]</span> and reset the node\'s level</span>'
-    case 4: 
-      return '<span style="font-size:0.9em;">Refund all <span style="color:lightgreen;">[TP]</span> and reset all nodes level</span>'
-    case 5: 
-      return '<span style="font-size:0.9em; font-weight: bold">Tree Points <span style="color:lightgreen;">[TP]</span> are granted by leveling up.<br></span>' + 
-    (hero.value.mainInfTier >= 1? '<span style="font-size:0.9em; font-weight: bold; color: gold">Infinity grants double points gain</span>': '');
+    case 1:
+      return tr('<span style="font-size:0.9em;">Click to activate / deactivate the radiation node</span>')
+    case 3:
+      return tr('<span style="font-size:0.9em;">Refund all <span style="color:lightgreen;">[TP]</span> and reset the node\'s level</span>')
+    case 4:
+      return tr('<span style="font-size:0.9em;">Refund all <span style="color:lightgreen;">[TP]</span> and reset all nodes level</span>')
+    case 5:
+      return tr('<span style="font-size:0.9em; font-weight: bold">Tree Points <span style="color:lightgreen;">[TP]</span> are granted by leveling up.<br></span>' +
+    (hero.value.mainInfTier >= 1? '<span style="font-size:0.9em; font-weight: bold; color: gold">Infinity grants double points gain</span>': ''));
     case 6:
-      return '<span style="font-size: 0.9em">Tree Tier increases the maximum level of nodes and unlocks new nodes.</span>'
+      return tr('<span style="font-size: 0.9em">Tree Tier increases the maximum level of nodes and unlocks new nodes.</span>')
   }
 }
 
@@ -211,14 +212,14 @@ function nodeProgressStyle(perk) {
 .tree-wrapper {
   box-sizing: border-box;
 
-  height: 100dvh; 
+  height: 100dvh;
 
   background: linear-gradient(145deg,rgb(30, 43, 34),rgb(22, 41, 27));
   color: #f0f0f0;
 
   padding: clamp(12px, 2vh, 24px);
 
-  border-radius: 0; 
+  border-radius: 0;
   box-shadow: none;
 
   display: flex;
@@ -246,12 +247,12 @@ function nodeProgressStyle(perk) {
 
 
 .has-points {
-  color: #0dc399; 
+  color: #0dc399;
   font-weight: bold
 }
 
 .no-points {
-  color: #f44336; 
+  color: #f44336;
   font-weight: bold
 }
 
@@ -406,8 +407,8 @@ function nodeProgressStyle(perk) {
 
 .perk-buttons {
   display: flex;
-  gap: 6px; 
-  margin-bottom: 0.5rem; 
+  gap: 6px;
+  margin-bottom: 0.5rem;
   align-items: center;
 }
 
@@ -550,7 +551,7 @@ function nodeProgressStyle(perk) {
 }
 
 .btnBlock.active {
-  background-color: #8b0000; 
+  background-color: #8b0000;
   color: #fff;
   border-color: #ff5555;
   box-shadow: 0 0 6px #ff5555aa;
@@ -562,7 +563,7 @@ function nodeProgressStyle(perk) {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem; 
+  gap: 1rem;
   margin: 1rem 7rem 1rem 0;
 }
 

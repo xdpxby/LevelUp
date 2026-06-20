@@ -46,7 +46,7 @@ function stats(id) {
 
       if(hero.value.mainInfTier < 35) return text;
       if(hero.value.mainInfTier < 62) {
-        text += `<span style="color:gray; font-style:italic;">Reach <span style="color:gold;">[T62]</span> in main dimension to unlock milestones.</span>`;
+        text += tr(`<span style="color:gray; font-style:italic;">Reach <span style="color:gold;">[T62]</span> in main dimension to unlock milestones.</span>`);
         return text;
       }
 

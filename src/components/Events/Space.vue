@@ -3,7 +3,7 @@
     <div class="toggle-tabs">
       <button :class="{ active: currentTab === 'battle' }" @click="switchTab('battle')">空间</button>
       <button :class="{ active: currentTab === 'rewards' }" @click="switchTab('rewards')">空间之力</button>
-      <button v-if="hero.bhTier >= 3" :class="{ active: currentTab === 'shop' }" @click="switchTab('shop')">Astralis</button>
+      <button v-if="hero.bhTier >= 3" :class="{ active: currentTab === 'shop' }" @click="switchTab('shop')">{{ tr('Astralis') }}</button>
     </div>
 
     <div class="effects-cards">
@@ -48,6 +48,7 @@ import { fn } from '../../composables/utils/global.js';
 import FightPanel from './SpacePanel/FightPanel.vue';
 import SpacePowerPanel from './SpacePanel/SpacePowerPanel.vue';
 import AstralisPanel from './SpacePanel/AstralisPanel.vue';
+import { tr } from '../../i18n/index.js';
 
 const { hero } = useHero();
 

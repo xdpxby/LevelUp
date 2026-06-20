@@ -1,13 +1,13 @@
 <template>
   <div class="modal-backdrop" @click="closeModal">
     <div class="modal-window">
-    <h2 class="title">⚙️ AUTO Settings</h2>
+    <h2 class="title">⚙️ {{ tr('AUTO Settings') }}</h2>
 
     <!-- PRIORITY -->
     <div class="setting-card">
       <Tooltip :text="() => systemHits(0)">
         <div class="setting-title">
-          PRIORITY
+          {{ tr('PRIORITY') }}
         </div>
       </Tooltip>
 
@@ -22,7 +22,7 @@
     <div class="setting-card">
       <Tooltip :text="() => systemHits(1)">
         <div class="setting-title">
-          LEVEL CAP
+          {{ tr('LEVEL CAP') }}
         </div>
       </Tooltip>
 
@@ -41,7 +41,7 @@
     <div class="setting-card center">
       <Tooltip :text="() => systemHits(2, system.block)">
         <div class="setting-title">
-          BLOCK
+          {{ tr('BLOCK') }}
         </div>
       </Tooltip>
 
@@ -68,6 +68,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { tr } from '../../../i18n/index.js';
 
 const props = defineProps({
   perk: Object,
@@ -86,7 +87,7 @@ const closeModal = (event) => {
 
 const nextPriority = () => {
   let p = system.value.prioritize || 0;
-  p = (p - 1 + 10) % 10;                  
+  p = (p - 1 + 10) % 10;
   system.value.prioritize = p;
 };
 
@@ -118,17 +119,17 @@ function onLevelKey(e) {
 function systemHits(id, status) {
   switch (id) {
     case 0:
-      return '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Click the button to change the priority.<br>' +
-             'All nodes have a default priority of 9.<br>' +
-             'Nodes with a lower priority will be upgraded first by AUTO.</span><br>';
-             
+      return '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">点击按钮更改优先级。<br>' +
+             '所有节点的默认优先级为 9。<br>' +
+             '优先级较低的节点会被自动系统优先升级。</span><br>';
+
     case 1:
-      return '<span style="color: #bfbfbf; font-style:italic; font-size:0.95em;">The Level Cap limits AUTO upgrades once a node reaches a certain level.<br>' +
-             'Level cap has a default value of 0, which means that the level cap is off.<br>' + 
-             '<span style="color: #bd9c9c">Click in the input field to enter a number. Use the Backspace key to clear the number. Use the Delete key to clear the entire input field.</span> </span>';
-    case 2: 
-      return status? '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Node is blocked.</span>': 
-      '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">Activate to block this node for AUTO.</span>';
+      return '<span style="color: #bfbfbf; font-style:italic; font-size:0.95em;">等级上限会在节点达到指定等级后限制自动升级。<br>' +
+             '等级上限默认值为 0，表示关闭等级上限。<br>' +
+             '<span style="color: #bd9c9c">点击输入框输入数字。使用 Backspace 清除一位数字，使用 Delete 清空整个输入框。</span> </span>';
+    case 2:
+      return status? '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">节点已被阻止。</span>':
+      '<span style="color:#bfbfbf; font-style:italic; font-size:0.95em;">启用后，自动系统会阻止升级该节点。</span>';
   }
 }
 

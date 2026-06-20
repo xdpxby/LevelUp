@@ -2,7 +2,7 @@
   <div class="souls-wrapper">
     <div class="soul-header">
         <h2 class="soul-title" @click="hero.eLink = { set: 'Info', info: 'Soul' }">
-          <span class="info-icon"></span> Souls
+          <span class="info-icon"></span> {{ tr('Souls') }}
         </h2>
 
         <div class="effects-cards">
@@ -38,6 +38,7 @@ import { useHero } from '../../composables/useHero.js';
 
 import SoulPowerPanel from './SoulPanel/SoulPowerPanel.vue';
 import { useSouls } from '../../composables/battleUtils/useSouls.js';
+import { tr } from '../../i18n/index.js';
 
 const { hero } = useHero();
 

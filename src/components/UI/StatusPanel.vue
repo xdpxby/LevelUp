@@ -1,10 +1,10 @@
 <template>
     <div class="status-block">
-      <div class="status-header">{{ title }}</div>
+      <div class="status-header">{{ tr(title) }}</div>
   
       <div class="status-row adv">
         <span v-for="s in advList" :key="s.type">
-          <Tooltip :text="() => s.text" position="right">
+          <Tooltip :text="() => tr(s.text)" position="right">
             <span class="status-icon adv" v-html="s.icon">
 
             </span>
@@ -16,7 +16,7 @@
   
       <div class="status-row disadv">
         <span v-for="s in disadvList" :key="s.type">
-          <Tooltip :text="() => s.text" position="right">
+          <Tooltip :text="() => tr(s.text)" position="right">
             <span class="status-icon disadv" v-html="s.icon">
  
             </span>
@@ -28,6 +28,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { tr } from "../../i18n/index.js";
 
 const props = defineProps({
   list: {

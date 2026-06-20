@@ -64,7 +64,7 @@
               :key="bonus.id"
               class="bonus-line"
             >
-              <span class="bonus-stat">{{ bonus.stat }}</span>
+              <span class="bonus-stat">{{ tr(bonus.stat) }}</span>
               <span class="bonus-value">{{ bonus.value }}</span>
             </div>
 

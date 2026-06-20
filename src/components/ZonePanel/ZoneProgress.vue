@@ -7,21 +7,21 @@
     ></div>
 
     <div class="progress-bar-text" v-if="hero.isSingularity">
-      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} kills
+      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} {{ tr('Kills') }}
     </div>
 
     <div class="progress-bar-text-shards" v-else-if="hero.gravity.isTrial">
-      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} kills <b>[+1 Shard]</b>
+      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} {{ tr('Kills') }} <b>{{ tr('[+1 Shard]') }}</b>
     </div>
 
     <div class="progress-bar-text" v-else>
-      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} kills (Stage {{ hero.stages.current }}) 
+      {{ fn(hero.kills) }} / {{ fn(hero.killsPerZone) }} {{ tr('Kills') }} ({{ tr('Stage') }} {{ hero.stages.current }})
       <span v-if="bossReqPanel()" style="color: red">
         [{{ fn(enemy.boss.overchance) }}%]
       </span>
     </div>
 
-    
+
   </div>
 </template>
 
@@ -33,6 +33,7 @@ import { useEnemy } from '../../composables/useEnemy.js';
 import SvgIcon from '../svgIcon.vue';
 import { getSvgIconHTML } from "../../composables/svgIcon.js"
 import { fn } from '../../composables/utils/global.js';
+import { tr } from '../../i18n/index.js';
 
 import { useProgressions } from '../../composables/battleUtils/useProgression.js';
 
@@ -41,7 +42,7 @@ const { enemy } = useEnemy();
 
 const {
   bossReqPanel
-} = useProgressions();  
+} = useProgressions();
 
 
 </script>

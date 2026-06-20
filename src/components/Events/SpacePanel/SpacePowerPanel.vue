@@ -1,7 +1,7 @@
 <template>
 <div class="reward-column">
-            <h3 @click="hero.eLink = { set: 'Info', info: 'Space' }">✨ <sup style="font-size: 12px">ℹ️</sup>Space Power(SP) - {{hero.baseSp}} <span v-if="hero.sp > hero.baseSp">(+{{hero.sp - hero.baseSp}})</span></h3>
-            <h3>🌟Star(ST) - {{hero.stBosses}} <span v-if="hero.st - hero.stBosses > 0">(+{{hero.st - hero.stBosses}})</span></h3>
+            <h3 @click="hero.eLink = { set: 'Info', info: 'Space' }">✨ <sup style="font-size: 12px">ℹ️</sup>{{ tr('Space Power') }}(SP) - {{hero.baseSp}} <span v-if="hero.sp > hero.baseSp">(+{{hero.sp - hero.baseSp}})</span></h3>
+            <h3>🌟{{ tr('Star') }}(ST) - {{hero.stBosses}} <span v-if="hero.st - hero.stBosses > 0">(+{{hero.st - hero.stBosses}})</span></h3>
             <ul>
             <li v-for="(reward, i) in sortedRewards" :key="reward.id" :class="{ 'boss-reward': reward.boss }">
                 {{ formatReward(reward) }}
@@ -16,14 +16,15 @@ import { useHero } from '../../../composables/useHero.js';
 import { spacePower as sp } from '../../../data/spacePower.js';
 
 import { fn } from '../../../composables/utils/global.js';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 
 function formatReward(reward) {
     if (reward.sp) {
-        return `${reward.sp}SP: ${reward.d}`;
+        return `${reward.sp}SP: ${tr(reward.d)}`;
     } else if (reward.st) {
-        return `${reward.st}ST: ${reward.d}`;
+        return `${reward.st}ST: ${tr(reward.d)}`;
     }
     return '';       
 }

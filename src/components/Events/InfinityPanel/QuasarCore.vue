@@ -2,11 +2,11 @@
   <div class="divine-tree-wrapper">
   <div class="divine-tree">
     <h2 class="d-desc">
-        Quasar Core [{{ hero.selectedDivSkills.length }}/{{ hero.quasar.cores }}]
+        {{ tr('Quasar Core') }} [{{ hero.selectedDivSkills.length }}/{{ hero.quasar.cores }}]
     </h2>
 
     <div v-for="tier in sortedTiers" :key="tier" class="tier-section">
-      <h3 class="tier-title">Tier {{ tier }}</h3>
+      <h3 class="tier-title">{{ tr('Tier') }} {{ tier }}</h3>
 
       <div class="d-goals-grid">
         <div
@@ -35,6 +35,7 @@ import { divineSkills } from '../../../data/quasarCore.js';
 import { getSvgIconHTML } from '../../../composables/svgIcon.js';
 import { fn } from '../../../composables/utils/global.js';
 import { perks as radPerks } from '../../../data/radPerks.js';
+import { tr } from '../../../i18n/index.js';
 
 import SvgIcon from '../../svgIcon.vue';
 
@@ -79,8 +80,8 @@ const sortedTiers = computed(() => {
 
 
 function quasarCoreItemsHandle(skill) {
-  let str = `<span style='color: #00ffea'>${skill.name}</span><br>
-  ${formatPerkDescription(skill)}`;
+  let str = `<span style='color: #00ffea'>${tr(skill.name)}</span><br>
+  ${formatPerkDescription({ ...skill, desc: tr(skill.desc) })}`;
   return str;
 }
 

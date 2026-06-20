@@ -16,7 +16,7 @@
         <p v-html="dimensionD(dimension)"></p>
       </div>
       <button class="enter-button" @click="selectDimension(dimension, hero)">
-        Enter
+        {{ tr('Enter') }}
       </button>
     </div>
   </div>
@@ -33,6 +33,7 @@ import { useEnemy } from "../../../composables/useEnemy.js";
 import { selectDimension } from "../../../composables/battleUtils/dims/dimPerform.js";
 
 import { useDimHandler } from "../../../composables/battleUtils/dims/useDimHandler.js";
+import { tr } from "../../../i18n/index.js";
 
 const { 
     toggleOtherDimensions, 

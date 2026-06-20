@@ -16,7 +16,7 @@
         hero.isInfSpace)
     "
   >
-    <h2>{{ currentEnemy.name }}</h2>
+    <h2>{{ tr(currentEnemy.name) }}</h2>
 
     <p v-if="!hero.isInfSpace" class="boss-reward-sp">
       {{ t('space.reward', { reward: currentEnemy.reward }) }}
@@ -36,7 +36,7 @@
           class="ability-card"
           v-if="hero.spbCount >= section.unlock"
         >
-          <h4>{{ section.title }}</h4>
+          <h4>{{ tr(section.title) }}</h4>
 
           <template v-for="stat in section.stats" :key="stat.key">
             <span
@@ -44,7 +44,7 @@
                     (!stat.infOnly || hero.isInfSpace)"
             >
               <p>
-                <strong>{{ stat.label }}:</strong>
+                <strong>{{ tr(stat.label) }}:</strong>
                 {{ specialStats[stat.key].display }}
                 <span v-if="specialStats[stat.key].isMax ||
                 specialStats[stat.key].isMin"><strong>[MAX]</strong></span> 
@@ -116,6 +116,7 @@
 <script setup>
 import { ref, computed, watch, watchEffect, reactive } from "vue";
 import { useI18n } from "vue-i18n";
+import { tr } from "../../../i18n/index.js";
 import { useHero } from "../../../composables/useHero.js";
 import { useEnemy } from "../../../composables/useEnemy.js";
 import { spEnemy } from "../../../data/spaceEnemy.js";

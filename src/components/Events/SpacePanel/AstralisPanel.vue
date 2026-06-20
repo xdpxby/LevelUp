@@ -20,7 +20,7 @@
 
   <div class="shop-grid">
     <div v-for="perk in spaceShopFilter" :key="perk.id" :class="['perk-card', { bought: perk.status }]">
-      <h4 class="perk-title">{{ perk.title || 'Unknown Perk' }}</h4>
+      <h4 class="perk-title">{{ tr(perk.title || 'Unknown Perk') }}</h4>
       <p class="perk-desc" v-html="highlightKeyword(perk.d, 'Infinity Warden')"></p>
 
       <button class="perk-button"

@@ -3,7 +3,7 @@
     <h2 class="title">法则之石</h2>
     <div style="padding-bottom: 10px">
       <span style="color: #66ffcc; font-weight: bold"
-        >Ancient Fragments <b>[AF]</b>:
+        >{{ tr('Ancient Fragments') }} <b>[AF]</b>:
       </span>
       <span style="color: gold; font-weight: bold">{{
         fn(hero.ancientShards, true)
@@ -45,13 +45,13 @@
         <div style="display: flex; flex-direction: column; gap: 5px">
           <Tooltip :text="() => 'Sort by'">
             <select v-model="sortMode" class="inventory-select">
-              <option value="tier">Tier</option>
+              <option value="tier">{{ tr('Tier') }}</option>
               <option value="fragments">碎片</option>
               <option value="radius">半径</option>
             </select>
           </Tooltip>
           <button class="filter-btn" @click="toggleFilterPanel">
-            Filter
+            {{ tr('Filter') }}
           </button>
         </div>
         
@@ -68,7 +68,7 @@
               @click="toggleLaw(law.idx)"
             > 
             <Tooltip :text="() => law.hint">
-              <span>{{ law.name.replace('Law of ', '') }}</span>
+              <span>{{ tr(law.name.replace('Law of ', '')) }}</span>
             </Tooltip>
             </div>
           </div>
@@ -164,6 +164,7 @@ import { ref, computed, reactive } from "vue";
 import { useHero } from "../../../composables/useHero.js";
 import { dimensions } from "../../../data/dimensions.js";
 import { getSvgIconHTML } from "../../../composables/svgIcon.js";
+import { tr } from '../../../i18n/index.js';
 import { laws } from "../../../data/laws.js";
 
 import { useTimeline } from "../../../composables/battleUtils/dims/useTimeline.js";

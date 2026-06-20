@@ -115,7 +115,7 @@
         :placeholder="tr('Layout name (max 15 chars)')"
         @input="validateInput"
       />
-      <p class="input-warning" v-if="inputError">{{ inputError }}</p>
+      <p class="input-warning" v-if="inputError">{{ tr(inputError) }}</p>
 
       <div class="modal-actions">
         <button @click="confirmLayoutEdit" :disabled="!!inputError">保存</button>
@@ -148,7 +148,7 @@
               v-if="buffInfoByTier(infoBuff, t)?.trim()" 
               class="info-desc"
             >
-              {{ buffInfoByTier(infoBuff, t) }}
+              {{ tr(buffInfoByTier(infoBuff, t)) }}
             </span>
           </div>
         </div>
@@ -219,7 +219,7 @@ function buffDesc(buff, tier) {
     return "Max Tier";
 
   if (tier >= buff.maxTier && buff.maxTier < buff.description.length && buff.nextTierReq)
-    return `Next Tier Requirement: ${buff.nextTierReq}`;
+    return tr(`Next Tier Requirement: ${buff.nextTierReq}`);
   
   return buff.description[tier] || '';  
 }
@@ -234,7 +234,7 @@ function buffExpShow (buff) {
 function buffCharge(buff, tier = 0){
   if(buff.id != 6)
     return buff.description[buff.tier];
-  let str = `${1 + 1 * tier}% to gain random Charge, when you hit. You lose all charges on death; +1 Max Charge per Tier; Max Charges: ${tier + 1}; Max Skill Tier depends on Singularity Tier`
+  let str = tr(`${1 + 1 * tier}% to gain random Charge, when you hit. You lose all charges on death; +1 Max Charge per Tier; Max Charges: ${tier + 1}; Max Skill Tier depends on Singularity Tier`)
   
   return str;
 }
@@ -261,7 +261,7 @@ function openInfo(buff) {
 
 function getBuffName(id) {
         const buff = buffs.value.find(b => b.id === id);
-        return buff ? buff.name : `Unknown [${id}]`;
+        return buff ? buff.name : tr(`Unknown [${id}]`);
 }
 
 getMaxBuffs();

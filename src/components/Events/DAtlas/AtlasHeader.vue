@@ -4,12 +4,12 @@
       <div class="panel-content">
         <div class="header">
           <button @click="hero.dimDisplayMode = 'map'">
-            <SvgIcon name="dHeaderAtlas" size="1.5em" /> 
-            Atlas
+            <SvgIcon name="dHeaderAtlas" size="1.5em" />
+            {{ tr('Atlas') }}
           </button>
           <button @click="hero.dimDisplayMode = 'grid'">
-            <SvgIcon name="dHeaderGrid" size="1.5em" /> 
-            Grid
+            <SvgIcon name="dHeaderGrid" size="1.5em" />
+            {{ tr('Grid') }}
           </button>
 
           <button
@@ -17,7 +17,7 @@
             :class="{ disabled: !isEternityUnlocked }"
             @click="toggleOtherDimensions"
           >
-            <SvgIcon name="dHeaderDarkDim" size="1.5em" /> Dark Dimensions
+            <SvgIcon name="dHeaderDarkDim" size="1.5em" /> {{ tr('Dark Dimensions') }}
           </button>
 
           <button
@@ -25,7 +25,7 @@
             :class="{ disabled: hero.bhTier < 4}"
             @click="timelineActive()"
           >
-            <SvgIcon name="advanceBH" size="1.5em" /> Timeline
+            <SvgIcon name="advanceBH" size="1.5em" /> {{ tr('Timeline') }}
           </button>
 
           <button
@@ -33,28 +33,28 @@
             :class="{ disabled: hero.mainInfTier < 60 }"
             @click="corrToggle()"
           >
-            <SvgIcon name="CorrInfluence" size="1.5em" /> D-Corruption
+            <SvgIcon name="CorrInfluence" size="1.5em" /> {{ tr('D-Corruption') }}
           </button>
-          
+
         </div>
-        
+
         <div class="footer" v-if="hero.dimDisplayMode === 'grid'">
           <input
             id="dimension-search"
             name="dimension-search"
             v-model="hero.dims.searchQuery"
             class="dimension-search small"
-            placeholder="🔍 Search..."
+            :placeholder="`🔍 ${tr('Search...')}`"
           />
 
           <select
             v-model="hero.gridFilterStatus"
             class="dimension-filter small"
           >
-            <option value="all">🌐 All</option>
-            <option value="completed">✅ Completed</option>
-            <option value="inprogress">⚡ In Progress</option>
-            <option value="blocked">⛔ Blocked</option>
+            <option value="all">🌐 {{ tr('All') }}</option>
+            <option value="completed">✅ {{ tr('Completed') }}</option>
+            <option value="inprogress">⚡ {{ tr('In Progress') }}</option>
+            <option value="blocked">⛔ {{ tr('Blocked') }}</option>
           </select>
         </div>
 
@@ -63,55 +63,55 @@
 
     <div class="atlas-quick-panel" v-if="hero.dimDisplayMode === 'map' && !hero.timeline.show">
       <div class="quick-block teleport-block">
-        <div class="block-title">Teleports</div>
+        <div class="block-title">{{ tr('Teleports') }}</div>
         <button
           class="reset-button"
           @click="resetView('main')"
         >
-          🌍 main
+          🌍 {{ tr('main') }}
         </button>
         <button
           v-if="hero.rebirthPts >= 1e7"
           class="reset-button reset-button-bh"
           @click="resetView('bh')"
         >
-          <span v-html="getSvgIconHTML('singularity', '1em')"></span> Black Hole
+          <span v-html="getSvgIconHTML('singularity', '1em')"></span> {{ tr('Black Hole') }}
         </button>
         <button
           v-if="hero.bhTier >= 4"
           class="reset-button reset-button-timeline"
           @click="resetView('advanceBH')"
         >
-          <span v-html="getSvgIconHTML('advanceBH', '1em')"></span> Timeline
+          <span v-html="getSvgIconHTML('advanceBH', '1em')"></span> {{ tr('Timeline') }}
         </button>
       </div>
 
       <div class="quick-block function-block">
-        <div class="block-title">Features</div>
+        <div class="block-title">{{ tr('Features') }}</div>
         <button
           class="progression-button"
           @click="toggleProgressionCircles"
         >
-          Progression
+          {{ tr('Progression') }}
         </button>
         <button
           v-if="hero.bhTier >= 4"
           class="progression-button"
           @click="isStoneUp"
         >
-          Stone Up
+          {{ tr('Stone Up') }}
         </button>
         <button
           v-if="hero.bhTier >= 4"
           class="progression-button"
           @click="hero.timeline.lineShows = !hero.timeline.lineShows"
         >
-          Law Radius 
+          {{ tr('Law Radius') }}
         </button>
       </div>
 
       <div class="quick-block zoom-block">
-        <div class="block-title">Zoom</div>
+        <div class="block-title">{{ tr('Zoom') }}</div>
 
         <div class="zoom-value">
           Z: <strong>{{ hero.dims.zoom.toFixed(2) }}</strong>
@@ -121,20 +121,20 @@
 
     <div class="atlas-quick-panel" style="left: 20px" v-if="hero.dimDisplayMode === 'map' && !hero.timeline.show">
       <div v-if="hero.autoTimeLine.isAuto" class="quick-block teleport-block">
-        <div class="block-title">Timeline</div>
-        <button>Tier: {{ hero.autoTimeLine.tier }}</button>
-        <button>Time: {{timeFormat(hero.autoTimeLine.timer)}}</button>
+        <div class="block-title">{{ tr('Timeline') }}</div>
+        <button>{{ tr('Tier:') }} {{ hero.autoTimeLine.tier }}</button>
+        <button>{{ tr('Time:') }} {{timeFormat(hero.autoTimeLine.timer)}}</button>
       </div>
 
       <div v-if="hero.dims.corrShards >= 20" class="quick-block void-block">
-        <div class="block-title">Void Pulsation</div>
-        <button>Void Shards: {{ fn(voidShardsDrop()) }}</button>
-        <button>Time: {{timeFormat(hero.void.time)}}</button>
+        <div class="block-title">{{ tr('Void Pulsation') }}</div>
+        <button>{{ tr('Void Shards') }}: {{ fn(voidShardsDrop()) }}</button>
+        <button>{{ tr('Time:') }} {{timeFormat(hero.void.time)}}</button>
       </div>
 
       <div v-if="hero.dimensionStatus == 2" class="quick-block dark-block">
-        <div class="block-title">Dark Dimensions</div>
-        <button>Total infinities: {{ darkInf }}</button>
+        <div class="block-title">{{ tr('Dark Dimensions') }}</div>
+        <button>{{ tr('Total infinities') }}: {{ darkInf }}</button>
       </div>
     </div>
 
@@ -155,14 +155,15 @@ import { useEnemy } from "../../../composables/useEnemy.js";
 import { useDimHandler } from "../../../composables/battleUtils/dims/useDimHandler.js";
 import { fn, timeFormat } from "../../../composables/utils/global.js";
 import { useVoid } from "../../../composables/battleUtils/dims/useVoid.js";
+import { tr } from '../../../i18n/index.js';
 
 import { selectDimension } from "../../../composables/battleUtils/dims/dimPerform.js";
 
 import DimAdder from "./DimAdder.vue";
-const { 
-  toggleOtherDimensions, 
+const {
+  toggleOtherDimensions,
   corrToggle,
-  darkInf 
+  darkInf
 } = useDimHandler();
 
 const {
@@ -190,7 +191,7 @@ function timelineActive() {
 
 function isStoneUp () {
    if(hero.value.dimensionStatus == 2 && hero.value.selectedStones[1] ||
-    (hero.value.dimensionStatus == 1 || hero.value.dimensionStatus == 3) && hero.value.selectedStones[0]) 
+    (hero.value.dimensionStatus == 1 || hero.value.dimensionStatus == 3) && hero.value.selectedStones[0])
     return hero.value.timeline.showUpgradeModal = true;
 
 }
@@ -207,13 +208,13 @@ const resetView = (point) => {
     corrToggle();
 
   switch(point) {
-    case "bh": 
+    case "bh":
       location.x = -600;
       location.y = 50;
       dim.id = 'bh';
 
       break;
-    case "advanceBH": 
+    case "advanceBH":
       location.x = -1000;
       location.y = 50;
       dim.id = 'advanceBH';
@@ -317,14 +318,14 @@ function zoomReset() {
 }
 
 .dimension-filter.small {
-  font-size: 14px;        
-  padding: 4px 8px;      
-  height: 32px;           
-  line-height: 1;       
-  border-radius: 8px;     
-  border: 1px solid #ccc; 
-  background: #1a1a1a;   
-  color: #fff;            
+  font-size: 14px;
+  padding: 4px 8px;
+  height: 32px;
+  line-height: 1;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #1a1a1a;
+  color: #fff;
   box-sizing: border-box;
 }
 

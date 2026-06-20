@@ -1,11 +1,11 @@
 <template>
     <div v-if="hero.timeline.showUpgradeModal" class="modal">
         <div class="modal-content">
-            <h3 class="modal-title"> Upgrade</h3>
+            <h3 class="modal-title">{{ tr('Upgrade') }}</h3>
 
             <div style="padding-bottom: 10px">
                 <span style="color: #66ffcc; font-weight: bold"
-                    >Ancient Fragments <b>[AF]</b>:
+                    >{{ tr('Ancient Fragments') }} <b>[AF]</b>:
                 </span>
                 <span style="color: gold; font-weight: bold">{{
                     fn(hero.ancientShards, true)
@@ -22,7 +22,7 @@
 
             <div class="stone-stats">
                 <p class="stat-line">
-                    <span>Base range [{{ selectedStone.range.min }} - {{ selectedStone.range.max }}]</span>
+                    <span>{{ tr('Base range') }} [{{ selectedStone.range.min }} - {{ selectedStone.range.max }}]</span>
                 </p>
             </div>
 
@@ -44,7 +44,7 @@
                     </span>
                 </button>
                 <button class="btn close" @click="hero.timeline.showUpgradeModal = false">
-                    Close
+                    {{ tr('Close') }}
                 </button>
             </div>
         </div>
@@ -57,6 +57,7 @@ import { useHero } from '../../../composables/useHero';
 import { getSvgIconHTML } from '../../../composables/svgIcon';
 import { newicons } from '../../../composables/icons';
 import { fn } from '../../../composables/utils/global';
+import { tr } from '../../../i18n/index.js';
 
 
 const { hero } = useHero();

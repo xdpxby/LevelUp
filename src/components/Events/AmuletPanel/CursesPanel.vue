@@ -4,7 +4,7 @@
     <li v-for="(curse, idx) in filterCurses" :key="idx" class="curse-card">
       <span class="curse-card-title">
         <span class="curse-icon" v-html="curse.icon"></span>
-        <span class="curse-name">{{ curse.name }}</span>
+        <span class="curse-name">{{ tr(curse.name) }}</span>
       </span>
       <ul>
         <template v-for="(tier, tIndex) in curse.tier" :key="tIndex">

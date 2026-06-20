@@ -430,8 +430,8 @@ function eqDropChances (type) {
   let text = ``;
   switch(type) {
     case 'sword': {
-      text += `<span style="color:#f87171">Sword Drop Chnace: <b style="color: gold">${fn(h.eqDropChances["sword"])}</b>
-      Total Eq Drop Chance: <b style="color: gold">${fn(h.eqTotalDrop)}</b></span>`
+      text += `<span style="color:#f87171">剑掉落几率： <b style="color: gold">${fn(h.eqDropChances["sword"])}</b>
+      总装备掉落几率： <b style="color: gold">${fn(h.eqTotalDrop)}</b></span>`
       return text;
     }
   }

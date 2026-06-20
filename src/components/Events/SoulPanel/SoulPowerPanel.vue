@@ -19,15 +19,15 @@
     <div class="right-section">
       <div class="tabs">
         <button :class="{ active: tab === 'Target' }" @click="tab = 'Target'">
-          Target
+          {{ tr('Target') }}
         </button>
 
         <button :class="{ active: tab === 'Base' }" @click="tab = 'Base'">
-          Base
+          {{ tr('Base') }}
         </button>
 
         <button :class="{ active: tab === 'Rewards' }" @click="tab = 'Rewards'">
-          Rewards
+          {{ tr('Rewards') }}
         </button>
 
         <Tooltip :text="() => btnUnlocked(1)" boxShadow="0 0 10px #e600ff">
@@ -36,7 +36,7 @@
             @click="tab = 'Special'"
             :disabled="!hero.infExpansions.soul"
             >
-            Special
+            {{ tr('Special') }}
             </button>
         </Tooltip>
 
@@ -46,7 +46,7 @@
             @click="tab = 'Unique'"
             :disabled="!getDimSpecialReward(56)"
           >
-            Unique
+            {{ tr('Unique') }}
           </button>
         </Tooltip>
       </div>
@@ -98,7 +98,7 @@
             class="unique-card"
           >
             <div class="unique-header">
-              <h3>{{ item.title }}</h3>
+              <h3>{{ tr(item.title) }}</h3>
 
               <span v-if="!isUnlocked(item)" class="unique-lock">
                 在 D56 消耗 {{ item.req }} 灵魂
@@ -106,7 +106,7 @@
             </div>
 
             <p :class="{ locked: !isUnlocked(item) }">
-              {{ item.desc }}
+              {{ tr(item.desc) }}
             </p>
           </div>
         </div>
@@ -118,6 +118,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { tr } from "../../../i18n/index.js";
 import { useHero } from "../../../composables/useHero.js";
 import { useEnemy } from "../../../composables/useEnemy.js";
 

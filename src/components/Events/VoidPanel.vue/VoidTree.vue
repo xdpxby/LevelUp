@@ -79,15 +79,15 @@
           <!-- HEADER -->
           <div class="void-tooltip-block">
               <div class="void-tooltip-title">
-                  {{ hovered.name }}
+                  {{ tr(hovered.name) }}
               </div>
               <div class="void-tooltip-tier">
-                  Void  [T{{ hovered.voidTier }}]
+                  {{ tr('Void') }} [T{{ hovered.voidTier }}]
               </div>
           </div>
           <!-- DESCRIPTION -->
           <div class="void-tooltip-block desc">
-              {{ hovered.desc }}
+              {{ tr(hovered.desc) }}
           </div>
           <!-- REWARD -->
           <div
@@ -99,7 +99,7 @@
               style="margin: 0 auto"
               :class="getReward(hovered) ? 'active-status' : 'inactive-status'"
             >
-              {{ getReward(hovered) ? 'ACTIVE' : 'INACTIVE' }}
+              {{ tr(getReward(hovered) ? 'ACTIVE' : 'INACTIVE') }}
             </div>
           </div>
 
@@ -131,7 +131,7 @@
         <div class="tree-ui-panel">
 
           <div class="tree-ui-title">
-            VOID RESOURCES
+            {{ tr('VOID RESOURCES') }}
           </div>
 
           <div class="tree-ui-resource">
@@ -140,7 +140,7 @@
                 class="resource-icon"
                 v-html="newicons['voidShard']"
               ></span>
-              <span style="color: #b6ff00">Void Shards</span>
+              <span style="color: #b6ff00">{{ tr('Void Shards') }}</span>
             </span>
             <strong>{{ fn(hero.void.totalShards) }}</strong>
           </div>
@@ -158,6 +158,7 @@ import { fn } from "../../../composables/utils/global"
 import { nodes } from "../../../data/dims/voidNodes"
 import { links } from "../../../data/dims/voidLinks"
 import { useVoid } from "../../../composables/battleUtils/dims/useVoid"
+import { tr } from "../../../i18n/index.js"
 
 const { 
   buyNode,

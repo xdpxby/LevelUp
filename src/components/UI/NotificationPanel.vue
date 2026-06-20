@@ -16,7 +16,7 @@
                 :class="{ 'fade-out': note.closing }"
             >
                 <div class="notification-content">
-                    <p @click="clickNotification(note)">{{ note.text }}</p>
+                    <p @click="clickNotification(note)">{{ tr(note.text) }}</p>
                     <button class="close-btn" @click="removeNotification(note.id)">✕</button>
                 </div>
             </div>
@@ -29,6 +29,7 @@ import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useHero } from "../../composables/useHero";
 import { useNotificationHandler } from "../../composables/UI/useNotificationHandler";
+import { tr } from "../../i18n/index.js";
 
 
 const { t } = useI18n();

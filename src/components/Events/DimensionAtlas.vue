@@ -96,7 +96,7 @@
               fill="white"
               font-size="18"
             >
-              {{ dimension.name }}
+              {{ tr(dimension.name) }}
             </text>
           </g>
 
@@ -108,7 +108,7 @@
             fill="white"
             font-size="12"
           >
-            {{ dimension.title }}
+            {{ tr(dimension.title) }}
           </text>
         </g>
 
@@ -186,6 +186,7 @@
 <script setup>
 import { ref, computed, reactive, onMounted  } from 'vue'
 import { getSvgIconHTML } from '../../composables/svgIcon.js';
+import { tr } from '../../i18n/index.js';
 import { dimensions as d_data } from '../../data/dimensions.js';
 import { useHero } from '../../composables/useHero.js';
 import { useEnemy } from '../../composables/useEnemy.js';;

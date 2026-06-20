@@ -1,14 +1,14 @@
 <template>
 <div class="btn-wrapped">
 
-<button class="btn" @click="tool('afk')">1 HOURS</button>
-<button class="btn" @click="tool('ShardsPlus')">+10k Shards</button>
-<button class="btn" @click="tool('RebirthPtsMore')">+1k Pts</button>
+<button class="btn" @click="tool('afk')">1小时</button>
+<button class="btn" @click="tool('ShardsPlus')">+1万碎片</button>
+<button class="btn" @click="tool('RebirthPtsMore')">+1000点数</button>
 <button class="btn" @click="tool('abyss')">深渊</button>
-<button class="btn" @click="tool('mutagen')">+mutagen</button>
-<button class="btn" @click="tool('RebirthTier')">+10 Rebirth Tier</button>
-<button class="btn" @click="tool('+10 Stage')">+10 stage</button>
-<button class="btn" @click="tool('+300 souls')">+300 souls</button>
+<button class="btn" @click="tool('mutagen')">+诱变剂</button>
+<button class="btn" @click="tool('RebirthTier')">+10重生层级</button>
+<button class="btn" @click="tool('+10 Stage')">+10关卡</button>
+<button class="btn" @click="tool('+300 souls')">+300灵魂</button>
 <button class="btn" @click="tool('Stardust')">星尘</button>
 
 </div>

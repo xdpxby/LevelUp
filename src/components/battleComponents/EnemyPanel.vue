@@ -8,7 +8,7 @@
     <div class="enemy-header">
         <div>
           <span class="enemy-title" :class="getEnemyNameClasses(villian, player)">
-            👾 {{ villian.spawnType == 'd-corruption'? glitchify(villian.name): villian.name }}
+            👾 {{ tr(villian.spawnType == 'd-corruption'? glitchify(villian.name): villian.name) }}
           </span>
         </div>
         <div @click="statsModal = !statsModal">
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Status Effects -->
-    <StatusPanel title="Status Effects" :list="statusVillianHandler(player, villian)" />
+    <StatusPanel :title="tr('Status Effects')" :list="statusVillianHandler(player, villian)" />
     <StatsPanel v-if="statsModal" :unit="villian" :fn="fn" pos="45" type="villian" />
 
     </div>
@@ -72,6 +72,7 @@ import { soulNames} from '../../data/souls.js';
 import { cursed } from '../../data/cursed.js';
 import { dimensions } from '../../data/dimensions.js';
 import { getSvgIconHTML } from '../../composables/svgIcon.js';
+import { tr } from '../../i18n/index.js';
 import { divineSkills } from '../../data/quasarCore.js';
 
 import { fn } from '../../composables/utils/global.js';
@@ -127,13 +128,13 @@ function curseHandle(idx) {
 
   if (!tier) return '';
 
-   return `
+   return tr(`
     <span style="color: #FF5555; font-weight: bold;">${curse.name}</span><br>
     <span style="color: #AAAAAA;">${curse.description || ''}</span><br>
     <span style="color: #FFD700;">[T${currentTierIndex + 1}]</span> 
     <span style="color: #FFFFFF;">${tEffect(tier, curse.id)}</span> 
     <span style="color: rgba(211, 117, 255, 1)">(Essense: ${tBonusEffect(tier)})</span>
-  `.replace(/\n\s*/g, '');
+  `.replace(/\n\s*/g, ''));
 }
 
 function getEnemyNameClasses(enemy, player) {

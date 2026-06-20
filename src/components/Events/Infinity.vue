@@ -3,7 +3,7 @@
     <button 
       :class="{ active: activeTab === 'infinity' }" 
       @click="activeTab = 'infinity'"
-      ><span class="infinity-icon">&#8734;</span> Infinity
+      ><span class="infinity-icon">&#8734;</span> {{ tr('Infinity') }}
     </button>
     
     <button
@@ -14,19 +14,19 @@
       <span
         v-html="getSvgIconHTML('quasarCore', '1.3em')"
         class="svg-icon"
-      ></span> Quasar Core
+      ></span> {{ tr('Quasar Core') }}
     </button>
 
     <button :class="{ active: activeTab === 'milestone' }" @click="activeTab = 'milestone'">
-      Milestones
+      {{ tr('Milestones') }}
     </button>
 
     <button :class="{ active: activeTab === 'laws' }" @click="activeTab = 'laws'" :disabled="hero.bhTier < 4">
-      Laws
+      {{ tr('Laws') }}
     </button>
 
     <button :class="{ active: activeTab === 'sing' }" @click="activeTab = 'sing'" :disabled="hero.bhTier < 5">
-      D-Singularity
+      {{ tr('D-Singularity') }}
     </button>
   </div>
 
@@ -80,6 +80,7 @@ import { laws } from '../../data/laws.js';
 import { fn } from '../../composables/utils/global.js';
 
 import { useInfinity } from '../../composables/battleUtils/useInfinity.js';
+import { tr } from '../../i18n/index.js';
 
 const {
   effectsActivated,

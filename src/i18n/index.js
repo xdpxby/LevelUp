@@ -25,14 +25,17 @@ export function translateRuntime(scope, key, params) {
 }
 
 
+function getRuntimeMessages() {
+  const locale = i18n.global.locale?.value ?? i18n.global.locale ?? SUPPORT_LOCALE;
+  return i18n.global.getLocaleMessage(locale)?.runtime ?? {};
+}
+
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function replaceRuntimePhrases(value) {
+function replaceByBoundary(value, entries) {
   let result = String(value);
-  const phrases = zhCN.runtime?.phrases ?? {};
-  const entries = Object.entries(phrases).sort((a, b) => b[0].length - a[0].length);
 
   for (const [source, target] of entries) {
     const needsLeadingBoundary = /^[A-Za-z0-9_]/.test(source);
@@ -48,14 +51,50 @@ function replaceRuntimePhrases(value) {
   return result;
 }
 
+function replaceRuntimePhrases(value) {
+  const phrases = getRuntimeMessages().phrases ?? {};
+  const entries = Object.entries(phrases).sort((a, b) => b[0].length - a[0].length);
+  return replaceByBoundary(value, entries);
+}
+
+function replaceRuntimeWords(value) {
+  const words = getRuntimeMessages().words ?? {};
+  const entries = Object.entries(words).sort((a, b) => b[0].length - a[0].length);
+  if (entries.length === 0) return value;
+
+  return String(value)
+    .split(/(<[^>]+>)/g)
+    .map((part) => {
+      if (part.startsWith('<')) return part;
+
+      const protectedTokens = [];
+      const protect = (token) => {
+        const placeholder = `__I18N_CODE_${protectedTokens.length}__`;
+        protectedTokens.push(token);
+        return placeholder;
+      };
+
+      const protectedPart = part
+        .replace(/\$\{[^}]*\}/g, protect)
+        .replace(/(?:Ω\s+)?[A-Z]{2,3}-[A-Za-z0-9ΘΛΩΦµβχσλθξηψωδκϕ-]+/g, protect);
+
+      const translated = replaceByBoundary(protectedPart, entries);
+      return protectedTokens.reduce(
+        (result, token, index) => result.replace(`__I18N_CODE_${index}__`, token),
+        translated,
+      );
+    })
+    .join('');
+}
+
 export function tr(value) {
   if (value === null || value === undefined) return value;
   if (typeof value !== 'string') return value;
   if (!/[A-Za-z]/.test(value)) return value;
 
   const trimmed = value.trim();
-  const exact = zhCN.runtime?.exact?.[trimmed];
+  const exact = getRuntimeMessages().exact?.[trimmed];
   if (exact) return value.replace(trimmed, exact);
 
-  return replaceRuntimePhrases(value);
+  return replaceRuntimeWords(replaceRuntimePhrases(value));
 }

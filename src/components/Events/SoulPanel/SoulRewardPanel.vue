@@ -5,23 +5,23 @@
         :key="index"
         class="tier-block"
       >
-        <div class="tier-title">Soul <b>[T{{ index + 1 }}]</b></div> 
+        <div class="tier-title">{{ tr('Soul') }} <b>[T{{ index + 1 }}]</b></div>
         <ul class="reward-list">
           <li v-for="(reward, i) in tierRewards" :key="i">
             <template v-if="reward.startsWith('*')">
-              <span class="perk-reward"> {{ reward }} </span>
+              <span class="perk-reward"> {{ tr(reward) }} </span>
             </template>
 
             <template v-else-if="reward.includes('BUFF')">
-              <span class="buff-reward">{{ reward }}</span>
+              <span class="buff-reward">{{ tr(reward) }}</span>
             </template>
 
             <template v-else-if="reward.includes('(P)')">
-              <span class="perk-reward">{{ reward }}</span>
+              <span class="perk-reward">{{ tr(reward) }}</span>
             </template>
 
             <template v-else>
-              <span>{{ reward }}</span>
+              <span>{{ tr(reward) }}</span>
             </template>
           </li>
         </ul>
@@ -34,6 +34,7 @@
 import { ref, computed } from 'vue';
 import { useHero } from '../../../composables/useHero.js';
 import { rewards } from '../../../data/souls.js';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 

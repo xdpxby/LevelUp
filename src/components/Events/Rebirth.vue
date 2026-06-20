@@ -6,7 +6,7 @@
         :class="{dark: hero.rebirthTier >= 100}" 
         @click="hero.eLink = { set: 'Info', info: 'Rebirth' }"
       >
-        Rebirth [T{{hero.rebirthTier}}]
+        {{ tr('Rebirth') }} [T{{hero.rebirthTier}}]
       </h2>
 
       <div class="effects-cards">
@@ -28,14 +28,14 @@
       </div>
 
       <p class="rebirthTiers">
-        <span>Rebirth Features</span>
+        <span>{{ tr('Rebirth Features') }}</span>
         <span
           v-for="bonus in getRebirthBonusText()"
           :key="bonus.tier"
           class="rebirth-item"
         >
           <strong>[T{{ bonus.tier }}]</strong>
-          <span v-html="bonus.label"></span>
+          <span v-html="tr(bonus.label)"></span>
         </span>
       </p>
     </div>
@@ -48,13 +48,13 @@
         @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Rebirth' }"
       >
         <sup style="font-size: 12px"></sup>
-        Rebirth Pts (RP): {{ Math.min(Math.floor(hero.rebirthPts), 1e5) }} / 100000
+        {{ tr('Rebirth Pts') }} (RP): {{ Math.min(Math.floor(hero.rebirthPts), 1e5) }} / 100000
       </h2>
 
       <!-- Singularity -->
       <div v-else class="singularity-header">
         <h2 class="snPts">
-          Singularity Pts (SP): {{ Math.floor(hero.rebirthPts) }}
+          {{ tr('Singularity Pts') }} (SP): {{ Math.floor(hero.rebirthPts) }}
         </h2>
       </div>
 
@@ -64,7 +64,7 @@
           :class="{ active: activeRewardTab === 'rebirth' }"
           @click="activeRewardTab = 'rebirth'"
         >
-          Rebirth
+          {{ tr('Rebirth') }}
         </button>
 
         <button
@@ -73,7 +73,7 @@
           :class="{ active: activeRewardTab === 'singularity' }"
           @click="activeRewardTab = 'singularity'"
         >
-          Singularity
+          {{ tr('Singularity') }}
         </button>
       </div>
 
@@ -91,7 +91,7 @@
               : '',
           ]"
         >
-          <span>{{ reward.points }} pts → {{ reward.description }}</span>
+          <span>{{ reward.points }} {{ tr('pts') }} → {{ tr(reward.description) }}</span>
         </div>
       </div>
     </div>
@@ -110,6 +110,7 @@ import { newicons } from "../../composables/icons.js";
 import { fn } from "../../composables/utils/global.js";
 
 import { useRebirths } from "../../composables/battleUtils/useRebirth.js";
+import { tr } from "../../i18n/index.js";
 
 const { effectsActivated, activeSelect, clickEffects, effectsHandler } =
   useRebirths();

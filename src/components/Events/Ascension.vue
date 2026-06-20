@@ -120,8 +120,8 @@
             {{ hero.dsTotal }}
           </span>
 
-          <Tooltip :text="() => 'Get your DS back'" boxShadow="0 0 10px purple">
-            <button class="ds-button" @click="dsReset" v-if="!hero.infProgress && hero.dId == 'main'">Annihilation</button>
+          <Tooltip :text="() => tr('Get your DS back')" boxShadow="0 0 10px purple">
+            <button class="ds-button" @click="dsReset" v-if="!hero.infProgress && hero.dId == 'main'">{{ tr('Annihilation') }}</button>
           </Tooltip>
       </div>
 
@@ -240,7 +240,7 @@ function tiersActivated(id) {
 
   if(stage <= hero.value.maxStage) return '';
 
-  return `Reach Stage ${stage} to unlock`;
+  return tr(`Reach Stage ${stage} to unlock`);
 }
 
 function highTiersActivated(id) {

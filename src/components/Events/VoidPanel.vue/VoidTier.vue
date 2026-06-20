@@ -8,7 +8,7 @@
                 <div class="void-ring"></div>
                 <div class="void-center">
                     <div class="void-title">
-                        Void [T{{ hero.void.tier }}]
+                        {{ tr('Void') }} [T{{ hero.void.tier }}]
                     </div>
 
                     <div class="void-percent">
@@ -26,6 +26,7 @@
 import { ref, computed } from 'vue';
 import { useHero } from '../../../composables/useHero';
 import { glitchify } from '../../../composables/utils/global';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 
@@ -44,13 +45,13 @@ function voidDesc() {
       0 0 18px #7c3aed,
       0 0 35px rgba(168,85,247,0.25);
   ">
-    Void Core 
+    ${tr('Void Core')}
   </span>
 
   <br><br>
 
   <span style="color:#c084fc;">
-    Click on the 
+    ${tr('Click on the ')}
     <b style="
       color:#d8b4fe;
       font-weight:800;
@@ -58,18 +59,18 @@ function voidDesc() {
         0 0 18px #7c3aed,
         0 0 35px rgba(168,85,247,0.25);
     ">
-       Void Core 
+       ${tr('Void Core')}
     </b>
-    to spend
-    <b style="color:#b6ff00;"> ${voidReq[hero.value.void.tier]} Void Shards </b>
-    and increase the Void Tier.
+    ${tr('to spend')}
+    <b style="color:#b6ff00;"> ${voidReq[hero.value.void.tier]} ${tr('Void Shards')} </b>
+    ${tr('and increase the Void Tier.')}
   </span>
 
   <br><br>
 
   <span style="color:#ff7af6;">
-    Discover the first fragment of reality. 
-    <b style="color: white">[${glitchify("D-Rule")}]</b> will notice your interference.
+    ${tr('Discover the first fragment of reality. ')}
+    <b style="color: white">[${glitchify("D-Rule")}]</b>${tr(' will notice your interference.')}
   </span>
 
   <br><br>
@@ -93,7 +94,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        x2 Void Shards gain
+        ${tr('x2 Void Shards gain')}
       </div>
 
       <div style="
@@ -105,7 +106,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        Reduce Void Pulsation cooldown by 1 hour
+        ${tr('Reduce Void Pulsation cooldown by 1 hour')}
       </div>
 
       <div style="
@@ -117,7 +118,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        Unlock Void Expansion for the Tree: All Tree statuses can be active simultaneously
+        ${tr('Unlock Void Expansion for the Tree')}: ${tr('All Tree statuses can be active simultaneously')}
       </div>
 
       <div style="
@@ -129,7 +130,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        Expand the Void Tree
+        ${tr('Expand the Void Tree')}
       </div>
 
       <div style="
@@ -141,7 +142,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        Unlock Void Core upgrades
+        ${tr('Unlock Void Core upgrades')}
       </div>
 
       <div style="
@@ -153,7 +154,7 @@ function voidDesc() {
         color:#b6ff00;
         font-weight:700;
       ">
-        Unlock Void Trial
+        ${tr('Unlock Void Trial')}
       </div>
 
     </div>
@@ -161,7 +162,7 @@ function voidDesc() {
   <br><br>
 
   <span style="color:#ff5555;font-weight:700;">
-    Locked until Version 1.1
+    ${tr('Locked until Version 1.1')}
   </span>
   `.replace(/\n\s*/g, '');
 }

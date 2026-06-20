@@ -73,8 +73,8 @@
             :key="perk.id"
             class="perk"
           >
-            <h3>{{ perk.name }}</h3>
-            <p class="perk-description">{{ perk.description }}</p>
+            <h3>{{ tr(perk.name) }}</h3>
+            <p class="perk-description">{{ tr(perk.description) }}</p>
             <small class="perk-level">等级：{{ perk.level }} / {{ perk.max }}</small>
             <Tooltip :text="() => quasarCoreDangerHandle(perk)" boxShadow="0 0 10px #00ffea" position="top">
               <button
@@ -341,6 +341,7 @@
 import { ref, computed, reactive } from 'vue';
 import { perks as rawPerks } from '../../data/radPerks.js';
 import { useHero } from '../../composables/useHero.js';
+import { tr } from '../../i18n/index.js';
 import { useEnemy } from '../../composables/useEnemy.js';
 import { dimensions } from '../../data/dimensions.js';
 import { divineSkills } from '../../data/quasarCore.js';

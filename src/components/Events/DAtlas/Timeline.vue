@@ -12,12 +12,12 @@
           A
       </div>
     </div>
-    
+
 
     <h2 class="timeline-title">
-      <span v-html="getSvgIconHTML('advanceBH', '1em')"></span> Timeline 
+      <span v-html="getSvgIconHTML('advanceBH', '1em')"></span> {{ tr('Timeline') }}
     </h2>
-    
+
 
     <div class="timeline-buttons">
       <button
@@ -47,7 +47,7 @@
             margin: '0px',
           }"
         >
-          {{ timelineLevels[hero.timelineActiveTier]?.name || "" }}
+          {{ tr(timelineLevels[hero.timelineActiveTier]?.name || "") }}
         </h3>
       </div>
       <div class="timeline-body">
@@ -55,7 +55,7 @@
           <span
             :style="{ color: timelineLevels[hero.timelineActiveTier].color }"
             class="value"
-            >{{ timelineLevels[hero.timelineActiveTier].desc }}</span
+            >{{ tr(timelineLevels[hero.timelineActiveTier].desc) }}</span
           >
         </div>
         <br />
@@ -79,6 +79,7 @@ import { ref, computed, onMounted } from "vue";
 import { timelineLevels } from '../../../data/timeline.js';
 
 import { getSvgIconHTML } from "../../../composables/svgIcon.js";
+import { tr } from '../../../i18n/index.js';
 import SvgIcon from '../../svgIcon.vue';
 
 import { useHero } from "../../../composables/useHero.js";
@@ -117,54 +118,54 @@ function isActive () {
 }
 
 function isVissble () {
-  return hero.value.timelinePass[hero.value.timelineActiveTier + 1] && 
+  return hero.value.timelinePass[hero.value.timelineActiveTier + 1] &&
   getDimSpecialReward(46);
 }
 
 const lawData = {
   1: {
     color: '#1cdd1c',
-    title: 'Complete this Trial to obtain the Law Stone [T1]. The stone may contain the following laws:<br><br>',
+    title: '完成该试炼以获得法则石[T1]。该石头可能包含以下法则：<br><br>',
     laws: [
-      { name: 'Law of Power', desc: 'Increase damage' },
-      { name: 'Law of Life', desc: 'Increase HP' },
-      { name: 'Law of Defense', desc: 'Increase Defense' },
+      { name: 'Law of Power', desc: '提高伤害' },
+      { name: 'Law of Life', desc: '提高生命值' },
+      { name: 'Law of Defense', desc: '提高防御' },
     ],
   },
   2: {
     color: 'yellow',
-    title: 'Complete this Trial to obtain the Law Stone [T2]. The stone may contain the following laws including previous ones:<br><br>',
+    title: '完成该试炼以获得法则石[T2]。该石头可能包含以下法则，并包含先前层级的法则：<br><br>',
     laws: [
-      { name: 'Law of Existence', desc: 'Increase critical chance' },
-      { name: 'Law of Crits', desc: 'Increase critical damage' },
-      { name: 'Law of Kills', desc: 'Reduce stage requirements' },
+      { name: 'Law of Existence', desc: '提高暴击几率' },
+      { name: 'Law of Crits', desc: '提高暴击伤害' },
+      { name: 'Law of Kills', desc: '降低关卡需求' },
     ],
   },
   3: {
     color: 'red',
-    title: 'Complete this Trial to obtain the Law Stone [T3]. The stone may contain the following laws including previous ones:<br><br>',
+    title: '完成该试炼以获得法则石[T3]。该石头可能包含以下法则，并包含先前层级的法则：<br><br>',
     laws: [
-      { name: 'Law of Path', desc: 'Reduce the Influence of Corruption' },
-      { name: 'Law of Elevations', desc: 'Increase Max Level MULT' },
-      { name: 'Law of Fury', desc: 'Increase Max Danger' },
+      { name: 'Law of Path', desc: '降低腐化影响' },
+      { name: 'Law of Elevations', desc: '提高最高等级乘数' },
+      { name: 'Law of Fury', desc: '提高最高危险' },
     ],
   },
   4: {
     color: 'rgb(169, 61, 242)',
-    title: 'Complete this Trial to obtain the Law Stone [T4]. The stone may contain the following laws including previous ones:<br><br>',
+    title: '完成该试炼以获得法则石[T4]。该石头可能包含以下法则，并包含先前层级的法则：<br><br>',
     laws: [
-      { name: 'Law of Light', desc: 'Increase Attack Speed' },
-      { name: 'Law of Elevations', desc: 'Increase minimum level' },
-      { name: 'Law of Attainments', desc: 'Reduce Danger Power' },
+      { name: 'Law of Light', desc: '提高攻击速度' },
+      { name: 'Law of Elevations', desc: '提高最低等级' },
+      { name: 'Law of Attainments', desc: '降低危险之力' },
     ],
   },
   5: {
     color: '#66ffcc',
-    title: 'Complete this Trial to obtain the Law Stone [T5]. The stone may contain the following laws including previous ones:<br><br>',
+    title: '完成该试炼以获得法则石[T5]。该石头可能包含以下法则，并包含先前层级的法则：<br><br>',
     laws: [
-      { name: 'Law of Infinity', desc: 'Increase base infinity tier of dimensions' },
-      { name: 'Law of Might', desc: 'Increase IP MULT' },
-      { name: 'Law of Energy', desc: 'Increase Quasar Core efficiency' },
+      { name: 'Law of Infinity', desc: '提高维度基础无限层级' },
+      { name: 'Law of Might', desc: '提高无限点数乘数' },
+      { name: 'Law of Energy', desc: '提高类星体核心效率' },
     ],
   },
 };
@@ -174,10 +175,10 @@ function timelineDescHandle(tier) {
   const data = lawData[tier];
   if (!data) return '';
 
-  
+
   const title = `${data.title.replace(
     /Law Stone \[T\d\]/,
-    `<span style="color: ${data.color}; font-weight: bold">Law Stone [T${tier}]</span>`
+    `<span style="color: ${data.color}; font-weight: bold">法则石[T${tier}]</span>`
   )}`;
 
   const lawHtml = data.laws
@@ -198,7 +199,7 @@ function timelineDescHandle(tier) {
 
 <style scoped>
 .timeline-content {
-  position: relative; 
+  position: relative;
   background: rgba(20, 20, 40, 0.9);
   padding: 20px;
   border-radius: 18px;
@@ -308,8 +309,8 @@ function timelineDescHandle(tier) {
 
 .auto-container {
   display: flex;
-  justify-content: center; 
-  align-items: center;     
+  justify-content: center;
+  align-items: center;
 }
 
 .effect-card {

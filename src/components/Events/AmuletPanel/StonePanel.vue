@@ -52,7 +52,7 @@ const {
 
 function tooltipText(amulet) {
   if(!amulet.status)
-    return `<span style="color: red; font-weight: bold;">Stone is locked</span>`;
+    return `<span style="color: red; font-weight: bold;">石头已锁定</span>`;
 
   const nameColor = amuletColor(amulet); 
 

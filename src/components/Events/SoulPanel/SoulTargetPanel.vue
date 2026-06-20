@@ -4,7 +4,7 @@
     <div class="soul-header">
 
       <div class="soul-cap">
-        <span class="label">Souls CAP</span>
+        <span class="label">{{ tr('Souls CAP') }}</span>
         <span class="value">
           <span class="cap">
             <span v-if="hero.soulsCap <= 40">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="soul-tier">
-        <span class="label">Soul Tier</span>
+        <span class="label">{{ tr('Soul Tier') }}</span>
         <span class="value">
           {{ hero.soulTier }}
         </span>
@@ -32,7 +32,7 @@
 
     <!-- STATS -->
     <div class="soul-section">
-      <h4 class="soul-section-title">Soul Stats MULT</h4>
+      <h4 class="soul-section-title">{{ tr('Soul Stats MULT') }}</h4>
 
       <div
         v-for="s in soulStatsView"
@@ -41,13 +41,13 @@
         :class="{ locked: !s.unlocked }"
       >
         <template v-if="s.unlocked">
-          <span class="s-stats-name">{{ s.label }}</span>
+          <span class="s-stats-name">{{ tr(s.label) }}</span>
           <span class="s-stats-value">{{ fn(s.value, true) }}</span>
         </template>
 
         <template v-else>
           <span class="locked-text">
-            Unlocks at {{ s.req }} Souls
+            {{ tr('Unlocks at') }} {{ s.req }} {{ tr('Souls') }}
           </span>
         </template>
       </div>
@@ -55,7 +55,7 @@
 
     <!-- LOOT -->
     <div class="soul-section">
-      <h4 class="soul-section-title">Loot MULT</h4>
+      <h4 class="soul-section-title">{{ tr('Loot MULT') }}</h4>
 
       <div class="s-stats-wrapper">
         <span class="s-stats-name">经验值</span>
@@ -80,6 +80,7 @@ import { useHero } from '../../../composables/useHero.js';
 import { useEnemy } from '../../../composables/useEnemy.js';
 
 import { fn } from '../../../composables/utils/global.js';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 const { enemy } = useEnemy();

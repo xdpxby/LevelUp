@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue';
+import { tr } from '../i18n/index.js';
 
 const hovered = ref(false);
 
@@ -65,7 +66,7 @@ const computedText = computed(() => {
       ? props.text()
       : props.text;
 
-  return text?.trim() ? text : null;
+  return text?.trim() ? tr(text) : null;
 });
 
 const tooltip = ref(null);

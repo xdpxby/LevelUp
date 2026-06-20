@@ -216,8 +216,8 @@ function ascensionContent () {
   else text += `💠</p>`;
 
   if(getDimSpecialReward(9) && hero.value.dId == 'main')
-    text += `<p>你现在可以获得 <span style="color: #fe41fe">Dimension Shards <strong>[DS]</strong></span>. 
-  达到关卡 ${dsGain()} 并转生以获得 <span style="color: #fe41fe">1 DS</span></p>`;
+    text += `<p>你现在可以获得 <span style="color: #fe41fe">维度碎片 <strong>[DS]</strong></span>。
+  达到关卡 ${dsGain()} 并转生以获得 <span style="color: #fe41fe">1 个维度碎片[DS]</span></p>`;
 
   return text;
 }
@@ -278,18 +278,18 @@ function infinityContent () {
   let text = `<span style="color: ${color}"><strong>Infinity [T${hero.value.mainInfTier}]</strong></span>`;
 
   if(t < 60)
-    text += `<p>你已成为全能者，但 <span style="color: gold">[D-Infinity]</span> 试图阻止你击碎其造物的一块碎片。</p>`;
-  else text += `<p><span style="color: ${color}; font-weight: bold">[D-Corruption]</span> 正在干扰 <span style="color: gold">[D-Infinity]</span> 的结构并改变其行为。`
+    text += `<p>你已成为全能者，但 <span style="color: gold">[D-无限]</span> 试图阻止你击碎其造物的一块碎片。</p>`;
+  else text += `<p><span style="color: ${color}; font-weight: bold">[D-腐化]</span> 正在干扰 <span style="color: gold">[D-无限]</span> 的结构并改变其行为。`
 
   
   if(t < 23)
     text += `<p>${ infinityMilestones[t].description }</p>`;
   
   text += `<p>按下按钮后，进度将重置，你会面对一场使[经验获取]和[最高等级]降低的试炼，倍率为 <span style='color: red'>^${(hero.value.infPower).toFixed(2)}</span>.
-  当你达到等级 <span style="color: ${color}">${level}</span> 你将获得 <span style='color: ${color}'>Infinity [T${hero.value.mainInfTier + 1}]</span>.`;
+  当你达到等级 <span style="color: ${color}">${level}</span> 你将获得 <span style='color: ${color}'>Infinity [T${hero.value.mainInfTier + 1}]</span>。`;
 
   if(t >= 20)
-    text += `<p>The <span style="color: gold">[D-Infinity]</span> 正在集结力量，并会每 5 个无限层级对你施加 <span style="color: red">[Prediction]</span> </p>`;
+    text += `<p><span style="color: gold">[D-无限]</span> 正在集结力量，并会每 5 个无限层级对你施加 <span style="color: red">[预言]</span> </p>`;
 
   return text;
 }
@@ -323,7 +323,7 @@ function singularityContent () {
     text += `<p style="color: cyan"><strong>奇点[T${hero.value.singularity}]</strong></p>`;
   else text += `<p style="color: cyan"><strong>奇点黑洞</strong></p>`
 
-  text += `<p>潜入由 <span style="color: cyan">[D-Gravity]</span>.</p>`;
+  text += `<p>潜入由 <span style="color: cyan">[D-重力]</span> 支配的奇点。</p>`;
   text += `<p>${ singularityMilestones[hero.value.singularity].challenge }</p>`;
 
   if(hero.value.isSingularity)
@@ -353,7 +353,7 @@ function singShardsContent () {
 
   if (hero.value.stages.current < 300) return '达到关卡 300';
 
-  text += `<p style="color: cyan"><strong>Singularity [D-S]</strong></p>`;
+  text += `<p style="color: cyan"><strong>奇点[D-S]</strong></p>`;
 
   text += `<p>你已理解这个世界的全部重量。重力本身将听从你的号令。 
     进入奇点本身的临界点。 

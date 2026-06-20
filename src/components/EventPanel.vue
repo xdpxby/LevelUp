@@ -11,7 +11,7 @@
               'exp-text': hero.eLevel < 300
             }"
           >
-            Lvl: {{ hero.eLevel }}
+            {{ tr('Lvl') }}: {{ hero.eLevel }}
             <span v-if="hero.minLevel > 0">(+{{hero.minLevel}})</span>/{{ fn(hero.maxLevel, false) }}
             <span v-if="hero.trueLevel >= 70000 && (hero.dId == 'main' || hero.tr.spread > 0)" style="color: cyan">
               [{{ fn(hero.tr.count) }}]
@@ -31,7 +31,7 @@
         ></div>
       </div>
       <p @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'EXP' }"><sup style="font-size: 8px">ℹ️</sup><span :class="{ 'singularity-text-lvl': hero.eLevel > 700, 'corruption-text-lvl': hero.eLevel >= 300, 'exp-text': hero.eLevel < 300 }"> 
-        {{ fn(hero.exp) }} / {{ fn(hero.nextLevelExp) }} EXP</span></p>
+        {{ fn(hero.exp) }} / {{ fn(hero.nextLevelExp) }} {{ tr('EXP') }}</span></p>
     </div>
 
     <div class="icons-wrapper">
@@ -81,7 +81,7 @@
           v-if="eventReq(event.name)"
           class="tooltip"
         >
-          🔒 <span>{{eventReqD(event.name)}}</span>
+          🔒 <span>{{ tr(eventReqD(event.name)) }}</span>
         </div>
       </div>
     </div>
@@ -107,6 +107,7 @@ import { usePlayer } from '../composables/utils/playerSetup.js';
 import { useDimensions } from '../composables/battleUtils/useDimensions.js';
 
 import { newicons } from '../composables/icons.js';
+import { tr } from '../i18n/index.js';
 
 const {
   getDimSpecialReward
@@ -291,11 +292,11 @@ function minIconsHandler(id){
       return text;
     }
     case 1: {
-      return `<b style="color: lightgreen">Level Rush</b> - Level increases automatically while below <span style='color: gold'>${Math.floor(hero.value.levelRush.c * 100)}%</span> of Max Level
-      <b style="color: #007bff">Stage Rush</b> - Defeat enemy to clear the stage up to <span style='color: gold'>${Math.floor(hero.value.stageRush.c * 100)}%</span> of your Max Stage`;
+      return tr(`<b style="color: lightgreen">Level Rush</b> - Level increases automatically while below <span style='color: gold'>${Math.floor(hero.value.levelRush.c * 100)}%</span> of Max Level
+      <b style="color: #007bff">Stage Rush</b> - Defeat enemy to clear the stage up to <span style='color: gold'>${Math.floor(hero.value.stageRush.c * 100)}%</span> of your Max Stage`);
     }
     case 2: {
-      return `Max Stage: <b style="color: gold">${hero.value.maxStage}</b>`;
+      return tr(`Max Stage: <b style="color: gold">${hero.value.maxStage}</b>`);
     }
     case 3: {
       return `<div style="display:flex;flex-direction:column;gap:4px;width:70px">
@@ -367,25 +368,25 @@ function minIconsHandler(id){
           <span style="font-family:monospace; color:${color}"><b>${fn(value)}</b></span>
         </div>`;
 
-      text += row('Ascension Shards', hero.value.ascensionShards, '#4f7cff');
-      text += row('Stardust', hero.value.stardust, 'orange');
-      text += row('Mutagen', hero.value.mutagen, '#bddd1c');
+      text += row(tr('Ascension Shards'), hero.value.ascensionShards, '#4f7cff');
+      text += row(tr('Stardust'), hero.value.stardust, 'orange');
+      text += row(tr('Mutagen'), hero.value.mutagen, '#bddd1c');
       text += row('IP', hero.value.infPoints, 'gold');
 
       if (hero.value.mainInfTier > 25)
-        text += row('Dimension Shards', hero.value.ds, '#fe41fe');
+        text += row(tr('Dimension Shards'), hero.value.ds, '#fe41fe');
 
       if (hero.value.bhTier >= 4)
-        text += row('Ancient Shards', hero.value.ancientShards, '#6fc');
+        text += row(tr('Ancient Shards'), hero.value.ancientShards, '#6fc');
 
       if (hero.value.mainInfTier >= 60)
-        text += row('Corruption Shards', hero.value.dims.corrShards, '#b200ff');
+        text += row(tr('Corruption Shards'), hero.value.dims.corrShards, '#b200ff');
 
       if (hero.value.bhTier >= 5)
-        text += row('Singularity Shards', hero.value.gravity.shards, 'cyan');
+        text += row(tr('Singularity Shards'), hero.value.gravity.shards, 'cyan');
 
       if (hero.value.mainInfTier >= 100)
-        text += row('Void Shards', hero.value.void.totalShards, '#b6ff00');
+        text += row(tr('Void Shards'), hero.value.void.totalShards, '#b6ff00');
 
       return text + `</div>`;
     }
@@ -396,16 +397,16 @@ function minIconsHandler(id){
 
 function lvlInfo() {
 
-  let text =  `Current Level: <b style="color: lightgreen">${fn(hero.value.eLevel)}</b><br>`;
+  let text =  tr(`Current Level: <b style="color: lightgreen">${fn(hero.value.eLevel)}</b><br>`);
 
   if (hero.value.minLevel > 0)
-    text += `Min Level: <b style="color: lightgreen">${fn(hero.value.minLevel)}</b>
-    Total Lelel: <b style="color: lightgreen">${fn(hero.value.minLevel + hero.value.eLevel)}</b><br>`;
+    text += tr(`Min Level: <b style="color: lightgreen">${fn(hero.value.minLevel)}</b>
+    Total Lelel: <b style="color: lightgreen">${fn(hero.value.minLevel + hero.value.eLevel)}</b><br>`);
 
-  text += `Max Level: <b style="color: lightgreen">${fn(hero.value.maxLevel)}</b><br>`
+  text += tr(`Max Level: <b style="color: lightgreen">${fn(hero.value.maxLevel)}</b><br>`)
 
   if(hero.value.spaceUnlocked)
-    text += `True Level: <b style="color: lightgreen">${fn(hero.value.trueLevel)}</b>`;
+    text += tr(`True Level: <b style="color: lightgreen">${fn(hero.value.trueLevel)}</b>`);
 
   return text;
 }

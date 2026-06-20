@@ -265,12 +265,12 @@ function infHandle() {
   经验获取： <span style='color: red'>[^${penalty.toFixed(2)}]</span></span><br>`
   
   if(t >= 20)
-    text += `<span style="color: #ff6666; font-weight: bold">[Predictions]</span>
+    text += `<span style="color: #ff6666; font-weight: bold">[预言]</span>
     <span style="color: gold">星尘掉落降低 </span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().stardust)}</span><br>`;
   if(t >= 25)
     text += `<span style="color: #b6ff00">诱变剂掉落降低</span> <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().mutagen)}</span><br>`;
   if(t >= 30)
-    text += `<span style="color: #f9453f">Resonanse [Curses]: <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().curseMult)}</span><br>`;
+    text += `<span style="color: #f9453f">共鸣[诅咒]： <span style="color: #ff6666; font-weight: bold">${fn(infPenalties().curseMult)}</span><br>`;
 
   text += `<span style="color:#bfbfbf; font-style:italic; font-size:0.85em;">这些效果只在无限试炼中生效。</span><br><br>`;
   
@@ -326,7 +326,7 @@ function darkEnemyHandle() {
   else 
     text += `需求：
   危险： <span style="color: gold">[${danger}+]</span>
-  Stage: <span style="color: gold">[${stage}+]</span>
+  关卡： <span style="color: gold">[${stage}+]</span>
   `;
 
 
@@ -437,7 +437,7 @@ function darkSpaceHandle() {
   let text = `天界生物强度提升 <span style="color: gold">${fn(
     power
   )}</span> 倍<br>`;
-  text += `Beat <span style="color: gold">${
+  text += `击败 <span style="color: gold">${
     hero.value.spCount + hero.value.spsCount
   } / ${count}</span> 个天界生物以进入下一无限层级`;
 
@@ -550,8 +550,8 @@ function corruptionInfluence() {
   !corrInfDims.includes(hero.value.dId)) return corruptionEffect();
 
   let text = `<span style="color: #d8b4fe"><span style='color:#ee29ff'>腐化影响</span> - 来自 
-    <span style='color:#ee29ff'>[D-Corruption]</span> 的压倒性冲击，会扭曲现实的各个层面。</span><br><br>
-    <span style='color:#ee29ff'>Corruption Influence: </span><span style='color:red'>${hero.value.corrInfluence}%</span><br><br>`;
+    <span style='color:#ee29ff'>[D-腐化]</span> 的压倒性冲击，会扭曲现实的各个层面。</span><br><br>
+    <span style='color:#ee29ff'>腐化影响： </span><span style='color:red'>${hero.value.corrInfluence}%</span><br><br>`;
 
   const corr = hero.value.corrInfluence;
 
@@ -649,7 +649,7 @@ function transcendenceEffects() {
     <span style="color:${c.text}">
       通过
     </span>
-    <span style="color:${c.title}"> [D-Gravity] </span>
+    <span style="color:${c.title}"> [D-重力] </span>
     <span style="color:${c.text}"> 
       试炼以解锁新的效果： 
     </span>
@@ -666,13 +666,13 @@ function transcendenceEffects() {
     <span style="color:${c.text}">
       只存在于主维度和
     </span>
-    <span style="color:${c.title}"> [Black Hole] </span>.
+    <span style="color:${c.title}"> [黑洞] </span>.
     <br><br>
 
     <span style="color:${c.text}">
       进入
     </span>
-    <span style="color:${c.title}"> [Black Hole] </span>,
+    <span style="color:${c.title}"> [黑洞] </span>,
     <span style="color:${c.text}">
       后，你会摧毁自己的身体，只留下你的 
     </span>
@@ -741,12 +741,12 @@ function firstHelp () {
   let text = `<span style="color: #f942f9; font-weight: bold">维度效果</span><br><br>`;
 
   text += `<p style="color:#f87171; text-align: justify; text-justify: inter-word; word-break: break-word;">解锁维度图谱前，你拥有：</p>
-  <span style="color: lightgreen">x2 EXP MULT</span>
-  <span style="color: orange">x2 SKILL EXP MULT</span>
-  <span style="color: lightblue">x2 ASCENSION SHARDS MULT</span>
-  <span style="color: lightgreen">x2 REBIRTHS PTS MULT</span>
-  <span style="color: yellow">x2 STARDUST MULT</span>
-  <span style="color: #b6ff00">x2 MUTAGEN MULT</span>`
+  <span style="color: lightgreen">x2 经验乘数</span>
+  <span style="color: orange">x2 技能经验乘数</span>
+  <span style="color: lightblue">x2 转生碎片乘数</span>
+  <span style="color: lightgreen">x2 重生点数乘数</span>
+  <span style="color: yellow">x2 星尘乘数</span>
+  <span style="color: #b6ff00">x2 诱变剂乘数</span>`
 
   return text;
 }
@@ -787,7 +787,7 @@ return (`
   <span style="color:${labelColor};">技能经验获取降低： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(8))}</b><br>
 
-  <span style="color:${labelColor};">Corruption Influence: </span>
+  <span style="color:${labelColor};">腐化影响： </span>
   <b style="color:${labelEffect};">${fn(voidEffects(9))}</b><br>
 
   <span style="color:${labelColor};">无限层级： </span>

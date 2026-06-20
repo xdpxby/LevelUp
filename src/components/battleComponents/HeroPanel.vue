@@ -60,7 +60,7 @@
         ></div>
       </div>
 
-      <StatusPanel title="Status Effects" :list="statusPlayerHandler(player, villian)" />
+      <StatusPanel :title="tr('Status Effects')" :list="statusPlayerHandler(player, villian)" />
       <StatsPanel v-if="statsModal" :unit="player" :fn="fn" pos="45" type="player" />
     </div>
 
@@ -153,7 +153,7 @@ function formationD(id) {
   }
 
   const coloredLoot = loot
-    .map(item => `<span style="color:${colors[item]}">${item}</span>`)
+    .map(item => `<span style="color:${colors[item]}">${tr(item)}</span>`)
     .join(", ");
 
   if(id == 3)
@@ -180,19 +180,19 @@ function toggleFormation(index) {
 
 
 function survivalLevelHandle() {
-  return ` You will gain double stats while you have remaining attempts. You lose an attempt whenever you die.<br>
-  Total attempts: ${hero.value.survivalLife}`
+  return tr(` You will gain double stats while you have remaining attempts. You lose an attempt whenever you die.<br>
+  Total attempts: ${hero.value.survivalLife}`)
 }
 
 function survivalHighLevelHandle() {
-  return `You will gain double stats while your level is lower than [<span style="color: gold">${Math.floor(hero.value.survivalStage ** 1.175)}</span>]`;
+  return tr(`You will gain double stats while your level is lower than [<span style="color: gold">${Math.floor(hero.value.survivalStage ** 1.175)}</span>]`);
 }
 
 function irradiationHandle() {
-  return `<span style="color:#d4ff00; font-weight:bold;">☢ Irradiation</span>
+  return tr(`<span style="color:#d4ff00; font-weight:bold;">☢ Irradiation</span>
     Gain <span style="color:#d4ff00">+1 Radiation stack</span> on <span style="color:#ff5555">Hit</span>.<br>
     Current stacks: <span style="color:#d4ff00; font-weight:bold;"> ${buffs.value[16].stack}</span>
-  `;
+  `);
 }
 
 

@@ -5,7 +5,7 @@
         <div class="core-ring"></div>
         <div class="core-inner">
           <span v-if="hero.gravity.totalShards > hero.gravity.shards" class="header-value">[{{ hero.gravity.shards }}]</span>
-          <span class="core-label">Singularity Shards</span>
+          <span class="core-label">{{ tr('Singularity Shards') }}</span>
           <span class="core-value">{{ Math.floor(hero.gravity.totalShards) }}</span>
         </div>
       </div>
@@ -26,11 +26,11 @@
           </div>
   
           <div class="perk-description">
-            {{ perkTotal[perk.id].description }}
+            {{ tr(perkTotal[perk.id].description) }}
           </div>
   
           <div class="perk-total">
-            Total: <span>{{ perkTotal[perk.id].total }}</span>
+            {{ tr('Total') }}: <span>{{ tr(perkTotal[perk.id].total) }}</span>
           </div>
         </div>
       </div>
@@ -49,11 +49,11 @@
           </div>
   
           <div class="perk-description">
-            {{ perkTotal[perk.id].description }}
+            {{ tr(perkTotal[perk.id].description) }}
           </div>
   
           <div class="perk-total">
-            Total: <span>{{ perkTotal[perk.id].total }}</span>
+            {{ tr('Total') }}: <span>{{ tr(perkTotal[perk.id].total) }}</span>
           </div>
         </div>
       </div>
@@ -68,6 +68,7 @@ import { computed, ref } from 'vue'
 import { useHero } from '../../../composables/useHero'
 import { useSingularity } from '../../../composables/battleUtils/useSIngularity';
 import { fn } from '../../../composables/utils/global';
+import { tr } from '../../../i18n/index.js';
   
   
 const { hero } = useHero();

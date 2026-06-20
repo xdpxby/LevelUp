@@ -2,28 +2,28 @@
   <div class="debug-panel">
     <h3>调试工具</h3>
     <div class="btn-wrapper">
-      <button class="btn" @click="applyTool('bhTier')">BH Tier</button>
-      <button class="btn" @click="applyTool('Levelup')">+1 LVL</button>
-      <button class="btn" @click="applyTool('afk')">1 HOUR AFK</button>
-      <button class="btn" @click="applyTool('ShardsPlus')">+10k Shards</button>
-      <button class="btn" @click="applyTool('RebirthPtsMore')">+1k Rebirth Pts</button>
+      <button class="btn" @click="applyTool('bhTier')">黑洞层级</button>
+      <button class="btn" @click="applyTool('Levelup')">+1 等级</button>
+      <button class="btn" @click="applyTool('afk')">1小时离线</button>
+      <button class="btn" @click="applyTool('ShardsPlus')">+1万碎片</button>
+      <button class="btn" @click="applyTool('RebirthPtsMore')">+1000重生点数</button>
       <button class="btn" @click="applyTool('abyss')">深渊</button>
-      <button class="btn" @click="applyTool('mutagen')">+ Mutagen</button>
-      <button class="btn" @click="applyTool('RebirthTier')">+10 Rebirth Tier</button>
-      <button class="btn" @click="applyTool('+1 Stage')">+1 Stage</button>
-      <button class="btn" @click="applyTool('+10 Stage')">+10 Stage</button>
-      <button class="btn" @click="applyTool('+50 souls')">+50 Souls</button>
+      <button class="btn" @click="applyTool('mutagen')">+诱变剂</button>
+      <button class="btn" @click="applyTool('RebirthTier')">+10重生层级</button>
+      <button class="btn" @click="applyTool('+1 Stage')">+1关卡</button>
+      <button class="btn" @click="applyTool('+10 Stage')">+10关卡</button>
+      <button class="btn" @click="applyTool('+50 souls')">+50灵魂</button>
       <button class="btn" @click="applyTool('Stardust')">星尘</button>
-      <button class="btn" @click="applyTool('+1 Space')">+1 Space</button>
-      <button class="btn" @click="applyTool('+5 Space')">+5 Space</button>
-      <button class="btn" @click="applyTool('-5 Space')">-5 Space</button>
-      <button class="btn" @click="applyTool('+1 tier')">+1 dim T</button>
-      <button class="btn" @click="applyTool('-1 tier')">-1 dim T</button>
-      <button class="btn" @click="applyTool('+10 kills')">+10 kills</button>
-      <button class="btn" @click="applyTool('voidShards')">+1000 VS</button>
+      <button class="btn" @click="applyTool('+1 Space')">+1空间</button>
+      <button class="btn" @click="applyTool('+5 Space')">+5空间</button>
+      <button class="btn" @click="applyTool('-5 Space')">-5空间</button>
+      <button class="btn" @click="applyTool('+1 tier')">+1维度层级</button>
+      <button class="btn" @click="applyTool('-1 tier')">-1维度层级</button>
+      <button class="btn" @click="applyTool('+10 kills')">+10击杀</button>
+      <button class="btn" @click="applyTool('voidShards')">+1000虚空碎片</button>
       <hr>
-      <button class="btn" @click="killHero">Kill Hero</button>
-      <button class="btn" @click="killEnemy">Kill Enemy</button>
+      <button class="btn" @click="killHero">击杀英雄</button>
+      <button class="btn" @click="killEnemy">击杀敌人</button>
     </div>
   </div>
 </template>
