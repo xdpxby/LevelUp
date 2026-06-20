@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { getSvgIconHTML } from "../../composables/SvgIcon";
+import { getSvgIconHTML } from "../../composables/svgIcon.js";
 
 export const dimensionsPos = ref([
     { id: 'main', name: '🌍', x: 400, y: 300, color: '#4caf50', status: 1 },

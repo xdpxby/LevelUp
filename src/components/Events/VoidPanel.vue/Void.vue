@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import VoidTree from './voidTree.vue'
+import VoidTree from './VoidTree.vue'
 import VoidTier from './VoidTier.vue'
 import { useHero } from '../../../composables/useHero'
 

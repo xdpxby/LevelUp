@@ -35,7 +35,7 @@
 <script setup>
 import { computed } from "vue";
 import { amulets } from "../../../data/amulets.js";
-import { useHero } from "../../../composables/usehero.js";
+import { useHero } from "../../../composables/useHero.js";
 import { divineSkills } from "../../../data/quasarCore.js";
 
 import { getSvgIconHTML } from "../../../composables/svgIcon.js";

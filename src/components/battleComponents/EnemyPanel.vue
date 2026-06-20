@@ -71,7 +71,7 @@ import { useHero } from '../../composables/useHero.js';
 import { soulNames} from '../../data/souls.js';
 import { cursed } from '../../data/cursed.js';
 import { dimensions } from '../../data/dimensions.js';
-import { getSvgIconHTML } from '../../composables/SvgIcon.js';
+import { getSvgIconHTML } from '../../composables/svgIcon.js';
 import { divineSkills } from '../../data/quasarCore.js';
 
 import { fn } from '../../composables/utils/global.js';

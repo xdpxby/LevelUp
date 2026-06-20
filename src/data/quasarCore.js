@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { getSvgIconHTML } from '../composables/SvgIcon';
+import { getSvgIconHTML } from '../composables/svgIcon.js';
 import { newicons } from '../composables/icons.js';
 
 export const divineSkills = ref([

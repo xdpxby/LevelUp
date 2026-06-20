@@ -31,7 +31,7 @@
 import { computed, ref } from "vue";
 import { useHero } from "../composables/useHero.js";
 import { useEnemy } from "../composables/useEnemy.js";
-import { getSvgIconHTML } from '../composables/SvgIcon.js';
+import { getSvgIconHTML } from '../composables/svgIcon.js';
 import { useBuff } from '../data/buffs.js'
 
 const { hero } = useHero();

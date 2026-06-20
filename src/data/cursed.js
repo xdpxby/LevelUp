@@ -1,4 +1,4 @@
-import { getSvgIconHTML } from "../composables/SvgIcon";
+import { getSvgIconHTML } from "../composables/svgIcon.js";
 
 export const cursed = [
     {

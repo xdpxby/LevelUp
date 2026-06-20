@@ -32,7 +32,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { cursed as curses } from "../../../data/cursed.js";
-import { useHero } from "../../../composables/usehero.js";
+import { useHero } from "../../../composables/useHero.js";
 import { divineSkills } from "../../../data/quasarCore.js";
 
 import { fn } from "../../../composables/utils/global.js";

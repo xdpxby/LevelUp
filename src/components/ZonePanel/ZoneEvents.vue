@@ -63,7 +63,7 @@ import redSkull from '../../assets/red-skull.png';
 import ascensionIcon from '../../assets/ascension.png';
 
 import { useAbysses } from '../../composables/battleUtils/useAbyss.js';
-import { useSingularity } from '../../composables/battleUtils/useSingularity.js';
+import { useSingularity } from '../../composables/battleUtils/useSIngularity.js';
 import { useResets } from '../../composables/battleUtils/useResets.js';
 
 import SvgIcon from '../svgIcon.vue';

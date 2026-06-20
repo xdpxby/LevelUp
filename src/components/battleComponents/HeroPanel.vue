@@ -75,7 +75,7 @@ import { useBaseEnemy } from "../../composables/utils/enemySetup.js";
 import { useEnemy } from "../../composables/useEnemy.js";
 import { useBuff } from "../../data/buffs.js";
 import { dimensions } from "../../data/dimensions.js";
-import { getSvgIconHTML } from '../../composables/SvgIcon.js';
+import { getSvgIconHTML } from '../../composables/svgIcon.js';
 import { perks } from '../../data/ascension.js';
 
 import { useProgressions } from '../../composables/battleUtils/useProgression.js';
