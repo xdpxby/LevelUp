@@ -11,7 +11,7 @@
         }"
         :class="{ active: activeEvent === event }"
       >
-        {{ event }}
+        {{ label('events', event) }}
       </button>
     </div>
 
@@ -50,35 +50,35 @@
           :class="{ active: loreFilter === 'All' }"
           @click="loreFilter = 'All'"
         >
-          All
+          {{ t('info.filters.All') }}
         </button>
 
         <button
           :class="{ active: loreFilter === 'Available' }"
           @click="loreFilter = 'Available'"
         >
-          Available
+          {{ t('info.filters.Available') }}
         </button>
 
         <button
           :class="{ active: loreFilter === 'Locked' }"
           @click="loreFilter = 'Locked'"
         >
-          Locked
+          {{ t('info.filters.Locked') }}
         </button>
 
         <button
           :class="{ active: loreFilter === 'First' }"
           @click="loreFilter = 'First'"
         >
-          First
+          {{ t('info.filters.First') }}
         </button>
 
         <button
           :class="{ active: loreFilter === 'Last' }"
           @click="loreFilter = 'Last'"
         >
-          Last
+          {{ t('info.filters.Last') }}
         </button>
       </div>
 
@@ -93,12 +93,12 @@
           <h3 class="lore-title">{{ section.title }}</h3>
 
           <div class="lore-meta">
-            <span class="lore-author" v-if="section.author">From: {{ section.author }}</span>
-            <span class="lore-location" v-if="section.location"> Location: {{ section.location }}</span>
+            <span class="lore-author" v-if="section.author">{{ t('info.meta.from', { author: section.author }) }}</span>
+            <span class="lore-location" v-if="section.location"> {{ t('info.meta.location', { location: section.location }) }}</span>
           </div>
 
           <div v-if="!section.locked" class="lore-content" v-html="section.content.join('<br>')"></div>
-          <p v-else class="lore-locked">🔒 Information locked. Complete the requirement to unlock.</p>
+          <p v-else class="lore-locked">{{ t('info.meta.locked') }}</p>
         </div>
       </div>
     </div>
@@ -145,6 +145,7 @@
 
 <script setup>
 import { watchEffect, watch, ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useHero } from '../../composables/useHero.js';
 import { useEnemy } from '../../composables/useEnemy.js';
 import { useBuff } from '../../data/buffs.js';
@@ -183,6 +184,13 @@ import { useInfinity } from '../../composables/battleUtils/useInfinity.js';
 import { useVoid } from '../../composables/battleUtils/dims/useVoid.js';
 import { useRadiations } from '../../composables/battleUtils/useRadiation.js';
 
+
+const { t, te } = useI18n();
+
+function label(scope, key) {
+  const i18nKey = `${scope}.${key}`;
+  return te(i18nKey) ? t(i18nKey) : key;
+}
 
 const { hero } = useHero();
 const { buffs } = useBuff();

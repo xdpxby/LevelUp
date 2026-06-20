@@ -1,11 +1,11 @@
 <template>
     <div class="danger-panel">
-        <span class="danger-title">自动危险</span>
-        <input novalidate v-model.number="hero.rad.tempTarget" type="number" placeholder="目标强度" class="danger-input" />
+        <span class="danger-title">{{ t('radiation.autoDanger') }}</span>
+        <input novalidate v-model.number="hero.rad.tempTarget" type="number" :placeholder="t('radiation.targetPower')" class="danger-input" />
 
         <div class="danger-buttons">
-            <button @click="hero.rad.radTarget = hero.rad.tempTarget">设置</button>
-            <button @click="maxDangerUp">最大</button>
+            <button @click="hero.rad.radTarget = hero.rad.tempTarget">{{ t('common.set') }}</button>
+            <button @click="maxDangerUp">{{ t('common.max') }}</button>
         </div>
 
     </div>
@@ -14,11 +14,14 @@
 <script setup>
 import { useRadiations } from '../../../composables/battleUtils/useRadiation';
 import { useHero } from '../../../composables/useHero';
+import { useI18n } from 'vue-i18n';
 
 const {
     adjustDanger,
     maxDangerUp
 } = useRadiations();
+
+const { t } = useI18n();
 
 const { hero } = useHero();
 </script>

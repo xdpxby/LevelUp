@@ -74,7 +74,7 @@
           <span v-if="event.name == 'Infinity'" class="icon infinity-glow">{{ icons[event.name] }}</span>
           <span v-else-if="event.name == 'Ascension'" class="icon"><img :src="ascensionIcon" width="18px" height="18px" style="vertical-align: -2px"/></span>
           <span v-else class="icon" v-html="icons[event.name]"></span>
-          {{ event.name }}
+          {{ t(`events.${event.name}`) }}
         </button>
 
         <div
@@ -91,6 +91,7 @@
 
 <script setup>
 import { computed, watchEffect, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useHero } from '../composables/useHero.js';
 import { useEnemy } from '../composables/useEnemy.js';
 import { perks as rawPerks } from '../data/radPerks.js';
@@ -110,6 +111,8 @@ import { newicons } from '../composables/icons.js';
 const {
   getDimSpecialReward
 } = useDimensions();
+
+const { t } = useI18n();
 
 const props = defineProps({
   hero: Object,

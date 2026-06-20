@@ -1,3 +1,5 @@
+import { getFallbackPhrases } from './index.js';
+
 const TEXT_ATTRIBUTES = [
   'title',
   'aria-label',
@@ -108,88 +110,7 @@ const fallbackEntries = {
   'Enemy Power: [{{0}}]': '敌人强度：[{{0}}]',
 };
 
-const phraseEntries = {
-  'Ascension Shards': '转生碎片',
-  'Ascension Shard': '转生碎片',
-  'Rebirth Points': '重生点数',
-  'Rebirth Pts': '重生点数',
-  'Tree Points': '技能树点数',
-  'Void Shards': '虚空碎片',
-  'Singularity Shards': '奇点碎片',
-  'Law Stone': '法则之石',
-  'Timeline Stone': '时间线石',
-  'Max Level': '最高等级',
-  'Min Level': '最低等级',
-  'Base DMG': '基础伤害',
-  'Base HP': '基础生命值',
-  'Skill EXP': '技能经验',
-  'EXP Gain': '经验获取',
-  'Equipment Drop Chance': '装备掉落几率',
-  'Soul Appearance': '灵魂出现',
-  'Soul Appereance': '灵魂出现',
-  'Boss Appearance Chance': 'Boss 出现几率',
-  'Kill Requirement': '击杀需求',
-  'Stage Requirement': '关卡需求',
-  'Level Requirement': '等级需求',
-  'Infinity Penalty': '无限惩罚',
-  'Infinity Resistance': '无限抗性',
-  'Quasar Power': '类星体之力',
-  'Stardust': '星尘',
-  'Mutagen': '诱变剂',
-  'Potential': '潜能',
-  'Corruption': '腐化',
-  'Radiation': '辐射',
-  'Infinity': '无限',
-  'Ascension': '转生',
-  'Rebirth': '重生',
-  'Soul': '灵魂',
-  'Souls': '灵魂',
-  'Equipment': '装备',
-  'Amulet': '护符',
-  'Curses': '诅咒',
-  'Curse': '诅咒',
-  'Space': '空间',
-  'Tree': '技能树',
-  'Buffs': '技能',
-  'Buff': '技能',
-  'Skills': '技能',
-  'Skill': '技能',
-  'Damage': '伤害',
-  'Health': '生命值',
-  'Reward': '奖励',
-  'Rewards': '奖励',
-  'Requirement': '需求',
-  'Completed': '已完成',
-  'Locked': '未解锁',
-  'Unlocked': '已解锁',
-  'Active': '主动',
-  'Inactive': '未激活',
-
-  'Advanced Curse': '高级诅咒',
-  'Black Hole': '黑洞',
-  'D-Infinity': 'D-无限',
-  'Infinity Line': '无限之线',
-  'Info Section': '信息区',
-  'Info section': '信息区',
-  'Amulet section': '护符区',
-  'Tree section': '技能树区',
-  'Infinity section': '无限区',
-  'Progress section': '进度区',
-  'Combat Mechanics': '战斗机制',
-  'D-Atlas': '维度图谱',
-  'dark dimensions': '黑暗维度',
-  'dark substance': '暗物质',
-  'Mutation': '突变',
-  'Mutaiton': '突变',
-  'mutation': '突变',
-  'mutagens': '诱变剂',
-  'mutagen': '诱变剂',
-  'Danger': '危险',
-  'DANGER': '危险',
-  'Stage': '关卡',
-  'Lvl': '等级',
-  'Upgrade': '升级',
-};
+const phraseEntries = getFallbackPhrases();
 
 export async function installChineseLocalization() {
   await loadDictionary();
@@ -198,11 +119,6 @@ export async function installChineseLocalization() {
 
   runtime.observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
-      if (mutation.type === 'characterData') {
-        translateTextNode(mutation.target);
-        continue;
-      }
-
       for (const node of mutation.addedNodes) {
         translateNode(node);
       }
@@ -216,7 +132,6 @@ export async function installChineseLocalization() {
   runtime.observer.observe(document.body, {
     childList: true,
     subtree: true,
-    characterData: true,
     attributes: true,
     attributeFilter: TEXT_ATTRIBUTES,
   });
@@ -225,78 +140,11 @@ export async function installChineseLocalization() {
 }
 
 async function loadDictionary() {
-  const response = await fetch(`${import.meta.env.BASE_URL}chs.js`);
-  const source = await response.text();
-  const parsed = parseCnItems(source);
+  runtime.dictionary.clear();
 
   for (const [key, value] of Object.entries(fallbackEntries)) {
-    parsed[key] = value;
-  }
-
-  for (const [key, value] of Object.entries(parsed)) {
     if (!key || !value) continue;
     runtime.dictionary.set(normalizeKey(key), value);
-  }
-}
-
-function parseCnItems(source) {
-  const start = source.indexOf('var cnItems');
-  if (start < 0) return {};
-
-  const objectStart = source.indexOf('{', start);
-  if (objectStart < 0) return {};
-
-  let depth = 0;
-  let inString = false;
-  let quote = '';
-  let escaped = false;
-
-  for (let index = objectStart; index < source.length; index++) {
-    const char = source[index];
-
-    if (inString) {
-      if (escaped) {
-        escaped = false;
-      } else if (char === '\\') {
-        escaped = true;
-      } else if (char === quote) {
-        inString = false;
-      }
-      continue;
-    }
-
-    if (char === '"' || char === "'") {
-      inString = true;
-      quote = char;
-      continue;
-    }
-
-    if (char === '{') depth++;
-    if (char === '}') {
-      depth--;
-      if (depth === 0) {
-        const objectLiteral = source.slice(objectStart, index + 1);
-        return evaluateObjectLiteral(objectLiteral);
-      }
-    }
-  }
-
-  return {};
-}
-
-function evaluateObjectLiteral(objectLiteral) {
-  try {
-    const items = Function(`"use strict"; return (${objectLiteral});`)();
-
-    return Object.fromEntries(
-      Object.entries(items).map(([key, value]) => [
-        key,
-        Array.isArray(value) ? value[0] : value,
-      ])
-    );
-  } catch (error) {
-    console.warn('[i18n] Failed to parse chs.js dictionary.', error);
-    return {};
   }
 }
 
@@ -311,18 +159,7 @@ function prepareTranslations() {
 
   runtime.templates = runtime.templates.filter(Boolean);
 
-  const phrases = new Map();
-
-  for (const [source, target] of runtime.dictionary.entries()) {
-    if (!isPhraseCandidate(source, target)) continue;
-    phrases.set(source, target);
-  }
-
-  for (const [source, target] of Object.entries(phraseEntries)) {
-    phrases.set(source, target);
-  }
-
-  runtime.phrases = Array.from(phrases.entries())
+  runtime.phrases = Object.entries(phraseEntries)
     .sort((a, b) => b[0].length - a[0].length)
     .map(([source, target]) => createPhraseMatcher(source, target))
     .filter(Boolean);
@@ -459,19 +296,6 @@ function translatePhrases(text) {
   return result;
 }
 
-function isPhraseCandidate(source, target) {
-  if (!source || !target) return false;
-  if (source === target) return false;
-  if (source.includes('{{') || target.includes('{{')) return false;
-  if (!hasLatinText(source)) return false;
-  if (source.length < 3) return false;
-  if (/^https?:\/\//i.test(source)) return false;
-  if (/[{}]/.test(source)) return false;
-
-  const hasSeparator = /[\s:[\]().,+/%-]/.test(source);
-  const isKnownShortTerm = Object.hasOwn(phraseEntries, source);
-  return hasSeparator || isKnownShortTerm || source.length >= 6;
-}
 
 function createPhraseMatcher(source, target) {
   try {

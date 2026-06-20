@@ -1,9 +1,9 @@
 <template>
     <div v-if="isPanelVisible" class="notification-panel">
         <div class="panel-header">
-            <span>通知（{{ hero.notes.msg.length }}）</span>
+            <span>{{ t('notifications.title', { count: hero.notes.msg.length }) }}</span>
             <div style="display: flex; gap: 5px">
-                <button class="close-all-btn" @click="clearNotifications">全部关闭</button>
+                <button class="close-all-btn" @click="clearNotifications">{{ t('notifications.closeAll') }}</button>
                 <button class="close-all-btn" @click="togglePanel">✕</button>
             </div>
         </div>
@@ -26,10 +26,12 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useI18n } from "vue-i18n";
 import { useHero } from "../../composables/useHero";
 import { useNotificationHandler } from "../../composables/UI/useNotificationHandler";
 
 
+const { t } = useI18n();
 const { hero } = useHero();
 const { 
     isPanelVisible,

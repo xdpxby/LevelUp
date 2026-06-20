@@ -19,7 +19,7 @@
     <h2>{{ currentEnemy.name }}</h2>
 
     <p v-if="!hero.isInfSpace" class="boss-reward-sp">
-      奖励：{{ currentEnemy.reward }}
+      {{ t('space.reward', { reward: currentEnemy.reward }) }}
     </p>
 
     <div class="stats-row">
@@ -54,14 +54,14 @@
                 {{ specialStats[stat.key].breakdown.celestials >= 0
                 ? '+' + specialStats[stat.key].breakdown.celestials
                 : specialStats[stat.key].breakdown.celestials }}
-                每击败一个天界生物
+                {{ t('space.perCelestial') }}
               </p>
 
               <p class="sub" v-else>
                 {{ specialStats[stat.key].breakdown.infWarden >= 0
                 ? '+' + specialStats[stat.key].breakdown.infWarden
                 : specialStats[stat.key].breakdown.infWarden }}
-                每击败一个无限守卫
+                {{ t('space.perIW') }}
               </p>
             </span>
           </template>
@@ -77,7 +77,7 @@
     style="text-align: center"
     @click="hero.eLink = { set: 'Info', info: 'Space' }"
   >
-    <sup style="font-size: 12px"></sup>提高危险等级以吸引天界生物的注意，或提升空间层级。
+    <sup style="font-size: 12px"></sup>{{ t('space.emptyHint') }}
   </div>
 
   <div
@@ -92,7 +92,7 @@
       class="attack-button"
       @click="attackSpaceEnemy"
     >
-      ⚔️ 攻击
+      {{ t('space.attack') }}
     </button>
 
     <button
@@ -108,13 +108,14 @@
       class="attack-button"
       @click="leaveSpaceEnemy"
     >
-      离开
+      {{ t('space.leave') }}
     </button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch, watchEffect, reactive } from "vue";
+import { useI18n } from "vue-i18n";
 import { useHero } from "../../../composables/useHero.js";
 import { useEnemy } from "../../../composables/useEnemy.js";
 import { spEnemy } from "../../../data/spaceEnemy.js";
@@ -134,6 +135,8 @@ const {
   attackSpaceEnemy
 } = useSpaces();
 
+const { t } = useI18n();
+
 const { hero } = useHero();
 const { enemy } = useEnemy();
 
@@ -143,7 +146,7 @@ const { player } = usePlayer("space");
 const currentEnemy = computed(() => {
   if (hero.value.isInfSpace) {
     return {
-      name: `无限守卫 - ${hero.value.spsCount}`,
+      name: t('space.infinityWarden', { count: hero.value.spsCount }),
       reward: null,
       type: 'boss',
       status: true,

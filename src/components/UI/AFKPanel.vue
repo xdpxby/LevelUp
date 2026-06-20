@@ -9,10 +9,10 @@
                     <span class="offline-icon">⏳</span>
                     <div>
                         <div class="offline-title">
-                            离线奖励
+                            {{ t('offline.title') }}
                         </div>
                         <div class="offline-subtitle">
-                            你离开了
+                            {{ t('offline.awayFor') }}
                             <b>{{ timeFormat(hero.afkTime) }}</b>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="offline-section">
-                <div class="section-title">资源</div>
+                <div class="section-title">{{ t('offline.resources') }}</div>
                 <div class="section-grid">
 
                     <div class="offline-reward-card">
@@ -133,7 +133,7 @@
             </div>
 
             <div class="offline-section">
-                <div class="section-title cyan-text">特殊</div>
+                <div class="section-title cyan-text">{{ t('offline.special') }}</div>
                 <div class="section-grid">
                 
                     <div class="offline-reward-card">
@@ -171,7 +171,7 @@
             </div>
 
             <div v-if="hero.bhTier >= 4" class="offline-section">
-                <div class="section-title">进度</div>
+                <div class="section-title">{{ t('offline.progress') }}</div>
                 <div class="section-grid">
                 
                     <div v-if="hero.dims.corrShards >= 20" class="offline-reward-card">
@@ -219,10 +219,10 @@
             <div class="stored-header">
                 <div>
                     <div class="stored-title">
-                        时间储存
+                        {{ t('offline.temporalStorage') }}
                     </div>
                     <div class="stored-subtitle">
-                        你离开了
+                        {{ t('offline.awayFor') }}
                         <b>{{ timeFormat(hero.afkTime) }}</b>
                     </div>
                 </div>
@@ -235,7 +235,7 @@
                 <div class="stored-core-ring"></div>
                 <div class="stored-core">
                     <div class="stored-core-label">
-                        已储存时间
+                        {{ t('offline.storedTime') }}
                     </div>
                     <div class="stored-core-time">
                         {{ timeFormat(hero.settings.storedTime) }}
@@ -250,11 +250,13 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useHero } from '../../composables/useHero';
 import { timeFormat, fn } from '../../composables/utils/global';
 import { newicons } from '../../composables/icons';
 import { loading } from '../../composables/utils/loading';
 
+const { t } = useI18n();
 const { hero } = useHero();
 
 const { afkReward } = loading();

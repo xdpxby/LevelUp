@@ -5,7 +5,7 @@
         class="ip-title"
         @click="hero.eLink = { set: 'Info', info: 'Infinity' }"
       >
-        <sup class="info-icon"></sup> 无限点数（IP）：
+        <sup class="info-icon"></sup> {{ t('infinityPanel.points') }}
       </span>
 
       <span
@@ -20,7 +20,7 @@
       <!-- LEFT: GOALS -->
       <div class="goals-panel">
         <div class="goals-header">
-          <h2>无限目标</h2>
+          <h2>{{ t('infinityPanel.goals') }}</h2>
 
           <div class="tier-buttons">
             <button
@@ -57,7 +57,7 @@
       <!-- RIGHT SIDE PANELS -->
       <div class="right-panels">
         <div class="panel-block">
-          <h2>无限加成</h2>
+          <h2>{{ t('infinityPanel.bonuses') }}</h2>
           <div class="scroll-box">
             <div
               v-for="bonus in filterBonuses"
@@ -69,7 +69,7 @@
             </div>
 
             <div class="bonus-requirement" v-if="filterBonuses.length">
-              达到无限[T{{ getBonusReq(hero.mainInfTier) }}]
+              {{ t('infinityPanel.reach', { tier: getBonusReq(hero.mainInfTier) }) }}
             </div>
           </div>
         </div>
@@ -81,6 +81,7 @@
 
 <script setup>
 import { ref, computed, reactive } from "vue";
+import { useI18n } from "vue-i18n";
 import { useHero } from "../../../composables/useHero.js";
 import { goals } from "../../../data/infGoals.js";
 import { dimensions } from "../../../data/dimensions.js";
@@ -93,6 +94,8 @@ import { infBonusesHandler } from "../../../composables/battleUtils/global/infBo
 const { 
   goalRankTwoHandle
 } = useInfinity();
+
+const { t } = useI18n();
 
 const { hero } = useHero();
 
@@ -208,7 +211,7 @@ function infDescription(goal) {
 
   let str = goal.requirement[goal.tier];
   str += ` [<span>${goal.tier}/${goal.maxTier}</span>]`;
-  str += `<br><span style="color: gold">奖励：${goal.reward} IP</span>`;
+  str += `<br><span style="color: gold">${t('infinityPanel.rewardIp', { reward: goal.reward })}</span>`;
 
   return str;
 }
