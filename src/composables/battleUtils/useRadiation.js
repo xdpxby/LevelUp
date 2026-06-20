@@ -336,9 +336,9 @@ export const useRadiations = () => {
         if(getDimEffect(15))
           radPerks[10].level = getDimEffect(15)
     
-        if (radPerks[4].level >= 0) radPerks[4].description = `Increase mutagen gaining [${fn(1.025 ** radPerks[4].level)}]`;
-        if (radPerks[6].level >= 0) radPerks[6].description = `+[${radPerks[6].level}] Potential`;
-        radPerks[16].description = `Increase mutagen gain depends on stage [${fn(mutagenOnStage())}]`;
+        if (radPerks[4].level >= 0) radPerks[4].description = `诱变剂获取提高[${fn(1.025 ** radPerks[4].level)}]`;
+        if (radPerks[6].level >= 0) radPerks[6].description = `+[${radPerks[6].level}] 潜能`;
+        radPerks[16].description = `根据关卡提高诱变剂获取[${fn(mutagenOnStage())}]`;
     }
 
     const celestialSpawn = () => {
@@ -626,7 +626,7 @@ export const useRadiations = () => {
   
         mutagen **= cursed[17].loot;
         
-        addLog(`You gain <b style="color: #b6ff00">${fn(mutagen)} mutagens</b>`, "Mutagen");
+        addLog(`你获得 <b style="color: #b6ff00">${fn(mutagen)} 诱变剂</b>`, "诱变剂");
 
         hero.value.currentMutagen = mutagen;
         hero.value.mutagen += mutagen;
@@ -666,13 +666,13 @@ export const useRadiations = () => {
         case 'M': {
           return (
             `<span style="font-size:0.95em; font-style:italic; color: #cde651;">
-              <strong style="color: #cfed3a">Mutations</strong><br>
-              Mutation — an ability to mutate a curse from [T3] to [T4].
-              Each mutation has a chance to mutate a curse to [T4].
-              Higher-tier mutations will not trigger if the previous mutation attempt fails.<br>
-              Mutation starts mutate curses at Stage 40, +20 Stages for each high-tier mutation.<br>
-              Enemies may have only 4 curses [T4].<br>
-              Enemies affected by Curse [T4] can drop Mutagen.
+              <strong style="color: #cfed3a">突变</strong><br>
+              突变可以将诅咒从[T3]变异为[T4]。
+              每种突变都有几率使诅咒变异到[T4]。
+              如果上一级突变失败，更高层级突变不会触发。<br>
+              突变从关卡40开始触发，每个更高层级突变需求关卡 +20。<br>
+              敌人最多只能拥有 4 个[T4]诅咒。<br>
+              受[T4]诅咒影响的敌人可掉落诱变剂。
             </span>`
           ).replace(/\n\s*/g, '');
         }
@@ -680,11 +680,11 @@ export const useRadiations = () => {
         case 'D': {
           return (
             `<span style="font-size:0.95em; font-style:italic; color: #dbf944;">
-              <strong style="color: #d4ff00">Danger</strong><br>
-              Danger — an ability that creates a special space where unique creatures can appear, but they become much stronger <b>only in main battle</b>.
-              To enable special creature spawns, you must reach a certain Stage and Danger level.<br>
-              Danger Power increases creature HP and DMG.<br>
-              Note: The spawn chance depends only on the Danger level; the Stage does not affect this chance.
+              <strong style="color: #d4ff00">危险</strong><br>
+              危险会创造一个可出现独特生物的特殊空间，但它们<b>仅在主战斗中</b>会变得更强。
+              要启用特殊生物生成，你必须达到指定关卡和危险等级。<br>
+              危险之力会提高生物生命值和伤害。<br>
+              注意：生成几率只取决于危险等级，关卡不会影响该几率。
             </span>`
           ).replace(/\n\s*/g, '');
         }
@@ -692,13 +692,13 @@ export const useRadiations = () => {
         case 'A': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color:#d4ff00;">' +
-            '<strong style="color: #d4ff00">AUTO-Danger</strong><br>' +
-            'Click to enable/disable AUTO for Danger.<br>' +
-            'Auto-Danger upgrades Danger until certain Danger Power. When the Danger level is ' + 
-            'higher than the Danger Power target, it spends half the cost to reduce Danger level by one.<br>' +
-            'Max - upgrade Danger until Max Level. Note: disable Auto-Danger<br>' +
-            'Status: ' + (hero.value.rad.isAuto? 'ON': 'OFF') + '<br>' +
-            'Sourse: D62' +
+            '<strong style="color: #d4ff00">自动危险</strong><br>' +
+            '点击开启/关闭危险自动化。<br>' +
+            '自动危险会升级危险，直到达到指定危险之力。当危险等级' + 
+            '高于危险之力目标时，会花费一半成本将危险等级降低 1。<br>' +
+            '最大 - 将危险升级至最高等级。注意：会关闭自动危险<br>' +
+            '状态：' + (hero.value.rad.isAuto? '开启': '关闭') + '<br>' +
+            '来源：D62' +
             '</span>'
           );
         }
@@ -706,11 +706,11 @@ export const useRadiations = () => {
         case 'S': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color:#d4ff00;">' +
-            '<strong style="color: #d4ff00">Mutations [Stage]</strong><br>' +
-            `Mutation [T1] triggers at Stage ${40 - 2 * radPerks[5].level}<br>` +
-            `Mutation [T2] triggers at Stage ${60 - 2 * radPerks[5].level}<br>` +
-            `Mutation [T3] triggers at Stage ${80 - 2 * radPerks[5].level}<br>` +
-            `Mutation [T4] triggers at Stage ${100 - 2 * radPerks[5].level}<br>` +
+            '<strong style="color: #d4ff00">突变[关卡]</strong><br>' +
+            `突变[T1]在关卡 ${40 - 2 * radPerks[5].level} 触发<br>` +
+            `突变[T2]在关卡 ${60 - 2 * radPerks[5].level} 触发<br>` +
+            `突变[T3]在关卡 ${80 - 2 * radPerks[5].level} 触发<br>` +
+            `突变[T4]在关卡 ${100 - 2 * radPerks[5].level} 触发<br>` +
             '</span>'
           );
         }
@@ -718,9 +718,9 @@ export const useRadiations = () => {
         case 'L': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color:#d4ff00;">' +
-            '<strong style="color: #d4ff00">Mutagen [Loot]</strong><br>' +
-            `Mutagen = [Mutation Counts]^2.5<br>` +
-            `[Mutation Counts] depends on count of Curses [T4]` +
+            '<strong style="color: #d4ff00">诱变剂[战利品]</strong><br>' +
+            `诱变剂 = [突变数量]^2.5<br>` +
+            `[突变数量]取决于[T4]诅咒数量` +
             '</span>'
           );
         }
@@ -728,8 +728,8 @@ export const useRadiations = () => {
         case 'i': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color: #ffe02f">' +
-            '<strong style="color: gold">Info</strong><br>' +
-            `Click to see more info` +
+            '<strong style="color: gold">信息</strong><br>' +
+            `点击查看更多信息` +
             '</span>'
           );
         }

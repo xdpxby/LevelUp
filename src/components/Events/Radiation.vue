@@ -2,7 +2,7 @@
   <div class="radiation-panel">
     <div class="mutation-chances">
       <h2>
-        <span @click="hero.eLink = { set: 'Info', info: 'Radiation' }"><sup style="font-size: 12px"></sup>Mutagen:</span>
+        <span @click="hero.eLink = { set: 'Info', info: 'Radiation' }"><sup style="font-size: 12px"></sup>诱变剂：</span>
         <span @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Mutagen' }"><sup style="font-size: 12px"></sup>{{fn(hero.mutagen)}}</span>
       </h2>  
 
@@ -30,30 +30,30 @@
           :key="mutation.type"
           class="mutation"
         >
-          <span class="glow"> Mutation [T{{idx+1}}]</span> — {{ mutation.chance.toFixed(1) }}%
+          <span class="glow">突变[T{{idx+1}}]</span> — {{ mutation.chance.toFixed(1) }}%
         </div>
       </div>
       <div v-if="perks[10].level > 0" class="danger-wrapper">
         <div @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Danger' }">
           <sup style="font-size: 12px"></sup>DANGER: [{{perks[10].level}}]
         </div> 
-        <p>Enemy Power: [{{fn(enemy.enemyPower, true)}}]</p>
+        <p>敌人强度：[{{fn(enemy.enemyPower, true)}}]</p>
       </div>
       <div class="tab-buttons">
-        <button :class="{ active: activeTab === 'perks' }" @click="activeTab = 'perks'">🧬 Radiation Perks</button>
-        <button :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">💀 Special Creatures</button>
+        <button :class="{ active: activeTab === 'perks' }" @click="activeTab = 'perks'">🧬 辐射特权</button>
+        <button :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">💀 特殊生物</button>
       </div>
       <div class="tab-buttons">
 
-        <Tooltip :text="() => `Except Danger`" position="right">
+        <Tooltip :text="() => `危险除外`" position="right">
           <button v-if="hero.mainInfTier >= 4 || hero.infEvents >= 4" @click="upAll">
-            Upgrade All
+            全部升级
           </button>
         </Tooltip>
 
-        <Tooltip :text="() => `You won't get mutagens back`" position="right">
+        <Tooltip :text="() => `不会返还诱变剂`" position="right">
           <button @click="dReset">
-            Reset Danger
+            重置危险
           </button>
         </Tooltip>
       </div>
@@ -64,7 +64,7 @@
     </div>
 
     <div v-if="activeTab === 'perks'" class="radiation-perks">
-      <h2>Radiation Perks</h2>
+      <h2>辐射特权</h2>
 
       <div class="perks-scroll">
         <div class="perks-grid">
@@ -75,7 +75,7 @@
           >
             <h3>{{ perk.name }}</h3>
             <p class="perk-description">{{ perk.description }}</p>
-            <small class="perk-level">Lvl: {{ perk.level }} / {{ perk.max }}</small>
+            <small class="perk-level">等级：{{ perk.level }} / {{ perk.max }}</small>
             <Tooltip :text="() => quasarCoreDangerHandle(perk)" boxShadow="0 0 10px #00ffea" position="top">
               <button
                 class="btn-up"
@@ -96,239 +96,239 @@
     
     <div v-if="activeTab === 'info'" class="radiation-wrapper">
       <div class="row">
-        <span style="color: orange" class="label">Celestial [Space] [T{{Math.floor(hero.spCount / 6) + 1}}]</span>
+        <span style="color: orange" class="label">天界生物[空间] [T{{Math.floor(hero.spCount / 6) + 1}}]</span>
         <span class="value">{{ (enemy.specialCreatures.celestials.chance).toFixed(2) }}%</span>
       </div>
 
       <div v-if="perks[10].level >= 10" class="row">
-        <span class="label">Souls Chance</span>
+        <span class="label">灵魂几率</span>
         <span class="value">*{{ fn(enemy.specialCreatures.souls.chance) }}</span>
       </div>
 
       <div v-if="perks[10].level >= 20" class="row">
-        <span class="label">Progress Boss Chance</span>
+        <span class="label">进度 Boss 几率</span>
         <span class="value">*{{ fn(enemy.specialCreatures.boss.chance, true) }}</span>
       </div>
 
-      <p style="color: gold" class="section-title" v-if="hero.infExpansions.radiation">Infinity Creatures</p>
+      <p style="color: gold" class="section-title" v-if="hero.infExpansions.radiation">无限生物</p>
 
       <template v-if="hero.infExpansions.radiation">
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Ω-Infinity')" position="right" boxShadow="0 0 10px gold">
-            <span class="label">Ω-Infinity [{{enemy.specialCreatures.inf1.loot}} / {{enemy.specialCreatures.inf1.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('Ω-无限')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">Ω-无限 [{{enemy.specialCreatures.inf1.loot}} / {{enemy.specialCreatures.inf1.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(0)">Locked</template>
+            <template v-if="creaturesActive(0)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.inf1.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Mirror of the Infinity')" position="right" boxShadow="0 0 10px gold">
-            <span class="label">Mirror of the Infinity [{{enemy.specialCreatures.inf2.loot}} / {{enemy.specialCreatures.inf2.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('无限之镜')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">无限之镜 [{{enemy.specialCreatures.inf2.loot}} / {{enemy.specialCreatures.inf2.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(1)">Locked</template>
+            <template v-if="creaturesActive(1)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.inf2.chance, 100).toFixed(2)  }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('The Infinite One')" position="right" boxShadow="0 0 10px gold">
-            <span class="label">The Infinite One [{{enemy.specialCreatures.inf3.loot}} / {{enemy.specialCreatures.inf3.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('无限者')" position="right" boxShadow="0 0 10px gold">
+            <span class="label">无限者 [{{enemy.specialCreatures.inf3.loot}} / {{enemy.specialCreatures.inf3.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(2)">Locked</template>
+            <template v-if="creaturesActive(2)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.inf3.chance, 100).toFixed(2)  }}%</template>
           </span>
         </div>
       </template>
       
 
-      <p class="section-title" v-if="getDimSpecialReward(15)">Dimension Creatures</p>
+      <p class="section-title" v-if="getDimSpecialReward(15)">维度生物</p>
 
       <template v-if="getDimSpecialReward(15)">
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Twisted Rootspawn')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Twisted Rootspawn [{{enemy.specialCreatures.dim1.loot}} / {{enemy.specialCreatures.dim1.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('扭曲根生者')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">扭曲根生者 [{{enemy.specialCreatures.dim1.loot}} / {{enemy.specialCreatures.dim1.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(4)">Locked</template>
+            <template v-if="creaturesActive(4)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim1.chance, 100).toFixed(2)  }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Voidpulse Entity')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Voidpulse Entity [{{enemy.specialCreatures.dim2.loot}} / {{enemy.specialCreatures.dim2.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('虚空脉冲实体')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">虚空脉冲实体 [{{enemy.specialCreatures.dim2.loot}} / {{enemy.specialCreatures.dim2.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(5)">Locked</template>
+            <template v-if="creaturesActive(5)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim2.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Fracture Beast')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Fracture Beast[{{enemy.specialCreatures.dim3.loot}} / {{enemy.specialCreatures.dim3.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('裂隙兽')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">裂隙兽[{{enemy.specialCreatures.dim3.loot}} / {{enemy.specialCreatures.dim3.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(6)">Locked</template>
+            <template v-if="creaturesActive(6)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim3.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Clot of Dark Energy')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Clot of Dark Energy [{{enemy.specialCreatures.dim4.loot}} / {{enemy.specialCreatures.dim4.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('暗能凝块')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">暗能凝块 [{{enemy.specialCreatures.dim4.loot}} / {{enemy.specialCreatures.dim4.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(7)">Locked</template>
+            <template v-if="creaturesActive(7)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim4.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Infinitron Prime')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Infinitron Prime [{{enemy.specialCreatures.dim5.loot}} / {{enemy.specialCreatures.dim5.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('无限机兵主型')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">无限机兵主型 [{{enemy.specialCreatures.dim5.loot}} / {{enemy.specialCreatures.dim5.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(8)">Locked</template>
+            <template v-if="creaturesActive(8)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim5.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
         <div class="row">
-          <Tooltip :text="() => creaturesHandle('Entropy Reaver')" position="right" boxShadow="0 0 10px #ff99ff">
-            <span class="label">Entropy Reaver [{{enemy.specialCreatures.dim6.loot}} / {{enemy.specialCreatures.dim6.max}}]</span>
+          <Tooltip :text="() => creaturesHandle('熵能掠夺者')" position="right" boxShadow="0 0 10px #ff99ff">
+            <span class="label">熵能掠夺者 [{{enemy.specialCreatures.dim6.loot}} / {{enemy.specialCreatures.dim6.max}}]</span>
           </Tooltip>
           <span class="value">
-            <template v-if="creaturesActive(9)">Locked</template>
+            <template v-if="creaturesActive(9)">未解锁</template>
             <template v-else>{{ Math.min(enemy.specialCreatures.dim6.chance, 100).toFixed(2) }}%</template>
           </span>
         </div>
 
       </template>
 
-      <p style="color: #f36e6e" class="section-title" v-if="enemy.specialCreatures['ddim1'].req">Creatures from Dark Dimensions</p>
+      <p style="color: #f36e6e" class="section-title" v-if="enemy.specialCreatures['ddim1'].req">黑暗维度生物</p>
 
       <div class="row" v-if="enemy.specialCreatures['ddim1'].req">
-        <Tooltip :text="() => creaturesHandle('Dreadfang')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Dreadfang [{{enemy.specialCreatures.ddim1.loot}} / {{enemy.specialCreatures.ddim1.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('惧牙')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">惧牙 [{{enemy.specialCreatures.ddim1.loot}} / {{enemy.specialCreatures.ddim1.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(10)">Locked</template>
+          <template v-if="creaturesActive(10)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim1.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim2'].req">
-        <Tooltip :text="() => creaturesHandle('Voidborn Might')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Voidborn Might [{{enemy.specialCreatures.ddim2.loot}} / {{enemy.specialCreatures.ddim2.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('虚空之力')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">虚空之力 [{{enemy.specialCreatures.ddim2.loot}} / {{enemy.specialCreatures.ddim2.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(11)">Locked</template>
+          <template v-if="creaturesActive(11)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim2.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim3'].req">
-        <Tooltip :text="() => creaturesHandle('Overseer Prime')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Overseer Prime [{{enemy.specialCreatures.ddim3.loot}} / {{enemy.specialCreatures.ddim3.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('监督者主型')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">监督者主型 [{{enemy.specialCreatures.ddim3.loot}} / {{enemy.specialCreatures.ddim3.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(12)">Locked</template>
+          <template v-if="creaturesActive(12)">未解锁</template>
           <template v-else>{{Math.min(enemy.specialCreatures.ddim3.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim4'].req">
-        <Tooltip :text="() => creaturesHandle('Baselurker')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Baselurker [{{enemy.specialCreatures.ddim4.loot}} / {{enemy.specialCreatures.ddim4.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('基底潜伏者')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">基底潜伏者 [{{enemy.specialCreatures.ddim4.loot}} / {{enemy.specialCreatures.ddim4.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(13)">Locked</template>
+          <template v-if="creaturesActive(13)">未解锁</template>
           <template v-else>{{Math.min(enemy.specialCreatures.ddim4.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim5'].req">
-        <Tooltip :text="() => creaturesHandle('Infinity Bane')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Infinity Bane [{{enemy.specialCreatures.ddim5.loot}} / {{enemy.specialCreatures.ddim5.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('无限灾厄')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">无限灾厄 [{{enemy.specialCreatures.ddim5.loot}} / {{enemy.specialCreatures.ddim5.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(14)">Locked</template>
+          <template v-if="creaturesActive(14)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim5.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim6'].req">
-        <Tooltip :text="() => creaturesHandle('Crushdepth')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Crushdepth [{{enemy.specialCreatures.ddim6.loot}} / {{enemy.specialCreatures.ddim6.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('深压者')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">深压者 [{{enemy.specialCreatures.ddim6.loot}} / {{enemy.specialCreatures.ddim6.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(15)">Locked</template>
+          <template v-if="creaturesActive(15)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim6.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim7'].req">
-        <Tooltip :text="() => creaturesHandle('Entropy Leech')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Entropy Leech [{{enemy.specialCreatures.ddim7.loot}} / {{enemy.specialCreatures.ddim7.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('熵能水蛭')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">熵能水蛭 [{{enemy.specialCreatures.ddim7.loot}} / {{enemy.specialCreatures.ddim7.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(16)">Locked</template>
+          <template v-if="creaturesActive(16)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim7.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim8'].req">
-        <Tooltip :text="() => creaturesHandle('Flameveil')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Flameveil [{{enemy.specialCreatures.ddim8.loot}} / {{enemy.specialCreatures.ddim8.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('焰幕')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">焰幕 [{{enemy.specialCreatures.ddim8.loot}} / {{enemy.specialCreatures.ddim8.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(17)">Locked</template>
+          <template v-if="creaturesActive(17)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim8.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim9'].req">
-        <Tooltip :text="() => creaturesHandle('Bloodhowl')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Bloodhowl [{{enemy.specialCreatures.ddim9.loot}} / {{enemy.specialCreatures.ddim9.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('血嚎')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">血嚎 [{{enemy.specialCreatures.ddim9.loot}} / {{enemy.specialCreatures.ddim9.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(18)">Locked</template>
+          <template v-if="creaturesActive(18)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim9.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim10'].req">
-        <Tooltip :text="() => creaturesHandle('Tormenthide')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Tormenthide [{{enemy.specialCreatures.ddim10.loot}} / {{enemy.specialCreatures.ddim10.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('痛苦皮甲')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">痛苦皮甲 [{{enemy.specialCreatures.ddim10.loot}} / {{enemy.specialCreatures.ddim10.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(19)">Locked</template>
+          <template v-if="creaturesActive(19)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim10.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim11'].req">
-        <Tooltip :text="() => creaturesHandle('Plaguedozer')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Plaguedozer [{{enemy.specialCreatures.ddim11.loot}} / {{enemy.specialCreatures.ddim11.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('疫病碾压者')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">疫病碾压者 [{{enemy.specialCreatures.ddim11.loot}} / {{enemy.specialCreatures.ddim11.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(20)">Locked</template>
+          <template v-if="creaturesActive(20)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim11.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
 
       <div class="row" v-if="enemy.specialCreatures['ddim12'].req">
-        <Tooltip :text="() => creaturesHandle('Malignhorn')" position="right" boxShadow="0 0 10px #f36e6e">
-          <span class="label">Malignhorn [{{enemy.specialCreatures.ddim12.loot}} / {{enemy.specialCreatures.ddim12.max}}]</span>
+        <Tooltip :text="() => creaturesHandle('恶角')" position="right" boxShadow="0 0 10px #f36e6e">
+          <span class="label">恶角 [{{enemy.specialCreatures.ddim12.loot}} / {{enemy.specialCreatures.ddim12.max}}]</span>
         </Tooltip>
         <span class="value">
-          <template v-if="creaturesActive(21)">Locked</template>
+          <template v-if="creaturesActive(21)">未解锁</template>
           <template v-else>{{ Math.min(enemy.specialCreatures.ddim12.chance, 100).toFixed(2) }}%</template>
         </span>
       </div>
@@ -409,7 +409,7 @@ const getCostShow = (perk) => {
   if(hero.value.selectedDivSkills.includes(14)) return 'Locked';
   if(perk.id == 9 && hero.value.isSingularity && hero.value.singularity >= 3) return 'Locked'; 
 
-  return `Upgrade (${fn(getCost(perk))} mut)`;
+  return `升级（${fn(getCost(perk))} 诱变剂）`;
 };
 
 const filteredPerks = computed(() => {
@@ -443,16 +443,16 @@ function quasarCoreDangerHandle(perk) {
 
   let str = ``;
   if(hero.value.selectedDivSkills.includes(7))
-    str += `<span style='color: #00ffea'>Quasar Radiance</span>
-    <span style='color: gold'>Stardust MULT</span>: ${(divineSkills.value[7].values[0]).toFixed(2)}
+    str += `<span style='color: #00ffea'>类星体辉光</span>
+    <span style='color: gold'>星尘乘数</span>: ${(divineSkills.value[7].values[0]).toFixed(2)}
     
     `;
   
-  str += `<span style='color: red'>Hero Base DMG: ${fn(player.value.attack.final)}</span>
-  <span style='color: lightgreen'>Hero Base HP: ${fn(player.value.stats.final.hp)}</span>
+  str += `<span style='color: red'>英雄基础伤害: ${fn(player.value.attack.final)}</span>
+  <span style='color: lightgreen'>英雄基础生命值: ${fn(player.value.stats.final.hp)}</span>
 
-  <span style='color: red'>Enemy Base DMG: ${fn(villian.value.attack.final)}</span>
-  <span style='color: lightgreen'>Enemy Base HP: ${fn(villian.value.stats.final.hp)}</span>`
+  <span style='color: red'>敌人基础伤害: ${fn(villian.value.attack.final)}</span>
+  <span style='color: lightgreen'>敌人基础生命值: ${fn(villian.value.stats.final.hp)}</span>`
   
 
   return str;
@@ -508,108 +508,108 @@ function stopAutoUpgrade() {
 
 function creaturesHandle(creature){
   switch(creature){
-    case 'Ω-Infinity': 
-          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">60+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(88, 255, 160)">+1 Potential</span></span>`
-    case 'Mirror of the Infinity': 
-          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">65+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(243, 218, 31)">+1 IP</span></span>`
-    case 'The Infinite One': 
-          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">100+</span>, Stage <span style="color:gold">70+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(255, 230, 88)">+1 STAR(ST)</span></span>`
+    case 'Ω-无限': 
+          return `<span style="color:#9cedd2"> 需求：危险 <span style="color:gold">100+</span>，关卡 <span style="color:gold">60+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(88, 255, 160)">+1 潜能</span></span>`
+    case '无限之镜': 
+          return `<span style="color:#9cedd2"> 需求：危险 <span style="color:gold">100+</span>，关卡 <span style="color:gold">65+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(243, 218, 31)">+1 IP</span></span>`
+    case '无限者': 
+          return `<span style="color:#9cedd2"> 需求：危险 <span style="color:gold">100+</span>，关卡 <span style="color:gold">70+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(255, 230, 88)">+1 星辰(ST)</span></span>`
     
-    case 'Twisted Rootspawn': 
-          return `<span style="color:#9cedd2"> Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">120+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(88, 255, 107)">+1 Tree Point(TP)</span></span>`
+    case '扭曲根生者': 
+          return `<span style="color:#9cedd2"> 需求：危险 <span style="color:gold">400+</span>，关卡 <span style="color:gold">120+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(88, 255, 107)">+1 技能树点数(TP)</span></span>`
 
-    case 'Voidpulse Entity':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">140+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(88,176,255)">+1 Space Power(SP)</span><br></span>`
+    case '虚空脉冲实体':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">400+</span>，关卡 <span style="color:gold">140+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(88,176,255)">+1 空间能量(SP)</span><br></span>`
 
-    case 'Fracture Beast':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">600+</span>, Stage <span style="color:gold">135+</span>
-          Dimension: main
-          Reward: <span style="color:violet">+1 Dimension Shard(DS)</span><br></span>`
+    case '裂隙兽':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">600+</span>，关卡 <span style="color:gold">135+</span>
+          维度：主维度
+          奖励： <span style="color:violet">+1 维度碎片(DS)</span><br></span>`
 
-    case 'Clot of Dark Energy':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">400+</span>, Stage <span style="color:gold">120+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(180,88,255)">Enemies of the Singularity are weakened by 1%</span><br></span>`
+    case '暗能凝块':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">400+</span>，关卡 <span style="color:gold">120+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(180,88,255)">奇点敌人削弱 1%</span><br></span>`
 
-    case 'Infinitron Prime':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">600+</span>, Stage <span style="color:gold">145+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(255,215,0)">+0.01 IP MULT</span><br></span>`
+    case '无限机兵主型':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">600+</span>，关卡 <span style="color:gold">145+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(255,215,0)">+0.01 IP MULT</span><br></span>`
 
-    case 'Entropy Reaver':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">700+</span>, Stage <span style="color:gold">150+</span>
-          Dimension: main
-          Reward: <span style="color:rgb(255, 200, 0)">+0.01 Infinity Resistance</span><br></span>`
+    case '熵能掠夺者':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">700+</span>，关卡 <span style="color:gold">150+</span>
+          维度：主维度
+          奖励： <span style="color:rgb(255, 200, 0)">+0.01 无限抗性</span><br></span>`
     
-    case 'Dreadfang':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">1000+</span>, Stage <span style="color:gold">100+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:rgb(255, 200, 0)">+0.0075 Infinity Resistance</span><br></span>`
+    case '惧牙':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">1000+</span>，关卡 <span style="color:gold">100+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:rgb(255, 200, 0)">+0.0075 无限抗性</span><br></span>`
 
-    case 'Voidborn Might':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">1500+</span>, Stage <span style="color:gold">110+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#ff69b4">+0.01 DMG MULT</span><br></span>`
+    case '虚空之力':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">1500+</span>，关卡 <span style="color:gold">110+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#ff69b4">+0.01 伤害乘数</span><br></span>`
 
-    case 'Overseer Prime':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">2000+</span>, Stage <span style="color:gold">120+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#00bfff">+0.01 Max Level MULT</span><br></span>`
+    case '监督者主型':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">2000+</span>，关卡 <span style="color:gold">120+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#00bfff">+0.01 最高等级乘数</span><br></span>`
 
-    case 'Baselurker':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">2500+</span>, Stage <span style="color:gold">130+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#7fff00">+1 Min Level</span><br></span>`
+    case '基底潜伏者':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">2500+</span>，关卡 <span style="color:gold">130+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#7fff00">+1 最低等级</span><br></span>`
 
-    case 'Infinity Bane':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">3000+</span>, Stage <span style="color:gold">140+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#ff4500">+0.05 Stardust MULT</span><br></span>`
+    case '无限灾厄':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">3000+</span>，关卡 <span style="color:gold">140+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#ff4500">+0.05 星尘乘数</span><br></span>`
 
-    case 'Crushdepth':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">3500+</span>, Stage <span style="color:gold">150+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#ba55d3">+1 Dimension Shard (DS)</span><br></span>`
+    case '深压者':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">3500+</span>，关卡 <span style="color:gold">150+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#ba55d3">+1 维度碎片(DS)</span><br></span>`
 
-    case 'Entropy Leech':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">4000+</span>, Stage <span style="color:gold">160+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+1 Potential</span><br></span>`
+    case '熵能水蛭':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">4000+</span>，关卡 <span style="color:gold">160+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+1 潜能</span><br></span>`
     
-    case 'Flameveil':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">4500+</span>, Stage <span style="color:gold">170+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+0.1 CRIT DMG</span><br></span>`
+    case '焰幕':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">4500+</span>，关卡 <span style="color:gold">170+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+0.1 暴击伤害</span><br></span>`
 
-    case 'Bloodhowl':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">5000+</span>, Stage <span style="color:gold">180+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+0.01 Increased Quasar Power</span><br></span>`
+    case '血嚎':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">5000+</span>，关卡 <span style="color:gold">180+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+0.01 类星体之力提升</span><br></span>`
 
-    case 'Tormenthide':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">5500+</span>, Stage <span style="color:gold">190+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+0.01 Void Shards MULT</span><br></span>`
+    case '痛苦皮甲':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">5500+</span>，关卡 <span style="color:gold">190+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+0.01 虚空碎片乘数</span><br></span>`
 
-    case 'Plaguedozer':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">6000+</span>, Stage <span style="color:gold">200+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+0.01 Singularity Shards</span><br></span>`
+    case '疫病碾压者':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">6000+</span>，关卡 <span style="color:gold">200+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+0.01 奇点碎片</span><br></span>`
 
-    case 'Malignhorn':
-          return `<span style="color:#9cedd2">Requirement: Danger <span style="color:gold">6500+</span>, Stage <span style="color:gold">210+</span>
-          Dimension: [Ω VL-χtAR] [31]
-          Reward: <span style="color:#1e90ff">+1 Corruption Shard</span><br></span>`
+    case '恶角':
+          return `<span style="color:#9cedd2">需求：危险 <span style="color:gold">6500+</span>，关卡 <span style="color:gold">210+</span>
+          维度：[Ω VL-χtAR] [31]
+          奖励： <span style="color:#1e90ff">+1 腐化碎片</span><br></span>`
 
 
   }

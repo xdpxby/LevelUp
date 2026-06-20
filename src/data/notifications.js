@@ -8,7 +8,7 @@ export const notifications = [
         ctx.h.stages.current >= 5,
   
       message: {
-        text: "You've reached the first boss encounter. Learn more in Info Section [Combat Mechanics]",
+        text: "你已遭遇第一个 Boss。可在信息区[战斗机制]中了解更多。",
         link: {
           set: "Info",
           info: "Info",
@@ -26,7 +26,7 @@ export const notifications = [
         ctx.h.isAbyss && ctx.h.abyssTier == 0 && ctx.h.stages.current >= 20,
   
       message: {
-        text: "You complete the Abyss [T0]. Click on icon to leave.",
+        text: "你已完成深渊[T0]。点击图标离开。",
       },
 
       cooldown: 2000,
@@ -41,7 +41,7 @@ export const notifications = [
         ctx.h.isAbyss && ctx.h.abyssTier == 1 && ctx.h.stages.current >= 30,
   
       message: {
-        text: "You complete the Abyss [T1]. Click on icon to leave.",
+        text: "你已完成深渊[T1]。点击图标离开。",
       },
 
       cooldown: 2000,
@@ -56,7 +56,7 @@ export const notifications = [
         ctx.h.isAbyss && ctx.h.abyssTier == 2 && ctx.h.stages.current >= 40,
   
       message: {
-        text: "You complete the Abyss [T2]. Click on icon to leave.",
+        text: "你已完成深渊[T2]。点击图标离开。",
       },
 
       cooldown: 2000,
@@ -68,7 +68,7 @@ export const notifications = [
       once: false,
   
       message: {
-        text: "Celestial is appeared",
+        text: "天界生物已出现。",
       },
 
       cooldown: 2000,
@@ -83,7 +83,7 @@ export const notifications = [
         ctx.h.spaceUnlocked,
   
       message: {
-        text: "Your world has been overwhelmed by an unknown entity. You have discovered corruption. Hover over the icon located in the Progression."
+        text: "你的世界已被未知实体侵蚀。你发现了腐化。将鼠标悬停在进度区域的图标上查看说明。"
       }
     },
 
@@ -96,7 +96,7 @@ export const notifications = [
         ctx.h.singularityLevels > 0,
   
       message: {
-        text: "You have harnessed the fundamentals of gravity. You have reached singularity levels. Learn more in the info section [Levels]"
+        text: "你已掌握重力的基础，抵达奇点等级。可在信息区[等级]中了解更多。"
       }
     },
 
@@ -109,7 +109,7 @@ export const notifications = [
         ctx.h.singLeft,
   
       message: {
-        text: "You've left the singularity. There's no need to end it now that it opens. Become stronger and come back to try again."
+        text: "你已离开奇点。既然它已经开启，现在无需结束它。变得更强后再回来尝试。"
       }
     },
 
@@ -122,7 +122,7 @@ export const notifications = [
         ctx.h.singularity >= 2,
   
       message: {
-        text: "Corruption affects the perception of curses. You unlock Resonance. Learn more in the Amulet section."
+        text: "腐化影响了你对诅咒的感知。你解锁了共鸣。可在护符区了解更多。"
       }
     },
 
@@ -135,7 +135,7 @@ export const notifications = [
         ctx.h.tree.freePoints > 0,
   
       message: {
-        text: "You've unlocked Free Tree Points. Learn more in the Tree section."
+        text: "你已解锁免费技能树点数。可在技能树区了解更多。"
       }
     },
 
@@ -148,7 +148,7 @@ export const notifications = [
         ctx.h.infPenalty > 0,
   
       message: {
-        text: "You've unlocked Infinity Resistance. Learn more in the Infinity section."
+        text: "你已解锁无限抗性。可在无限区了解更多。"
       }
     },
 
@@ -161,7 +161,7 @@ export const notifications = [
         ctx.dim[9].infTier >= ctx.dim[9].spInfTier,
   
       message: {
-        text: "You've unlocked Dimension Shards. Hover over the Ascension icon in the Progress section in main dimension"
+        text: "你已解锁维度碎片。请在主维度的进度区域悬停转生图标查看说明。"
       }
     },
 
@@ -174,7 +174,7 @@ export const notifications = [
         ctx.h.mainInfTier >= 20,
   
       message: {
-        text: "You cross the Infinity Line. [D-Infinity] rains down Perditions upon you."
+        text: "你跨越了无限之线。[D-无限]向你降下诸般沉沦。"
       }
     },
 
@@ -187,7 +187,7 @@ export const notifications = [
         ctx.h.singularity >= 8,
   
       message: {
-        text: "You've unlocked Advanced Curse. Learn more in the Amulet section."
+        text: "你已解锁高级诅咒。可在护符区了解更多。"
       }
     },
 
@@ -200,7 +200,7 @@ export const notifications = [
         ctx.h.trueLevel >= 60000 && ctx.h.dId == 'main',
   
       message: {
-        text: "You are under the pressure of Gravity. Reach 70k True Level to gain your first Transcendancy."
+        text: "你正承受重力压迫。达到 7万真实等级可获得第一次超越。"
       }
     },
 
@@ -213,7 +213,7 @@ export const notifications = [
         ctx.h.trueLevel >= 70000 && ctx.h.dId == 'main',
   
       message: {
-        text: "You've reach your first Transcendancy. Learn more in the Progress section."
+        text: "你已获得第一次超越。可在进度区了解更多。"
       }
     },
 
@@ -226,7 +226,7 @@ export const notifications = [
         ctx.h.rebirthPts >= 1e7,
   
       message: {
-        text: "Under the pressure of gravity you've unlocked Black Hole. Find the Black Hole in D-Atlas."
+        text: "在重力压迫下，你解锁了黑洞。可在维度图谱中找到黑洞。"
       }
     },
 
@@ -239,7 +239,7 @@ export const notifications = [
         ctx.dim[13].infTier >= 25 && ctx.dim[22].infTier >= 35 && ctx.h.mainInfTier >= 35,
   
       message: {
-        text: "You have reached the dark substance. By entering it, you have opened a passage to other worlds. You've unlocked the dark dimensions."
+        text: "你已触及暗物质。进入其中后，你打开了通往其他世界的通道，并解锁了黑暗维度。"
       }
     },
 
@@ -252,7 +252,7 @@ export const notifications = [
         ctx.h.mainInfTier >= 50,
   
       message: {
-        text: "By suppressing the power of Infinity, you call upon the mighty force of this world. You've unlocked the Quasar Cores."
+        text: "通过压制无限之力，你唤来了这个世界的强大力量，并解锁了类星体核心。"
       }
     },
 
@@ -265,7 +265,7 @@ export const notifications = [
         ctx.h.mainInfTier >= 60,
   
       message: {
-        text: "[D-Corruption] reveals himself to this world. Corruption becomes more concentrated, tearing the fabric of space. You've unlocked dimensions affected by [D-Corruption]"
+        text: "[D-腐化]向这个世界显现。腐化愈发集中，撕裂空间结构。你已解锁受[D-腐化]影响的维度。"
       }
     },
 
@@ -278,7 +278,7 @@ export const notifications = [
         ctx.h.bhTier >= 4,
   
       message: {
-        text: "Under the influence of gravity, you distort time, creating a temporal rift. You've unlocked Timeline."
+        text: "在重力影响下，你扭曲了时间，创造出时间裂隙，并解锁了时间线。"
       }
     },
 
@@ -291,7 +291,7 @@ export const notifications = [
         ctx.h.bhTier >= 5,
   
       message: {
-        text: "By compressing space to the smallest particle, you create your first singularity shards. Reach Stage 300 in the main dimension to unlock a new Trial."
+        text: "通过将空间压缩到最小粒子，你创造了第一枚奇点碎片。在主维度达到关卡300以解锁新的试炼。"
       }
     },
 
@@ -302,7 +302,7 @@ export const notifications = [
   
   
       message: {
-        text: "You return to your main timeline. You've received the Stone of Law."
+        text: "你回到了主时间线，并获得了法则之石。"
       },
 
       cooldown: 4000,
@@ -315,7 +315,7 @@ export const notifications = [
   
   
       message: {
-        text: "AUTO TIMELINE has returned to the main timeline. You've received the Stone of Law."
+        text: "自动时间线已返回主时间线，并获得了法则之石。"
       },
 
       cooldown: 4000,
@@ -329,7 +329,7 @@ export const notifications = [
         cooldown: 4000,
       
         message: {
-          text: '[Laws]: Inventory almost full.'
+          text: '[法则]：背包即将满。'
         }
       }
   ];

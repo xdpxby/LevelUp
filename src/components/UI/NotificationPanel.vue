@@ -1,9 +1,9 @@
 <template>
     <div v-if="isPanelVisible" class="notification-panel">
         <div class="panel-header">
-            <span>Notifications ({{ hero.notes.msg.length }})</span>
+            <span>通知（{{ hero.notes.msg.length }}）</span>
             <div style="display: flex; gap: 5px">
-                <button class="close-all-btn" @click="clearNotifications">Close All</button>
+                <button class="close-all-btn" @click="clearNotifications">全部关闭</button>
                 <button class="close-all-btn" @click="togglePanel">✕</button>
             </div>
         </div>
