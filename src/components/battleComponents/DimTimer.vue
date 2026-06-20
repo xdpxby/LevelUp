@@ -5,7 +5,7 @@
   <div class="afk-header">
 
     <div class="afk-title">
-      Average Loot
+      {{ tr('Average Loot') }}
     </div>
 
     <button
@@ -18,7 +18,7 @@
   </div>
 
   <div class="afk-row">
-    <span>Exp/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('EXP') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="purple">
       {{ fn(hero.avgLoot.exp.perSec * afkMultiplier) }}
@@ -29,7 +29,7 @@
     class="afk-row"
     v-if="hero.maxStage >= 20 || hero.mainInfTier >= 1"
   >
-    <span>Skill Exp/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Skill EXP') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="yellow">
       {{ fn(hero.avgLoot.skillExp.perSec * afkMultiplier) }}
@@ -40,7 +40,7 @@
     class="afk-row"
     v-if="hero.spCount >= 5"
   >
-    <span>Mutagen/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Mutagen') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="green">
       {{ fn(hero.avgLoot.mutagen.perSec * afkMultiplier) }}
@@ -51,7 +51,7 @@
     class="afk-row"
     v-if="hero.spCount >= 2"
   >
-    <span>Stardust/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Stardust') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="gold">
       {{ fn(hero.avgLoot.stardust.perSec * afkMultiplier) }}
@@ -62,7 +62,7 @@
     class="afk-row"
     v-if="hero.infExpansions.ascensioin"
   >
-    <span>Ascension/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Ascension') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="blue">
       {{ fn(hero.avgResources.ascension.perSec * afkMultiplier) }}
@@ -73,7 +73,7 @@
     class="afk-row"
     v-if="hero.infExpansions.rebirth && hero.singularity < 8"
   >
-    <span>Rebirth/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Rebirth') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="green">
       {{ fn(hero.avgResources.rebirth.perSec * afkMultiplier) }}
@@ -81,7 +81,7 @@
   </div>
 
   <div v-if="!hero.isSingularity" class="afk-row">
-    <span>Kills/{{ hero.settings.afkMode }}:</span>
+    <span>{{ tr('Kills') }}/{{ hero.settings.afkMode }}:</span>
 
     <span class="yellow">
       {{ fn(hero.avgLoot.kills.perSec * afkMultiplier) }}
@@ -91,15 +91,15 @@
   </div>
 
   <div v-if="hero.mainInfTier >= 10" class="info-box">
-    <div class="info-title">Dimension Info</div>
-    <div class="info-line">🌐 Dimension: <span style="color: #f942f9;">{{ curDimension() }}</span></div>
+    <div class="info-title">{{ tr('Dimension Info') }}</div>
+    <div class="info-line">🌐 {{ tr('Dimension:') }} <span style="color: #f942f9;">{{ curDimension() }}</span></div>
     <div class="info-line">
         <span class="label-with-icon">
-            <span class="infinity-glow">∞</span> Tier:
+            <span class="infinity-glow">∞</span> {{ tr('Tier:') }}
         </span>
         <span style="color: gold">{{ curTier() }}</span>
     </div>
-    <div class="info-line">🕐 Time: <span>{{ timeFormat(hero.dTimer) }}</span></div>
+    <div class="info-line">🕐 {{ tr('Time:') }} <span>{{ timeFormat(hero.dTimer) }}</span></div>
   </div>
 </div>
 </template>
@@ -111,6 +111,7 @@ import { useEnemy } from '../../composables/useEnemy.js'
 import { dimensions } from '../../data/dimensions.js';
 import { timelineLevels } from '../../data/timeline.js';
 import { glitchify, fn } from '../../composables/utils/global.js';
+import { tr } from '../../i18n/index.js';
 
 const { hero } = useHero();
 const { enemy } = useEnemy();
@@ -140,12 +141,12 @@ hero.value.settings.afkMode =
 function curDimension(){
   let d = dimensions.value.find(d => d.id === hero.value.dId);
 
-  if(hero.value.dId == 'bh') return `[Black Hole] [${d.idx}]`;
-  if(hero.value.dId == 'advanceBH') return `[Timeline] [${d.idx}]`;
+  if(hero.value.dId == 'bh') return `[${tr('Black Hole')}] [${d.idx}]`;
+  if(hero.value.dId == 'advanceBH') return `[${tr('Timeline')}] [${d.idx}]`;
 
   let name = (hero.value.dId.startsWith('c-')? glitchify(d.name): d.name);
 
-  return d ? `[${name}] [${d.idx}]` : '[Unknown]';
+  return d ? `[${tr(name)}] [${d.idx}]` : `[${tr('Unknown')}]`;
 }
 
 

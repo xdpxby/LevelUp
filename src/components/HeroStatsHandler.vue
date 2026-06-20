@@ -4,23 +4,23 @@
       <span class="tooltip-icon">💢</span>
       <div class="crit-tooltip">
         <div class="crit-tooltip-content">
-          <div v-html="stats(0)"></div>
+          <div v-html="tr(stats(0))"></div>
         </div>
       </div>
     </div>
-    <Tooltip :text="stats(1)">
+    <Tooltip :text="() => tr(stats(1))">
       <span>🔪</span>
     </Tooltip>
-    <Tooltip :text="stats(2)">
+    <Tooltip :text="() => tr(stats(2))">
       <span>❤️</span>
     </Tooltip>
-    <Tooltip :text="stats(3)">
+    <Tooltip :text="() => tr(stats(3))">
       <span>🤺</span>
     </Tooltip>
-    <Tooltip :text="stats(4)">
+    <Tooltip :text="() => tr(stats(4))">
       <span>💀</span>
     </Tooltip>
-    <Tooltip :text="stats(5)">
+    <Tooltip :text="() => tr(stats(5))">
       <span>🥾</span>
     </Tooltip>
   </div>
@@ -33,6 +33,7 @@ import { useHero } from "../composables/useHero.js";
 import { useEnemy } from "../composables/useEnemy.js";
 import { getSvgIconHTML } from '../composables/svgIcon.js';
 import { useBuff } from '../data/buffs.js'
+import { tr } from '../i18n/index.js'
 
 const { hero } = useHero();
 const { enemy } = useEnemy();

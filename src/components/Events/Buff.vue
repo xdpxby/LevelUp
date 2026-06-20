@@ -1,7 +1,7 @@
 <template>
   <div class="buffs-panel">
     <h2 class="buffs-header" @click="hero.eLink = { set: 'Info', info: 'Buffs' }">
-      <span class="info-icon">ℹ️</span> Skills
+      <span class="info-icon">ℹ️</span> {{ tr('Skills') }}
     </h2>
 
     <div class="effects-cards">
@@ -23,7 +23,7 @@
 
     <div class="buff-status">
       <span style="color:#fbbf24">
-        Active: {{ hero.battleContent[hero.battleId].player.buff.activeBuffs.length }} / {{ hero.maxBuffs }}
+        {{ tr('Active') }}: {{ hero.battleContent[hero.battleId].player.buff.activeBuffs.length }} / {{ hero.maxBuffs }}
         <span v-if="hero.battleContent[hero.battleId].player.buff.overflowCount > 0" class="overflow-count">
           [+{{ hero.battleContent[hero.battleId].player.buff.overflowCount }} ]
         </span>
@@ -40,7 +40,7 @@
           :disabled="!layout.unlocked"
         >
           <Tooltip :text="() => layoutUnlocked(index)" boxShadow="0 0 10px orange" position="right">
-            {{ layout.name }}
+            {{ tr(layout.name) }}
           </Tooltip>
         </button>
       </div>
@@ -60,9 +60,9 @@
           @click="toggleBuff(buff.id)"
         >
           <h3 class="buff-name">
-            <strong>{{ buff.name }} [T{{ buff.tier + buff.extraTier }}]</strong>
+            <strong>{{ tr(buff.name) }} [T{{ buff.tier + buff.extraTier }}]</strong>
 
-            <Tooltip :text="() => 'View full Skill details'" maxWidth="125px">
+            <Tooltip :text="() => tr('View full Skill details')" maxWidth="125px">
               <button class="info-btn" @click.stop="openInfo(buff)">
                 ℹ
               </button>
@@ -79,7 +79,7 @@
               v-if="hero.battleContent[hero.battleId].player.buff.overflowBuffs.includes(buff.id)"
               class="buff-overflow-label"
             >
-              OVERFLOW
+              {{ tr('OVERFLOW') }}
             </span>
 
           </h3>
@@ -90,10 +90,10 @@
           <transition name="fade" mode="out-in">
             <div :key="buff.tier" class="buff-description">
               <p>
-                <strong>[T{{ buff.tier }}]: {{ buffDesc(buff, buff.tier - 1) }}</strong>
+                <strong>[T{{ buff.tier }}]: {{ tr(buffDesc(buff, buff.tier - 1)) }}</strong>
               </p>
               <p>
-                [T{{ buff.tier + 1 }}]: {{ buffDesc(buff, buff.tier) }}
+                [T{{ buff.tier + 1 }}]: {{ tr(buffDesc(buff, buff.tier)) }}
               </p>
             </div>
           </transition>
@@ -107,12 +107,12 @@
 
   <div v-if="hero.buff.showLayoutEditor" class="modal-overlay">
     <div class="modal-box">
-      <h3>Edit Layout <span v-if="hero.buff.editLayout" style="color: lightgreen">[Edit buffs...]</span></h3>
+      <h3>{{ tr('Edit Layout') }} <span v-if="hero.buff.editLayout" style="color: lightgreen">{{ tr('[Edit buffs...]') }}</span></h3>
       
       <input
         v-model="hero.buff.layoutNameInput"
         maxlength="15"
-        placeholder="Layout name (max 15 chars)"
+        :placeholder="tr('Layout name (max 15 chars)')"
         @input="validateInput"
       />
       <p class="input-warning" v-if="inputError">{{ inputError }}</p>
@@ -120,7 +120,7 @@
       <div class="modal-actions">
         <button @click="confirmLayoutEdit" :disabled="!!inputError">保存</button>
         <button @click="resetLayoutEdit">重置</button>
-        <button @click="cancelLayoutEdit">Cancel</button>
+        <button @click="cancelLayoutEdit">{{ tr('Cancel') }}</button>
       </div>
     </div>
   </div>
@@ -128,7 +128,7 @@
   <transition name="fade">
     <div v-if="infoBuff" class="buff-info-global" @click.stop>
       <div class="buff-info-header">
-        <h2>{{ infoBuff.name }} {{ infoBuff.awaken? '[Awakened]': '' }}</h2>
+        <h2>{{ tr(infoBuff.name) }} {{ infoBuff.awaken? tr('[Awakened]'): '' }}</h2>
         <button class="close-btn" @click="infoBuff = null">✖</button>
       </div>
 
@@ -141,7 +141,7 @@
           <div class="tier-row">
             <div class="tier-main">
               <span class="tier-badge">T{{ t }}</span>
-              <span class="tier-desc">{{ buffDescByTier(infoBuff, t) }}</span>
+              <span class="tier-desc">{{ tr(buffDescByTier(infoBuff, t)) }}</span>
             </div>
 
             <span 
@@ -162,6 +162,7 @@
 <script setup>
 import { reactive, computed, ref, watchEffect, watch, onMounted, onBeforeUnmount } from 'vue';
 import { useHero } from '../../composables/useHero.js';
+import { tr } from '../../i18n/index.js';
 import { useEnemy } from '../../composables/useEnemy.js';
 import { useBuff } from '../../data/buffs.js';
 import { dimensions } from '../../data/dimensions.js';

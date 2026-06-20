@@ -2,7 +2,7 @@
   <div class="equipment-wrapper">
     <div class="eq-header">
       <h2 class="eq-title" @click="hero.eLink = { set: 'Info', info: 'Equipment' }">
-        <sup style="font-size: 6px"></sup>EQUIPMENT
+        <sup style="font-size: 6px"></sup>{{ tr('Equipment') }}
       </h2>
 
       <div class="effects-cards">
@@ -48,7 +48,7 @@
 
                 <div class="content">
                   <div class="item-name badge-name">
-                    {{ getItem(slot).name }}
+                    {{ tr(getItem(slot).name) }}
                   </div>
 
                   <div class="badge-row">
@@ -103,7 +103,7 @@
           <template v-else>
             <div class="empty-slot locked">
               <div class="lock-icon">🔒</div>
-              <div class="lock-text">Locked</div>
+              <div class="lock-text">{{ tr('Locked') }}</div>
             </div>
           </template>
         </div>
@@ -115,7 +115,7 @@
           <Tooltip :text="() => getForgeTooltipText(selectedType)">
           
             <h3>
-              ⭐Star Forge
+              ⭐{{ tr('Star Forge') }}
               <span>[T{{ hero.forgeTier }}]</span>
             </h3>
             <div class="forge-progress-bar">
@@ -134,7 +134,7 @@
           class="stardust-box"
           @click="hero.eLink = { set: 'Info', info: 'Stats', stat: 'Stardust' }"
         >
-          <span class="stardust-label">✨ Stardust</span>
+          <span class="stardust-label">✨ {{ tr('Stardust') }}</span>
           <span class="stardust-value">{{ getStardust() }}</span>
         </div>
       
@@ -156,7 +156,7 @@
         </div>
 
         <div v-if="showEnhancePanel && hero.spCount >= eqUpsReq[selectedType]" class="enhance-panel">
-          <h2 class="enhance-title">Enhance</h2>
+          <h2 class="enhance-title">{{ tr('Enhance') }}</h2>
 
           <div class="enhance-info">
             <span class="label">等级：</span>
@@ -175,14 +175,14 @@
               @mouseleave="stopForge"
               @click="forgeUpgrade(selectedType)"
             >
-              Enhance ✨{{ getCost(selectedType) }}
+              {{ tr('Enhance') }} ✨{{ getCost(selectedType) }}
             </button>
 
             <Tooltip
               :text="() => 'Spend all your Stardust on your chosen weapon to enhance it to the maximum.'"
             >
               <button class="enhance-btn max-btn" @click="maxEnchance(selectedType)">
-                Max
+                {{ tr('Max') }}
               </button>
             </Tooltip>
           </div>
@@ -192,33 +192,33 @@
           v-if="showAwakenPanel && selectedType != 'spRing'"
           class="awaken-panel"
         >
-          <h2 class="awaken-title">Awaken</h2>
+          <h2 class="awaken-title">{{ tr('Awaken') }}</h2>
 
           <div class="awaken-info">
-            <span class="label">Awaken Tier:</span>
+            <span class="label">{{ tr('Awaken Tier:') }}</span>
             <span class="badge awaken">{{
               hero.awakened[selectedType] || 0
             }}</span>
           </div>
 
           <div class="awaken-info">
-            <span class="label">Required Equipment Tier:</span>
+            <span class="label">{{ tr('Required Equipment Tier:') }}</span>
             <span class="badge tier">T{{ hero.awakenedReq[selectedType] }}</span>
           </div>
 
           <div class="awaken-effects">
             <div class="effect">
-              <span class="effect-label">Increase Base Weapon Drop:</span>
+              <span class="effect-label">{{ tr('Increase Base Weapon Drop:') }}</span>
               <span class="effect-value">{{ awakenBaseDrop(selectedType) }}</span>
             </div>
             <div class="effect">
-              <span class="effect-label">Increase Enhancement Power:</span>
+              <span class="effect-label">{{ tr('Increase Enhancement Power:') }}</span>
               <span class="effect-value">{{
                 awakenEnhacementPower(selectedType)
               }}</span>
             </div>
             <div class="effect">
-              <span class="effect-label">Enhance Cost[/]: </span>
+              <span class="effect-label">{{ tr('Enhance Cost[/]:') }} </span>
               <span class="effect-value">{{
                 awakenEnhacementCost(selectedType)
               }}</span>
@@ -230,7 +230,7 @@
             @click="awakened(selectedType)"
             :disabled="!awakenedTierReq(selectedType)"
           >
-            Awaken ⚡
+            {{ tr('Awaken') }} ⚡
           </button>
         </div>
       </div>
@@ -250,6 +250,7 @@ import { spaceShop } from "../../data/spaceShop.js";
 
 import { fn } from "../../composables/utils/global.js";
 import { useEquipments } from "../../composables/battleUtils/useEquipment.js";
+import { tr } from "../../i18n/index.js";
 
 const { hero } = useHero();
 const { 

@@ -92,7 +92,7 @@
         @click="hero.eLink = { set: 'Info', info: 'Ascension' }"
       >
         <span class="as-label">
-          <sup></sup> Ascension Shards: 
+          <sup></sup> {{ tr('Ascension Shards:') }} 
         </span>
 
         <span class="as-value">
@@ -112,7 +112,7 @@
 
       <div class="d-ascension-shards" v-if="dimensions[9].infTier === dimensions[9].maxInfTier">
           <span class="d-as-label">
-            Dimension Shards [DS]: 
+            {{ tr('Dimension Shards [DS]:') }} 
           </span>
 
           <span class="d-as-value">
@@ -130,11 +130,11 @@
     <div class="perk-container">
       <div class="perks-grid">
         <div class="perk" v-for="perk in filteredPerks" :key="perk.id">
-          <h3>{{ perk.name }}</h3>
-          <p class="perk-description" v-html="getPerkDescription(perk)"></p>
+          <h3>{{ tr(perk.name) }}</h3>
+          <p class="perk-description" v-html="tr(getPerkDescription(perk))"></p>
           <div class="perk-footer">
 
-            <p>Level: {{ perk.level }} / {{ perk.max }}</p>
+            <p>{{ tr('Level') }}: {{ perk.level }} / {{ perk.max }}</p>
 
             <button
 
@@ -168,6 +168,7 @@ import { useHero } from '../../composables/useHero.js';
 import { perks } from '../../data/ascension.js';
 import { computed, ref } from 'vue';
 import { perks as radPerks } from '../../data/radPerks.js';
+import { tr } from '../../i18n/index.js';
 import { perks as treePerks } from '../../data/perks.js';
 import { dimensions } from '../../data/dimensions.js';
 import ascensionIcon from '../../assets/ascension.png';

@@ -15,7 +15,7 @@
               ]"
               @click="toggleFormation(formation.id)"
             >
-              <Tooltip :text="() => formationD(formation.id)">
+              <Tooltip :text="() => tr(formationD(formation.id))">
                 {{ formation.icon }}
               </Tooltip>
             </button>
@@ -88,6 +88,7 @@ import { useStatuses } from "../../composables/UI/useStatuses.js";
 import StatsPanel from "./StatsPanel.vue";
 import { useSpecialStats } from "../../composables/battleUtils/useSpecialStats.js";
 import { useDimensions } from "../../composables/battleUtils/useDimensions.js";
+import { tr } from "../../i18n/index.js";
 
 const { player, villian} = defineProps({
   player: Object,

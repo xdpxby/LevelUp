@@ -22,12 +22,12 @@
       :class="section.class"
       @click="handleLinkClick"
     >
-      <h3 class="info-title">{{ section.title }}</h3>
+      <h3 class="info-title">{{ tr(section.title) }}</h3>
       <p
         v-for="(line, index) in section.content"
         :key="index"
         class="info-line"
-        v-html="line == false? '': line"
+        v-html="line == false? '': tr(line)"
       ></p>
     </div>
 
@@ -90,14 +90,14 @@
           :class="{ hidden: !section.visible, locked: section.locked }"
           @click="unlockLoreSection(section)"
         >
-          <h3 class="lore-title">{{ section.title }}</h3>
+          <h3 class="lore-title">{{ tr(section.title) }}</h3>
 
           <div class="lore-meta">
             <span class="lore-author" v-if="section.author">{{ t('info.meta.from', { author: section.author }) }}</span>
             <span class="lore-location" v-if="section.location"> {{ t('info.meta.location', { location: section.location }) }}</span>
           </div>
 
-          <div v-if="!section.locked" class="lore-content" v-html="section.content.join('<br>')"></div>
+          <div v-if="!section.locked" class="lore-content" v-html="tr(section.content.join('<br>'))"></div>
           <p v-else class="lore-locked">{{ t('info.meta.locked') }}</p>
         </div>
       </div>
@@ -115,7 +115,7 @@
           class="tab-button"
           :class="[{ active: section === activeTab }]"
         >
-          {{ section }}
+          {{ tr(section) }}
         </button>
       </div>
 
@@ -131,7 +131,7 @@
               :class="{ uppercase: item.uppercase }"
               :style="{ color: item.color || '#ccc' }"
             >
-              {{ item.desc }}
+              {{ tr(item.desc) }}
             </span>
             <span class="value">
               {{ typeof item.value === 'function' ? item.value() : item.value }}
@@ -146,6 +146,7 @@
 <script setup>
 import { watchEffect, watch, ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { tr } from '../../i18n/index.js';
 import { useHero } from '../../composables/useHero.js';
 import { useEnemy } from '../../composables/useEnemy.js';
 import { useBuff } from '../../data/buffs.js';

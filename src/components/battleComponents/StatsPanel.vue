@@ -3,23 +3,23 @@
   
       <div v-for="section in statsConfig" :key="section.title">
         <template v-if="isVisible(section.visibleFor)">
-          <h4>{{ section.title }}</h4>
+          <h4>{{ tr(section.title) }}</h4>
   
           <div v-if="section.stats">
             <template v-for="stat in section.stats" :key="stat?.label">
               <div v-if="getValue(stat.get) !== undefined" class="stat-row">
-                <span>{{ stat.label }}</span>
+                <span>{{ tr(stat.label) }}</span>
                 <span>{{ fn(getValue(stat.get)) }}</span>
               </div>
             </template>
           </div>
     
           <div v-if="section.group">
-            <div>{{ section.group.label }}</div>
+            <div>{{ tr(section.group.label) }}</div>
     
             <template  v-for="item in section.group.keys" :key="item.label">
               <div v-if="getValue(item.get) !== undefined" class="stat-row">
-                <span>{{ item.label }}</span>
+                <span>{{ tr(item.label) }}</span>
                 <span>{{ fn(getValue(item.get)) }}</span>
               </div>
             </template>
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import { tr } from '../../i18n/index.js';
 
 const props = defineProps({
   unit: Object,
