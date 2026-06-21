@@ -12,7 +12,7 @@
         <div
           v-for="skill in skillsByTier[tier]"
           :key="skill.id"
-          :class="['d-goal', { selected: hero.selectedDivSkills.includes(skill.id) }]"
+          :class="['d-goal', { selected: selectedSkillIds.has(skill.id) }]"
           @click="toggleSkill(skill.id)"
         >
           <Tooltip :text="() => quasarCoreItemsHandle(skill)" boxShadow="0 0 10px #00ffea" position="right">
@@ -40,6 +40,8 @@ import { tr } from '../../../i18n/index.js';
 import SvgIcon from '../../svgIcon.vue';
 
 const { hero } = useHero();
+
+const selectedSkillIds = computed(() => new Set(hero.value.selectedDivSkills));
 
 function toggleSkill(skillId) {
   if(hero.value.infProgress) return;
@@ -176,13 +178,20 @@ function formatPerkDescription(perk, digits = 2) {
   justify-content: center;
   font-size: clamp(22px, 3vw, 32px);
   cursor: pointer;
-  transition: 0.2s ease;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease,
+    background-color 120ms ease;
   box-shadow: 0 0 6px rgba(0, 255, 234, 0.15);
+  contain: layout paint;
+  transform: translateZ(0);
 }
 
 .d-goal:hover {
   border-color: #90caf9;
   box-shadow: 0 0 12px rgba(144, 202, 249, 0.35);
+  transform: translateY(-1px);
 }
 
 .d-goal.selected {

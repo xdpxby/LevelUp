@@ -54,8 +54,8 @@
           v-for="buff in filterBuffs"
           :key="buff.id"
           :class="{
-                  selected: hero.battleContent[hero.battleId].player.buff.activeBuffs.includes(buff.id),
-                  overflow: hero.battleContent[hero.battleId].player.buff.overflowBuffs.includes(buff.id)
+                  selected: selectedBuffIds.has(buff.id),
+                  overflow: overflowBuffIds.has(buff.id)
                   }"
           @click="toggleBuff(buff.id)"
         >
@@ -69,14 +69,14 @@
             </Tooltip>
 
             <span
-              v-if="getPriority(buff.id)"
+              v-if="buffPriorityMap.get(buff.id)"
               class="buff-priority-label"
             >
-              [P{{ getPriority(buff.id) }}]
+              [P{{ buffPriorityMap.get(buff.id) }}]
             </span>
 
             <span
-              v-if="hero.battleContent[hero.battleId].player.buff.overflowBuffs.includes(buff.id)"
+              v-if="overflowBuffIds.has(buff.id)"
               class="buff-overflow-label"
             >
               {{ tr('OVERFLOW') }}
@@ -209,6 +209,26 @@ function buffInfoByTier(buff, tier) {
 const filterBuffs = computed(() => 
   buffs.value.filter(b => b.active === true)
 )
+
+const selectedBuffIds = computed(() => {
+  const state = hero.value.battleContent[hero.value.battleId].player.buff;
+  return new Set(state.activeBuffs);
+});
+
+const overflowBuffIds = computed(() => {
+  const state = hero.value.battleContent[hero.value.battleId].player.buff;
+  return new Set(state.overflowBuffs);
+});
+
+const buffPriorityMap = computed(() => {
+  if (hero.value.battleId === 'space' && hero.value.dId === 'd-noSpace') {
+    return new Map();
+  }
+
+  const state = hero.value.battleContent[hero.value.battleId].player.buff;
+  const layout = hero.value.buffLayouts[state.selectedLayoutIndex];
+  return new Map((layout?.buffs ?? []).map((id, index) => [id, index + 1]));
+});
 
 
 function buffDesc(buff, tier) {
@@ -362,10 +382,17 @@ getMaxBuffs();
   border-radius: 0.75rem;
   padding: 1rem;
   cursor: pointer;
-  transition: border-color 0.3s ease;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease,
+    background-color 120ms ease;
   height: auto;
   overflow: hidden; 
   box-sizing: border-box; 
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .buff-card:hover {
@@ -384,15 +411,13 @@ getMaxBuffs();
 
 .buff-card.selected {
   border-color: #fbbf24;
-  box-shadow: 0 0 12px rgba(255, 191, 0, 0.6);
-  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 10px rgba(255, 191, 0, 0.55);
   background: linear-gradient(145deg, #2b2b2b, #3b3b3b);
 }
 
 .buff-card.overflow {
   border-color: #ef4444;
-  box-shadow: 0 0 10px rgba(239,68,68,0.5);
-  animation: overflowPulse 1.5s infinite;
+  box-shadow: 0 0 10px rgba(239,68,68,0.45);
   background: linear-gradient(
     135deg,
     rgba(239,68,68,0.15),
@@ -443,31 +468,6 @@ getMaxBuffs();
   line-height: 14px;
 
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8);
-}
-
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 191, 0, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 191, 0, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 191, 0, 0.4);
-  }
-}
-
-@keyframes overflowPulse {
-  0% {
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4)
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8)
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4)
-  }
 }
 
 

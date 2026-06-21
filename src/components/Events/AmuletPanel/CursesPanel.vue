@@ -19,7 +19,7 @@
               },
             ]"
           >
-            [T{{ tIndex + 1 }}] {{ tEffect(tier, curse.id) }} (Essence:
+            [T{{ tIndex + 1 }}] {{ tr(tEffect(tier, curse.id)) }} ({{ tr('Essence') }}:
             {{ tBonusEffect(tier) }})
           </li>
         </template>
@@ -34,6 +34,7 @@ import { computed, ref } from "vue";
 import { cursed as curses } from "../../../data/cursed.js";
 import { useHero } from "../../../composables/useHero.js";
 import { divineSkills } from "../../../data/quasarCore.js";
+import { tr } from "../../../i18n/index.js";
 
 import { fn } from "../../../composables/utils/global.js";
 

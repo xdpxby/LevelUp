@@ -86,6 +86,7 @@ import { useHero } from "../../../composables/useHero.js";
 import { goals } from "../../../data/infGoals.js";
 import { dimensions } from "../../../data/dimensions.js";
 import { fn } from "../../../composables/utils/global.js";
+import { tr } from "../../../i18n/index.js";
 
 import SvgIcon from "../../svgIcon.vue";
 import { useInfinity } from "../../../composables/battleUtils/useInfinity.js";
@@ -550,73 +551,25 @@ const bonuses = computed(() => [
 .goal-level-1.completed {
   background: rgba(255, 215, 0, 0.3);
   color: #222;
-  animation: pulse 2s infinite;
+  box-shadow: 0 0 14px rgba(255, 215, 0, 0.55);
 }
 
 .goal-level-2.completed {
   background: rgba(247, 0, 255, 0.3);
   color: #222;
-  animation: pulseCorrupted 2s infinite;
+  box-shadow: 0 0 14px rgba(255, 0, 234, 0.55);
 }
 
 .goal-level-3.completed {
   background: rgba(0, 255, 234, 0.3);
   color: #222;
-  animation: pulseDivine 2s infinite;
+  box-shadow: 0 0 14px rgba(0, 255, 242, 0.55);
 }
 
 .goal-level-4.completed {
   background: rgba(255, 0, 0, 0.3);
   color: #222;
-  animation: pulseDarkness 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px gold;
-  }
-  50% {
-    box-shadow: 0 0 20px #fff700;
-  }
-  100% {
-    box-shadow: 0 0 10px gold;
-  }
-}
-
-@keyframes pulseCorrupted {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 0, 234, 0.42);
-  }
-  50% {
-    box-shadow: 0 0 20px rgb(255, 0, 234);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 0, 234, 0.36);
-  }
-}
-
-@keyframes pulseDivine {
-  0% {
-    box-shadow: 0 0 10px rgba(0, 255, 242, 0.42);
-  }
-  50% {
-    box-shadow: 0 0 20px rgb(0, 255, 242);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(0, 247, 255, 0.36);
-  }
-}
-
-@keyframes pulseDarkness {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.42);
-  }
-  50% {
-    box-shadow: 0 0 20px rgb(255, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.36);
-  }
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.55);
 }
 
 .infinity-bonuses {

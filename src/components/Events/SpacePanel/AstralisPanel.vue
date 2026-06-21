@@ -1,36 +1,36 @@
 <template>
   <div class="filter-buttons">
     <button :class="{ active: shopFilter === 'All' }" @click="shopFilter = 'All'">
-      All
+      {{ tr('All') }}
     </button>
 
     <button :class="{ active: shopFilter === 'Available' }" @click="shopFilter = 'Available'">
-      Available
+      {{ tr('Available') }}
     </button>
 
     <button :class="{ active: shopFilter === 'Acquired' }" @click="shopFilter = 'Acquired'">
-      Acquired
+      {{ tr('Acquired') }}
     </button>
   </div>
 
   <div class="head-wrapper">
-    <span>Stardust: {{ fn(hero.stardust) }}✨</span><br>
-    <span>Infinity Warden: {{ hero.spsCountMax }}</span>
+    <span>{{ tr('Stardust') }}: {{ fn(hero.stardust) }}✨</span><br>
+    <span>{{ tr('Infinity Warden') }}: {{ hero.spsCountMax }}</span>
   </div>
 
   <div class="shop-grid">
     <div v-for="perk in spaceShopFilter" :key="perk.id" :class="['perk-card', { bought: perk.status }]">
       <h4 class="perk-title">{{ tr(perk.title || 'Unknown Perk') }}</h4>
-      <p class="perk-desc" v-html="highlightKeyword(perk.d, 'Infinity Warden')"></p>
+      <p class="perk-desc" v-html="highlightKeyword(tr(perk.d), tr('Infinity Warden'))"></p>
 
       <button class="perk-button"
         :disabled="spsPerkUnlocked(perk) || perk.status || hero.stardust < astralisPerkCost(perk)"
         @click="buyAstralisPerk(perk)">
         <template v-if="spsPerkUnlocked(perk)">
-          🔒 Req: {{ perk.req }} Infinity Warden
+          🔒 {{ tr('Req') }}: {{ perk.req }} {{ tr('Infinity Warden') }}
         </template>
         <template v-else-if="perk.status">
-          ✅ Acquired
+          ✅ {{ tr('Acquired') }}
         </template>
         <template v-else>
           {{ fn(astralisPerkCost(perk)) }} ✨
@@ -48,6 +48,7 @@ import { spaceShop } from '../../../data/spaceShop.js'
 
 import { fn } from '../../../composables/utils/global.js';
 import { useSpaces } from '../../../composables/battleUtils/useSpace.js';
+import { tr } from '../../../i18n/index.js';
 
 const { hero } = useHero();
 const shopFilter = ref('All');

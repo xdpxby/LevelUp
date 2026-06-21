@@ -2,8 +2,8 @@
   <div
     class="tooltip-wrapper"
     ref="wrapper"
-    @mouseenter="hovered = true"
-    @mouseleave="hovered = false"
+    @mouseenter="showTooltip"
+    @mouseleave="hideTooltip"
   >
     <slot></slot>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue';
+import { ref, computed, nextTick } from 'vue';
 import { tr } from '../i18n/index.js';
 
 const hovered = ref(false);
@@ -73,16 +73,24 @@ const tooltip = ref(null);
 const wrapper = ref(null);
 const showAbove = ref(false);
 
-onMounted(() => {
-  nextTick(() => {
-    if (props.position === 'auto') {
-      const tooltipRect = tooltip.value?.getBoundingClientRect();
-      const wrapperRect = wrapper.value?.getBoundingClientRect();
-      const bottomSpace = window.innerHeight - wrapperRect.bottom;
-      showAbove.value = tooltipRect && bottomSpace < tooltipRect.height + 12;
-    }
-  });
-});
+async function showTooltip() {
+  hovered.value = true;
+
+  if (props.position !== 'auto') return;
+
+  await nextTick();
+
+  const tooltipRect = tooltip.value?.getBoundingClientRect();
+  const wrapperRect = wrapper.value?.getBoundingClientRect();
+  if (!tooltipRect || !wrapperRect) return;
+
+  const bottomSpace = window.innerHeight - wrapperRect.bottom;
+  showAbove.value = bottomSpace < tooltipRect.height + 12;
+}
+
+function hideTooltip() {
+  hovered.value = false;
+}
 
 const tooltipStyle = computed(() => ({
   backgroundColor: props.background,
