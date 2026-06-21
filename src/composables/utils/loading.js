@@ -691,8 +691,7 @@ export function loading(fileInput) {
               data?.hero?.maxTime ?? h.maxTime;
       
             if (now < maxSeenTime) {
-      
-              h.timePenalty = true;
+              h.timePenalty = false;
       
               return 0;
             }
@@ -710,7 +709,7 @@ export function loading(fileInput) {
             const h = hero.value;
 
             if (now < h.maxTime) {
-                h.timePenalty = true;
+                h.timePenalty = false;
 
                 return 0;
             }
