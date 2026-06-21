@@ -28,8 +28,10 @@
       </button>
     </div>
 
-    <StonePanel v-if="tab === 'stones'" />
-    <CursesPanel v-else />
+    <KeepAlive>
+      <StonePanel v-if="tab === 'stones'" />
+      <CursesPanel v-else />
+    </KeepAlive>
   </div>
 </template>
 

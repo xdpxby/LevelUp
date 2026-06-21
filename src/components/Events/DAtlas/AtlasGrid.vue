@@ -3,19 +3,19 @@
   <div class="dimension-grid">
     <div
       v-for="dimension in filteredDimensions"
-      :key="dimension.id"
+      :key="dimension.raw.id"
       class="dimension-card"
-      :style="{ borderColor: getInfColor(dimension) }"
+      :style="{ borderColor: dimension.color }"
     >
       <div
         class="dimension-icon"
-        v-html="dimension.svg || dimension.name"
-        :style="{ color: getInfColor(dimension) }"
+        v-html="dimension.raw.svg || dimension.raw.name"
+        :style="{ color: dimension.color }"
       ></div>
       <div class="dim-description-scroll">
-        <p v-html="tr(dimensionD(dimension))"></p>
+        <p v-html="tr(dimension.description)"></p>
       </div>
-      <button class="enter-button" @click="selectDimension(dimension, hero)">
+      <button class="enter-button" @click="selectDimension(dimension.raw, hero)">
         {{ tr('Enter') }}
       </button>
     </div>
@@ -46,21 +46,33 @@ const {
 const { hero } = useHero();
 const { enemy } = useEnemy();
 
+const dimensionDataById = computed(() =>
+  new Map(dimensions.value.map((dimension) => [dimension.id, dimension]))
+);
+
+const dimensionCards = computed(() =>
+  fDimensions().map((dim) => {
+    const description = dimensionD(dim) || "";
+    return {
+      raw: dim,
+      description,
+      color: getInfColor(dim),
+      status: getInfStatus(dim),
+      searchText: `${dim.id} ${dim.title || ""} ${description}`.toLowerCase(),
+    };
+  })
+);
+
 const filteredDimensions = computed(() =>
-  fDimensions().filter((dim) => {
-    if (hero.value.dimensionStatus == 3 && !dim.id.startsWith('c-')) return false;
+  dimensionCards.value.filter((dim) => {
+    if (hero.value.dimensionStatus == 3 && !dim.raw.id.startsWith('c-')) return false;
     
     const query = hero.value.dims.searchQuery.toLowerCase();
-    const nameMatch =
-      dim.id.toLowerCase().includes(query) ||
-      (dim.title || "").toLowerCase().includes(query);
-    const descMatch = (dimensionD(dim) || "").toLowerCase().includes(query);
-    const matchesSearch = nameMatch || descMatch;
+    const matchesSearch = !query || dim.searchText.includes(query);
 
-    const status = getInfStatus(dim);
     const matchesStatus =
       hero.value.gridFilterStatus === "all" ||
-      hero.value.gridFilterStatus === status;
+      hero.value.gridFilterStatus === dim.status;
 
     return matchesSearch && matchesStatus;
   })
@@ -68,13 +80,7 @@ const filteredDimensions = computed(() =>
 
 function getInfStatus(dim) {
   let id = dim.id;
-  let d = {};
-  for(let ds of dimensions.value){
-    if(ds.id == id){
-      d = ds;
-      break;
-    }
-  }
+  const d = dimensionDataById.value.get(id);
 
   if (d_req(d)) return "blocked";
   const tier = d.infTier ?? 0;

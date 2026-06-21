@@ -9,11 +9,10 @@
 
         <div class="content">
 
-            <div v-if="tab === 'Tree'" class="tree-panel">
-                <VoidTree />
-            </div>
-
-            <VoidTier v-if="tab === 'Void'" />
+            <KeepAlive>
+                <VoidTree v-if="tab === 'Tree'" class="tree-panel" />
+                <VoidTier v-else-if="tab === 'Void'" />
+            </KeepAlive>
 
         </div>
 

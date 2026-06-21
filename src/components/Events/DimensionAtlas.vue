@@ -10,7 +10,7 @@
   
     <AtlasHeader />
     
-    <div v-if="hero.dimDisplayMode === 'map'">
+    <div v-show="hero.dimDisplayMode === 'map'">
       <AtlasEvents />
 
       <svg 
@@ -21,18 +21,15 @@
         @mousemove="onMouseMove"
         >
         <line
-          v-for="link in fLinks"
+          v-for="link in visibleLinks"
           :key="link.id"
-          :x1="getPos(link.from).x"
-          :y1="getPos(link.from).y"
-          :x2="getPos(link.to).x"
-          :y2="getPos(link.to).y"
-          :stroke="(dark_d.includes(link.id) && !d_req(getDimension(link.to))) ? '#f44336' : (!d_req(getDimension(link.to)) ? '#66ffcc' : '#444')"
+          :x1="link.fromPos.x"
+          :y1="link.fromPos.y"
+          :x2="link.toPos.x"
+          :y2="link.toPos.y"
+          :stroke="link.stroke"
           stroke-width="2"
-          :style="{
-            filter: !d_req(getDimension(link.to)) ? 'drop-shadow(0 0 4px #66ffcc)' : 'none',
-            transition: 'stroke 0.3s, filter 0.3s'
-          }"
+          :style="link.style"
         />
 
         <circle
@@ -56,23 +53,23 @@
         />
 
         <g
-          v-for="dimension in fDimensions()"
+          v-for="dimension in visibleDimensions"
           :key="dimension.id"
           @mouseenter="hovered = dimension"
           @mouseleave="hovered = null"
-          @click="selectDimension(dimension, hero)"
+          @click="selectDimension(dimension.raw, hero)"
         >
         <circle
           :cx="dimension.x"
           :cy="dimension.y"
           :r="20"
-          :fill="hero.showProgressionCircles ? getInfColor(getDimension(dimension.id)) : 'transparent'"
+          :fill="hero.showProgressionCircles ? dimension.color : 'transparent'"
           :stroke="hero.showProgressionCircles ? '#aaa' : 'transparent'"
           stroke-width="2"
           pointer-events="visible"
           :style="{
-            filter: hero.showProgressionCircles && !d_req(getDimension(dimension.id))
-              ? 'drop-shadow(0 0 2px ' + getInfColor(getDimension(dimension.id)) + ')'
+            filter: hero.showProgressionCircles && !dimension.blocked
+              ? 'drop-shadow(0 0 2px ' + dimension.color + ')'
               : 'none',
             transition: 'fill 0.3s, filter 0.3s',
           }"
@@ -151,10 +148,12 @@
       </svg>
     </div>
 
-  <AtlasGrid v-if="hero.dimDisplayMode === 'grid'" />
+  <KeepAlive>
+    <AtlasGrid v-if="hero.dimDisplayMode === 'grid'" />
+  </KeepAlive>
 
    <div
-      v-if="hovered && dimensionD(hovered)?.trim() !== ''"
+      v-if="hoveredDescription?.trim()"
       class="tooltip"
       :style="{
         top: tooltip.y + 'px',
@@ -166,7 +165,7 @@
         transformOrigin: 'top left',
         boxShadow: tooltipBoxShadowHandle(hovered),
       }"
-      v-html="tr(dimensionD(hovered))"
+      v-html="tr(hoveredDescription)"
     ></div>
 
 
@@ -287,7 +286,7 @@ const offsetY = 0
 
 
 function getDimension(id) {
-  return d_data.value.find(dim => dim.id === id);
+  return dimensionDataById.value.get(id);
 }
 
 const links = ref([
@@ -485,8 +484,29 @@ const activeLawDimsAll = dimensionsPos.value
 
 
 
-const fLinks = computed(() =>
-  links.value.filter(link => {
+const dimensionDataById = computed(() =>
+  new Map(d_data.value.map((dimension) => [dimension.id, dimension]))
+);
+
+const visibleDimensions = computed(() =>
+  fDimensions().map((dimension) => {
+    const raw = getDimension(dimension.id);
+    const blocked = d_req(raw);
+    return {
+      ...dimension,
+      raw,
+      blocked,
+      color: getInfColor(dimension),
+    };
+  })
+);
+
+const hoveredDescription = computed(() =>
+  hovered.value ? dimensionD(hovered.value) : ""
+);
+
+const visibleLinks = computed(() =>
+  links.value.flatMap(link => {
     const fromDim = dimensionsPos.value.find(d => d.id === link.from);
     const toDim = dimensionsPos.value.find(d => d.id === link.to);
 
@@ -504,7 +524,22 @@ const fLinks = computed(() =>
       false
     );
 
-    return isFromVisible && isToVisible;
+    if (!isFromVisible || !isToVisible) return [];
+
+    const toData = getDimension(link.to);
+    const blocked = d_req(toData);
+    const isDarkLink = dark_d.includes(link.id);
+
+    return [{
+      ...link,
+      fromPos: fromDim,
+      toPos: toDim,
+      stroke: isDarkLink && !blocked ? '#f44336' : (!blocked ? '#66ffcc' : '#444'),
+      style: {
+        filter: !blocked ? 'drop-shadow(0 0 4px #66ffcc)' : 'none',
+        transition: 'stroke 0.3s, filter 0.3s',
+      },
+    }];
   })
 );
 

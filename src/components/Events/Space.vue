@@ -23,18 +23,11 @@
           </Tooltip>
     </div>
 
-    <div v-if="currentTab === 'battle'" class="battle-view">
-      <FightPanel />
-    </div>
-
-    
-    <div v-else-if="currentTab === 'rewards'" class="reward-layout">
-      <SpacePowerPanel />
-    </div>
-  
-    <div v-else-if="currentTab === 'shop' && hero.bhTier >= 3" class="shop-layout">
-      <AstralisPanel />
-    </div>
+    <KeepAlive>
+      <FightPanel v-if="currentTab === 'battle'" class="battle-view" />
+      <SpacePowerPanel v-else-if="currentTab === 'rewards'" class="reward-layout" />
+      <AstralisPanel v-else-if="currentTab === 'shop' && hero.bhTier >= 3" class="shop-layout" />
+    </KeepAlive>
   </div>
 </template>
 

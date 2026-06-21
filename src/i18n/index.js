@@ -87,14 +87,28 @@ function replaceRuntimeWords(value) {
     .join('');
 }
 
+const trCache = new Map();
+const TR_CACHE_LIMIT = 2000;
+
 export function tr(value) {
   if (value === null || value === undefined) return value;
   if (typeof value !== 'string') return value;
   if (!/[A-Za-z]/.test(value)) return value;
 
+  const cached = trCache.get(value);
+  if (cached !== undefined) return cached;
+
   const trimmed = value.trim();
   const exact = getRuntimeMessages().exact?.[trimmed];
-  if (exact) return value.replace(trimmed, exact);
+  const translated = exact
+    ? value.replace(trimmed, exact)
+    : replaceRuntimeWords(replaceRuntimePhrases(value));
 
-  return replaceRuntimeWords(replaceRuntimePhrases(value));
+  if (trCache.size >= TR_CACHE_LIMIT) {
+    trCache.delete(trCache.keys().next().value);
+  }
+
+  trCache.set(value, translated);
+
+  return translated;
 }

@@ -48,17 +48,13 @@
           </Tooltip>
   </div>
 
-  <InfPanel v-if="activeTab === 'infinity'"/>
-
-  <QuasarCore v-if="activeTab === 'divine'"/>
-
-  <div v-if="activeTab === 'milestone'" class="milestone-panel">
-    <Milestone />
-  </div>
-
-  <Laws v-if="activeTab === 'laws'" />
-
-  <Singularity v-if="activeTab === 'sing'" />
+  <KeepAlive>
+    <InfPanel v-if="activeTab === 'infinity'"/>
+    <QuasarCore v-else-if="activeTab === 'divine'"/>
+    <Milestone v-else-if="activeTab === 'milestone'" class="milestone-panel" />
+    <Laws v-else-if="activeTab === 'laws'" />
+    <Singularity v-else-if="activeTab === 'sing'" />
+  </KeepAlive>
 
   
 </template>
