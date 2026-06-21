@@ -166,7 +166,7 @@
         transformOrigin: 'top left',
         boxShadow: tooltipBoxShadowHandle(hovered),
       }"
-      v-html="dimensionD(hovered)"
+      v-html="tr(dimensionD(hovered))"
     ></div>
 
 

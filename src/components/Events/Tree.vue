@@ -81,8 +81,8 @@
           :class="perk.currentStatus"
           :style="nodeProgressStyle(perk)"
           >
-          <p class="perk-text">{{ descNodes(perk) }}</p>
-          <p class="perk-effect">{{ descEffects(perk) }}</p>
+          <p class="perk-text">{{ tr(descNodes(perk)) }}</p>
+          <p class="perk-effect">{{ tr(descEffects(perk)) }}</p>
         </div>
 
 

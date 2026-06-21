@@ -12,6 +12,7 @@ import { cursed } from "../../data/cursed.js";
 import { amulets } from "../../data/amulets.js";
 
 import { fn } from "../utils/global.js";
+import { tr } from "../../i18n/index.js";
 
 import { useDimensions } from "./useDimensions.js";
 
@@ -811,17 +812,17 @@ export const useTrees = () => {
         switch (id) {
       
             case 'T': {
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color:#7cff9e;">
                     <strong style="color:#aaffc3;">Tree</strong><br>
                     Tree Tier increases the maximum level of nodes and unlocks new nodes.<br>
                     Tree Points <span style="color:#5cff7a;">[TP]</span> are granted by leveling up.
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
               
               case 'A': {
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color:#3fffd9;">
                     <strong style="color:#6effe8;">AUTO-Tree</strong><br>
                     Click to enable/disable automatic node upgrades.<br>
@@ -829,11 +830,11 @@ export const useTrees = () => {
                       ${hero.value.tree.auto ? 'ON' : 'OFF'}
                     </strong>
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
               
               case 'F': {
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color: #7cff9e;">
                     <strong style="color: #aaffc3;">Free Tree Points</strong><br>
                     Free Tree Points can be used like regular Tree Points. 
@@ -841,17 +842,17 @@ export const useTrees = () => {
 
                     FTP: <b style="color: gold">${treePointsHandle()}<b>
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
               
               case 'N': {
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color:#ffd966;">
                     <strong style="color:#ffea9a;">Infinity Nodes</strong><br>
                     No upgrade limit. Cost increases per level.<br>
                     Each node has its own threshold, overcoming which allows you to move to a higher tier and increase the base power of the nodes.
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
 
               case 'C': {
@@ -866,37 +867,37 @@ export const useTrees = () => {
                   text += 'Total Multiplier: <b>' + m.total.toFixed(2) + '</b>' +
                   '</span>'
                 
-                return text;
+                return tr(text);
               }
               
               case 'R': { 
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color:#ff6b6b;">
                     <strong style="color:#ff4d4d;">Reset</strong><br>
                     Click to refund all <span style="color:#7cff9e;">[TP]</span> and reset all node levels.
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
               
               case 'Z': { 
                 countRadNodes();
 
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color:#9bff3d;">
                     <strong style="color:#b6ff00;">Radiation Node</strong><br>
                     Mutates node behavior with unique properties while replacing the base node<br>
                     Limited amount. <strong>[${hero.value.tree.maxRadNodes}]</strong>
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
 
               case 'i': { 
-                return `
+                return tr(`
                   <span style="font-size:0.95em; font-style:italic; color: yellow;">
                     <strong style="color: gold;">Info</strong><br>
                     Click to see additional info.
                   </span>
-                `.replace(/\n\s*/g, '');
+                `.replace(/\n\s*/g, ''));
               }
               
         }

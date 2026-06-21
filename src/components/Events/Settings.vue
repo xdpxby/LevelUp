@@ -86,7 +86,7 @@
             <div class="setting-left">
               <span class="setting-name">
                 <Tooltip :text="() => tooltipText(4)" position="right">
-                  {{ tr('Notafications') }}
+                  {{ tr('Notifications') }}
                 </Tooltip>
               </span>
             </div>

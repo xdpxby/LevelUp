@@ -13,7 +13,7 @@
         :style="{ color: getInfColor(dimension) }"
       ></div>
       <div class="dim-description-scroll">
-        <p v-html="dimensionD(dimension)"></p>
+        <p v-html="tr(dimensionD(dimension))"></p>
       </div>
       <button class="enter-button" @click="selectDimension(dimension, hero)">
         {{ tr('Enter') }}

@@ -605,7 +605,7 @@ const v = villian.value;
 
 const statSections = [
   {
-    title: '等级',
+    title: 'Level',
     id: 'only level',
     content: [
       { desc: 'Min Level', value: '', color: 'lightgreen',  uppercase: true, req: () => hero.value.minLevel > 0 },
@@ -1354,7 +1354,7 @@ const statSections = [
     ],
   },
   {
-    title: '经验值',
+    title: 'EXP',
     id: 'only exp',
     content: [
       { desc: '经验值', value: '', color: 'purple',  uppercase: true, req: () => true },
@@ -1571,7 +1571,7 @@ const statSections = [
     ],
   },
   {
-    title: '装备',
+    title: 'Equipment',
     content: [
       { desc: '装备掉率', value: '', color: 'orange',  uppercase: true, },
       {
@@ -1719,7 +1719,7 @@ const statSections = [
     ],
   },
   {
-    title: '转生',
+    title: 'Ascension',
     content: [
       { desc: '转生碎片', value: '', color: 'lightblue',  uppercase: true, },
       {
@@ -1832,7 +1832,7 @@ const statSections = [
     ],
   },
   {
-    title: '重生',
+    title: 'Rebirth',
     content: [
       { desc: '重生', value: '', color: 'lightgreen',  uppercase: true, },
       {
@@ -1990,7 +1990,7 @@ const statSections = [
     ],
   },
   {
-    title: '诅咒',
+    title: 'Curse',
     id: 'only curse',
     content: [
       { desc: 'Essence', value: '', color: 'red',  uppercase: true, },
@@ -2152,7 +2152,7 @@ const statSections = [
     ],
   },
   {
-    title: '星尘',
+    title: 'Stardust',
     id: 'only stardust',
     content: [
       { desc: '星尘', value: '', color: 'gold',  uppercase: true, },
@@ -2396,7 +2396,7 @@ const statSections = [
     ],
   },
   {
-    title: '潜能',
+    title: 'Potential',
     id: 'only potential',
     content: [
       { desc: '潜能', value: '', color: 'yellow',  uppercase: true, req: () => true },
@@ -2483,7 +2483,7 @@ const statSections = [
     ],
   },
   {
-    title: '危险',
+    title: 'Danger',
     id: 'only danger',
     content: [
       { desc: '危险上限', value: '', color: 'gold',  uppercase: true, req: () => true },
@@ -2630,7 +2630,7 @@ const statSections = [
     ],
   },
   {
-    title: '伤害',
+    title: 'Damage',
     id: 'only damage',
     content: [
      { desc: '伤害', value: '', color: 'red',  uppercase: true, },
@@ -3034,7 +3034,7 @@ const statSections = [
     ],
   },
   {
-    title: '生命值',
+    title: 'HP',
     content: [
       { desc: '生命值', value: '', color: 'lightgreen',  uppercase: true, },
       {
@@ -3141,7 +3141,7 @@ const statSections = [
     ],
   },
   {
-    title: '防御',
+    title: 'DEF',
     content: [
       { desc: '防御', value: '', color: 'yellow',  uppercase: true, },
       {
@@ -4274,7 +4274,7 @@ const statSections = [
     ]
   },
   {
-    title: '灵魂',
+    title: 'Soul',
     id: 'soul',
     content: [
       { desc: 'Soul Appearance Chance', value: '', color: 'gold',  uppercase: true, },
@@ -4352,7 +4352,7 @@ const statSections = [
     ]
   },
   {
-    title: '超杀',
+    title: 'Overkill',
     id: 'overkill',
     content: [
       { desc: '超杀', value: '', color: 'gold',  uppercase: true, },

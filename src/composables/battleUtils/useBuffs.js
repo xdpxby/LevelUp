@@ -15,6 +15,7 @@ import { useDimensions } from "./useDimensions.js";
 
 import { addLog} from '../logService.js';
 import { fn } from "../utils/global.js";
+import { tr } from "../../i18n/index.js";
 
 import { useAscensions } from "./useAscension.js";
 import { usePlayer } from "../utils/playerSetup.js";
@@ -39,7 +40,7 @@ export const useBuffs = () => {
         if(player.id != 'main') return "";
 
         if (index === player.value.buff.selectedLayoutIndex)
-          return "Click to open the Editor";
+          return tr("Click to open the Editor");
 
         return "";
     }
@@ -406,7 +407,7 @@ export const useBuffs = () => {
       switch (id) {
     
         case 'O': {
-          return (
+          return tr(
             '<span style="font-size:0.95em; font-style:italic; color: #d96128;">' +
             '<strong style="color:#d96128;">Overflow</strong><br>' +
             'Overflow means the skill is queued. It will become active once a slot is free.' +
@@ -416,7 +417,7 @@ export const useBuffs = () => {
         }
     
         case 'P': {
-          return (
+          return tr(
             '<span style="font-size:0.95em; font-style:italic; color: #fbbf24;">' +
             '<strong style="color: #fbbf24;">Priority</strong><br>' +
             'Skills are applied based on priority — lower-priority skills enter the queue first' +
@@ -428,7 +429,7 @@ export const useBuffs = () => {
         }
 
         case 'S': {
-          return (
+          return tr(
             '<span style="font-size:0.95em; font-style:italic; color: #fbbf24;">' +
             '<strong style="color: #fbbf24;">Skill EXP</strong><br>' +
             'Skill EXP is awarded at Stage 20.' +
@@ -437,7 +438,7 @@ export const useBuffs = () => {
         }
 
         case 'E': {
-          return (
+          return tr(
             '<span style="font-size:0.95em; font-style:italic; color: orange;">' +
             '<strong style="color: orange;">Edit Menu</strong><br>' +
             `Click on the selected layout to open the Edit menu. 
@@ -448,12 +449,12 @@ export const useBuffs = () => {
         }
 
         case 'i': { 
-          return `
+          return tr(`
             <span style="font-size:0.95em; font-style:italic; color: yellow;">
               <strong style="color: gold;">Info</strong><br>
               Click to see additional info.
             </span>
-          `.replace(/\n\s*/g, '');
+          `.replace(/\n\s*/g, ''));
         }
     
       
