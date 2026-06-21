@@ -89,11 +89,11 @@
                   :key="i"
                 >
                   <span :class="getStatClass(stat)">
-                    {{ stat.split(":")[0] }}:
+                    {{ tr(stat.split(":")[0]) }}:
                   </span>
 
                   <span class="stat-value">
-                    {{ stat.split(":")[1] }}
+                    {{ tr(stat.split(":")[1]) }}
                   </span>
                 </span>
               </div>

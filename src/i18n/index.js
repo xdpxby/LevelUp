@@ -30,6 +30,10 @@ function getRuntimeMessages() {
   return i18n.global.getLocaleMessage(locale)?.runtime ?? {};
 }
 
+function normalizeWhitespace(value) {
+  return String(value).replace(/\s+/g, ' ').trim();
+}
+
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -99,7 +103,8 @@ export function tr(value) {
   if (cached !== undefined) return cached;
 
   const trimmed = value.trim();
-  const exact = getRuntimeMessages().exact?.[trimmed];
+  const exactMessages = getRuntimeMessages().exact ?? {};
+  const exact = exactMessages[trimmed] ?? exactMessages[normalizeWhitespace(trimmed)];
   const translated = exact
     ? value.replace(trimmed, exact)
     : replaceRuntimeWords(replaceRuntimePhrases(value));
