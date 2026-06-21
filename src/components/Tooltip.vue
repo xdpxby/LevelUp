@@ -66,7 +66,11 @@ const computedText = computed(() => {
       ? props.text()
       : props.text;
 
-  return text?.trim() ? tr(text) : null;
+  if (text === null || text === undefined) return null;
+
+  const normalizedText = String(text);
+
+  return normalizedText.trim() ? tr(normalizedText) : null;
 });
 
 const tooltip = ref(null);
