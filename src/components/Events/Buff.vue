@@ -62,7 +62,7 @@
           <h3 class="buff-name">
             <strong>{{ tr(buff.name) }} [T{{ buff.tier + buff.extraTier }}]</strong>
 
-            <Tooltip :text="() => tr('View full Skill details')" maxWidth="125px">
+            <Tooltip :text="() => tr('View full Skill details')" maxWidth="125px" position="top">
               <button class="info-btn" @click.stop="openInfo(buff)">
                 ℹ
               </button>
@@ -382,17 +382,10 @@ getMaxBuffs();
   border-radius: 0.75rem;
   padding: 1rem;
   cursor: pointer;
-  transition:
-    border-color 120ms ease,
-    box-shadow 120ms ease,
-    transform 120ms ease,
-    background-color 120ms ease;
+  transition: border-color 0.3s ease;
   height: auto;
   overflow: hidden; 
   box-sizing: border-box; 
-  contain: layout paint;
-  transform: translateZ(0);
-  will-change: transform;
 }
 
 .buff-card:hover {
@@ -411,13 +404,15 @@ getMaxBuffs();
 
 .buff-card.selected {
   border-color: #fbbf24;
-  box-shadow: 0 0 10px rgba(255, 191, 0, 0.55);
+  box-shadow: 0 0 12px rgba(255, 191, 0, 0.6);
+  animation: pulse 1.5s infinite;
   background: linear-gradient(145deg, #2b2b2b, #3b3b3b);
 }
 
 .buff-card.overflow {
   border-color: #ef4444;
-  box-shadow: 0 0 10px rgba(239,68,68,0.45);
+  box-shadow: 0 0 10px rgba(239,68,68,0.5);
+  animation: overflowPulse 1.5s infinite;
   background: linear-gradient(
     135deg,
     rgba(239,68,68,0.15),
@@ -468,6 +463,31 @@ getMaxBuffs();
   line-height: 14px;
 
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 191, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 191, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 191, 0, 0.4);
+  }
+}
+
+@keyframes overflowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4)
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8)
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4)
+  }
 }
 
 
