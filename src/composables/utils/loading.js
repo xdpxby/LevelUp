@@ -659,6 +659,12 @@ export function loading(fileInput) {
         handleAFKPanels();
     }
 
+    function clampAFKSeconds(value) {
+        if (!Number.isFinite(value)) return 0;
+
+        return Math.max(0, Math.floor(value));
+    }
+
     function getAFKSeconds(mode, data) {
 
         const h = hero.value;
@@ -671,7 +677,7 @@ export function loading(fileInput) {
       
           case 'stored': {
 
-            return h.settings.storedTimeUsed;
+            return clampAFKSeconds(h.settings.storedTimeUsed);
           }
       
           case 'offline': {
@@ -692,7 +698,7 @@ export function loading(fileInput) {
             }
       
             const diff =
-              Math.floor((now - savedTime) / 1000);
+              clampAFKSeconds((now - savedTime) / 1000);
       
             
       
@@ -703,18 +709,16 @@ export function loading(fileInput) {
             const now = Date.now();
             const h = hero.value;
 
-            const diff =
-                Math.floor(
-                (now - h.startAfkTime) / 1000
-                );
-            
-            h.maxTime = Math.max(h.maxTime, now);
-
-            if (now - h.maxTime < 0) {
+            if (now < h.maxTime) {
                 h.timePenalty = true;
 
                 return 0;
             }
+
+            const diff =
+                clampAFKSeconds((now - h.startAfkTime) / 1000);
+
+            h.maxTime = Math.max(h.maxTime, now);
 
             return Math.min(diff, MAX_AFK);
 
@@ -730,7 +734,7 @@ export function loading(fileInput) {
         const h = hero.value;
       
         const seconds =
-          getAFKSeconds(mode, data);
+          clampAFKSeconds(getAFKSeconds(mode, data));
       
         h.afkTime = seconds;
       
@@ -796,12 +800,26 @@ export function loading(fileInput) {
           rebirth: hero.value.avgResources.rebirth.perSec,
         };
     }
+
+    const emptyAFKReward = () => ({
+        exp: 0,
+        skillExp: 0,
+        stardust: 0,
+        mutagen: 0,
+        ascension: 0,
+        rebirth: 0,
+        kills: 0,
+        soul: 1,
+        voidShards: 0,
+        timeline: 0,
+    });
     
     const afkReward = () => {
         if (hero.value.settings.afkStoredTime && hero.value.settings.storedTimeUsed == 0) return;
 
         const h = hero.value;
-        const t = h.afkTime;
+        const t = clampAFKSeconds(h.afkTime);
+        if (t <= 0) return emptyAFKReward();
 
         const s = h.afkSnapshot;
 
@@ -833,16 +851,18 @@ export function loading(fileInput) {
         if (hero.value.settings.storedTimeUsed > 0) return;
 
         const AFK_MAX = 86400 / 2;
+        const t = clampAFKSeconds(hero.value.afkTime);
 
         hero.value.settings.storedTime = Math.min(hero.value.settings.storedTime + 
-            hero.value.afkTime / 2, AFK_MAX)
+            t / 2, AFK_MAX)
     }
 
     const afkLootReward = () => {
         if (hero.value.settings.afkStoredTime && hero.value.settings.storedTimeUsed <= 0) return;
 
         const h = hero.value;
-        const t = h.afkTime;
+        const t = clampAFKSeconds(h.afkTime);
+        if (t <= 0) return;
 
         const s = h.afkSnapshot;
 
@@ -942,12 +962,20 @@ export function loading(fileInput) {
       };
 
     function processAFKCountdown(currentTime, afkTime, getTimer) {
-        let time = currentTime - afkTime;
+        let time = currentTime - clampAFKSeconds(afkTime);
         let count = 0;
       
         while (time <= 0) {
+          const interval = getTimer();
+          if (!Number.isFinite(interval) || interval <= 0) {
+            return {
+              count,
+              time: currentTime
+            };
+          }
+
           count++;
-          time += getTimer();
+          time += interval;
         }
       
         return {

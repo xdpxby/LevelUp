@@ -15,7 +15,7 @@
           :class="['d-goal', { selected: selectedSkillIds.has(skill.id) }]"
           @click="toggleSkill(skill.id)"
         >
-          <Tooltip :text="() => quasarCoreItemsHandle(skill)" boxShadow="0 0 10px #00ffea" position="right">
+          <Tooltip class="core-tooltip" :text="() => quasarCoreItemsHandle(skill)" boxShadow="0 0 10px #00ffea" position="right">
             <span v-html="skill.icon"></span>
           </Tooltip>
         </div>
@@ -184,14 +184,25 @@ function formatPerkDescription(perk, digits = 2) {
     transform 120ms ease,
     background-color 120ms ease;
   box-shadow: 0 0 6px rgba(0, 255, 234, 0.15);
-  contain: layout paint;
+  contain: layout;
+  overflow: visible;
+  position: relative;
   transform: translateZ(0);
+}
+
+.core-tooltip {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .d-goal:hover {
   border-color: #90caf9;
   box-shadow: 0 0 12px rgba(144, 202, 249, 0.35);
   transform: translateY(-1px);
+  z-index: 2;
 }
 
 .d-goal.selected {
