@@ -9,6 +9,7 @@ import { useDimensions } from "../useDimensions.js";
 import { useTimeline } from "./useTimeline.js";
 import { usePlayer } from "../../utils/playerSetup.js";
 import { useVoid } from "./useVoid.js";
+import { tr } from "../../../i18n/index.js";
 
 
 export const useNormalDimension = () => {
@@ -37,7 +38,7 @@ export const useNormalDimension = () => {
             color: #ffffff;
             text-shadow: 0 0 4px rgba(0,0,0,0.45);
             ">
-            Dimension: ${d.name} [${d.idx}]
+            ${tr('Dimension')}: ${d.name} [${d.idx}]
             </div>
         `;
         
@@ -82,14 +83,14 @@ export const useNormalDimension = () => {
                 letter-spacing: 0.5px;
                 margin-bottom: 4px;
               ">
-                Special Reward
+                ${tr('Special Reward')}
               </div>
               <div style="
                 font-size: 14px;
                 font-weight: 600;
                 color: #00606b;
               ">
-                ${d.sp}
+                ${tr(d.sp)}
               </div>
             </div>
           `;
@@ -130,10 +131,10 @@ export const useNormalDimension = () => {
       
           case "survival-2":
             desc = `
-              Max stage: <span style="color:#00a8ff;font-weight:700">
+              最高关卡：<span style="color:#00a8ff;font-weight:700">
                 ${hero.value.dims.survival.stage}
               </span><br>
-              Rune of Live is active until Level 
+              生命符文生效至等级
               <span style="color:#00a8ff;font-weight:700">
                 ${Math.floor(getDimReward(21).level)}
               </span>
@@ -166,14 +167,14 @@ export const useNormalDimension = () => {
               letter-spacing: 0.5px;
               margin-bottom: 4px;
             ">
-              ${title}
+              ${tr(title)}
             </div>
             <div style="
               font-size: 14px;
               font-weight: 600;
               color: ${baseColor};
             ">
-              ${desc}
+              ${tr(desc)}
             </div>
           </div>
         `;
@@ -252,19 +253,18 @@ export const useNormalDimension = () => {
             desc = main_dim_des_handle();
             break;
           case "hard": 
-            desc = `Enter the dimension where curses are [T5] and they are permanent. 
-            You can't get Essense from curses. Abyss is locked.
-            Reach Stage <span style="color:#00a8ff;font-weight:700">
-
+            desc = `进入诅咒固定为[T5]且永久存在的维度。
+            你无法从诅咒获得精华，深渊被锁定。
+            达到关卡 <span style="color:#00a8ff;font-weight:700">
             ${100 + 5 * (d.infTier - 20)}
-            </span> to be able to advance to the next Infinity Trial.
-             You start with Infinity [T20].`;
+            </span> 后，才能推进到下一层无限试炼。
+            你以无限[T20]开始。`;
             break;
           case "overstage":
-            desc = `Enter the Dimension where you start from Stage 
+            desc = `进入从关卡
             <span style="color:#00a8ff;font-weight:700">
             ${100 + 10 * (d.infTier - 20)}
-            </span>.`;
+            </span> 开始的维度。`;
             break;
           case "dimMerge":
             desc = (hero.value.dims.corrShards >= 20? merge_dim_des_handle(): corr_dim_des_handle()); 
@@ -285,7 +285,7 @@ export const useNormalDimension = () => {
             line-height: 1.3;
             border: 1px solid rgba(255,255,255,0.12);
           ">
-            ${desc}
+            ${tr(desc)}
           </div>
         `;
     }
@@ -302,7 +302,7 @@ export const useNormalDimension = () => {
               margin-bottom: 10px;
               line-height: 1.25;
             ">
-              ${text}
+              ${tr(text)}
             </div>
           `;
     }
@@ -321,17 +321,17 @@ export const useNormalDimension = () => {
               line-height: 1.35;
               font-size: 14px;
             ">
-              ${text}
+              ${tr(text)}
             </div>
           `;
         }
       
         let str = "";
-        str += dimCard("The Infinity Trial is completed automatically in dimensions");
-        str += dimCard("Abyssal Covenant – fulfill the Abyssal requirements, and the Abyss will be completed automatically. Only works in other dimensions.");
-        str += dimCard("The Influence of the Infinity Expansions extends to all dimensions.");
-        str += dimCard("Get a reward for each Infinity trial you complete in the dimension");
-        str += dimCard("A special reward is given when you complete all Infinity trials in the dimension.");
+        str += dimCard("维度中的无限试炼会自动完成。");
+        str += dimCard("深渊契约：满足深渊需求后，深渊会自动完成。仅在其他维度中生效。");
+        str += dimCard("无限扩展的影响会延伸到所有维度。");
+        str += dimCard("每完成该维度的一层无限试炼都会获得奖励。");
+        str += dimCard("完成该维度全部无限试炼后会获得特殊奖励。");
       
         return str;
     }
@@ -339,44 +339,44 @@ export const useNormalDimension = () => {
     function corr_dim_des_handle () {
       let d = hero.value.dims;
 
-      let text = ` Travel through all dimensions using <span style="color:#cc66ff; font-weight:600">Corruption Shards</span> to unlock
-      <span style="color:#b6ff00; font-weight:700">Dimensional Mergence</span>.<br><br>
-      <span style="color:#cc66ff"> Corruption Shards: <strong>${d.corrShards} / 20</strong></span><br><br>
+      let text = `使用<span style="color:#cc66ff; font-weight:600">腐化碎片</span>穿越所有维度，以解锁
+      <span style="color:#b6ff00; font-weight:700">维度融合</span>。<br><br>
+      <span style="color:#cc66ff">腐化碎片：<strong>${d.corrShards} / 20</strong></span><br><br>
 
-      <span style="color:#b726ff; font-weight:bold">[D-Corruption]</span> exerts his power over this world by twisting <span style="color:#cc66ff">corruption</span>.
-      Each <span style="color: #cc66ff">Corruption Shard</span> increases the <span style="color:gold">Infinity Cap</span> in the main dimension, but also strengthens the
-      <span style="color:#cc66ff">Corruption Influence</span>.<br><br>
+      <span style="color:#b726ff; font-weight:bold">[D-Corruption]</span>正在扭曲<span style="color:#cc66ff">腐化</span>，将力量施加于这个世界。
+      每个<span style="color: #cc66ff">腐化碎片</span>都会提高主维度的<span style="color:gold">无限上限</span>，但也会增强
+      <span style="color:#cc66ff">腐化影响</span>。<br><br>
 
-      <span style="color:gold"> +2 to Infinity Cap <strong>[${2 * d.corrShards}]</strong></span><br>
-      <span style="color:#cc66ff">+1% Corruption Influence <strong>[${d.corrShards}%]</strong></span><br><br>
+      <span style="color:gold">无限上限 +2 <strong>[${2 * d.corrShards}]</strong></span><br>
+      <span style="color:#cc66ff">腐化影响 +1% <strong>[${d.corrShards}%]</strong></span><br><br>
 
-      Reach <span style="color: gold; font-weight:700">[T${60 + 2 * d.corrShards}]</span>
-      in the main dimension to unlock the next <span style="color:#cc66ff">Corrupted Dimension</span>.`
+      在主维度达到<span style="color: gold; font-weight:700">[T${60 + 2 * d.corrShards}]</span>
+      以解锁下一个<span style="color:#cc66ff">腐化维度</span>。`
 
       return text;
     }
 
     function merge_dim_des_handle () {
-      let text = `By combining the power of all dimensions, you created a crack in the world that leads into the <span style="color: #b6ff00"><b>Void</b></span>, where its own laws.<br>
-      Upon entering the <span style="color: #b6ff00"><b>Void</b></span>, each completed stage will increase the demands on all aspects. The <span style="color: #b6ff00"><b>Void</b></span> is directly connected to other <span style="color: cyan"><b>[D-Rulers]</b></span>, so each completed stage 
-      also increases <span style="color: #cc66ff"><b>Corruption Influence</b></span> and <span style="color: gold"><b>Infinity Penalty</b></span><br> 
-      As you progress through stages, you absorb <span style="color: #b6ff00"><b>Void Shards</b></span>, which accumulate and can be consumed every 8 hours.<br><br>
-      <span style="color: #b6ff00"><b>Objective: Find the [D-Eternity] to learn more information about the [D-Rulers].</b></span><br><br>
+      let text = `汇聚所有维度的力量后，你在世界中撕开了一道通往<span style="color: #b6ff00"><b>虚空</b></span>的裂隙，那里自有法则。<br>
+      进入<span style="color: #b6ff00"><b>虚空</b></span>后，每完成一个关卡都会提高各方面需求。<span style="color: #b6ff00"><b>虚空</b></span>与其他<span style="color: cyan"><b>[D-Rulers]</b></span>直接相连，所以每完成一个关卡
+      也会提高<span style="color: #cc66ff"><b>腐化影响</b></span>和<span style="color: gold"><b>无限惩罚</b></span>。<br>
+      推进关卡时，你会吸收<span style="color: #b6ff00"><b>虚空碎片</b></span>。它们会逐渐累积，并且每8小时可以消耗一次。<br><br>
+      <span style="color: #b6ff00"><b>目标：找到[D-Eternity]，了解更多关于[D-Rulers]的信息。</b></span><br><br>
       
-      Max Stage: <span style="color: #b6ff00"><b>${hero.value.void.stage}</b></span><br>
-      <span style="color: #b6ff00"><b>Accumulated Void Shards: ${fn(voidShardsDrop())}</b></span><br>
-      Remained Time to consume Void Shards: <span style="color: #b6ff00"><b>${timeFormat(hero.value.void.time)}</b></span><br>`;
+      最高关卡：<span style="color: #b6ff00"><b>${hero.value.void.stage}</b></span><br>
+      <span style="color: #b6ff00"><b>已累积虚空碎片：${fn(voidShardsDrop())}</b></span><br>
+      距离消耗虚空碎片还剩：<span style="color: #b6ff00"><b>${timeFormat(hero.value.void.time)}</b></span><br>`;
 
       return text;
     }
 
     function unlimit_dim_r_handle(){
         let unlimitD = `
-        <span>Max Level: ${hero.value.unlimitLevel}</span>/<span>[${getDimReward(5).maxUnlimmit}]</span><br><br>
+        <span>最高等级：${hero.value.unlimitLevel}</span>/<span>[${getDimReward(5).maxUnlimmit}]</span><br><br>
         <span>
-        EXP MULT: ${fn(getDimReward(5).exp)} <br>
-        Max Level MULT: ${fn(getDimReward(5).maxLevel)} <br>
-        MIN Level: ${getDimReward(5).min}<br>
+        经验乘数：${fn(getDimReward(5).exp)} <br>
+        最高等级乘数：${fn(getDimReward(5).maxLevel)} <br>
+        最低等级：${getDimReward(5).min}<br>
         </span><br>
         ${unlimit_bonuses(hero.value.unlimitLevel)}
         `
@@ -397,7 +397,7 @@ export const useNormalDimension = () => {
                 line-height: 1.35;
                 font-size: 14px;
               ">
-                ${text}
+                ${tr(text)}
               </div>
             `;
         }
@@ -405,18 +405,18 @@ export const useNormalDimension = () => {
           
         const goals = [
           { lvl: 2000, text: '' },
-          { lvl: 3000, text: 'Reduce the Prediction Penalties by 1% for each 200 levels' },
-          { lvl: 4000, text: '+0.01 Infinity Resistance for each 500 levels' },
-          { lvl: 5000, text: 'Increase the effect of the unlocked Infinity Goals [T2] by 1% for each 100 levels' },
-          { lvl: 6000, text: '-1% of Corruption Influence for each 500 levels' },
-          { lvl: 7000, text: '+0.01 Void Shards MULT for each 100 levels in this dimension' },
-          { lvl: 8000, text: '+0.01 Singularity Shards MULT for each 1000 levels' },
-          { lvl: 9000, text: '+1 Corruption Shard for each 2000 levels' },
-          { lvl: 10000, text: '+1 Base Tier to all dimensions for each 10000 levels' },
-          { lvl: 12500, text: 'Reduce Stage Requiremrnt for each 500 levels' },
-          { lvl: 15000, text: 'Increase Stardust gain by 1.1 for each 1000 levels' },
-          { lvl: 17500, text: 'Increase IP MUlT by 0.01 for each 500 levels' },
-          { lvl: 20000, text: '[D-Unlimatum] no longer affects this dimension.' },
+          { lvl: 3000, text: '每200级使预言惩罚降低1%。' },
+          { lvl: 4000, text: '每500级获得+0.01无限抗性。' },
+          { lvl: 5000, text: '每100级使已解锁的无限目标[T2]效果提高1%。' },
+          { lvl: 6000, text: '每500级使腐化影响-1%。' },
+          { lvl: 7000, text: '该维度中每100级使虚空碎片乘数+0.01。' },
+          { lvl: 8000, text: '每1000级使奇点碎片乘数+0.01。' },
+          { lvl: 9000, text: '每2000级获得+1腐化碎片。' },
+          { lvl: 10000, text: '每10000级使所有维度基础层级+1。' },
+          { lvl: 12500, text: '每500级降低关卡需求。' },
+          { lvl: 15000, text: '每1000级使星尘获取x1.1。' },
+          { lvl: 17500, text: '每500级使无限点数乘数+0.01。' },
+          { lvl: 20000, text: '[D-Unlimatum]不再影响该维度。' },
         ];
       
         let result = '';
@@ -428,7 +428,7 @@ export const useNormalDimension = () => {
         for (const g of goals) {
             if (g.lvl === 2000 && lvl >= g.lvl) {
               result += dimCard(
-                `Reach Level ${2000 + 500 * infBonus} to get an additional EXP MULT by ${fn(bonus)} when you are in D5`,
+                `在D5中达到等级${2000 + 500 * infBonus}，获得额外经验乘数${fn(bonus)}。`,
                 "#8af7ff"
               );
             }
@@ -436,7 +436,7 @@ export const useNormalDimension = () => {
               result += dimCard(g.text, "#8af7ff");
             } else if (!lockedShown) {
               result += dimCard(
-                `Reach Level ${g.lvl} to unlock a new Feature`,
+                `达到等级${g.lvl}以解锁新功能。`,
                 "#ff8a8a"
               );
               lockedShown = true;
@@ -459,7 +459,7 @@ export const useNormalDimension = () => {
             margin-bottom: 10px;
             line-height: 1.25;
         ">
-            Your best time: ${timeFormat(hero.value.dTimeReward)}
+            ${tr('Your best time')}: ${timeFormat(hero.value.dTimeReward)}
         </div>
         `;
     }
@@ -489,9 +489,9 @@ export const useNormalDimension = () => {
         const afkPercent = Math.max(Math.min((15 / Math.log(Math.max(time, 3))) * speedMult, 10), 1);
         const afkDuration = Math.min((7.5 / Math.sqrt(Math.max(time, 3))) * speedMult, 5);
     
-        return `Reward: Each ${Math.round(100 / afkPercent)} killed enemy grants the AFK boost for ${afkDuration.toFixed(1)}s<br>`;
+        return `奖励：每击杀${Math.round(100 / afkPercent)}个敌人，获得${afkDuration.toFixed(1)}秒离线加速。<br>`;
       } else {
-        return `Reward: 0% to get AFK boost for 0s<br>`;
+        return `奖励：0%几率获得0秒离线加速。<br>`;
       }
     }
 

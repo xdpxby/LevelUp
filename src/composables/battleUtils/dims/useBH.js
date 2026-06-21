@@ -23,9 +23,9 @@ export const useBH = () => {
           hero.value.isBhBoss = true;
         
         if (!hero.value.isBhBoss) {
-          str += `<span style="color: #a3ffe0">Reach transcendence ${bhReq[tier]}, to enter the Black Hole</span><br>`;
+          str += `<span style="color: #a3ffe0">达到超越${bhReq[tier]}后，可进入黑洞。</span><br>`;
           if (tier === 0) {
-            str += `<span style="color: yellow">Reach 70,000 True Level in main dimension</span>`;
+            str += `<span style="color: yellow">在主维度达到70,000真实等级。</span>`;
           }
           return str;
         }
@@ -33,8 +33,8 @@ export const useBH = () => {
         str += `<span style="color: cyan; font-weight: bold">Black Hole [T${tier}]</span><br><br>`;
       
         if (tier >= 5) {
-          str += `Face the Immortal Ruler of Gravity. Deal him enough damage to receive a worthy reward.<br><br>`
-          str += `Total DMG dealt: <b style="color: gold">[${fn(hero.value.gravity.bhMaxDmg)}]</b><br><br>`
+          str += `直面不朽的引力统治者。对其造成足够伤害，以获得相称的奖励。<br><br>`
+          str += `已造成总伤害：<b style="color: gold">[${fn(hero.value.gravity.bhMaxDmg)}]</b><br><br>`
           str += dGravity();
 
           return str;
@@ -42,39 +42,39 @@ export const useBH = () => {
       
        
         str += `<span style="color: #cccccc">
-            Dive into the darkness of the Black Hole ruled by <span style="color: cyan">[D-Gravity]</span> to face the 
-            <span style="color: cyan">Singulars</span>. 
-            Each of their attacks is stronger than the previous. 
-            When you die, your <span style="color: cyan">transcendence</span> will be destroyed, 
-            and you will return to the main dimension.
+            潜入由<span style="color: cyan">[D-Gravity]</span>统治的黑洞黑暗深处，直面
+            <span style="color: cyan">奇点体</span>。
+            它们的每次攻击都会比上一次更强。
+            当你死亡时，你的<span style="color: cyan">超越</span>会被摧毁，
+            并且你会返回主维度。
         </span><br><br>`;
       
         const baseRewards = [
-          `<span style="color: rgb(111, 245, 200)">+75 Singularity Levels</span>`,
-          `<span style="color: gold">+0.05 IP MULT</span>`,
-          `<span style="color: lightblue">Lever Rush & Stage Rush: +5%</span>`,
+          `<span style="color: rgb(111, 245, 200)">+75奇点等级</span>`,
+          `<span style="color: gold">+0.05无限点数乘数</span>`,
+          `<span style="color: lightblue">等级冲刺与关卡冲刺：+5%</span>`,
         ];
       
         const uniqueRewards = {
-          0: `<span style="color: red">BUFF: Black Impulse [T1]</span><br>
-              <span style="color: lime"><b>+0.1</b> Max Level MULT</span> per each <span style="color: cyan">Tr</span><br>
-              <span style="color: gold">You start with 10m stardust</span>`,
-          1: `<span style="color: red">BUFF: Black Impulse [T2]</span><br> 
-              <b style="color: lime">+1.05</b> <span style="color: red">DMG</span> MULT per each <span style="color: cyan">Tr</span><br>
-              <span style="color: gold">Unlock Auto-Forge</span>`,
-          2: `<span style="color: red">BUFF: Black Impulse [T3]</span><br> 
-              <span style="color: lightgreen"><b>+1</b> MIN LEVEL per each <span style="color: cyan">Tr</span></span><br>
-              <span style="color: gold">Unlock Space-INF</span>`,
-          3: `<span style="color: red">BUFF: Black Impulse [T4]</span><br> 
-              <b style="color: lime">+0.005</b> <span style="color: orange">IP MULT</span> per each <span style="color: cyan">Tr</span><br> 
-              <span style="color: gold">Unlock Timeline</span>`,
-          4: `<b style="color: lime">-0.5%</b> <span style="color:#e600ff">Corruption Influence</span> per each <span style="color: cyan">Tr</span><br> 
-              <span style="color: cyan">Unlock Singularity Shards</span>`,
+          0: `<span style="color: red">增益：黑色冲动[T1]</span><br>
+              每次<span style="color: cyan">超越</span>使<span style="color: lime"><b>+0.1</b>最高等级乘数</span><br>
+              <span style="color: gold">初始拥有1000万星尘</span>`,
+          1: `<span style="color: red">增益：黑色冲动[T2]</span><br>
+              每次<span style="color: cyan">超越</span>使<span style="color: red">伤害</span>乘数<b style="color: lime">+1.05</b><br>
+              <span style="color: gold">解锁自动锻造</span>`,
+          2: `<span style="color: red">增益：黑色冲动[T3]</span><br>
+              <span style="color: lightgreen">每次<span style="color: cyan">超越</span>使最低等级<b>+1</b></span><br>
+              <span style="color: gold">解锁空间-无限</span>`,
+          3: `<span style="color: red">增益：黑色冲动[T4]</span><br>
+              每次<span style="color: cyan">超越</span>使<span style="color: orange">无限点数乘数</span><b style="color: lime">+0.005</b><br>
+              <span style="color: gold">解锁时间线</span>`,
+          4: `每次<span style="color: cyan">超越</span>使<span style="color:#e600ff">腐化影响</span><b style="color: lime">-0.5%</b><br>
+              <span style="color: cyan">解锁奇点碎片</span>`,
         };
 
         
       
-        str += `<span style="color: #a3ffe0">Rewards:</span><br>`;
+        str += `<span style="color: #a3ffe0">奖励：</span><br>`;
         [...baseRewards, uniqueRewards[tier]].forEach(r => {
           str += `${r}<br>`;
         });
@@ -85,29 +85,29 @@ export const useBH = () => {
     function dGravity () {
       const dmgReward = [
         {
-          reward: `Reduce Stage requirement for Singularity [D-S] by []`,
-          req: `Reach [] DMG to improve this reward`
+          reward: `奇点[D-S]关卡需求降低[]`,
+          req: `达到[]伤害以提升此奖励`
         },
         {
-          reward: `Void Shards MULT []`,
-          req: `Reach [] DMG to improve this reward`,
+          reward: `虚空碎片乘数[]`,
+          req: `达到[]伤害以提升此奖励`,
         },
         {
-          reward: '[%] of Tr Power spreads to all dimensions',
-          req: `Reach [] DMG to improve this reward`,
+          reward: '[%]的超越力量扩散到所有维度',
+          req: `达到[]伤害以提升此奖励`,
         },
         {
-          reward: "[^] Starudst gain",
-          req: `Reach [] DMG to improve this reward`,
+          reward: "[^]星尘获取",
+          req: `达到[]伤害以提升此奖励`,
         },
         {
-          reward: 'Singularity Shards MULT []',
-          req: `Reach [] DMG to improve this reward`,
+          reward: '奇点碎片乘数[]',
+          req: `达到[]伤害以提升此奖励`,
         },
         
         {
-          reward: "[] Corruption Shard",
-          req: `Reach [] DMG to improve this reward`,
+          reward: "[]腐化碎片",
+          req: `达到[]伤害以提升此奖励`,
         },
         
       ]

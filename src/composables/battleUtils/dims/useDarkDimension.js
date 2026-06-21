@@ -7,6 +7,7 @@ import { dimensions } from "../../../data/dimensions.js";
 import { useTimeline } from "./useTimeline.js";
 import { useDimensions } from "../useDimensions.js";
 import { useDimHandler } from "./useDimHandler.js";
+import { tr } from "../../../i18n/index.js";
 
 
 export const useDarkDimension = () => {
@@ -29,7 +30,7 @@ export const useDarkDimension = () => {
             color:rgb(245, 168, 168);
             text-shadow: 0 0 4px rgba(0,0,0,0.45);
             ">
-            Dimension: ${d.name} [${d.idx}]
+            ${tr('Dimension')}: ${d.name} [${d.idx}]
             </div>
         `;
         
@@ -113,14 +114,14 @@ export const useDarkDimension = () => {
               letter-spacing: 0.5px;
               margin-bottom: 4px;
             ">
-              ${title}
+              ${tr(title)}
             </div>
             <div style="
               font-size: 14px;
               font-weight: 600;
               color: ${baseColor};
             ">
-              ${desc}
+              ${tr(desc)}
             </div>
           </div>
         `;
@@ -198,7 +199,7 @@ export const useDarkDimension = () => {
             line-height: 1.3;
             border: 1px solid rgba(255,255,255,0.12);
           ">
-            ${desc}
+            ${tr(desc)}
           </div>
         `;
     }
@@ -215,7 +216,7 @@ export const useDarkDimension = () => {
               margin-bottom: 10px;
               line-height: 1.25;
             ">
-              ${text}
+              ${tr(text)}
             </div>
           `;
     }
@@ -238,7 +239,7 @@ export const useDarkDimension = () => {
               margin-bottom: 4px;
               letter-spacing: 0.4px;
             ">
-              Intervention
+              ${tr('Intervention')}
             </div>
       
             <div style="
@@ -247,7 +248,7 @@ export const useDarkDimension = () => {
               color: #e74c61;
               line-height: 1.3;
             ">
-              ${d.debuff}
+              ${tr(d.debuff)}
             </div>
           </div>
         `;
@@ -260,7 +261,7 @@ export const useDarkDimension = () => {
         const base = d.d; 
         const required = 6 + (d.infTier * 6);
       
-        return base.replace(/\d+\s+Space?/, `<span style='color: yellow'>${required} Space Creatures</span>`) + `<br><br>`;
+        return `进入空间技能被锁定的维度。天界生物更强。击败<span style='color: yellow'>${required}个空间生物</span>后，即可完成该无限层级。<br><br>`;
     }
 
     function d_danger_des_handle(d) {
@@ -268,34 +269,33 @@ export const useDarkDimension = () => {
         let stage = 100 + 10 * d.infTier;
       
         return `
-          Enter the dimension where <span style='color: orange'>[D-Space]</span> stays its presence within <span style='color: orange'>Dimension Colossuses</span>. 
-          You will encounter this entity in Stage <span style='color: gold'>[${stage}+]</span>, Danger <span style='color: gold'>[${danger}+]</span>. 
-          Defeat it to unlock the path to the next Infinity Tier and awaken a new dimension dark creature.
+          进入<span style='color: orange'>[D-Space]</span>寄宿于<span style='color: orange'>维度巨像</span>中的维度。
+          你会在关卡<span style='color: gold'>[${stage}+]</span>、危险<span style='color: gold'>[${danger}+]</span>时遭遇该实体。
+          击败它即可解锁通往下一无限层级的道路，并唤醒新的黑暗维度生物。
           <br><br>
         `
     }
 
     function d_overstage_des_handle(d){
         return `<div>
-            Enter the Dimension where bosses are replaced by 
-            <span style="color:#8af7ff; font-weight:700;">Obscurants</span>.<br>
-            Kill the 
-            <span style="color:#8af7ff; font-weight:700;">Obscurants</span> 
-            to obtain a 
-            <span style="color:#b0ffde; font-weight:700;">Dark Energy Shard</span>.<br>
-            Total Obscurants: 
+            进入Boss被
+            <span style="color:#8af7ff; font-weight:700;">晦暗者</span>取代的维度。<br>
+            击杀
+            <span style="color:#8af7ff; font-weight:700;">晦暗者</span>
+            可获得
+            <span style="color:#b0ffde; font-weight:700;">黑暗能量碎片</span>。<br>
+            晦暗者总数：
             <span style="color:#f7d774; font-weight:700;">5</span> 
-            <span style="color:#62f2c8;">(+1 per Infinity Tier)</span>.<br>
-            In the next Infinity Tier you will 
-            <span style="color:#ff6a6a; font-weight:700;">lose all shards</span>,
-            but gain a 
-            <span style="color:#b0ffde; font-weight:700;">Shard Multiplier</span> 
-            for the following Infinity Tier.<br>
-            Obscurants start spawning from 
-            <span style="color:#f7d774; font-weight:700;">Stage 100</span>.<br>
-            <span style="color:#b0ffde; font-weight:700;">Dark Energy Shards</span>
-            directly affect your 
-            <span style="color:#8af7ff;">Max Level</span>.
+            <span style="color:#62f2c8;">（每个无限层级+1）</span>。<br>
+            进入下一无限层级时，你会
+            <span style="color:#ff6a6a; font-weight:700;">失去所有碎片</span>，
+            但会获得作用于后续无限层级的
+            <span style="color:#b0ffde; font-weight:700;">碎片乘数</span>。<br>
+            晦暗者从
+            <span style="color:#f7d774; font-weight:700;">关卡100</span>开始出现。<br>
+            <span style="color:#b0ffde; font-weight:700;">黑暗能量碎片</span>
+            会直接影响你的
+            <span style="color:#8af7ff;">最高等级</span>。
           </div>`
     }
 
@@ -320,29 +320,29 @@ export const useDarkDimension = () => {
         let str = "";
       
         str += dimCard(
-          "Dark Dimensions have no Infinity Cap."
+          "黑暗维度没有无限上限。"
         );
       
         str += dimCard(
-          `You must reach 
-          <span style="color:#b3ffe9;font-weight:600;">Total Level 1400</span> 
-          to unlock the next Infinity Tier.`
+          `你必须达到
+          <span style="color:#b3ffe9;font-weight:600;">总等级1400</span>
+          才能解锁下一无限层级。`
         );
       
         str += dimCard(
-          "Each new Infinity Tier becomes more difficult than the previous one."
+          "每个新的无限层级都会比上一层更困难。"
         );
       
         str += dimCard(
-          "Infinity Resistance does not apply in Dark Dimensions."
+          "无限抗性在黑暗维度中无效。"
         );
       
         str += dimCard(
-          "Each new Dark Dimension inherits part of the strength from the previous one."
+          "每个新的黑暗维度都会继承前一个维度的部分强度。"
         );
       
         str += dimCard(
-          "The effect of the intervention weakens with each Infinity Tier of this dimension."
+          "干预效果会随该维度的无限层级提高而减弱。"
         );
       
       
@@ -359,15 +359,15 @@ export const useDarkDimension = () => {
         let totalInfs = dimensions.value.filter(d => d.id.startsWith('d-')) .reduce((sum, d) => sum + d.infTier, 0) 
       
         if(d.infTier < 10)
-          text += `Reach <span style="color: gold">Infinity [T10]</span> to unlock new influence of Dark Energy<br>`;
-        else text += `Dark Energy is gathering the power of infinities from all dark dimensions and empowers itself with <span style="color: gold">${percent}%</span> of the total 
-        <span style="color: gold">infinities [${totalInfs}]</span>. This effect increases with each Infinity Tier<br>  `;
+          text += `达到<span style="color: gold">无限[T10]</span>以解锁黑暗能量的新影响。<br>`;
+        else text += `黑暗能量正在汇聚所有黑暗维度的无限之力，并获得总
+        <span style="color: gold">无限层级[${totalInfs}]</span>的<span style="color: gold">${percent}%</span>作为强化。该效果会随每个无限层级提高。<br>  `;
 
         if(d.infTier >= 10 && d.infTier < 15)
-          text += `<br>Reach <span style="color: gold">Infinity [T15]</span> to unlock new influence of Dark Energy<br><br>`;
-        else if (d.infTier >= 15) text += `<br>You retain the MAX amount of Dark Energy Shards.<br><br>`
+          text += `<br>达到<span style="color: gold">无限[T15]</span>以解锁黑暗能量的新影响。<br><br>`;
+        else if (d.infTier >= 15) text += `<br>你会保留最大数量的黑暗能量碎片。<br><br>`
       
-        text += `<span style="color: #9cedd2">Max Level [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
+        text += `<span style="color: #9cedd2">最高等级 [^${(enemy.value.darkEnergy.deTotal).toFixed(4)}]</span><br>`
       
         return text;
     }
@@ -375,26 +375,26 @@ export const useDarkDimension = () => {
     function d_unlimitted_handle(d) {
         
         let text = `
-          Reward: Weakens <span style='color: rgb(255, 88, 88)'>[D-Ultimatum]</span> 
+          奖励：削弱<span style='color: rgb(255, 88, 88)'>[D-Ultimatum]</span>
           <span style='color: gold'>[T${d.infTier}]</span>
           <span style='color: rgb(204, 102, 255)'>${getDimReward(38).current}</span> 
           -> <span style='color: gold'>[T${d.infTier + 1}]</span>
           <span style='color: rgb(204, 102, 255)'>${getDimReward(38).next}</span><br>
           
-          EXP MULT for dimension [5] [S5-Ω3t]: 
+          维度[5][S5-Ω3t]经验乘数：
           <span style='color: rgb(204, 102, 255)'>${fn(getDimReward(38).expMult)}</span><br>
         `;
 
         if (d.infTier < 10) {
-          text += `<br>Reach <span style="color: gold">Infinity [T10]</span> to unlock new feature`;
+          text += `<br>达到<span style="color: gold">无限[T10]</span>以解锁新功能。`;
         } else {
-          text += `<br>Weakening of the [D-Ultimatum] every 5 Infinity Tier starting from Infinity [T10]<br>`;
+          text += `<br>从无限[T10]开始，每5个无限层级削弱一次[D-Ultimatum]。<br>`;
         }
 
         if (d.infTier >= 20 && d.infTier < 25) {
-          text += `<br>Reach <span style="color: gold">Infinity [T25]</span> to unlock new feature`;
+          text += `<br>达到<span style="color: gold">无限[T25]</span>以解锁新功能。`;
         } else if (d.infTier >= 25) {
-          text += `<br>Infinities from Dark Dimensions reduces the Level Requirement for [D5] 
+          text += `<br>黑暗维度中的无限会降低[D5]的等级需求：
           <b style="color: gold">[^${fn(getDimReward(38).lvlRed)}]</b><br>`;
         }
       
@@ -406,40 +406,40 @@ export const useDarkDimension = () => {
         let maxCount = 9;
         let count = Math.min(getBuffIntervalPosition(buffTiers, d.infTier), maxCount);
       
-        const wrap = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+        const wrap = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
       
         switch(count) {
-          case 1: return wrap(`Reach Infinity [T1] to unlock Juggernaut [T4]`);
-          case 2: return wrap(`Reach Infinity [T4] to unlock Berserk [T4]`);
-          case 3: return wrap(`Reach Infinity [T6] to unlock First Strike [T4]`);
-          case 4: return wrap(`Reach Infinity [T8] to unlock Traveller [T4]`);
-          case 5: return wrap(`Reach Infinity [T12] to unlock Flexible [T4]`);
-          case 6: return wrap(`Reach Infinity [T16] to unlock Flash [T4]`);
-          case 7: return wrap(`Reach Infinity [T20] to unlock Fast Slash[T4]`);
-          case 8: return wrap(`Reach Infinity [T25] to unlock Extra Life  [T4]`);
-          case 9: return wrap(`Gain 1.25 Skill EXP MULT for each Infinity Tier above 25`)
-          default: return wrap(`Gain 1.25 Skill EXP MULT for each Infinity Tier above 25`);
+          case 1: return wrap(`达到无限[T1]以解锁重装战士[T4]。`);
+          case 2: return wrap(`达到无限[T4]以解锁狂暴[T4]。`);
+          case 3: return wrap(`达到无限[T6]以解锁先发制人[T4]。`);
+          case 4: return wrap(`达到无限[T8]以解锁旅行者[T4]。`);
+          case 5: return wrap(`达到无限[T12]以解锁灵活[T4]。`);
+          case 6: return wrap(`达到无限[T16]以解锁闪光[T4]。`);
+          case 7: return wrap(`达到无限[T20]以解锁迅捷斩击[T4]。`);
+          case 8: return wrap(`达到无限[T25]以解锁额外生命[T4]。`);
+          case 9: return wrap(`无限[T25]之后，每个无限层级使技能经验乘数x1.25。`)
+          default: return wrap(`无限[T25]之后，每个无限层级使技能经验乘数x1.25。`);
         }
     }
 
     function d_damage_reward_handle(d){
         let text = ``;
         if(d.infTier >= 20)
-          text = `You have a 50% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br><br>`;
+          text = `受到命中时，有50%几率不获得一层<span style="color: red">末日</span>。<br><br>`;
         else if(d.infTier >= 10)
-          text = `You have a 25% chance not to receive a stack of <span style="color: red">doom</span> when hit.<br>
-          Reach <span style="color: gold">Infninity [T20]</span> to unlock new feature<br><br>`;
-        else text = `Reach <span style="color: gold">Infninity [T10]</span> to unlock new feature<br><br>`;
+          text = `受到命中时，有25%几率不获得一层<span style="color: red">末日</span>。<br>
+          达到<span style="color: gold">无限[T20]</span>以解锁新功能。<br><br>`;
+        else text = `达到<span style="color: gold">无限[T10]</span>以解锁新功能。<br><br>`;
       
       
-        let warp = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+        let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
       
         return text + warp(d.r);
     }
 
     function d_danger_reward_handle(d) {
-        let warp = (text) => `<span style="color:#9cedd2">Dark Creature: <span style="color:red">${text}</span><br> | 
-        Reduce Danger Power by [^${1 - 0.01 *d.infTier}] | Increase The cap of Dark Creatures</span><br>`;
+        let warp = (text) => `<span style="color:#9cedd2">黑暗生物：<span style="color:red">${text}</span><br> |
+        危险之力降低[^${1 - 0.01 * d.infTier}] | 提高黑暗生物上限</span><br>`;
       
         switch(d.infTier){
           case 0: return warp('Dreadfang');
@@ -455,7 +455,7 @@ export const useDarkDimension = () => {
           case 10: return warp('Plaguedozer');
           case 11: return warp('Malignhorn');
 
-          default: return warp('All Dark Creatures are found.');
+          default: return warp('所有黑暗生物均已发现。');
         }
     }
 
@@ -465,7 +465,7 @@ export const useDarkDimension = () => {
         const stardust = Math.max((Math.E * d.infTier) ** 0.45, 1).toFixed(2);  
         const count = 6 * d.infTier;
 
-        let warp = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+        let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
       
         return warp(base
           .replace(/\[\^1\]/, `[^${weaker}]`)
@@ -477,7 +477,7 @@ export const useDarkDimension = () => {
       const tier = d.infTier;
 
       if (tier >= 18) 
-        return `Increase Ascension Shards gain by 1.25 for each Tier above 18. <b>[${fn(getDimReward(34))}]</b>`;
+        return `18层之后，每个层级使转生碎片获取x1.25。<b>[${fn(getDimReward(34))}]</b>`;
       else return d.r;
     }
 

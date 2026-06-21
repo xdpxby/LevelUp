@@ -211,33 +211,32 @@ export const infinityMilestones = [
   export const abyssMilestones = [
     {
       tier: 1,
-      description: `You reached MAX Souls. Travel into the Abyss, where enemies grow stronger and level scaling becomes harsher.
-  Stage requirements increase and Essence gain Reduced by [^0.25]. Reach Stage 20 while being affected by the first 7 curses of [T1]`,
-      reward:  `Upon completion, three new curses will be unlocked. Soul CAP → 30.  
-      x1.3 Rebirth Pts MULT per Abyss Tier.  
-      +50% Soul appearance chance for each curse unlocked.`
+      description: `你已达到灵魂上限。前往深渊，那里敌人更强，等级缩放也更严苛。
+  关卡需求提高，精华获取降低[^0.25]。在受到[T1]前7个诅咒影响时达到关卡20。`,
+      reward:  `完成后解锁三个新诅咒。灵魂上限 → 30。
+      每个深渊层级使重生点数乘数x1.3。
+      每解锁一个诅咒，灵魂出现几率+50%。`
     },
     {
       tier: 2,
-      description: `You reached MAX Souls.
-  Travel into the Abyss, where enemies grow stronger and level scaling becomes harsher. Stage requirements increase and Essence gain Reduced by [^0.25]
-  Reach Stage 30 while being affected by the first 10 curses of [T2]`,
-      reward: `Upon completion, three new curses will be unlocked. Soul CAP → 40.    
-      Ascension Shards reduce Enemy Power.`
+      description: `你已达到灵魂上限。
+  前往深渊，那里敌人更强，等级缩放也更严苛。关卡需求提高，精华获取降低[^0.25]。
+  在受到[T2]前10个诅咒影响时达到关卡30。`,
+      reward: `完成后解锁三个新诅咒。灵魂上限 → 40。
+      转生碎片会降低敌人力量。`
     },
     {
       tier: 3,
-      description: `You reached MAX Souls.
-  Travel into the Abyss, where enemies grow stronger and level scaling becomes harsher. Stage requirements increase and Essence gain Reduced by [^0.25]
-  Reach Stage 40 while being affected by the first 13 curses of [T3]`,
-      reward: `Gain The Second Space Fragment.`
+      description: `你已达到灵魂上限。
+  前往深渊，那里敌人更强，等级缩放也更严苛。关卡需求提高，精华获取降低[^0.25]。
+  在受到[T3]前13个诅咒影响时达到关卡40。`,
+      reward: `获得第二个空间碎片。`
     },
     {
       tier: 4,
-      description: `Dive into the endless darkness to unlock the true power of the Abyss.
-  Travel into the Abyss, where enemies grow stronger and level scaling becomes harsher.
-  Reach as high a Stage as possible while being affected by the first 13 curses of [T4]`,
+      description: `潜入无尽黑暗，解锁深渊的真正力量。
+  前往深渊，那里敌人更强，等级缩放也更严苛。
+  在受到[T4]前13个诅咒影响时，尽可能推进到更高关卡。`,
       reward: ``
     }
   ]
-  

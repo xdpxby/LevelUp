@@ -7,6 +7,7 @@ import { dimensions } from "../../../data/dimensions.js";
 import { dimensionsPos } from "../../../data/dims/dimensionsPos.js";
 import { useDimensions } from "../useDimensions.js";
 import { glitchify } from "../../utils/global.js";
+import { tr } from "../../../i18n/index.js";
 
 
 export const useCorruptedDimension = () => {
@@ -29,7 +30,7 @@ export const useCorruptedDimension = () => {
             color:rgb(242, 168, 245);
             text-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
             ">
-            Dimension: ${glitchify(d.name)} [${d.idx}]
+            ${tr('Dimension')}: ${glitchify(d.name)} [${d.idx}]
             </div>
         `;
         
@@ -93,14 +94,14 @@ export const useCorruptedDimension = () => {
               letter-spacing: 0.5px;
               margin-bottom: 4px;
             ">
-              ${title}
+              ${tr(title)}
             </div>
             <div style="
               font-size: 14px;
               font-weight: 600;
               color: ${baseColor};
             ">
-              ${desc}
+              ${tr(desc)}
             </div>
           </div>
         `;
@@ -146,7 +147,7 @@ export const useCorruptedDimension = () => {
             line-height: 1.3;
             border: 1px solid rgba(200,170,255,0.25);
           ">
-            ${desc}
+            ${tr(desc)}
           </div>
         `;
     }
@@ -156,7 +157,7 @@ export const useCorruptedDimension = () => {
       let lessPenalty = getDimReward(50)
       let maxLevel = hero.value.cUnlimitMaxLevel;
 
-      let warp = (text) => `<span style="color:#9cedd2">Reward: ${text}</span><br>`;
+      let warp = (text) => `<span style="color:#9cedd2">奖励：${text}</span><br>`;
     
       return warp(base
         .replace(/\[1\]/, `[${fn(lessPenalty)}]`)
@@ -164,15 +165,15 @@ export const useCorruptedDimension = () => {
    }
 
     function c_soul_reward_handle(d) {
-      return `Unlock Unique Abilites | Max Consumed Souls [${hero.value.cSoulsMax}]`;
+      return `解锁独特能力 | 最大已消耗灵魂[${hero.value.cSoulsMax}]`;
     }
 
     function c_danger_reward_handle(d) {
       let stage = Math.floor(hero.value.cDangerMax / 50) + 1;
       let danger = getDimReward(57);
 
-      return `Gain Max Danger depends on completed stages in this dimensions after Stage 60.<br> 
-        Max Stgae [${stage}] | Max Danger [${Math.floor(danger)}]`;
+      return `60关后，根据该维度已完成关卡提高最大危险。<br>
+        最高关卡[${stage}] | 最大危险[${Math.floor(danger)}]`;
     }
 
 

@@ -133,7 +133,7 @@ function curseHandle(idx) {
     <span style="color: #AAAAAA;">${curse.description || ''}</span><br>
     <span style="color: #FFD700;">[T${currentTierIndex + 1}]</span> 
     <span style="color: #FFFFFF;">${tEffect(tier, curse.id)}</span> 
-    <span style="color: rgba(211, 117, 255, 1)">(Essense: ${tBonusEffect(tier)})</span>
+    <span style="color: rgba(211, 117, 255, 1)">（精华：${tBonusEffect(tier)}）</span>
   `.replace(/\n\s*/g, ''));
 }
 

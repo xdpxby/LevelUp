@@ -99,80 +99,80 @@ export const useAbysses = () => {
       if (s >= stage) {
         out += `
           <span>
-            <span style="color:#f942f9">Stage ${stage}</span>: ${text}
+            <span style="color:#f942f9">关卡 ${stage}</span>：${text}
           </span>
         `;
         if (value !== null) out += `<span>[${value}]</span>`;
         out += `<br/>`;
       } else if(cap < 1) {
-        out += `Reach <span style="color:#f942f9">Stage ${stage}</span> to unlock new feature`;
+        out += `达到<span style="color:#f942f9">关卡 ${stage}</span>以解锁新功能。`;
         cap++;
       }
     };
   
-    add(20, "High Tier Curses appear more often");
+    add(20, "高层级诅咒更容易出现");
   
-    add(30, "Stage requirement is reduced",
+    add(30, "关卡需求降低",
         `-${fn(abyssDRewardsHandler(1))}`);
   
-    add(40, "Corruption weakness",
+    add(40, "腐化弱化",
         `+${fn(abyssDRewardsHandler(2))}`);
   
-    add(50, "Level requirement is reduced",
+    add(50, "等级需求降低",
         `*${fn(abyssDRewardsHandler(3))}`);
   
-    add(60, "Stardust drop is increased",
+    add(60, "星尘掉落提高",
         `*${fn(abyssDRewardsHandler(4))}`);
   
-    add(80, "Increase Essence gain",
+    add(80, "精华获取提高",
         `*${fn(abyssDRewardsHandler(5))}`);
   
-    add(100, "The chance to convert curse [T4] → [T5]",
+    add(100, "诅咒从[T4]转化为[T5]的几率提高",
         `*${fn(abyssDRewardsHandler(6))}`);
   
-    add(120, "Dimension Shard requirement is reduced",
+    add(120, "维度碎片需求降低",
         `-${fn(abyssDRewardsHandler(7))}`);
   
-    add(140, "Reduce Danger Power",
+    add(140, "危险之力降低",
         `^${fn(abyssDRewardsHandler(8))}`);
   
-    add(160, "Celestials are weaker",
+    add(160, "天界生物变弱",
         `*${fn(abyssDRewardsHandler(9))}`);
   
-    add(180, "Soul-D enemies are weaker",
+    add(180, "D-灵魂敌人变弱",
         `*${fn(abyssDRewardsHandler(10))}`);
   
-    add(200, "Max Level MULT is increased",
+    add(200, "最高等级乘数提高",
         `+${fn(abyssDRewardsHandler(11))}`);
 
-    add(220, "Reduce Awakened Tiers Requirement",
+    add(220, "觉醒层级需求降低",
       `-${fn(abyssDRewardsHandler(12))}`);
 
-    add(240, "Resonance Power is reduced",
+    add(240, "共鸣力量降低",
       `*${fn(abyssDRewardsHandler(13))}`);
 
-    add(260, "Min Level is increased",
+    add(260, "最低等级提高",
       `+${fn(abyssDRewardsHandler(14))}`);
 
-    add(280, "IP MULT is increased",
+    add(280, "无限点数乘数提高",
       `+${fn(abyssDRewardsHandler(15))}`);
 
-    add(300, "Increase the effect of features below",
+    add(300, "提高以下功能的效果",
       `+${fn(1 + 0.01 * (s - 299))}`);
     
-    add(320, "-0.01 Infinity Resistance per 30 stages in Abyss",
+    add(320, "深渊中每30关使无限抗性-0.01",
       `+${fn(abyssDRewardsHandler(17))}`);
     
-    add(340, "-0.1% Corruption Influence per 5 stages in Abyss",
+    add(340, "深渊中每5关使腐化影响-0.1%",
       `+${fn(abyssDRewardsHandler(18))}`);
 
-    add(360, "+0.01 Singularity Shards MULT per 40 stages in Abyss",
+    add(360, "深渊中每40关使奇点碎片乘数+0.01",
       `+${fn(abyssDRewardsHandler(19))}`);
     
-    add(380, "+0.01 Void Shars MULT per 50 stages in Abyss",
+    add(380, "深渊中每50关使虚空碎片乘数+0.01",
         `+${fn(abyssDRewardsHandler(20))}`);
     
-    add(400, "+1 Corruption shard per 100 completed stages in Abyss",
+    add(400, "深渊中每完成100关获得+1腐化碎片",
         `+${fn(abyssDRewardsHandler(21))}`);
   
     add(1000, "???");

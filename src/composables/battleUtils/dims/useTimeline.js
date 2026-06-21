@@ -84,26 +84,26 @@ export const useTimeline = () => {
         const level = timelineLevels[hero.value.timelineActiveTier];
       
         let text = `
-          <span style="color: gold; font-weight: bold;">Timeline</span><br><br>
-          Journey into the past, to the era of the ancient titans. Master the laws of existence and open new paths to power.<br><br>
+          <span style="color: gold; font-weight: bold;">时间线</span><br><br>
+          回到远古泰坦的时代，掌握存在法则，开辟新的力量道路。<br><br>
           
-          Enter the time: <span style="color: ${level.color}; font-weight: bold;">${level.name}</span><br><br>
+          进入时代：<span style="color: ${level.color}; font-weight: bold;">${level.name}</span><br><br>
         `;
       
         if(!hero.value.timelinePass[hero.value.timelineActiveTier]){
-          text += `<span style='color: red; font-weight: bold'>Complete the previous trial to enter</span>`;
+          text += `<span style='color: red; font-weight: bold'>完成前一个试炼后才能进入。</span>`;
           return text;
         }
       
-        text += `<span style="color: #66ffcc; font-weight: bold;">Completion Conditions:</span><br>`;
-        text += `- <span style="color: #ffff66;">Stage</span>: <span style="color: white; font-weight: bold;">${level.req['Stage']}</span><br>`;
-        text += `- <span style="color: #ffff66;">Total Level</span>: <span style="color: white; font-weight: bold;">${level.req['Total Level']}</span><br><br>`;
+        text += `<span style="color: #66ffcc; font-weight: bold;">完成条件：</span><br>`;
+        text += `- <span style="color: #ffff66;">关卡</span>：<span style="color: white; font-weight: bold;">${level.req['Stage']}</span><br>`;
+        text += `- <span style="color: #ffff66;">总等级</span>：<span style="color: white; font-weight: bold;">${level.req['Total Level']}</span><br><br>`;
       
-        text += `<span style="color: #ff8888; font-weight: bold;">Trial Effects:</span><br>`;
-        text += `- <span style="color: #ff5555;">Enemy Power</span>: <span style="color: white; font-weight: bold;"> *${level.req['Enemy Power']}</span><br>`;
-        text += `- <span style="color: #ff5555;">Resonance</span>: <span style="color: white; font-weight: bold;"> *${level.req['Curse Power']}</span><br>`;
-        text += `- <span style="color:rgb(250, 40, 243);">Corruption Influence</span>: <span style="color: white; font-weight: bold;"> +${level.req['Corruption Influence']}%</span><br>`;
-        text += `- <span style="color: gold;">Infinity Tier</span>: <span style="color: white; font-weight: bold;">${level.req['Infinity Tier']}</span><br>`;
+        text += `<span style="color: #ff8888; font-weight: bold;">试炼效果：</span><br>`;
+        text += `- <span style="color: #ff5555;">敌人力量</span>：<span style="color: white; font-weight: bold;"> *${level.req['Enemy Power']}</span><br>`;
+        text += `- <span style="color: #ff5555;">共鸣</span>：<span style="color: white; font-weight: bold;"> *${level.req['Curse Power']}</span><br>`;
+        text += `- <span style="color:rgb(250, 40, 243);">腐化影响</span>：<span style="color: white; font-weight: bold;"> +${level.req['Corruption Influence']}%</span><br>`;
+        text += `- <span style="color: gold;">无限层级</span>：<span style="color: white; font-weight: bold;">${level.req['Infinity Tier']}</span><br>`;
       
         return text;
     }

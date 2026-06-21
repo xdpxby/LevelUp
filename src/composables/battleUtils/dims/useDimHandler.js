@@ -14,6 +14,7 @@ import { useCorruptedDimension } from './useCorruptedDimension.js';
 
 import { computed } from 'vue';
 import { useResets } from '../useResets.js';
+import { tr } from '../../../i18n/index.js';
 
 export const useDimHandler = () => {
     const { hero } = useHero();
@@ -162,7 +163,7 @@ export const useDimHandler = () => {
             margin-bottom: 10px;
             line-height: 1.25;
           ">
-            You are in Singularity right now
+            ${tr('You are in Singularity right now')}
           </div>
         `;
         break;
@@ -179,7 +180,7 @@ export const useDimHandler = () => {
             margin-bottom: 10px;
             line-height: 1.25;
           ">
-            Your best time: ${timeFormat(hero.value.dTimeReward)}
+            ${tr('Your best time')}: ${timeFormat(hero.value.dTimeReward)}
           </div>
         `;
         break;
@@ -261,12 +262,12 @@ export const useDimHandler = () => {
         case 'M': {
           return (
             `<span style="font-size:0.95em; font-style:italic; color: #cde651;">
-              <strong style="color: #cfed3a">Mutations</strong><br>
-              Mutation — an ability to mutate a curse from [T3] to [T4].
-              Each mutation has a chance to mutage a curse to [T4].
-              Higher-tier mutations will not trigger if the previous mutation attempt fails.<br>
-              Enemies may have only 4 curses [T4].<br>
-              Enemies affected by Curse [T4] can drop Mutagen.
+              <strong style="color: #cfed3a">突变</strong><br>
+              突变可以将诅咒从[T3]变异为[T4]。
+              每次突变都有几率让一个诅咒变为[T4]。
+              如果前一次突变失败，更高层级的突变不会继续触发。<br>
+              敌人最多只能拥有4个[T4]诅咒。<br>
+              受[T4]诅咒影响的敌人可能掉落诱变剂。
             </span>`
           ).replace(/\n\s*/g, '');
         }
@@ -274,11 +275,11 @@ export const useDimHandler = () => {
         case 'D': {
           return (
             `<span style="font-size:0.95em; font-style:italic; color: #dbf944;">
-              <strong style="color: #d4ff00">Danger</strong><br>
-              Danger — an ability that creates a special space where unique creatures can appear, but they become much stronger in this space.
-              To enable special creature spawns, you must reach a certain Stage and Danger level.<br>
-              Danger Power increases creature HP and DMG.<br>
-              Note: The spawn chance depends only on the Danger level; the Stage does not affect this chance.
+              <strong style="color: #d4ff00">危险</strong><br>
+              危险会创造特殊区域，独特生物可以在其中出现，但它们也会变得更强。
+              若要启用特殊生物生成，你必须达到指定关卡和危险等级。<br>
+              危险之力会提高生物生命值和伤害。<br>
+              注意：生成几率只取决于危险等级，关卡不会影响该几率。
             </span>`
           ).replace(/\n\s*/g, '');
         }
@@ -286,8 +287,8 @@ export const useDimHandler = () => {
         case 'I': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color: #ffeb7a">' +
-            '<strong style="color:  #ffe02f">Infinity Expansion</strong><br>' +
-            `While you have Infinity Expansion for radiation` +
+            '<strong style="color:  #ffe02f">无限扩展</strong><br>' +
+            `当前拥有辐射的无限扩展。` +
             
             '</span>'
           );
@@ -296,8 +297,8 @@ export const useDimHandler = () => {
         case 'i': {
           return (
             '<span style="font-size:0.95em; font-style:italic; color: #ffe02f">' +
-            '<strong style="color: gold">Info</strong><br>' +
-            `Click to see more info` +
+            '<strong style="color: gold">信息</strong><br>' +
+            `点击查看更多信息。` +
             '</span>'
           );
         }
